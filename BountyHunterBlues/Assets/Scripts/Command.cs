@@ -5,6 +5,10 @@ using System;
 public abstract class Command : MonoBehaviour {
 
     public abstract void execute(GameActor actor);
+    public virtual void updateCommandData(Vector2 data)
+    {
+        // by default, simply ignore the data
+    }
 
 }
 
@@ -22,13 +26,18 @@ public class MoveCommand : Command
     {
         actor.move(dir);
     }
+
+    public override void updateCommandData(Vector2 data)
+    {
+        dir = data;
+    }
 }
 
 public class AttackCommand : Command
 {
     public override void execute(GameActor actor)
     {
-
+        actor.attack();
     }
 }
 
@@ -36,7 +45,7 @@ public class InteractCommand : Command
 {
     public override void execute(GameActor actor)
     {
-        
+        actor.interact();
     }
 }
 
@@ -48,16 +57,22 @@ public class AimCommand : Command
     {
         this.dir = dir;
     }
+
     public override void execute(GameActor actor)
     {
         actor.aim(dir);
     }
+
+    public override void updateCommandData(Vector2 data)
+    {
+        dir = data;
+    }
 }
 
-public class LowerAimCommand : Command
+public class DisableAimCommand : Command
 {
     public override void execute(GameActor actor)
     {
-        
+        actor.disableAim();
     }
 }

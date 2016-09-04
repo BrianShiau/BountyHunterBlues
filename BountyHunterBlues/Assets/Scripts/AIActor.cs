@@ -15,24 +15,6 @@ public class AIActor : GameActor {
      * AIManager AI;
      */
 
-    public override void loseHealth()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void aim()
-    {
-        // activate visual indicator
-        // notify player?
-        isAiming = true;
-    }
-
-    public override void disableAim()
-    {
-        // deactivate visual indicator
-        isAiming = false;
-    }
-
     public override void attack()
     {
         if (isAiming)
