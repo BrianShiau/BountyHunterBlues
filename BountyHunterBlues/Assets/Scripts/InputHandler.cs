@@ -4,37 +4,56 @@ using System.Collections;
 public class InputHandler : MonoBehaviour {
 
     // Here lists all the controls available
-    private Command key_W;
-    private Command key_A;
-    private Command key_S;
-    private Command key_D;
+    private Command move;
 
-    private Command RClick;
-    private Command LClick;
+    private Command aim;
+    private Command lowerAim;
 
-    private Command key_Q;
-    private Command key_E;
+    private Command interact;
+    private Command attack;
 
     public Command handleInput()
     {
+
+        // basing WASD on +x-axis, +z-axis, -x-axis, -z-axis respectively
         if (Input.GetKeyDown(KeyCode.W))
-            return key_W;
+        {
+            move = new MoveCommand(new Vector2(1, 0));
+            return move;
+        }
         if (Input.GetKeyDown(KeyCode.A))
-            return key_A;
+        {
+            move = new MoveCommand(new Vector2(0, 1));
+            return move;
+        }
         if (Input.GetKeyDown(KeyCode.S))
-            return key_S;
+        {
+            move = new MoveCommand(new Vector2(-1, 0));
+            return move;
+        }
         if (Input.GetKeyDown(KeyCode.D))
-            return key_D;
+        {
+            move = new MoveCommand(new Vector2(1, 0));
+            return move;
+        }
+        if (Input.GetMouseButtonDown(0)) // pressing down right mouse button
+        {
+            aim = new AimCommand(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            return aim;
+        }
+        if (Input.GetMouseButtonUp(0)) // releasing right mouse button
+        {
+            lowerAim = new LowerAimCommand();
+            return lowerAim;
+        }
 
-        if (Input.GetMouseButtonDown(0))
-            return RClick;
-        if (Input.GetMouseButtonDown(1))
-            return LClick;
-
-        if (Input.GetKeyDown(KeyCode.Q))
-            return key_Q;
         if (Input.GetKeyDown(KeyCode.E))
-            return key_E;
+        {
+            interact = new InteractCommand();
+            return interact;
+        }
+        
+        // Need to implement Q special ability
 
         return null;
     }

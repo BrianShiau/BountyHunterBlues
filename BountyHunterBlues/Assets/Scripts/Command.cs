@@ -10,37 +10,25 @@ public abstract class Command : MonoBehaviour {
 
 public class MoveCommand : Command
 {
+
+    Vector2 dir;
+
+    public MoveCommand(Vector2 dir)
+    {
+        this.dir = dir;
+    }
+    
     public override void execute(GameActor actor)
     {
-
+        actor.move(dir);
     }
 }
 
-public class MeleeAttackCommand : Command
+public class AttackCommand : Command
 {
     public override void execute(GameActor actor)
     {
 
-    }
-}
-
-public abstract class RangedAttackCommand : Command
-{
-}
-
-public class RangedShotCommand : Command
-{
-    public override void execute(GameActor actor)
-    {
-        throw new NotImplementedException();
-    }
-}
-
-public class RangedSpecialCommand : Command
-{
-    public override void execute(GameActor actor)
-    {
-        throw new NotImplementedException();
     }
 }
 
@@ -53,6 +41,20 @@ public class InteractCommand : Command
 }
 
 public class AimCommand : Command
+{
+    Vector2 dir;
+
+    public AimCommand(Vector2 dir)
+    {
+        this.dir = dir;
+    }
+    public override void execute(GameActor actor)
+    {
+        actor.aim(dir);
+    }
+}
+
+public class LowerAimCommand : Command
 {
     public override void execute(GameActor actor)
     {
