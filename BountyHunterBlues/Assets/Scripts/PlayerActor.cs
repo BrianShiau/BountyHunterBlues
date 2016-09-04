@@ -4,13 +4,37 @@ using System;
 
 public class PlayerActor : GameActor
 {
+    int healthPool = 3;
+
     public override void loseHealth()
     {
-        throw new NotImplementedException();
+        healthPool--;
     }
 
-    public override void rangedGunAttack()
+    public override void aim()
     {
-        throw new NotImplementedException();
+        // visual indicator
+        isAiming = true;
+    }
+
+    public override void disableAim()
+    {
+        // deactivate visual indicator
+        isAiming = false;
+    }
+
+    public override void attack()
+    {
+        if (isAiming)
+        {
+            // shoot
+        }
+        else;
+        // melee
+    }
+
+    public override void interact()
+    {
+
     }
 }
