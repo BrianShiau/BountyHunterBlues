@@ -21,9 +21,9 @@ public class InputHandler : MonoBehaviour {
             return key_W;
         if (Input.GetKeyDown(KeyCode.A))
             return key_A;
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.S))
             return key_S;
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.D))
             return key_D;
 
         if (Input.GetMouseButtonDown(0))
@@ -31,7 +31,12 @@ public class InputHandler : MonoBehaviour {
         if (Input.GetMouseButtonDown(1))
             return LClick;
 
-        if (Input.GetKeyDown)
+        if (Input.GetKeyDown(KeyCode.Q))
+            return key_Q;
+        if (Input.GetKeyDown(KeyCode.E))
+            return key_E;
+
+        return null;
     }
 
 	
