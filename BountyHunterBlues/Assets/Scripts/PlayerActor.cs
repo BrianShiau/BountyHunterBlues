@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class PlayerActor : GameActor {
+public class PlayerActor : GameActor
+{
+    public override void loseHealth()
+    {
+        throw new NotImplementedException();
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public override void rangedGunAttack()
+    {
+        throw new NotImplementedException();
+    }
 }
