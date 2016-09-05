@@ -4,10 +4,13 @@ using System.Collections;
 public abstract class GameActor : MonoBehaviour {
 
     public float moveSpeed; // subject to change based on testing
+    public Vector2 faceDir; // normalized vector that indiciates the center of the vision cone
+    public Vector2 pos; // position in world space
 
     protected bool isAiming; // will need to specify "isAiming with what" later for special items
     protected int healthPool;
-    protected GameActor target; // null unless isAiming is true and aim ray collides with an unobstructed valid GameActor
+    protected GameActor lookTarget; // null unless look ray collides with an unobstructed valid GameActor
+    protected GameActor aimTarget; // null unless isAiming is true and aim ray collides with an unobstructed valid GameActor
 
     public abstract void attack(); 
     public abstract void interact();
@@ -36,12 +39,13 @@ public abstract class GameActor : MonoBehaviour {
     public virtual void disableAim()
     {
         isAiming = false;
-        target = null;
+        aimTarget = null;
     }
 
     public virtual void move(Vector2 dir)
     {
         dir.Normalize();
+        faceDir = dir;
         Vector2 newPos = moveSpeed * dir * Time.deltaTime;
         gameObject.transform.Translate(new Vector3(newPos.x, 0, newPos.y));
     }

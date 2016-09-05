@@ -4,14 +4,15 @@ using System;
 
 public enum State
 {
-    NO_ALERT, VISUAL_ALERT, AUDIO_ALERT, FULL_ALERT
+    GREEN, YELLOW, RED
 }
 
 public class AIActor : GameActor {
 
     public int fov;
+    public GameObject playerObject;
 
-    private Vector2 faceDir; // normalized vector that indiciates the center of the vision cone
+    
     private State alertness;
 
     /*
@@ -40,9 +41,16 @@ public class AIActor : GameActor {
         throw new NotImplementedException();
     }
 
+    public virtual void look(Vector2 dir)
+    {
+        dir.Normalize();
+        faceDir = dir;
+        Camera.main.GetComponent<Utility>().getDirectionVector(this, player);
+    }
+
     public void resetState()
     {
-        alertness = State.NO_ALERT;
+        alertness = State.GREEN;
     }
 
     public void updateState(State newAlertState)
