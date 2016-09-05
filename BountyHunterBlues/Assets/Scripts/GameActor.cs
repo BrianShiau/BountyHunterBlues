@@ -48,34 +48,27 @@ public abstract class GameActor : MonoBehaviour {
 
     public void acquireLookTarget()
     {
-        if (!isAiming) // aiming overrides lookTarget finding
+        GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
+        foreach (GameObject actorObject in ActorObjects)
         {
-            GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
-            foreach (GameObject actorObject in ActorObjects)
+            if (actorObject != this.gameObject)
             {
-                if (actorObject != this.gameObject)
+                Vector3 toTargetDir = actorObject.transform.position - transform.position;
+                toTargetDir.Normalize();
+                if (Vector3.Angle(faceDir, toTargetDir) <= fov / 2)
                 {
-                    Vector3 toTargetDir = actorObject.transform.position - transform.position;
-                    toTargetDir.Normalize();
-                    if (Vector3.Angle(faceDir, toTargetDir) <= fov / 2)
+                    RaycastHit hitinfo;
+                    Physics.Raycast(transform.position, toTargetDir, out hitinfo, sightDistance);
+                    if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
                     {
-                        RaycastHit hitinfo;
-                        Physics.Raycast(transform.position, toTargetDir, out hitinfo, sightDistance);
-                        if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
-                        {
-                            Debug.DrawRay(transform.position, toTargetDir * sightDistance, Color.blue);
-                            lookTarget = actorObject.GetComponent<GameActor>();
-                        }
-                        else
-                            lookTarget = null;
+                        Debug.DrawRay(transform.position, toTargetDir * sightDistance, Color.blue);
+                        lookTarget = actorObject.GetComponent<GameActor>();
                     }
+                    else
+                        lookTarget = null;
                 }
-
             }
-        }
-        else
-        {
-            lookTarget = aimTarget;
+
         }
     }
 
