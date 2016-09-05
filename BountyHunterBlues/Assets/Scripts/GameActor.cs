@@ -5,7 +5,6 @@ public abstract class GameActor : MonoBehaviour {
 
     public float moveSpeed; // subject to change based on testing
     public Vector2 faceDir; // normalized vector that indiciates the center of the vision cone
-    public Vector2 pos; // position in world space
 
     protected bool isAiming; // will need to specify "isAiming with what" later for special items
     protected int healthPool;

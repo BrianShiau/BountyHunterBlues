@@ -27,33 +27,45 @@ public class InputHandler : MonoBehaviour {
     {
         Command nextCommand = handleInput();
         if (nextCommand != null)
+        {
             nextCommand.execute(player.GetComponent<PlayerActor>());
+        }
     }
 
     public Command handleInput()
     {
-
+        bool movement = false;
+        Vector2 movementVector = new Vector2(0, 0);
         // basing WASD on +x-axis, +z-axis, -x-axis, -z-axis respectively
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-            move.updateCommandData(new Vector2(1, 0));
+            movementVector = movementVector + new Vector2(1, 0);
+            movement = true;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            movementVector = movementVector + new Vector2(0, 1);
+            movement = true;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            movementVector = movementVector + new Vector2(-1, 0);
+            movement = true;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            movementVector = movementVector + new Vector2(0, -1);
+            movement = true;
+        }
+
+        if (movement)
+        {
+            movementVector.Normalize();
+            move.updateCommandData(movementVector);
             return move;
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            move.updateCommandData(new Vector2(0, 1));
-            return move;
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            move.updateCommandData(new Vector2(-1, 0));
-            return move;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            move.updateCommandData(new Vector2(0, -1));
-            return move;
-        }
+            
+
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) // pressed or pressing down right mouse button
         {
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);

@@ -45,7 +45,7 @@ public class AIActor : GameActor {
     {
         dir.Normalize();
         faceDir = dir;
-        Camera.main.GetComponent<Utility>().getDirectionVector(this, player);
+        Camera.main.GetComponent<Utility>().getDirectionVector(this, playerObject.GetComponent<GameActor>());
     }
 
     public void resetState()

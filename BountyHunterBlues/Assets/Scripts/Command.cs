@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public abstract class Command : MonoBehaviour {
+public abstract class Command {
 
     public abstract void execute(GameActor actor);
     public virtual void updateCommandData(Vector2 data)
