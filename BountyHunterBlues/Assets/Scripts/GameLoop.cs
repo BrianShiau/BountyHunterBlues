@@ -13,38 +13,48 @@ public class GameLoop : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	player_loop(){
-		check_player_movement()
-		check_player_action(){
-			check_slash(){
-				return result
-			}
-			check_fire(){
-				return result
-			}
-			check_interact(){
-				return result
-			}
-		}
+	void player_loop(){
+		Command nextCommand = handleInput();
+        if (nextCommand != null)
+            nextCommand.execute(player.GetComponent<PlayerActor>());
 	}
 
-	npc_loop(){
+	void npc_loop(){
 		animate_AI(){
-			animate_nearby_AI()
+			animate_AI()
 			run_AI_detection(){
-				if_ray_hit(){
-					run_AI_alert_sequence(){
-						yellow(){
-							investigate()
-						}
-						red(){
-							alert_or_attack()
-						}
-					}
-				}
-				else(){
-					green()
-				}
+				Green:
+					Stationary position and orientation
+				    No weapon drawn (faceDir)
+				    if(ray_cone hit - ray)
+				        rotate()
+				    If(look_ray hit || audio_trigger)
+				        Set lookTarget = player || audio_location
+				        run_delay()
+				        run(yellow)
+				Yellow:
+				    Variable position, variable orientation
+				    run_timer()
+				    No weapon drawn
+				    Follow lookTarget
+				        if(lookTarget is null)
+				        	if(audio) delay(6)
+				            else delay(3)
+				            Teleport back to original position and orientation
+				            run(green)
+				        if(timer == red_timer):
+				            run(red)
+				Red:
+				    Variable position, variable orientation
+				    Hold right mouse button
+				    Aim down lookTarget
+				    run_aim_confirmed_timer()
+				        Visual indication
+				    if(timer_up && target != null)
+				        fire()
+				    if(target == null)
+				        run_delay()
+				        run(yellow)
 			}
 			run_AUDIO_detection(){
 				if_sound_detected(){
@@ -63,39 +73,27 @@ public class GameLoop : MonoBehaviour {
 			}
 		}
 		check_AI_action(){
-			check_slash(){
-				return result
-			}
 			check_fire(){
 				return result
 			}
-			check_interact(){
-				return result
-			}
 		}
 	}
 
-	object_loop(){
+	void object_loop(){
 		check_interactable_objects(){
 			check_interaction(){
 				pick_up()
-				use()
-				switch()
-				proximity()
 			}
 		}
 	}
 
-	objective_loop(){
+	void objective_loop(){
 		objective_complete(){
 			return result
 		}
 		scene_exit(){
 			check_objective_completion(){
 				if_complete(){
-					return result
-				}
-				else(){
 					return result
 				}
 			}
@@ -112,5 +110,5 @@ public class GameLoop : MonoBehaviour {
 			scene_transition()
 		}
 	}
-    */
+*/
 }
