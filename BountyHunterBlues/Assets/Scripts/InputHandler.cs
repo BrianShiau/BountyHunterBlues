@@ -3,6 +3,8 @@ using System.Collections;
 
 public class InputHandler : MonoBehaviour {
 
+    public GameObject player;
+
     // Here lists all the controls available
     private Command move;
 
@@ -19,6 +21,13 @@ public class InputHandler : MonoBehaviour {
         disableAim = new DisableAimCommand();
         interact = new InteractCommand();
         attack = new AttackCommand();
+    }
+
+    void Update()
+    {
+        Command nextCommand = handleInput();
+        if (nextCommand != null)
+            nextCommand.execute(player.GetComponent<PlayerActor>());
     }
 
     public Command handleInput()

@@ -90,6 +90,22 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &27558046 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012774092908, guid: a71c48361af1b0244ad9f810921ef49e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2089761361}
+--- !u!114 &27558047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 27558046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71f1c9b25e318f45a5de0c37c243d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &184496620
 Prefab:
   m_ObjectHideFlags: 0
@@ -1298,13 +1314,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000011802268254, guid: 3401b09f56e71a34d9b1765acd6135fa, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3401b09f56e71a34d9b1765acd6135fa, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1901840644 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012681906888, guid: 3401b09f56e71a34d9b1765acd6135fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1901840643}
+--- !u!114 &1901840645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1901840644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b074f3c543dbcd4dbd218399834df9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2089761361
 Prefab:
   m_ObjectHideFlags: 0

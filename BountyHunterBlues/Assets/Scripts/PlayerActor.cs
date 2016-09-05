@@ -4,6 +4,11 @@ using System;
 
 public class PlayerActor : GameActor
 {
+    public override void aim(Vector2 dir)
+    {
+        base.aim(dir);
+        
+    }
 
     public override void attack()
     {

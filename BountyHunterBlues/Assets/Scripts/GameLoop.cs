@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GameLoop : MonoBehaviour {
-
+/*
 	// Use this for initialization
 	void Start () {
 		load_scene()
@@ -112,4 +112,5 @@ public class GameLoop : MonoBehaviour {
 			scene_transition()
 		}
 	}
+    */
 }
