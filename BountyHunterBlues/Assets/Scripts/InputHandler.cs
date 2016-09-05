@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class InputHandler : MonoBehaviour {
 
@@ -25,11 +26,9 @@ public class InputHandler : MonoBehaviour {
 
     void Update()
     {
-        Command nextCommand = handleInput();
-        if (nextCommand != null)
-        {
+        LinkedList<Command> nextCommands = handleInput();
+        foreach(Command nextCommand in nextCommands)
             nextCommand.execute(player.GetComponent<PlayerActor>());
-        }
 
         // this part will go in the GameLogicManager
         GameObject[] actorObjects = GameObject.FindGameObjectsWithTag("GameActor");
@@ -39,8 +38,9 @@ public class InputHandler : MonoBehaviour {
         }
     }
 
-    public Command handleInput()
+    public LinkedList<Command> handleInput()
     {
+        LinkedList<Command> nextCommands = new LinkedList<Command>();
         bool movement = false;
         Vector2 movementVector = new Vector2(0, 0);
         // basing WASD on +x-axis, +z-axis, -x-axis, -z-axis respectively
@@ -69,12 +69,13 @@ public class InputHandler : MonoBehaviour {
         {
             movementVector.Normalize();
             move.updateCommandData(movementVector);
-            return move;
+            nextCommands.AddLast(move);
         }
             
 
-        if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(1)) // pressed or pressing down right mouse button
+        if (Input.GetMouseButton(1)) // pressed or pressing down right mouse button
         {
+            // check for ranged attack
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
             
             Vector3 projectedPoint = Vector3.ProjectOnPlane(worldPoint, new Vector3(0, 1, 0)); // need to project that vector onto xz plane
@@ -82,28 +83,28 @@ public class InputHandler : MonoBehaviour {
             Vector3 aimVector = projectedPoint - projectedPlayerPoint; // get the vector pointing to worldPoint from the player pos
             aimVector.Normalize();
             aim.updateCommandData(new Vector2(aimVector.x, aimVector.z));
-            return aim;
+            nextCommands.AddLast(aim);
         }
-        if (Input.GetMouseButtonUp(1)) // releasing right mouse button
+        else if (Input.GetMouseButtonUp(1)) // releasing right mouse button
         {
             disableAim = new DisableAimCommand();
-            return disableAim;
+            nextCommands.AddLast(disableAim);
         }
 
         if (Input.GetMouseButtonDown(0)) // pressing down left mouse button
         {
             attack = new AttackCommand();
-            return attack;
+            nextCommands.AddLast(attack);
         } 
         if (Input.GetKeyDown(KeyCode.E))
         {
             interact = new InteractCommand();
-            return interact;
+            nextCommands.AddLast(interact);
         }
         
         // Need to implement Q special ability
 
-        return null;
+        return nextCommands;
     }
 
 	

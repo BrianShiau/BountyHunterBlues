@@ -20,7 +20,9 @@ public class PlayerActor : GameActor
     {
         if (isAiming)
         {
-            // shoot
+            Debug.Log("Player shoots");
+            if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
+                aimTarget.takeDamage();
         }
         else
         {
