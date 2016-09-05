@@ -57,4 +57,9 @@ public class AIActor : GameActor {
     {
 
     }
+
+	public override void die()
+	{
+		Destroy (gameObject);
+	}
 }

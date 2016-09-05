@@ -14,6 +14,7 @@ public abstract class GameActor : MonoBehaviour {
 
     public abstract void attack(); 
     public abstract void interact();
+	public abstract void die();
 
     public bool isAlive()
     {
@@ -23,11 +24,15 @@ public abstract class GameActor : MonoBehaviour {
     public void kill()
     {
         healthPool = 0;
+		die ();
     }
 
     public void takeDamage()
     {
         healthPool--;
+		if (healthPool == 0) {
+			die ();
+		}
     }
 
     public virtual void aim(Vector2 dir)
