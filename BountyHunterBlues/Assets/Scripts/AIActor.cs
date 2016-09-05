@@ -9,7 +9,6 @@ public enum State
 
 public class AIActor : GameActor {
 
-    public int fov;
     public GameObject playerObject;
 
     
@@ -39,13 +38,6 @@ public class AIActor : GameActor {
     public override void interact()
     {
         throw new NotImplementedException();
-    }
-
-    public virtual void look(Vector2 dir)
-    {
-        dir.Normalize();
-        faceDir = dir;
-        Camera.main.GetComponent<Utility>().getDirectionVector(this, playerObject.GetComponent<GameActor>());
     }
 
     public void resetState()

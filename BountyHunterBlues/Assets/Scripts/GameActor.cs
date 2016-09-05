@@ -4,7 +4,11 @@ using System.Collections;
 public abstract class GameActor : MonoBehaviour {
 
     public float moveSpeed; // subject to change based on testing
-    public Vector2 faceDir; // normalized vector that indiciates the center of the vision cone
+    public Vector2 faceDir; // normalized vector that indicates the center of the vision cone
+    public Vector2 aimDir; // normalized vector that indicates direction of aim (only useful if isAiming is true)
+    public float fov; // angle for visual sight and melee strike
+    public float meleeDistance;
+    public float sightDistance;
 
     protected bool isAiming; // will need to specify "isAiming with what" later for special items
     protected int healthPool;
@@ -29,15 +33,38 @@ public abstract class GameActor : MonoBehaviour {
     public void takeDamage()
     {
         healthPool--;
+        Debug.Log("I've taken Damage");
 		if (healthPool == 0) {
 			die ();
 		}
     }
 
+    public void acquireLookTarget()
+    {
+        GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
+        foreach(GameObject actorObject in ActorObjects)
+        {
+            Vector2 toTargetDir = actorObject.transform.position - transform.position;
+            if (Vector2.Angle(faceDir, toTargetDir) <= fov/2)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, toTargetDir, sightDistance);
+                Debug.DrawRay(transform.position, toTargetDir, Color.blue);
+                if(hit.collider != null && hit.collider.tag == "GameActor")
+                {
+                    Debug.Log("No Wall blocking me");
+                    lookTarget = actorObject.GetComponent<GameActor>();
+                }
+            }
+
+        }
+    }
+
     public virtual void aim(Vector2 dir)
     {
         isAiming = true;
-        
+        dir.Normalize();
+        aimDir = dir;
+        faceDir = dir;
     }
 
     public virtual void disableAim()

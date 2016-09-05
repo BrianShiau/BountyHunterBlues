@@ -25,7 +25,7 @@ GameObject:
   - 114: {fileID: 114000014038059708}
   m_Layer: 0
   m_Name: CharacterAndCamera
-  m_TagString: Untagged
+  m_TagString: GameActor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,6 +198,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   faceDir: {x: 0, y: 1}
+  aimDir: {x: 0, y: 0}
+  fov: 140
+  meleeDistance: 2
+  sightDistance: 100
 --- !u!124 &124000011550407462
 Behaviour:
   m_ObjectHideFlags: 1

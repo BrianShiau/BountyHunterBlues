@@ -18,7 +18,10 @@ public class PlayerActor : GameActor
         }
         else
         {
-            // melee
+            Debug.Log("attack happening on left click");
+            if (lookTarget != null && Vector2.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
+                lookTarget.takeDamage();
+
         }
         
     }

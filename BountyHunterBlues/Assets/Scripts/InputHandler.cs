@@ -30,6 +30,13 @@ public class InputHandler : MonoBehaviour {
         {
             nextCommand.execute(player.GetComponent<PlayerActor>());
         }
+
+        // this part will go in the GameLogicManager
+        GameObject[] actorObjects = GameObject.FindGameObjectsWithTag("GameActor");
+        foreach(GameObject actorObj in actorObjects)
+        {
+            actorObj.GetComponent<GameActor>().acquireLookTarget();
+        }
     }
 
     public Command handleInput()
@@ -66,19 +73,19 @@ public class InputHandler : MonoBehaviour {
         }
             
 
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) // pressed or pressing down right mouse button
+        if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(1)) // pressed or pressing down right mouse button
         {
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             aim.updateCommandData(new Vector2(worldPoint.x, worldPoint.z));
             return aim;
         }
-        if (Input.GetMouseButtonUp(0)) // releasing right mouse button
+        if (Input.GetMouseButtonUp(1)) // releasing right mouse button
         {
             disableAim = new DisableAimCommand();
             return disableAim;
         }
 
-        if (Input.GetMouseButtonDown(1)) // pressing down left mouse button
+        if (Input.GetMouseButtonDown(0)) // pressing down left mouse button
         {
             attack = new AttackCommand();
             return attack;

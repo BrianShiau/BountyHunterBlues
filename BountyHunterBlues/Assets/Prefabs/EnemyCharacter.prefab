@@ -25,7 +25,7 @@ GameObject:
   - 114: {fileID: 114000013268067792}
   m_Layer: 0
   m_Name: EnemyCharacter
-  m_TagString: Untagged
+  m_TagString: GameActor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   faceDir: {x: 1, y: 0}
+  aimDir: {x: 0, y: 0}
   fov: 140
   playerObject: {fileID: 0}
 --- !u!136 &136000010701491888
