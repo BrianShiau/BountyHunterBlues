@@ -52,11 +52,12 @@ public abstract class GameActor : MonoBehaviour {
         foreach(GameObject actorObject in ActorObjects)
         {
             Vector2 toTargetDir = actorObject.transform.position - transform.position;
+            toTargetDir.Normalize();
             if (Vector2.Angle(faceDir, toTargetDir) <= fov/2)
             {
                 RaycastHit hitinfo;
                 Physics.Raycast(transform.position, toTargetDir, out hitinfo, sightDistance);
-                Debug.DrawRay(transform.position, toTargetDir, Color.blue);
+                Debug.DrawRay(transform.position, sightDistance * toTargetDir, Color.blue);
                 if(hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
                 {
                     lookTarget = actorObject.GetComponent<GameActor>();
@@ -72,6 +73,15 @@ public abstract class GameActor : MonoBehaviour {
         dir.Normalize();
         aimDir = dir;
         faceDir = dir;
+
+        RaycastHit hitinfo;
+        Physics.Raycast(transform.position, dir, out hitinfo, sightDistance);
+        if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
+        {
+            Debug.Log("Added aimTarget");
+            aimTarget = hitinfo.collider.GetComponent<GameActor>();
+        }
+
     }
 
     public virtual void disableAim()

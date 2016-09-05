@@ -75,8 +75,13 @@ public class InputHandler : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(1)) // pressed or pressing down right mouse button
         {
-            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            aim.updateCommandData(new Vector2(worldPoint.x, worldPoint.z));
+            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+            
+            Vector3 projectedPoint = Vector3.ProjectOnPlane(worldPoint, new Vector3(0, 1, 0)); // need to project that vector onto xz plane
+            Vector3 projectedPlayerPoint = Vector3.ProjectOnPlane(player.transform.position, new Vector3(0, 1, 0)); // project player point onto xz plane (just in case. player should be on xz plane)
+            Vector3 aimVector = projectedPoint - projectedPlayerPoint; // get the vector pointing to worldPoint from the player pos
+            aimVector.Normalize();
+            aim.updateCommandData(new Vector2(aimVector.x, aimVector.z));
             return aim;
         }
         if (Input.GetMouseButtonUp(1)) // releasing right mouse button
