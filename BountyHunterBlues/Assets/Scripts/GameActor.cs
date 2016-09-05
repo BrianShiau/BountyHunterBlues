@@ -4,8 +4,8 @@ using System.Collections;
 public abstract class GameActor : MonoBehaviour {
 
     public float moveSpeed; // subject to change based on testing
-    public Vector2 faceDir; // normalized vector that indicates the center of the vision cone
-    public Vector2 aimDir; // normalized vector that indicates direction of aim (only useful if isAiming is true)
+    public Vector3 faceDir; // normalized vector that indicates the center of the vision cone
+    public Vector3 aimDir; // normalized vector that indicates direction of aim (only useful if isAiming is true)
     public float fov; // angle for visual sight and melee strike
     public float meleeDistance;
     public float sightDistance;
@@ -40,7 +40,7 @@ public abstract class GameActor : MonoBehaviour {
     public void takeDamage()
     {
         healthPool--;
-        Debug.Log("I've taken Damage");
+        Debug.Log("GameActor took Damage");
 		if (healthPool == 0) {
 			die ();
 		}
@@ -48,26 +48,38 @@ public abstract class GameActor : MonoBehaviour {
 
     public void acquireLookTarget()
     {
-        GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
-        foreach(GameObject actorObject in ActorObjects)
+        if (!isAiming) // aiming overrides lookTarget finding
         {
-            Vector2 toTargetDir = actorObject.transform.position - transform.position;
-            toTargetDir.Normalize();
-            if (Vector2.Angle(faceDir, toTargetDir) <= fov/2)
+            GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
+            foreach (GameObject actorObject in ActorObjects)
             {
-                RaycastHit hitinfo;
-                Physics.Raycast(transform.position, toTargetDir, out hitinfo, sightDistance);
-                Debug.DrawRay(transform.position, sightDistance * toTargetDir, Color.blue);
-                if(hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
+                if (actorObject != this.gameObject)
                 {
-                    lookTarget = actorObject.GetComponent<GameActor>();
+                    Vector3 toTargetDir = actorObject.transform.position - transform.position;
+                    toTargetDir.Normalize();
+                    if (Vector3.Angle(faceDir, toTargetDir) <= fov / 2)
+                    {
+                        RaycastHit hitinfo;
+                        Physics.Raycast(transform.position, toTargetDir, out hitinfo, sightDistance);
+                        if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
+                        {
+                            Debug.DrawRay(transform.position, toTargetDir * sightDistance, Color.blue);
+                            lookTarget = actorObject.GetComponent<GameActor>();
+                        }
+                        else
+                            lookTarget = null;
+                    }
                 }
-            }
 
+            }
+        }
+        else
+        {
+            lookTarget = aimTarget;
         }
     }
 
-    public virtual void aim(Vector2 dir)
+    public virtual void aim(Vector3 dir)
     {
         isAiming = true;
         dir.Normalize();
@@ -75,14 +87,17 @@ public abstract class GameActor : MonoBehaviour {
         faceDir = dir;
 
         RaycastHit hitinfo;
+        Debug.DrawRay(transform.position, dir * sightDistance, Color.red);
         Physics.Raycast(transform.position, dir, out hitinfo, sightDistance);
         if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
         {
 
-            Debug.DrawRay(transform.position, new Vector3(dir.x, 0, dir.y) * sightDistance, Color.red);
+
             Debug.Log("Have aimTarget");
             aimTarget = hitinfo.collider.GetComponent<GameActor>();
         }
+        else
+            aimTarget = null;
 
     }
 
@@ -92,12 +107,12 @@ public abstract class GameActor : MonoBehaviour {
         aimTarget = null;
     }
 
-    public virtual void move(Vector2 dir)
+    public virtual void move(Vector3 dir)
     {
         dir.Normalize();
         faceDir = dir;
-        Vector2 newPos = moveSpeed * dir * Time.deltaTime;
-        gameObject.transform.Translate(new Vector3(newPos.x, 0, newPos.y));
+        Vector3 newPos = moveSpeed * dir * Time.deltaTime;
+        gameObject.transform.Translate(newPos);
     }
 
 	

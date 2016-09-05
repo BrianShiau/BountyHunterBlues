@@ -10,7 +10,7 @@ public class PlayerActor : GameActor
         base.Start();
         healthPool = 3;
     }
-    public override void aim(Vector2 dir)
+    public override void aim(Vector3 dir)
     {
         base.aim(dir);
         
@@ -21,14 +21,22 @@ public class PlayerActor : GameActor
         if (isAiming)
         {
             Debug.Log("Player shoots");
-            if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
+            if (aimTarget != null && Vector3.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
+            {
                 aimTarget.takeDamage();
+                if (!aimTarget.isAlive())
+                    aimTarget = null;
+            }
         }
         else
         {
             Debug.Log("attack happening on left click");
-            if (lookTarget != null && Vector2.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
+            if (lookTarget != null && Vector3.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
+            {
                 lookTarget.takeDamage();
+                if (!lookTarget.isAlive())
+                    lookTarget = null;
+            }
 
         }
         

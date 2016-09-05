@@ -42,26 +42,26 @@ public class InputHandler : MonoBehaviour {
     {
         LinkedList<Command> nextCommands = new LinkedList<Command>();
         bool movement = false;
-        Vector2 movementVector = new Vector2(0, 0);
+        Vector3 movementVector = new Vector3(0, 0, 0);
         // basing WASD on +x-axis, +z-axis, -x-axis, -z-axis respectively
         if (Input.GetKey(KeyCode.W))
         {
-            movementVector = movementVector + new Vector2(1, 0);
+            movementVector.x++;
             movement = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            movementVector = movementVector + new Vector2(0, 1);
+            movementVector.z++;
             movement = true;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            movementVector = movementVector + new Vector2(-1, 0);
+            movementVector.x--;
             movement = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            movementVector = movementVector + new Vector2(0, -1);
+            movementVector.z--;
             movement = true;
         }
 
@@ -82,7 +82,7 @@ public class InputHandler : MonoBehaviour {
             Vector3 projectedPlayerPoint = Vector3.ProjectOnPlane(player.transform.position, new Vector3(0, 1, 0)); // project player point onto xz plane (just in case. player should be on xz plane)
             Vector3 aimVector = projectedPoint - projectedPlayerPoint; // get the vector pointing to worldPoint from the player pos
             aimVector.Normalize();
-            aim.updateCommandData(new Vector2(aimVector.x, aimVector.z));
+            aim.updateCommandData(aimVector);
             nextCommands.AddLast(aim);
         }
         else if (Input.GetMouseButtonUp(1)) // releasing right mouse button

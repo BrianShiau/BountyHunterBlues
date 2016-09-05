@@ -25,7 +25,7 @@ public class AIActor : GameActor {
         healthPool = 1;
     }
 
-    public override void aim(Vector2 dir)
+    public override void aim(Vector3 dir)
     {
         base.aim(dir);
         faceDir = dir;
