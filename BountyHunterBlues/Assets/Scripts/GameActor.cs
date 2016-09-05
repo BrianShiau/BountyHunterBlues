@@ -47,11 +47,11 @@ public abstract class GameActor : MonoBehaviour {
             Vector2 toTargetDir = actorObject.transform.position - transform.position;
             if (Vector2.Angle(faceDir, toTargetDir) <= fov/2)
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, toTargetDir, sightDistance);
+                RaycastHit hitinfo;
+                Physics.Raycast(transform.position, toTargetDir, out hitinfo, sightDistance);
                 Debug.DrawRay(transform.position, toTargetDir, Color.blue);
-                if(hit.collider != null && hit.collider.tag == "GameActor")
+                if(hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
                 {
-                    Debug.Log("No Wall blocking me");
                     lookTarget = actorObject.GetComponent<GameActor>();
                 }
             }
