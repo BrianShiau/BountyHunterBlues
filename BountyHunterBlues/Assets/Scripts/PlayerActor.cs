@@ -4,6 +4,12 @@ using System;
 
 public class PlayerActor : GameActor
 {
+
+    public override void Start()
+    {
+        base.Start();
+        healthPool = 3;
+    }
     public override void aim(Vector2 dir)
     {
         base.aim(dir);

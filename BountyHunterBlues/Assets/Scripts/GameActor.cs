@@ -19,6 +19,13 @@ public abstract class GameActor : MonoBehaviour {
     public abstract void interact();
 	public abstract void die();
 
+    public virtual void Start()
+    {
+        isAiming = false;
+        lookTarget = null;
+        aimTarget = null;
+    }
+
     public bool isAlive()
     {
         return healthPool > 0;

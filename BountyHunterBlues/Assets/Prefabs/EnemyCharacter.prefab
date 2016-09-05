@@ -94,6 +94,8 @@ MonoBehaviour:
   faceDir: {x: 1, y: 0}
   aimDir: {x: 0, y: 0}
   fov: 140
+  meleeDistance: 2
+  sightDistance: 100
   playerObject: {fileID: 0}
 --- !u!136 &136000010701491888
 CapsuleCollider:

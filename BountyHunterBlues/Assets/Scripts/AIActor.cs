@@ -19,6 +19,12 @@ public class AIActor : GameActor {
      * AIManager AI;
      */
 
+    public override void Start()
+    {
+        base.Start();
+        healthPool = 1;
+    }
+
     public override void aim(Vector2 dir)
     {
         base.aim(dir);
