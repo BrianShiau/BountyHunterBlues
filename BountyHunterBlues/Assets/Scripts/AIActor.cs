@@ -25,18 +25,22 @@ public class AIActor : GameActor {
         healthPool = 1;
     }
 
-    public override void aim(Vector3 dir)
-    {
-        base.aim(dir);
-        faceDir = dir;
-
-    }
-
     public override void attack()
     {
         if (isAiming)
         {
-            // shoot
+            Debug.Log("Enemy Shoots");
+            if(aimTarget!=null && Vector3.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
+            {
+                if(aimTarget is PlayerActor)
+                {
+                    aimTarget.takeDamage();
+                    if (!aimTarget.isAlive())
+                        aimTarget = null;
+                }
+
+                // else for friendly fire with AI
+            }
         }
         // no else since AI can't melee
     }

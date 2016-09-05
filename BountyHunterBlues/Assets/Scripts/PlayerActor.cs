@@ -10,11 +10,6 @@ public class PlayerActor : GameActor
         base.Start();
         healthPool = 3;
     }
-    public override void aim(Vector3 dir)
-    {
-        base.aim(dir);
-        
-    }
 
     public override void attack()
     {
