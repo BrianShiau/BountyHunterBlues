@@ -27,4 +27,9 @@ public class PlayerActor : GameActor
     {
 
     }
+
+	public override void die()
+	{
+		// reset the game here for now
+	}
 }
