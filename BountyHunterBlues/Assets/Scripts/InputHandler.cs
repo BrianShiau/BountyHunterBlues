@@ -46,22 +46,22 @@ public class InputHandler : MonoBehaviour {
         // basing WASD on +x-axis, +y-axis, -x-axis, -y-axis respectively
         if (Input.GetKey(KeyCode.W))
         {
-            movementVector.x++;
+            movementVector.y++;
             movement = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            movementVector.y++;
+            movementVector.x--;
             movement = true;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            movementVector.x--;
+            movementVector.y--;
             movement = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            movementVector.y--;
+            movementVector.x++;
             movement = true;
         }
 

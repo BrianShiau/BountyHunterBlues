@@ -81,9 +81,10 @@ public abstract class GameActor : MonoBehaviour {
 
         RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, dir, sightDistance);
         Debug.DrawRay(transform.position, dir * sightDistance, Color.red);
+        
         if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
         {
-
+            Debug.Log("hit distance " + hitinfo.distance);
 
             Debug.Log("Have aimTarget");
             aimTarget = hitinfo.collider.GetComponent<GameActor>();
