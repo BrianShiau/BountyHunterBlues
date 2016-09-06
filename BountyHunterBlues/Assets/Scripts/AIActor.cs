@@ -49,7 +49,7 @@ public class AIActor : GameActor {
         if (isAiming)
         {
             Debug.Log("Enemy Shoots");
-            if(aimTarget!=null && Vector3.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
+            if(aimTarget!=null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
             {
                 if(aimTarget is PlayerActor)
                 {

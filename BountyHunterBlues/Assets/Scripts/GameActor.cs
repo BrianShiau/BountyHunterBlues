@@ -4,8 +4,8 @@ using System.Collections;
 public abstract class GameActor : MonoBehaviour {
 
     public float moveSpeed; // subject to change based on testing
-    public Vector3 faceDir; // normalized vector that indicates the center of the vision cone
-    public Vector3 aimDir; // normalized vector that indicates direction of aim (only useful if isAiming is true)
+    public Vector2 faceDir; // normalized vector that indicates the center of the vision cone
+    public Vector2 aimDir; // normalized vector that indicates direction of aim (only useful if isAiming is true)
     public float fov; // angle for visual sight and melee strike
     public float meleeDistance;
     public float sightDistance;
@@ -53,12 +53,12 @@ public abstract class GameActor : MonoBehaviour {
         {
             if (actorObject != this.gameObject)
             {
-                Vector3 toTargetDir = actorObject.transform.position - transform.position;
+                Vector2 toTargetDir = actorObject.transform.position - transform.position;
                 toTargetDir.Normalize();
-                if (Vector3.Angle(faceDir, toTargetDir) <= fov / 2)
+                if (Vector2.Angle(faceDir, toTargetDir) <= fov / 2)
                 {
-                    RaycastHit hitinfo;
-                    Physics.Raycast(transform.position, toTargetDir, out hitinfo, sightDistance);
+                    RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, toTargetDir,  sightDistance);
+                    
                     if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
                     {
                         Debug.DrawRay(transform.position, toTargetDir * sightDistance, Color.blue);
@@ -71,19 +71,19 @@ public abstract class GameActor : MonoBehaviour {
         }
     }
 
-    public virtual void aim(Vector3 dir)
+    public virtual void aim(Vector2 dir)
     {
         isAiming = true;
         dir.Normalize();
         aimDir = dir;
         faceDir = dir;
 
-        RaycastHit hitinfo;
+        RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, dir, sightDistance);
         Debug.DrawRay(transform.position, dir * sightDistance, Color.red);
-        Physics.Raycast(transform.position, dir, out hitinfo, sightDistance);
+        
         if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
         {
-
+            Debug.Log("hit distance " + hitinfo.distance);
 
             Debug.Log("Have aimTarget");
             aimTarget = hitinfo.collider.GetComponent<GameActor>();
@@ -99,11 +99,11 @@ public abstract class GameActor : MonoBehaviour {
         aimTarget = null;
     }
 
-    public virtual void move(Vector3 dir)
+    public virtual void move(Vector2 dir)
     {
         dir.Normalize();
         faceDir = dir;
-        Vector3 newPos = moveSpeed * dir * Time.deltaTime;
+        Vector2 newPos = moveSpeed * dir * Time.deltaTime;
         gameObject.transform.Translate(newPos);
     }
 

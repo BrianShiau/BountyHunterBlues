@@ -42,26 +42,26 @@ public class InputHandler : MonoBehaviour {
     {
         LinkedList<Command> nextCommands = new LinkedList<Command>();
         bool movement = false;
-        Vector3 movementVector = new Vector3(0, 0, 0);
-        // basing WASD on +x-axis, +z-axis, -x-axis, -z-axis respectively
+        Vector2 movementVector = new Vector2(0, 0);
+        // basing WASD on +x-axis, +y-axis, -x-axis, -y-axis respectively
         if (Input.GetKey(KeyCode.W))
         {
-            movementVector.x++;
+            movementVector.y++;
             movement = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            movementVector.z++;
+            movementVector.x--;
             movement = true;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            movementVector.x--;
+            movementVector.y--;
             movement = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            movementVector.z--;
+            movementVector.x++;
             movement = true;
         }
 
@@ -78,11 +78,11 @@ public class InputHandler : MonoBehaviour {
             // check for ranged attack
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
             
-            Vector3 projectedPoint = Vector3.ProjectOnPlane(worldPoint, new Vector3(0, 1, 0)); // need to project that vector onto xz plane
-            Vector3 projectedPlayerPoint = Vector3.ProjectOnPlane(player.transform.position, new Vector3(0, 1, 0)); // project player point onto xz plane (just in case. player should be on xz plane)
-            Vector3 aimVector = projectedPoint - projectedPlayerPoint; // get the vector pointing to worldPoint from the player pos
+            Vector3 projectedPoint = Vector3.ProjectOnPlane(worldPoint, new Vector3(0, 0, 1)); // need to project that vector onto xy plane
+            Vector3 aimVector = projectedPoint - player.transform.position; // get the vector pointing to worldPoint from the player pos
             aimVector.Normalize();
-            aim.updateCommandData(aimVector);
+            Vector2 aim2DVector = new Vector2(aimVector.x, aimVector.y);
+            aim.updateCommandData(aim2DVector);
             nextCommands.AddLast(aim);
         }
         else if (Input.GetMouseButtonUp(1)) // releasing right mouse button

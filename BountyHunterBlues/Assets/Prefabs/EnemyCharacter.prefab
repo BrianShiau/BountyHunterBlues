@@ -21,9 +21,10 @@ GameObject:
   - 4: {fileID: 4000013480450662}
   - 212: {fileID: 212000010074931996}
   - 61: {fileID: 61000012707084372}
+  - 114: {fileID: 114000011878450620}
   m_Layer: 0
   m_Name: EnemyCharacter
-  m_TagString: Untagged
+  m_TagString: GameActor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013306044712}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.15, y: 6.84, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children: []
@@ -55,6 +56,24 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.56, y: 1.01}
+--- !u!114 &114000011878450620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013306044712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9e4ba3d03afae44bd436a4c3fa2666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  faceDir: {x: 0, y: 1}
+  aimDir: {x: 0, y: 0}
+  fov: 140
+  meleeDistance: 2
+  sightDistance: 100
+  playerObject: {fileID: 0}
 --- !u!212 &212000010074931996
 SpriteRenderer:
   m_ObjectHideFlags: 1
