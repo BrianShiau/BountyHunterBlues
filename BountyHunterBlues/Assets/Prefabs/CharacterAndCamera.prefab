@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013760697518}
   - 212: {fileID: 212000013826165434}
+  - 61: {fileID: 61000012951016742}
   m_Layer: 0
   m_Name: CharacterAndCamera
   m_TagString: Untagged
@@ -108,6 +109,20 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!61 &61000012951016742
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013579858438}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 6.49, y: 7.52}
 --- !u!81 &81000012663433268
 AudioListener:
   m_ObjectHideFlags: 1
