@@ -55,7 +55,7 @@ public abstract class GameActor : MonoBehaviour {
             {
                 Vector2 toTargetDir = actorObject.transform.position - transform.position;
                 toTargetDir.Normalize();
-                if (Vector2.Angle(faceDir, toTargetDir) <= fov / 2)
+                if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) <= fov / 2)
                 {
                     RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, toTargetDir,  sightDistance);
                     
@@ -104,8 +104,9 @@ public abstract class GameActor : MonoBehaviour {
     {
         dir.Normalize();
         faceDir = dir;
+        
         Vector2 newPos = moveSpeed * dir * Time.deltaTime;
-        gameObject.transform.Translate(newPos);
+        transform.Translate(newPos);
     }
 
 	
