@@ -10,10 +10,10 @@ public abstract class GameActor : MonoBehaviour {
     public float meleeDistance;
     public float sightDistance;
 
-    protected bool isAiming; // will need to specify "isAiming with what" later for special items
-    protected int healthPool;
-    protected GameActor lookTarget; // null unless look ray collides with an unobstructed valid GameActor
-    protected GameActor aimTarget; // null unless isAiming is true and aim ray collides with an unobstructed valid GameActor
+    public bool isAiming; // will need to specify "isAiming with what" later for special items
+    public int healthPool;
+    public GameActor lookTarget; // null unless look ray collides with an unobstructed valid GameActor
+    public GameActor aimTarget; // null unless isAiming is true and aim ray collides with an unobstructed valid GameActor
 
     public abstract void attack(); 
     public abstract void interact();
@@ -68,7 +68,6 @@ public abstract class GameActor : MonoBehaviour {
                         lookTarget = null;
                 }
             }
-
         }
     }
 

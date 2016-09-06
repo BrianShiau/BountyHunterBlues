@@ -19,10 +19,29 @@ public class AIActor : GameActor {
      * AIManager AI;
      */
 
+    private Command move;
+
+    private Command aim;
+    private Command disableAim;
+
+    private Command interacting;
+    private Command attacking;
+
+    public Vector3 aim_direction;
+
     public override void Start()
     {
         base.Start();
         healthPool = 1;
+
+        aim_direction = new Vector2(0, 1);
+        move = new MoveCommand(new Vector2(0, 0));
+        aim = new AimCommand(aim_direction);
+        disableAim = new DisableAimCommand();
+        interacting = new InteractCommand();
+        attacking = new AttackCommand();
+
+        alertness = State.GREEN;
     }
 
     public override void attack()
@@ -64,4 +83,45 @@ public class AIActor : GameActor {
 	{
 		Destroy (gameObject);
 	}
+
+    IEnumerator ExecuteGreen(float time){
+        yield return new WaitForSeconds(time);
+        alertness = State.GREEN;
+    }
+
+    IEnumerator ExecuteYellow(float time){
+        yield return new WaitForSeconds(time);
+        alertness = State.YELLOW;
+    }
+
+    IEnumerator ExecuteRed(float time){
+        yield return new WaitForSeconds(time);
+        alertness = State.RED;
+    }
+
+    public void green_alertness(){
+        if(alertness == State.GREEN){
+            if(lookTarget != null){
+                ExecuteGreen(3);
+            }
+        }
+    }
+
+    public void yellow_alertness(){
+        if(alertness == State.YELLOW){
+            
+        }
+    }
+
+    public void red_alertness(){
+        if(alertness == State.RED){
+            
+        }
+    }
+
+    void Update(){
+        green_alertness();
+        yellow_alertness();
+        red_alertness();
+    }
 }
