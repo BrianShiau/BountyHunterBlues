@@ -5,7 +5,7 @@ using System;
 public abstract class Command {
 
     public abstract void execute(GameActor actor);
-    public virtual void updateCommandData(Vector3 data)
+    public virtual void updateCommandData(Vector2 data)
     {
         // by default, simply ignore the data
     }
@@ -15,9 +15,9 @@ public abstract class Command {
 public class MoveCommand : Command
 {
 
-    Vector3 dir;
+    Vector2 dir;
 
-    public MoveCommand(Vector3 dir)
+    public MoveCommand(Vector2 dir)
     {
         this.dir = dir;
     }
@@ -27,7 +27,7 @@ public class MoveCommand : Command
         actor.move(dir);
     }
 
-    public override void updateCommandData(Vector3 data)
+    public override void updateCommandData(Vector2 data)
     {
         dir = data;
     }
@@ -51,9 +51,9 @@ public class InteractCommand : Command
 
 public class AimCommand : Command
 {
-    Vector3 dir;
+    Vector2 dir;
 
-    public AimCommand(Vector3 dir)
+    public AimCommand(Vector2 dir)
     {
         this.dir = dir;
     }
@@ -63,7 +63,7 @@ public class AimCommand : Command
         actor.aim(dir);
     }
 
-    public override void updateCommandData(Vector3 data)
+    public override void updateCommandData(Vector2 data)
     {
         dir = data;
     }

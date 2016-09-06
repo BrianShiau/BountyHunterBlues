@@ -41,6 +41,7 @@ GameObject:
   - 4: {fileID: 4000013760697518}
   - 212: {fileID: 212000013826165434}
   - 61: {fileID: 61000012951016742}
+  - 114: {fileID: 114000010014971206}
   m_Layer: 0
   m_Name: CharacterAndCamera
   m_TagString: Untagged
@@ -54,10 +55,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010357571456}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 5, y: 5, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013760697518}
   m_RootOrder: 0
@@ -68,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013579858438}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.84, y: 8.098822, z: 8.5}
+  m_LocalPosition: {x: 0.4539634, y: 1.74, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children:
@@ -137,6 +138,23 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010357571456}
   m_Enabled: 1
+--- !u!114 &114000010014971206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013579858438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71f1c9b25e318f45a5de0c37c243d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  faceDir: {x: 0, y: 1}
+  aimDir: {x: 0, y: 0}
+  fov: 140
+  meleeDistance: 2
+  sightDistance: 100
 --- !u!114 &114000011180509588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b074f3c543dbcd4dbd218399834df9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1000013579858438}
 --- !u!124 &124000014067094688
 Behaviour:
   m_ObjectHideFlags: 1

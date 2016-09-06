@@ -16,7 +16,7 @@ public class PlayerActor : GameActor
         if (isAiming)
         {
             Debug.Log("Player shoots");
-            if (aimTarget != null && Vector3.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
+            if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
             {
                 aimTarget.takeDamage();
                 if (!aimTarget.isAlive())
@@ -26,7 +26,7 @@ public class PlayerActor : GameActor
         else
         {
             Debug.Log("attack happening on left click");
-            if (lookTarget != null && Vector3.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
+            if (lookTarget != null && Vector2.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
             {
                 lookTarget.takeDamage();
                 if (!lookTarget.isAlive())
