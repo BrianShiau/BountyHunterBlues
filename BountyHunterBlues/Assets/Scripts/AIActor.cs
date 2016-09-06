@@ -25,12 +25,10 @@ public class AIActor : GameActor {
     private float attack_timer;
     private Quaternion rotation;
 
-    private Command move;
-
-    private Command aim;
-    private Command disableAim;
-
-    private Command attacking;
+    private Command AI_move;
+    private Command AI_aim;
+    private Command AI_disableAim;
+    private Command AI_attack;
 
     public Vector2 aim_direction;
     private Vector2 initial_position;
@@ -47,10 +45,10 @@ public class AIActor : GameActor {
         initial_position = new Vector2(transform.position.x, transform.position.y);
         move_speed = 2;
 
-        move = new MoveCommand(new Vector2(0, 0));
-        aim = new AimCommand(aim_direction);
-        disableAim = new DisableAimCommand();
-        attacking = new AttackCommand();
+        AI_move = new MoveCommand(new Vector2(0, 0));
+        AI_aim = new AimCommand(aim_direction);
+        AI_disableAim = new DisableAimCommand();
+        AI_attack = new AttackCommand();
 
         alertness = State.GREEN;
     }
@@ -121,12 +119,6 @@ public class AIActor : GameActor {
 
     public void yellow_alertness(){
         if(alertness == State.YELLOW){
-            float z = Mathf.Atan2((lookTarget.gameObject.transform.position.y - transform.position.y), (lookTarget.gameObject.transform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90;
-
-            transform.eulerAngles = new Vector3(0, 0, z);
-            transform.position = (gameObject.transform.up * move_speed);
-            //move to position
-            //once at position
             if(lookTarget == null){
                 state_timer += Time.deltaTime;
                 if(state_timer > state_change_time){
@@ -136,6 +128,8 @@ public class AIActor : GameActor {
                 }
             }
             if(lookTarget != null){
+                AI_move.updateCommandData(lookTarget.transform.position - transform.position);
+                AI_move.execute(this);
                 state_timer += Time.deltaTime;
                 if(state_timer > state_change_time){
                     state_timer = 0;
@@ -147,16 +141,16 @@ public class AIActor : GameActor {
 
     public void red_alertness(){
         if(alertness == State.RED){
-            aim.execute(this);
+            AI_aim.execute(this);
             attack_timer += Time.deltaTime;
             if(attack_timer > attack_time_confirmation && lookTarget != null){
-                attacking.execute(this);
+                AI_attack.execute(this);
             }
             if(lookTarget == null){
                 state_timer += Time.deltaTime;
                 if(state_timer > state_change_time){
                     state_timer = 0;
-                    disableAim.execute(this);
+                    AI_disableAim.execute(this);
                     run_state(State.YELLOW);
                 }
             }

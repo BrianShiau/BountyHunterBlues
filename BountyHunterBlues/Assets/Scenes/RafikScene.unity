@@ -157,6 +157,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+        type: 2}
+      propertyPath: healthPool
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
   m_IsPrefabParent: 0
@@ -202,33 +207,3 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1410513395 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981,
-    type: 2}
-  m_PrefabInternal: {fileID: 1410513394}
---- !u!114 &1410513396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1410513395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc9e4ba3d03afae44bd436a4c3fa2666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0
-  faceDir: {x: 0, y: 0}
-  aimDir: {x: 0, y: 0}
-  fov: 45
-  meleeDistance: 0
-  sightDistance: 1000
-  isAiming: 0
-  healthPool: 0
-  lookTarget: {fileID: 0}
-  aimTarget: {fileID: 0}
-  playerObject: {fileID: 0}
-  state_change_time: 0
-  attack_time_confirmation: 0
-  aim_direction: {x: 0, y: 0, z: 0}

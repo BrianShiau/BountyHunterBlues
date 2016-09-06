@@ -106,6 +106,4 @@ public abstract class GameActor : MonoBehaviour {
         Vector2 newPos = moveSpeed * dir * Time.deltaTime;
         gameObject.transform.Translate(newPos);
     }
-
-	
 }
