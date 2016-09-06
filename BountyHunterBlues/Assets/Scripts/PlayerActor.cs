@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerActor : GameActor
 {
@@ -45,5 +46,6 @@ public class PlayerActor : GameActor
 	public override void die()
 	{
 		// reset the game here for now
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }
