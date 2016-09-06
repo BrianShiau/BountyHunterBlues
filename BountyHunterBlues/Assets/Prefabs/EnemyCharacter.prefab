@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013480450662}
   - 212: {fileID: 212000010074931996}
   - 61: {fileID: 61000012707084372}
-  - 114: {fileID: 114000011878450620}
+  - 114: {fileID: 114000011496164906}
   m_Layer: 0
   m_Name: EnemyCharacter
   m_TagString: GameActor
@@ -56,7 +56,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.56, y: 1.01}
---- !u!114 &114000011878450620
+--- !u!114 &114000011496164906
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -67,13 +67,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9e4ba3d03afae44bd436a4c3fa2666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  faceDir: {x: 0, y: 1}
+  moveSpeed: 0
+  faceDir: {x: 0, y: 0}
   aimDir: {x: 0, y: 0}
-  fov: 140
-  meleeDistance: 2
-  sightDistance: 100
+  fov: 0
+  meleeDistance: 0
+  sightDistance: 0
+  isAiming: 0
+  healthPool: 0
+  lookTarget: {fileID: 0}
+  aimTarget: {fileID: 0}
   playerObject: {fileID: 0}
+  state_change_time: 0
+  attack_time_confirmation: 0
+  aim_direction: {x: 0, y: 0}
+  move_speed: 0
 --- !u!212 &212000010074931996
 SpriteRenderer:
   m_ObjectHideFlags: 1

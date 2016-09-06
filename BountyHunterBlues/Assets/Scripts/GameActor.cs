@@ -26,6 +26,37 @@ public abstract class GameActor : MonoBehaviour {
         aimTarget = null;
     }
 
+    void Update()
+    {
+        GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
+        bool foundLookTarget = false;
+        foreach (GameObject actorObject in ActorObjects)
+        {
+            if (actorObject != this.gameObject)
+            {
+                Vector2 worldVector = actorObject.transform.position - transform.position;
+                worldVector.Normalize();
+                Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
+                if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) <= fov / 2)
+                {
+                    RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, worldVector, sightDistance);
+
+                    if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
+                    {
+                        Debug.DrawRay(transform.position, worldVector * sightDistance, Color.blue);
+                        lookTarget = actorObject.GetComponent<GameActor>(); // arbitrarily chooses first valid target in LoS as "lookTarget" should change to list later
+                        foundLookTarget = true;
+                    }
+
+                }
+            }
+        }
+
+        if (!foundLookTarget)
+            lookTarget = null;
+
+    }
+
     public bool isAlive()
     {
         return healthPool > 0;
@@ -48,27 +79,7 @@ public abstract class GameActor : MonoBehaviour {
 
     public void acquireLookTarget()
     {
-        GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
-        foreach (GameObject actorObject in ActorObjects)
-        {
-            if (actorObject != this.gameObject)
-            {
-                Vector2 toTargetDir = actorObject.transform.position - transform.position;
-                toTargetDir.Normalize();
-                if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) <= fov / 2)
-                {
-                    RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, toTargetDir,  sightDistance);
-                    
-                    if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
-                    {
-                        Debug.DrawRay(transform.position, toTargetDir * sightDistance, Color.blue);
-                        lookTarget = actorObject.GetComponent<GameActor>();
-                    }
-                    else
-                        lookTarget = null;
-                }
-            }
-        }
+        
     }
 
     public virtual void aim(Vector2 dir)
@@ -78,13 +89,12 @@ public abstract class GameActor : MonoBehaviour {
         aimDir = dir;
         faceDir = dir;
 
-        RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, dir, sightDistance);
-        Debug.DrawRay(transform.position, dir * sightDistance, Color.red);
+        Vector2 worldDir = transform.TransformDirection(dir);
+        RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, worldDir, sightDistance);
+        Debug.DrawRay(transform.position, worldDir * sightDistance, Color.red);
         
         if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
         {
-            Debug.Log("hit distance " + hitinfo.distance);
-
             Debug.Log("Have aimTarget");
             aimTarget = hitinfo.collider.GetComponent<GameActor>();
         }

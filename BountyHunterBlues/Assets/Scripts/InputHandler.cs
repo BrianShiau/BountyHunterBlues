@@ -76,13 +76,10 @@ public class InputHandler : MonoBehaviour {
         if (Input.GetMouseButton(1)) // pressed or pressing down right mouse button
         {
             // check for ranged attack
-            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-            
-            Vector3 projectedPoint = Vector3.ProjectOnPlane(worldPoint, new Vector3(0, 0, 1)); // need to project that vector onto xy plane
-            Vector3 aimVector = projectedPoint - player.transform.position; // get the vector pointing to worldPoint from the player pos
+            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+            Vector2 aimVector = player.transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
             aimVector.Normalize();
-            Vector2 aim2DVector = new Vector2(aimVector.x, aimVector.y);
-            aim.updateCommandData(aim2DVector);
+            aim.updateCommandData(aimVector);
             nextCommands.AddLast(aim);
         }
         else if (Input.GetMouseButtonUp(1)) // releasing right mouse button

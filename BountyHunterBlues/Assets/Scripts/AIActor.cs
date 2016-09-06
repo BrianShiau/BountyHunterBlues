@@ -157,9 +157,10 @@ public class AIActor : GameActor {
         }
     }
 
-    void Update(){
+/*    void Update(){
         green_alertness();
         yellow_alertness();
         red_alertness();
     }
+    */
 }
