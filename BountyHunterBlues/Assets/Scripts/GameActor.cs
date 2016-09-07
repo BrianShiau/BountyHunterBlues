@@ -49,7 +49,9 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
             Vector2 faceDirWorld = transform.TransformDirection(faceDir);
             Debug.DrawRay(transform.position, faceDirWorld * sightDistance, Color.green);
         }
-        updateAnimation();
+
+        if(this is PlayerActor)
+            updateAnimation();
     }
 
     public bool Equals(GameActor other)
