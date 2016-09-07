@@ -41,8 +41,6 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
 
     public virtual void Update()
     {
-        // reinit isMoving to false everyframe, to be set true when a move command is issued
-        isMoving = false;
         runVisionDetection();
         if (lookTarget == null)
         {

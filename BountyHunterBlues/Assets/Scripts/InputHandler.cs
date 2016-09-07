@@ -64,7 +64,10 @@ public class InputHandler : MonoBehaviour {
             move.updateCommandData(movementVector);
             nextCommands.AddLast(move);
         }
-            
+        else
+            // reinit isMoving to false when no move command is issued
+            player.GetComponent<GameActor>().isMoving = false;
+
 
         if (Input.GetMouseButton(1)) // pressed or pressing down right mouse button
         {
