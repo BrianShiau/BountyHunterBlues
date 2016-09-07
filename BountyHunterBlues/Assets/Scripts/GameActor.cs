@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
-public abstract class GameActor : MonoBehaviour {
+public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
+{
 
     public float moveSpeed; // subject to change based on testing
     public Vector2 faceDir; // normalized vector that indicates the center of the vision cone
@@ -19,6 +22,8 @@ public abstract class GameActor : MonoBehaviour {
     public abstract void interact();
 	public abstract void die();
 
+    protected abstract void runVisionDetection();
+
     public virtual void Start()
     {
         isAiming = false;
@@ -26,35 +31,14 @@ public abstract class GameActor : MonoBehaviour {
         aimTarget = null;
     }
 
-    void Update()
+    public virtual void Update()
     {
-        GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
-        bool foundLookTarget = false;
-        foreach (GameObject actorObject in ActorObjects)
-        {
-            if (actorObject != this.gameObject)
-            {
-                Vector2 worldVector = actorObject.transform.position - transform.position;
-                worldVector.Normalize();
-                Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
-                if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) <= fov / 2)
-                {
-                    RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, worldVector, sightDistance);
+       runVisionDetection();
+    }
 
-                    if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
-                    {
-                        Debug.DrawRay(transform.position, worldVector * sightDistance, Color.blue);
-                        lookTarget = actorObject.GetComponent<GameActor>(); // arbitrarily chooses first valid target in LoS as "lookTarget" should change to list later
-                        foundLookTarget = true;
-                    }
-
-                }
-            }
-        }
-
-        if (!foundLookTarget)
-            lookTarget = null;
-
+    public bool Equals(GameActor other)
+    {
+        return other != null && other.gameObject == gameObject;
     }
 
     public bool isAlive()
@@ -75,11 +59,6 @@ public abstract class GameActor : MonoBehaviour {
 		if (healthPool == 0) {
 			die ();
 		}
-    }
-
-    public void acquireLookTarget()
-    {
-        
     }
 
     public virtual void aim(Vector2 dir)

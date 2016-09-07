@@ -29,13 +29,6 @@ public class InputHandler : MonoBehaviour {
         LinkedList<Command> nextCommands = handleInput();
         foreach(Command nextCommand in nextCommands)
             nextCommand.execute(player.GetComponent<PlayerActor>());
-
-        // this part will go in the GameLogicManager
-        GameObject[] actorObjects = GameObject.FindGameObjectsWithTag("GameActor");
-        foreach(GameObject actorObj in actorObjects)
-        {
-            actorObj.GetComponent<GameActor>().acquireLookTarget();
-        }
     }
 
     public LinkedList<Command> handleInput()

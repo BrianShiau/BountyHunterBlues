@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public enum State
 {
@@ -53,6 +55,17 @@ public class AIActor : GameActor {
         alertness = State.GREEN;
     }
 
+    public override void Update()
+    {
+        base.Update();
+        /*
+        green_alertness();
+        yellow_alertness();
+        red_alertness();
+        */
+    }
+    
+
     public override void attack()
     {
         if (isAiming)
@@ -91,6 +104,49 @@ public class AIActor : GameActor {
     public override void die()
     {
         Destroy (gameObject);
+    }
+
+    protected override void runVisionDetection()
+    {
+        GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
+        GameActor tempLookTarget = null;
+        foreach (GameObject actorObject in ActorObjects)
+        {
+            if (actorObject != this.gameObject) // ignore myself
+            {
+                Vector2 worldVector = actorObject.transform.position - transform.position;
+                worldVector.Normalize();
+                Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
+                if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
+                {
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, sightDistance);
+                    IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance); // sorted by ascending by default
+                    foreach (RaycastHit2D hitinfo in hits)
+                    {
+                        GameObject hitObj = hitinfo.collider.gameObject;
+                        if (hitObj.tag != "GameActor")
+                            // obstruction in front, ignore the rest of the ray
+                            break;
+                        else if (hitObj.GetComponent<GameActor>() is PlayerActor)
+                        {
+                            // PlayerActor
+                            tempLookTarget = hitObj.GetComponent<GameActor>();
+                            Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
+                            break;
+                        }
+                        // else the next obj in the ray line is an AIActor, just ignore it and keep moving down the ray
+                    }
+
+                }
+            }
+
+            if (tempLookTarget != null)
+                break; // found player, no need to keep looping
+        }
+        if (tempLookTarget == null)
+            lookTarget = null;
+        else
+            lookTarget = tempLookTarget;
     }
 
 
@@ -157,10 +213,5 @@ public class AIActor : GameActor {
         }
     }
 
-/*    void Update(){
-        green_alertness();
-        yellow_alertness();
-        red_alertness();
-    }
-    */
+
 }
