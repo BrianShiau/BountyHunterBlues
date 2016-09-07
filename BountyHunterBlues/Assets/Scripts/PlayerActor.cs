@@ -36,6 +36,13 @@ public class PlayerActor : GameActor
         lastShotTime += Time.deltaTime;
 
 		gunSlider.value = lastShotTime;
+		if (lastShotTime >= 2) {
+			gunSliderFill.color = Color.green;
+		}else if(lastShotTime >= 1){
+			gunSliderFill.color = Color.yellow;
+		} else {
+			gunSliderFill.color = Color.red;
+		}
     }
 
     public override void attack()
