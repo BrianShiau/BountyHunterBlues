@@ -1025,7 +1025,7 @@ GameObject:
   - 224: {fileID: 983896605}
   - 222: {fileID: 983896607}
   - 114: {fileID: 983896606}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1814,7 +1814,7 @@ GameObject:
   - 223: {fileID: 1687690955}
   - 114: {fileID: 1687690954}
   - 114: {fileID: 1687690953}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HUDCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1908,7 +1908,7 @@ GameObject:
   - 224: {fileID: 1708285992}
   - 222: {fileID: 1708285994}
   - 114: {fileID: 1708285993}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GunImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1975,7 +1975,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 1718258426}
   - 114: {fileID: 1718258427}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: gunSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2387,7 +2387,7 @@ GameObject:
   - 224: {fileID: 1922801815}
   - 222: {fileID: 1922801817}
   - 114: {fileID: 1922801816}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DeathFlash
   m_TagString: DeathFlash
   m_Icon: {fileID: 0}
@@ -2612,6 +2612,11 @@ Prefab:
       propertyPath: faceDir.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
@@ -2623,7 +2628,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 2035419280}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
