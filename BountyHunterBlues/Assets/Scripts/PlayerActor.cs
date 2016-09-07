@@ -7,16 +7,18 @@ using System.Linq;
 
 public class PlayerActor : GameActor
 {
+    public bool hasGun;
 
     public override void Start()
     {
         base.Start();
+        hasGun = false;
         healthPool = 3;
     }
 
     public override void attack()
     {
-        if (isAiming)
+        if (hasGun && isAiming)
         {
             Debug.Log("Player shoots");
             if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)

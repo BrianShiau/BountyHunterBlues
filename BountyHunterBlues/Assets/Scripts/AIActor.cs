@@ -66,7 +66,7 @@ public class AIActor : GameActor {
     {
         base.Update();
 
-        print(alertness);
+        //print(alertness);
         green_alertness();
         yellow_alertness();
         red_alertness();
