@@ -94,8 +94,12 @@ public class PlayerActor : GameActor
             float dist = sightDistance;
             foreach (GameActor actor in seenActors)
             {
-                if (Vector2.Distance(actor.gameObject.transform.position, transform.position) <= dist)
+                float nextDist = Vector2.Distance(actor.gameObject.transform.position, transform.position);
+                if (nextDist <= dist)
+                {
+                    dist = nextDist;
                     lookTarget = actor;
+                }
             }
         }
     }
