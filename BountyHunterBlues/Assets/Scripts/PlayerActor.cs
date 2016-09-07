@@ -9,16 +9,26 @@ using UnityEngine.UI;
 public class PlayerActor : GameActor
 {
     public bool hasGun;
+    public float reloadTime;
+
+    private float lastShotTime;
 
     public override void Start()
     {
         base.Start();
         hasGun = false;
+        lastShotTime = reloadTime;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        lastShotTime += Time.deltaTime;
     }
 
     public override void attack()
     {
-        if (hasGun && isAiming)
+        if (hasGun && isAiming && lastShotTime >= reloadTime)
         {
             Debug.Log("Player shoots");
             if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
@@ -27,6 +37,7 @@ public class PlayerActor : GameActor
                 if (!aimTarget.isAlive())
                     aimTarget = null;
             }
+            lastShotTime = 0;
         }
         else
         {
@@ -37,7 +48,6 @@ public class PlayerActor : GameActor
                 if (!lookTarget.isAlive())
                     lookTarget = null;
             }
-
         }
         
     }

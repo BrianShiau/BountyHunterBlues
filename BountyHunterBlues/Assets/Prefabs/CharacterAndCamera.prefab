@@ -198,6 +198,7 @@ MonoBehaviour:
   aimTarget: {fileID: 0}
   GameActorAnimator: {fileID: 0}
   hasGun: 0
+  reloadTime: 2
 --- !u!114 &114000011180509588
 MonoBehaviour:
   m_ObjectHideFlags: 1
