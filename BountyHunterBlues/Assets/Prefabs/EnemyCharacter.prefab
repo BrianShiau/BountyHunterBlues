@@ -98,8 +98,8 @@ MonoBehaviour:
   aimTarget: {fileID: 0}
   GameActorAnimator: {fileID: 0}
   playerObject: {fileID: 0}
-  state_change_time: 1
-  attack_time_confirmation: 1
+  state_change_time: 0.5
+  attack_time_confirmation: 0.3
   aim_direction: {x: 0, y: 0}
   move_speed: 1
   stateColors:

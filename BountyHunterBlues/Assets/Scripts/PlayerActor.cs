@@ -4,6 +4,7 @@ using System;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 public class PlayerActor : GameActor
 {
@@ -48,6 +49,8 @@ public class PlayerActor : GameActor
 
 	public override void die()
 	{
+		GameObject.FindGameObjectWithTag ("DeathFlash").GetComponent<Image>().enabled = true;
+
 		// reset the game here for now
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
