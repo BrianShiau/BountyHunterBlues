@@ -39,6 +39,8 @@ public class AIActor : GameActor {
     public override void Start()
     {
         base.Start();
+
+        moveSpeed = 3;
         healthPool = 1;
         state_change_time = 3;
         state_timer = 0;
@@ -58,10 +60,11 @@ public class AIActor : GameActor {
     public override void Update()
     {
         base.Update();
-        
+
+        print(alertness);
         green_alertness();
-        /*
         yellow_alertness();
+        /*
         red_alertness();
         */
     }
@@ -186,12 +189,15 @@ public class AIActor : GameActor {
                 state_timer += Time.deltaTime;
                 if(state_timer > state_change_time){
                     state_timer = 0;
-                    //teleport to original position
+                    transform.position = initial_position;
                     run_state(State.GREEN);
                 }
             }
             if(lookTarget != null){
-                AI_move.updateCommandData(lookTarget.transform.position - transform.position);
+                Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
+                worldFaceDir.Normalize();
+                Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+                AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
                 state_timer += Time.deltaTime;
                 if(state_timer > state_change_time){
