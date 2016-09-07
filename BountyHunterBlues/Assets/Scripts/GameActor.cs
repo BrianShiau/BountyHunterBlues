@@ -34,6 +34,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
     public virtual void Start()
     {
         isAiming = false;
+        isMoving = false;
         lookTarget = null;
         aimTarget = null;
         faceDir.Normalize();

@@ -100,7 +100,6 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   state_change_time: 0.5
   attack_time_confirmation: 0.3
-  aim_direction: {x: 0, y: 0}
   move_speed: 1
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
@@ -135,7 +134,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9c67cd70ad207a34b89e1bc4cc751e87, type: 3}
+  m_Sprite: {fileID: 21300014, guid: 9c67cd70ad207a34b89e1bc4cc751e87, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

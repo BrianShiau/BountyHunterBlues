@@ -1215,24 +1215,6 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: faceDir.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013480450662, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.5000018
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013480450662, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.5000017
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: faceDir.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
@@ -2379,11 +2361,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 28
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: faceDir.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
@@ -2429,11 +2406,6 @@ Prefab:
     - target: {fileID: 1000013579858438, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
       propertyPath: m_Name
       value: Player Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
-        type: 2}
-      propertyPath: healthPool
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}

@@ -33,7 +33,6 @@ public class AIActor : GameActor {
     private Command AI_disableAim;
     private Command AI_attack;
 
-    public Vector2 aim_direction;
     private Vector2 initial_position;
     private Vector2 initial_faceDir;
     public float move_speed;
@@ -51,13 +50,12 @@ public class AIActor : GameActor {
         inc_state_timer = 0;
         dec_state_timer = 0;
 
-        aim_direction = new Vector2(0, 1);
         initial_position = transform.position;
         initial_faceDir = faceDir;
         move_speed = 2;
 
         AI_move = new MoveCommand(new Vector2(0, 0));
-        AI_aim = new AimCommand(aim_direction);
+        AI_aim = new AimCommand(faceDir);
         AI_disableAim = new DisableAimCommand();
         AI_attack = new AttackCommand();
 
