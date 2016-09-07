@@ -22,6 +22,7 @@ GameObject:
   - 212: {fileID: 212000010074931996}
   - 61: {fileID: 61000012707084372}
   - 114: {fileID: 114000011496164906}
+  - 95: {fileID: 95000012415338422}
   m_Layer: 0
   m_Name: EnemyCharacter
   m_TagString: GameActor
@@ -37,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1000013306044712}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 4.15, y: 6.84, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,6 +57,23 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.56, y: 1.01}
+--- !u!95 &95000012415338422
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013306044712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 61cfdad68f8aac24aaed97c94c6a7d2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000011496164906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,8 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9e4ba3d03afae44bd436a4c3fa2666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  faceDir: {x: 0, y: 1}
+  moveSpeed: 2
+  faceDir: {x: -1, y: 1}
   aimDir: {x: 0, y: 0}
   fov: 140
   meleeDistance: 2
@@ -84,6 +102,10 @@ MonoBehaviour:
   attack_time_confirmation: 1
   aim_direction: {x: 0, y: 0}
   move_speed: 1
+  stateColors:
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!212 &212000010074931996
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -113,7 +135,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c33b1c408ee6cf64a8820b4e65d36b36, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c67cd70ad207a34b89e1bc4cc751e87, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

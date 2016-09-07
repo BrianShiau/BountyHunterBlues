@@ -171,6 +171,7 @@ public class AIActor : GameActor {
 
     public void green_alertness(){
         if(alertness == State.GREEN){
+            isMoving = false;
             //Debug.Log(initial_position);
             if(lookTarget != null){
                 inc_state_timer += Time.deltaTime;
@@ -194,6 +195,7 @@ public class AIActor : GameActor {
     public void yellow_alertness(){
         if(alertness == State.YELLOW){
             if(lookTarget == null){
+                isMoving = false;
                 inc_state_timer = 0;
                 dec_state_timer += Time.deltaTime;
                 if(dec_state_timer > state_change_time){
@@ -236,6 +238,7 @@ public class AIActor : GameActor {
                 }
             }
             if(lookTarget == null){
+                isMoving = false;
                 attack_timer = 0;
                 dec_state_timer += Time.deltaTime;
                 if(dec_state_timer > state_change_time){

@@ -36,6 +36,8 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         isAiming = false;
         lookTarget = null;
         aimTarget = null;
+        faceDir.Normalize();
+        aimDir.Normalize();
         GameActorAnimator = GetComponent<Animator>();
     }
 
@@ -47,9 +49,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
             Vector2 faceDirWorld = transform.TransformDirection(faceDir);
             Debug.DrawRay(transform.position, faceDirWorld * sightDistance, Color.green);
         }
-
-        if(this is PlayerActor)
-            updateAnimation();
+        updateAnimation();
     }
 
     public bool Equals(GameActor other)
@@ -121,7 +121,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         GameActorAnimator.SetBool("isMoving", isMoving);
 
         // update direction state
-        if(faceDir.y != 0 && Mathf.Abs(faceDir.y) > Mathf.Abs(faceDir.x)) // up and down facing priority over left and right
+        if(faceDir.y != 0 && Mathf.Abs(faceDir.y) >= Mathf.Abs(faceDir.x)) // up and down facing priority over left and right
         {
             if(faceDir.y > 0)
                 GameActorAnimator.SetInteger("Direction", (int)Direction.UP);
