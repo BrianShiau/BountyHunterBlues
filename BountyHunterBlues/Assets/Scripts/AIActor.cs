@@ -23,7 +23,8 @@ public class AIActor : GameActor {
 
     public float state_change_time;
     public float attack_time_confirmation;
-    private float state_timer;
+    private float inc_state_timer;
+    private float dec_state_timer;
     private float attack_timer;
     private Quaternion rotation;
 
@@ -34,6 +35,7 @@ public class AIActor : GameActor {
 
     public Vector2 aim_direction;
     private Vector2 initial_position;
+    private Vector2 initial_faceDir;
     public float move_speed;
 
     public override void Start()
@@ -43,10 +45,13 @@ public class AIActor : GameActor {
         moveSpeed = 3;
         healthPool = 1;
         state_change_time = 3;
-        state_timer = 0;
+        attack_time_confirmation = 2;
+        inc_state_timer = 0;
+        dec_state_timer = 0;
 
         aim_direction = new Vector2(0, 1);
-        initial_position = new Vector2(transform.position.x, transform.position.y);
+        initial_position = transform.position;
+        initial_faceDir = faceDir;
         move_speed = 2;
 
         AI_move = new MoveCommand(new Vector2(0, 0));
@@ -64,9 +69,8 @@ public class AIActor : GameActor {
         print(alertness);
         green_alertness();
         yellow_alertness();
-        /*
         red_alertness();
-        */
+        
     }
     
 
@@ -166,19 +170,19 @@ public class AIActor : GameActor {
         if(alertness == State.GREEN){
             //Debug.Log(initial_position);
             if(lookTarget != null){
-                state_timer += Time.deltaTime;
+                inc_state_timer += Time.deltaTime;
                 // get world-space vector to target from me
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
                 // transform world-space vector to my coordinate frame
                 faceDir = transform.InverseTransformDirection(worldFaceDir);
-                if(state_timer > state_change_time){
-                    state_timer = 0;
+                if(inc_state_timer > state_change_time){
+                    inc_state_timer = 0;
                     run_state(State.YELLOW);
                 }
             }
             else{
-                state_timer = 0;
+                inc_state_timer = 0;
             }
         }
     }
@@ -186,10 +190,12 @@ public class AIActor : GameActor {
     public void yellow_alertness(){
         if(alertness == State.YELLOW){
             if(lookTarget == null){
-                state_timer += Time.deltaTime;
-                if(state_timer > state_change_time){
-                    state_timer = 0;
+                inc_state_timer = 0;
+                dec_state_timer += Time.deltaTime;
+                if(dec_state_timer > state_change_time){
+                    dec_state_timer = 0;
                     transform.position = initial_position;
+                    faceDir = initial_faceDir;
                     run_state(State.GREEN);
                 }
             }
@@ -199,9 +205,10 @@ public class AIActor : GameActor {
                 Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
                 AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
-                state_timer += Time.deltaTime;
-                if(state_timer > state_change_time){
-                    state_timer = 0;
+                dec_state_timer = 0;
+                inc_state_timer += Time.deltaTime;
+                if(inc_state_timer > state_change_time){
+                    inc_state_timer = 0;
                     run_state(State.RED);
                 }
             }
@@ -210,21 +217,29 @@ public class AIActor : GameActor {
 
     public void red_alertness(){
         if(alertness == State.RED){
-            AI_aim.execute(this);
-            attack_timer += Time.deltaTime;
-            if(attack_timer > attack_time_confirmation && lookTarget != null){
-                AI_attack.execute(this);
+            if(lookTarget != null){
+                Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
+                worldFaceDir.Normalize();
+                Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+                AI_move.updateCommandData(localDir);
+                AI_move.execute(this);
+                AI_aim.updateCommandData(faceDir);
+                AI_aim.execute(this);
+                attack_timer += Time.deltaTime;
+                if(attack_timer > attack_time_confirmation){
+                    attack_timer = 0;
+                    AI_attack.execute(this);
+                }
             }
             if(lookTarget == null){
-                state_timer += Time.deltaTime;
-                if(state_timer > state_change_time){
-                    state_timer = 0;
+                attack_timer = 0;
+                dec_state_timer += Time.deltaTime;
+                if(dec_state_timer > state_change_time){
+                    dec_state_timer = 0;
                     AI_disableAim.execute(this);
                     run_state(State.YELLOW);
                 }
             }
         }
     }
-
-
 }

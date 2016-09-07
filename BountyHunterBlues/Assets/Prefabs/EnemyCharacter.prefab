@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013306044712}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.8313514, y: 1.1369494, z: 0}
+  m_LocalPosition: {x: -0.8313514, y: -3.04, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children: []
@@ -83,7 +83,7 @@ MonoBehaviour:
   state_change_time: 0
   attack_time_confirmation: 0
   aim_direction: {x: 0, y: 0}
-  move_speed: 3
+  move_speed: 1
 --- !u!212 &212000010074931996
 SpriteRenderer:
   m_ObjectHideFlags: 1
