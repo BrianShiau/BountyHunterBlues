@@ -38,6 +38,12 @@ public class AIActor : GameActor {
     private Vector2 initial_faceDir;
     public float move_speed;
 
+	public Color[] stateColors = {
+		Color.green,
+		Color.yellow,
+		Color.red
+	};
+
     public override void Start()
     {
         base.Start();
@@ -55,7 +61,7 @@ public class AIActor : GameActor {
         AI_disableAim = new DisableAimCommand();
         AI_attack = new AttackCommand();
 
-        alertness = State.GREEN;
+		run_state(State.GREEN);
     }
 
     public override void Update()
@@ -97,7 +103,7 @@ public class AIActor : GameActor {
 
     public void resetState()
     {
-        alertness = State.GREEN;
+		run_state(State.GREEN);
     }
 
     public void updateState(State newAlertState)
@@ -159,6 +165,7 @@ public class AIActor : GameActor {
 
     private void run_state(State color){
         alertness = color;
+		GetComponent<SpriteRenderer> ().color = stateColors [(int)color];
     }
 
 
