@@ -24,7 +24,7 @@ public class InputHandler : MonoBehaviour {
         attack = new AttackCommand();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         LinkedList<Command> nextCommands = handleInput();
         foreach(Command nextCommand in nextCommands)
