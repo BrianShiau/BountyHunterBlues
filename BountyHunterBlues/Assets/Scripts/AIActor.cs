@@ -182,6 +182,7 @@ public class AIActor : GameActor {
                 }
             }
             else{
+                faceDir = initial_faceDir;
                 inc_state_timer = 0;
             }
         }
