@@ -77,7 +77,6 @@ public class PlayerActor : GameActor
                         {
                             // the next obj in the ray line is a GameActor we haven't accounted for, add it
                             seenActors.Add(hitObj.GetComponent<GameActor>());
-                            Debug.DrawRay(transform.position, worldVector * sightDistance, Color.blue);
                         }
 
                         // else the next obj in the ray line is a GameActor we've seen, just ignore it and keep moving down the ray
@@ -101,6 +100,9 @@ public class PlayerActor : GameActor
                     lookTarget = actor;
                 }
             }
+            Vector2 worldVector = lookTarget.transform.position - transform.position;
+            worldVector.Normalize();
+            Debug.DrawRay(transform.position, worldVector * sightDistance, Color.blue);
         }
     }
 }
