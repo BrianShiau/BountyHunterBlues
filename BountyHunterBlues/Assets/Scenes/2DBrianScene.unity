@@ -245,18 +245,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013993441898, guid: d805701ab7fedf34ab7c6fd0f955cca9, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 18.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 72c722c582e84ad43b348f05cee918d6, type: 2}
-    - target: {fileID: 0}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d805701ab7fedf34ab7c6fd0f955cca9, type: 2}
   m_IsPrefabParent: 0
@@ -1776,6 +1764,11 @@ Prefab:
     - target: {fileID: 1000013579858438, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
       propertyPath: m_Name
       value: Player Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 50000011544581874, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
