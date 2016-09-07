@@ -13,7 +13,6 @@ public class PlayerActor : GameActor
     {
         base.Start();
         hasGun = false;
-        healthPool = 3;
     }
 
     public override void attack()
