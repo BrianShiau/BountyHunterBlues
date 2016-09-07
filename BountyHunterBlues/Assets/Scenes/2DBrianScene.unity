@@ -90,11 +90,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &27558046 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013579858438, guid: 16323df88e96c404e9ceffb52c9ca0cf,
-    type: 2}
-  m_PrefabInternal: {fileID: 2089761361}
 --- !u!1001 &149149866
 Prefab:
   m_ObjectHideFlags: 0
@@ -532,7 +527,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000013480450662, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 37.87
+      value: 37.59
       objectReference: {fileID: 0}
     - target: {fileID: 4000013480450662, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_LocalPosition.y
@@ -565,6 +560,11 @@ Prefab:
     - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_Name
       value: EnemyCharacter (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: faceDir.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
@@ -761,6 +761,11 @@ Prefab:
     - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_Name
       value: EnemyCharacter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: faceDir.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
@@ -1028,6 +1033,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: faceDir.x
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
@@ -1239,6 +1249,11 @@ Prefab:
     - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_Name
       value: EnemyCharacter (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: faceDir.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
@@ -1664,6 +1679,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: faceDir.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
@@ -1706,11 +1726,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 25
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011878450620, guid: 99a84a35732c1684a9c732d512cfe981,
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
         type: 2}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 27558046}
+      propertyPath: faceDir.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
@@ -1856,6 +1876,11 @@ Prefab:
     - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_Name
       value: EnemyCharacter (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: faceDir.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}

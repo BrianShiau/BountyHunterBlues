@@ -70,9 +70,9 @@ MonoBehaviour:
   moveSpeed: 0
   faceDir: {x: 0, y: 0}
   aimDir: {x: 0, y: 0}
-  fov: 0
-  meleeDistance: 0
-  sightDistance: 0
+  fov: 140
+  meleeDistance: 2
+  sightDistance: 100
   isAiming: 0
   healthPool: 0
   lookTarget: {fileID: 0}

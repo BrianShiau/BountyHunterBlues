@@ -58,8 +58,9 @@ public class AIActor : GameActor {
     public override void Update()
     {
         base.Update();
-        /*
+        
         green_alertness();
+        /*
         yellow_alertness();
         red_alertness();
         */
@@ -131,7 +132,6 @@ public class AIActor : GameActor {
                         {
                             // PlayerActor
                             tempLookTarget = hitObj.GetComponent<GameActor>();
-                            Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
                             break;
                         }
                         // else the next obj in the ray line is an AIActor, just ignore it and keep moving down the ray
@@ -146,7 +146,11 @@ public class AIActor : GameActor {
         if (tempLookTarget == null)
             lookTarget = null;
         else
+        {
             lookTarget = tempLookTarget;
+            Vector2 worldVector = lookTarget.gameObject.transform.position - transform.position;
+            Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
+        }
     }
 
 
@@ -157,11 +161,14 @@ public class AIActor : GameActor {
 
     public void green_alertness(){
         if(alertness == State.GREEN){
-            Debug.Log(initial_position);
+            //Debug.Log(initial_position);
             if(lookTarget != null){
                 state_timer += Time.deltaTime;
-                faceDir = new Vector2(lookTarget.gameObject.transform.position.x, lookTarget.gameObject.transform.position.y);
-                aimDir = new Vector2(lookTarget.gameObject.transform.position.x, lookTarget.gameObject.transform.position.y);;
+                // get world-space vector to target from me
+                Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
+                worldFaceDir.Normalize();
+                // transform world-space vector to my coordinate frame
+                faceDir = transform.InverseTransformDirection(worldFaceDir);
                 if(state_timer > state_change_time){
                     state_timer = 0;
                     run_state(State.YELLOW);
