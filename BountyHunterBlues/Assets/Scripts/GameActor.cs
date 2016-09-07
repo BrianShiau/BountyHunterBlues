@@ -14,9 +14,16 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
     public float sightDistance;
 
     public bool isAiming; // will need to specify "isAiming with what" later for special items
+    public bool isMoving;
     public int healthPool;
     public GameActor lookTarget; // null unless look ray collides with an unobstructed valid GameActor
     public GameActor aimTarget; // null unless isAiming is true and aim ray collides with an unobstructed valid GameActor
+
+    public Animator GameActorAnimator;
+    public enum Direction
+    {
+        DOWN, LEFT, UP, RIGHT
+    }
 
     public abstract void attack(); 
     public abstract void interact();
@@ -29,16 +36,20 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         isAiming = false;
         lookTarget = null;
         aimTarget = null;
+        GameActorAnimator = GetComponent<Animator>();
     }
 
     public virtual void Update()
     {
+        // reinit isMoving to false everyframe, to be set true when a move command is issued
+        isMoving = false;
         runVisionDetection();
         if (lookTarget == null)
         {
             Vector2 faceDirWorld = transform.TransformDirection(faceDir);
             Debug.DrawRay(transform.position, faceDirWorld * sightDistance, Color.green);
         }
+        updateAnimation();
     }
 
     public bool Equals(GameActor other)
@@ -100,5 +111,15 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         
         Vector2 newPos = moveSpeed * dir * Time.deltaTime;
         transform.Translate(newPos);
+        isMoving = true;
+        
+    }
+
+    private void updateAnimation()
+    {
+        // update moving state
+        GameActorAnimator.SetBool("isMoving", isMoving);
+
+        
     }
 }
