@@ -122,6 +122,16 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         // update moving state
         GameActorAnimator.SetBool("isMoving", isMoving);
 
-        
+        // update direction state
+        if (faceDir.y > 0)
+            GameActorAnimator.SetInteger("Direction", (int)Direction.UP);
+        else if(faceDir.y < 0)
+            GameActorAnimator.SetInteger("Direction", (int)Direction.DOWN);
+
+        if (faceDir.x > 0)
+            GameActorAnimator.SetInteger("Direction", (int)Direction.RIGHT);
+        else if (faceDir.x < 0)
+            GameActorAnimator.SetInteger("Direction", (int)Direction.LEFT);
+
     }
 }
