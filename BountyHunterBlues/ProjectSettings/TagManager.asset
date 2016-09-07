@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - GameActor
+  - DeathFlash
   layers:
   - Default
   - TransparentFX
