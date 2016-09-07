@@ -122,7 +122,7 @@ public class AIActor : GameActor {
                 {
                     RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, sightDistance);
                     IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance); // sorted by ascending by default
-                    foreach (RaycastHit2D hitinfo in hits)
+                    foreach (RaycastHit2D hitinfo in sortedHits)
                     {
                         GameObject hitObj = hitinfo.collider.gameObject;
                         if (hitObj.tag != "GameActor")
