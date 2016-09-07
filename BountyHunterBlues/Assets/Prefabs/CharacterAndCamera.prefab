@@ -193,7 +193,7 @@ MonoBehaviour:
   sightDistance: 100
   isAiming: 0
   isMoving: 0
-  healthPool: 0
+  healthPool: 1
   lookTarget: {fileID: 0}
   aimTarget: {fileID: 0}
   GameActorAnimator: {fileID: 0}
