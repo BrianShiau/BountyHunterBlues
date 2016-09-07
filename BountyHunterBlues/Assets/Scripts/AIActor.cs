@@ -42,10 +42,6 @@ public class AIActor : GameActor {
     {
         base.Start();
 
-        moveSpeed = 3;
-        healthPool = 1;
-        state_change_time = 3;
-        attack_time_confirmation = 2;
         inc_state_timer = 0;
         dec_state_timer = 0;
 
