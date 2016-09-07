@@ -9,6 +9,10 @@ public class PickupGun : MonoBehaviour {
         {
             PlayerActor pActor = (PlayerActor)col.GetComponent<GameActor>();
             pActor.hasGun = true;
+			pActor.gunImage.enabled = true;
+			pActor.gunSlider.enabled = true;
+			pActor.gunSliderObject.SetActive (true);
+			pActor.gunSliderFill.color = Color.green;
             Destroy(gameObject);
         }
     }

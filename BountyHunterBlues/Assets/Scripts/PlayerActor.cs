@@ -13,17 +13,29 @@ public class PlayerActor : GameActor
 
     private float lastShotTime;
 
+	// UI
+	public Image gunImage;
+	public Slider gunSlider;
+	public GameObject gunSliderObject;
+	public Image gunSliderFill;
+
     public override void Start()
     {
         base.Start();
         hasGun = false;
         lastShotTime = reloadTime;
+
+		gunImage.enabled = false;
+		gunSliderObject = gunSlider.gameObject;
+		gunSliderObject.SetActive (false);
     }
 
     public override void Update()
     {
         base.Update();
         lastShotTime += Time.deltaTime;
+
+		gunSlider.value = lastShotTime;
     }
 
     public override void attack()
