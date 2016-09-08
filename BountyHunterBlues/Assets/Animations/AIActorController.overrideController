@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AIActorController
-  m_Controller: {fileID: 9100000, guid: fd4c14152cd7b4a03a4fbfd94cd47bbe, type: 2}
+  m_Controller: {fileID: 9100000, guid: 04b8cf6be07d22b4ebbd3d2e4532f815, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 07c58948f69c44bbebcfd9f37c95e865, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 6ed0b5ca1c1c68745aa6832e54aaa9b4, type: 2}
