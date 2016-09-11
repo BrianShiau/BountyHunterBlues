@@ -35,6 +35,8 @@ public class AIActor : GameActor {
 
     private Vector2 initial_position;
     private Vector2 initial_faceDir;
+    private List<Vector2> positions = new List<Vector2>();
+    private Vector2 transition_faceDir;
     public float move_speed;
 
 	public Color[] stateColors = {
@@ -52,6 +54,8 @@ public class AIActor : GameActor {
 
         initial_position = transform.position;
         initial_faceDir = faceDir;
+        transition_faceDir = faceDir;
+
         move_speed = 2;
 
         AI_move = new MoveCommand(new Vector2(0, 0));
@@ -170,20 +174,31 @@ public class AIActor : GameActor {
     public void green_alertness(){
         if(alertness == State.GREEN){
             isMoving = false;
-            //Debug.Log(initial_position);
             if(lookTarget != null){
                 inc_state_timer += Time.deltaTime;
                 // get world-space vector to target from me
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
                 // transform world-space vector to my coordinate frame
-                faceDir = transform.InverseTransformDirection(worldFaceDir);
+                //if(transition_faceDir != worldFaceDir){
+                //    if(worldFaceDir.x > 0)
+                //        transition_faceDir.x += 1;
+                //    else
+                //        transition_faceDir.x -= 1;
+                //    if(worldFaceDir.y > 0)
+                //        transition_faceDir.y += 1;
+                //    else
+                //        transition_faceDir.y -= 1;
+                //}
+                //transition_faceDir.Normalize();
+                //faceDir = transform.InverseTransformDirection(transition_faceDir);
                 if(inc_state_timer > state_change_time){
                     inc_state_timer = 0;
                     run_state(State.YELLOW);
                 }
             }
             else{
+                positions.Clear();
                 faceDir = initial_faceDir;
                 inc_state_timer = 0;
             }
@@ -196,17 +211,26 @@ public class AIActor : GameActor {
                 isMoving = false;
                 inc_state_timer = 0;
                 dec_state_timer += Time.deltaTime;
+                
                 if(dec_state_timer > state_change_time){
-                    dec_state_timer = 0;
-                    transform.position = initial_position;
+                    if(positions.Count > 0){
+                        Vector2 new_position = positions[positions.Count - 1];
+                        positions.RemoveAt(positions.Count - 1);
+                        transform.position = new_position;
+                    }
+                    else{
+                        dec_state_timer = 0;
+                        run_state(State.GREEN);
+                    }
                     faceDir = initial_faceDir;
-                    run_state(State.GREEN);
                 }
             }
             if(lookTarget != null){
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
                 Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+                positions.Add(transform.position);
+                
                 AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
                 dec_state_timer = 0;
