@@ -11,9 +11,23 @@ public enum State
 
 public class AIActor : GameActor {
 
-    public GameObject playerObject;
+
+    [System.Serializable]
+    public class Patrol
+    {
+        public Transform point;
+        public float wait_time;
+    }
+
+    public Patrol[] patrol_points;
+    private int patrol_index;
+    public bool is_patrol;
+    public bool is_cycle;
+    private bool patrol_forward;
+    private bool patrol_backward;
 
     
+    public GameObject playerObject;
     private State alertness;
 
     /*
@@ -49,6 +63,10 @@ public class AIActor : GameActor {
     {
         base.Start();
 
+        patrol_forward = true;
+        patrol_backward = false;
+
+        patrol_index = 0;
         inc_state_timer = 0;
         dec_state_timer = 0;
 
@@ -70,8 +88,13 @@ public class AIActor : GameActor {
     {
         base.Update();
 
-        //print(alertness);
-        green_alertness();
+        print(is_patrol);
+        if(is_patrol){
+            green_patrol();
+        }
+        else{
+            green_alertness();
+        }
         yellow_alertness();
         red_alertness();
         
@@ -82,8 +105,6 @@ public class AIActor : GameActor {
     {
         if (isAiming)
         {
-            Debug.Log("Enemy Shoots");
-            if(aimTarget!=null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
             {
                 if(aimTarget is PlayerActor)
                 {
@@ -167,9 +188,72 @@ public class AIActor : GameActor {
 
     private void run_state(State color){
         alertness = color;
-		GetComponent<SpriteRenderer> ().color = stateColors [(int)color];
+        GetComponent<SpriteRenderer> ().color = stateColors [(int)color];
     }
 
+
+    public void green_patrol(){
+        if(alertness == State.GREEN && is_patrol){
+            isMoving = false;
+            if(lookTarget != null){
+                inc_state_timer += Time.deltaTime;
+                // get world-space vector to target from me
+                Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
+                worldFaceDir.Normalize();
+                // transform world-space vector to my coordinate frame
+                faceDir = transform.InverseTransformDirection(worldFaceDir);
+                if(inc_state_timer > state_change_time){
+                    inc_state_timer = 0;
+                    run_state(State.YELLOW);
+                }
+            }
+            else{
+                Vector3 current_point = patrol_points[patrol_index].point.position;
+                Vector2 worldFaceDir2 = current_point - transform.position;
+                worldFaceDir2.Normalize();
+                faceDir = transform.InverseTransformDirection(worldFaceDir2);
+                if(Vector2.Distance(transform.position, current_point) > .1){
+                    Vector2 worldFaceDir = current_point - transform.position;
+                    worldFaceDir.Normalize();
+                    Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+                    AI_move.updateCommandData(localDir);
+                    AI_move.execute(this);
+                }
+                else{
+                    if(is_cycle){
+                        if(patrol_index == patrol_points.Count() - 1){
+                            patrol_index = 0;
+                        }
+                        else{
+                            patrol_index += 1;
+                        }
+                    }
+                    else{
+                        if(patrol_forward){
+                            if(patrol_index < patrol_points.Count() - 1){
+                                patrol_index += 1;
+                            }
+                            else{
+                                patrol_forward = false;
+                                patrol_backward = true;
+                            }
+                        }
+                        else if(patrol_backward){
+                            if(patrol_index > 0){
+                                patrol_index -= 1;
+                            }
+                            else{
+                                patrol_forward = true;
+                                patrol_backward = false;
+                            }
+                        }
+                    }
+                }
+                positions.Clear();
+                inc_state_timer = 0;
+            }
+        }
+    }
 
     public void green_alertness(){
         if(alertness == State.GREEN){
