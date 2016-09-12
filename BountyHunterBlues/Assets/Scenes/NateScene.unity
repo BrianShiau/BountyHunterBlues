@@ -90,18 +90,11 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &79099430 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000010486805360, guid: 3a7c3c05de60f754181a9188dd3c65a8,
+--- !u!20 &79099434 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20000012751950928, guid: 3a7c3c05de60f754181a9188dd3c65a8,
     type: 2}
   m_PrefabInternal: {fileID: 1880580729}
---- !u!81 &79099431
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 79099430}
-  m_Enabled: 1
 --- !u!1001 &149149866
 Prefab:
   m_ObjectHideFlags: 0
@@ -871,7 +864,7 @@ Prefab:
     - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
         type: 2}
       propertyPath: faceDir.x
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
         type: 2}
@@ -2428,6 +2421,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 46
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013073879130, guid: 71cf3f732d39d604f85dbac73c8a0c78,
+        type: 2}
+      propertyPath: TacticalCamera
+      value: 
+      objectReference: {fileID: 79099434}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71cf3f732d39d604f85dbac73c8a0c78, type: 2}
   m_IsPrefabParent: 0
@@ -2444,7 +2442,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013768901828, guid: 3a7c3c05de60f754181a9188dd3c65a8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 7.227553
+      value: 9.4
       objectReference: {fileID: 0}
     - target: {fileID: 4000013768901828, guid: 3a7c3c05de60f754181a9188dd3c65a8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2698,21 +2696,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 28
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: faceDir.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: faceDir.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: playerObject
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
@@ -2807,6 +2790,11 @@ Prefab:
     - target: {fileID: 1000013579858438, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
       propertyPath: m_Name
       value: Player Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 20000012440476946, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}

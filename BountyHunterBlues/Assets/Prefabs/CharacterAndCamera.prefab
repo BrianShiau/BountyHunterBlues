@@ -191,7 +191,7 @@ MonoBehaviour:
   fov: 140
   meleeDistance: 2.5
   sightDistance: 100
-  interactionDistance: 2.5
+  interactionDistance: 1
   isAiming: 0
   isMoving: 0
   healthPool: 1
