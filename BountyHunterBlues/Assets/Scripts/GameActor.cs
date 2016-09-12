@@ -12,12 +12,14 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
     public float fov; // angle for visual sight and melee strike
     public float meleeDistance;
     public float sightDistance;
+    public float interactionDistance;
 
     public bool isAiming; // will need to specify "isAiming with what" later for special items
     public bool isMoving;
     public int healthPool;
     public GameActor lookTarget; // null unless look ray collides with an unobstructed valid GameActor
     public GameActor aimTarget; // null unless isAiming is true and aim ray collides with an unobstructed valid GameActor
+    public Interactable interactionTarget; // null unless runVisionDetection sets this to an Interactable
 
     public Animator GameActorAnimator;
     public enum Direction

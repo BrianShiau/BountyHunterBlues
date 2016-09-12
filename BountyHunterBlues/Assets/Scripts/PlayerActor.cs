@@ -73,7 +73,7 @@ public class PlayerActor : GameActor
 
     public override void interact()
     {
-
+        interactionTarget.runInteraction();
     }
 
 	public override void die()
@@ -137,5 +137,31 @@ public class PlayerActor : GameActor
             worldVector.Normalize();
             Debug.DrawRay(transform.position, worldVector * sightDistance, Color.blue);
         }
+
+
+
+        // see what interactables are in my vision cone within interactionDistance and pick closest as interactionTarget
+        float shortestInteractionDist = float.MaxValue;
+        bool foundInteractable = false;
+        GameObject[] InteractableObjects = GameObject.FindGameObjectsWithTag("Interactable");
+        foreach (GameObject interactableObject in InteractableObjects)
+        {
+            Vector2 worldVector = interactableObject.transform.position - transform.position;
+            worldVector.Normalize();
+            Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
+            if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, toTargetDir, interactionDistance);
+                if (hit && hit.collider != null && hit.collider.tag == "Interactable" && hit.distance <= interactionDistance)
+                {
+                    interactionTarget = hit.collider.GetComponent<Interactable>();
+                    shortestInteractionDist = hit.distance;
+                    foundInteractable = true;
+                }
+            }
+        }
+
+        if (!foundInteractable)
+            interactionTarget = null;
     }
 }
