@@ -156,7 +156,6 @@ public class PlayerActor : GameActor
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, worldVector, interactionDistance);
                 if (hit.collider != null && hit.collider.tag == "Interactable" && hit.distance <= interactionDistance)
                 {
-                    Debug.Log("Door in vision cone");
                     interactionTarget = (Interactable) hit.collider.GetComponent(typeof(Interactable));
                     shortestInteractionDist = hit.distance;
                     foundInteractable = true;
