@@ -7,6 +7,12 @@ public class Door : MonoBehaviour, Interactable {
 	public Sprite openSprite;
 	public bool closed;
 
+    void Start()
+    {
+        closed = true;
+
+    }
+
     public void runInteraction()
     {
         if (closed)

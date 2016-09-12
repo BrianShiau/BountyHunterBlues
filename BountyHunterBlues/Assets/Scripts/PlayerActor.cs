@@ -73,7 +73,8 @@ public class PlayerActor : GameActor
 
     public override void interact()
     {
-        interactionTarget.runInteraction();
+        if(interactionTarget != null)
+            interactionTarget.runInteraction();
     }
 
 	public override void die()
@@ -151,10 +152,12 @@ public class PlayerActor : GameActor
             Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
             if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, toTargetDir, interactionDistance);
-                if (hit && hit.collider != null && hit.collider.tag == "Interactable" && hit.distance <= interactionDistance)
+                
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, worldVector, interactionDistance);
+                if (hit.collider != null && hit.collider.tag == "Interactable" && hit.distance <= interactionDistance)
                 {
-                    interactionTarget = hit.collider.GetComponent<Interactable>();
+                    Debug.Log("Door in vision cone");
+                    interactionTarget = (Interactable) hit.collider.GetComponent(typeof(Interactable));
                     shortestInteractionDist = hit.distance;
                     foundInteractable = true;
                 }

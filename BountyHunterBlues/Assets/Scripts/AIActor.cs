@@ -88,7 +88,7 @@ public class AIActor : GameActor {
     {
         base.Update();
 
-        print(is_patrol);
+        //print(is_patrol);
         if(is_patrol){
             green_patrol();
         }
