@@ -49,7 +49,7 @@ public class AIActor : GameActor {
 
     private Vector2 initial_position;
     private Vector2 initial_faceDir;
-    private List<Vector2> positions = new List<Vector2>();
+    private List<Vector3> positions = new List<Vector3>();
     private Vector2 transition_faceDir;
     public float move_speed;
 
@@ -306,8 +306,15 @@ public class AIActor : GameActor {
                 
                 if(dec_state_timer > state_change_time){
                     if(positions.Count > 0){
-                        Vector2 new_position = positions[positions.Count - 1];
+                        Vector3 new_position = positions[positions.Count - 1];
                         positions.RemoveAt(positions.Count - 1);
+
+                        Vector2 worldFaceDir = new_position - transform.position;
+                        worldFaceDir.Normalize();
+                        Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+                        AI_move.updateCommandData(localDir);
+                        AI_move.execute(this);
+
                         transform.position = new_position;
                     }
                     else{
