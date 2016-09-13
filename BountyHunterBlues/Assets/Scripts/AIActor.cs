@@ -25,7 +25,7 @@ public class AIActor : GameActor {
     public bool is_cycle;
     private bool patrol_forward;
     private bool patrol_backward;
-
+    private float wait_time_counter;
     
     public GameObject playerObject;
     private State alertness;
@@ -69,6 +69,7 @@ public class AIActor : GameActor {
         patrol_index = 0;
         inc_state_timer = 0;
         dec_state_timer = 0;
+        wait_time_counter = 0;
 
         initial_position = transform.position;
         initial_faceDir = faceDir;
@@ -208,7 +209,9 @@ public class AIActor : GameActor {
                 }
             }
             else{
+                
                 Vector3 current_point = patrol_points[patrol_index].point.position;
+                float wait_time = patrol_points[patrol_index].wait_time;
                 Vector2 worldFaceDir2 = current_point - transform.position;
                 worldFaceDir2.Normalize();
                 faceDir = transform.InverseTransformDirection(worldFaceDir2);
@@ -220,33 +223,38 @@ public class AIActor : GameActor {
                     AI_move.execute(this);
                 }
                 else{
-                    if(is_cycle){
-                        if(patrol_index == patrol_points.Count() - 1){
-                            patrol_index = 0;
+                    if(wait_time <= wait_time_counter){
+                        if(is_cycle){
+                            if(patrol_index == patrol_points.Count() - 1){
+                                patrol_index = 0;
+                            }
+                            else{
+                                patrol_index += 1;
+                            }
                         }
                         else{
-                            patrol_index += 1;
+                            if(patrol_forward){
+                                if(patrol_index < patrol_points.Count() - 1){
+                                    patrol_index += 1;
+                                }
+                                else{
+                                    patrol_forward = false;
+                                    patrol_backward = true;
+                                }
+                            }
+                            else if(patrol_backward){
+                                if(patrol_index > 0){
+                                    patrol_index -= 1;
+                                }
+                                else{
+                                    patrol_forward = true;
+                                    patrol_backward = false;
+                                }
+                            }
                         }
                     }
                     else{
-                        if(patrol_forward){
-                            if(patrol_index < patrol_points.Count() - 1){
-                                patrol_index += 1;
-                            }
-                            else{
-                                patrol_forward = false;
-                                patrol_backward = true;
-                            }
-                        }
-                        else if(patrol_backward){
-                            if(patrol_index > 0){
-                                patrol_index -= 1;
-                            }
-                            else{
-                                patrol_forward = true;
-                                patrol_backward = false;
-                            }
-                        }
+                        wait_time_counter += Time.deltaTime;
                     }
                 }
                 positions.Clear();
