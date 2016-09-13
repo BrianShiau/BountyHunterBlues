@@ -97,6 +97,8 @@ public class AIActor : GameActor {
         }
         yellow_alertness();
         red_alertness();
+
+        updateBarrelAnimation();
         
     }
     
@@ -352,6 +354,41 @@ public class AIActor : GameActor {
                     AI_disableAim.execute(this);
                     run_state(State.YELLOW);
                 }
+            }
+        }
+    }
+
+    private void updateBarrelAnimation()
+    {
+        BarrelBase bBase = GetComponentInChildren<BarrelBase>();
+
+
+        Animator EnemyBarrelAnimator = bBase.GetComponentInChildren<Animator>();
+        if (faceDir.y != 0 && Mathf.Abs(faceDir.y) >= Mathf.Abs(faceDir.x)) // up and down facing priority over left and right
+        {
+            if (faceDir.y > 0)
+            {
+                EnemyBarrelAnimator.SetInteger("Direction", (int)Direction.UP);
+                bBase.facing = Direction.UP;
+            }
+            else
+            {
+                EnemyBarrelAnimator.SetInteger("Direction", (int)Direction.DOWN);
+                bBase.facing = Direction.DOWN;
+            }
+        }
+
+        else
+        {
+            if (faceDir.x > 0)
+            {
+                EnemyBarrelAnimator.SetInteger("Direction", (int)Direction.RIGHT);
+                bBase.facing = Direction.RIGHT;
+            }
+            else
+            {
+                EnemyBarrelAnimator.SetInteger("Direction", (int)Direction.LEFT);
+                bBase.facing = Direction.LEFT;
             }
         }
     }
