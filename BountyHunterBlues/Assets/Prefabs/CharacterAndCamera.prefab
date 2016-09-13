@@ -23,7 +23,6 @@ GameObject:
   - 92: {fileID: 92000013100348588}
   - 124: {fileID: 124000014067094688}
   - 81: {fileID: 81000012663433268}
-  - 114: {fileID: 114000011180509588}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -44,6 +43,7 @@ GameObject:
   - 114: {fileID: 114000010014971206}
   - 50: {fileID: 50000011544581874}
   - 95: {fileID: 95000013673125480}
+  - 114: {fileID: 114000010223740708}
   m_Layer: 0
   m_Name: CharacterAndCamera
   m_TagString: GameActor
@@ -86,7 +86,7 @@ Camera:
   m_GameObject: {fileID: 1000010357571456}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -191,6 +191,7 @@ MonoBehaviour:
   fov: 140
   meleeDistance: 2.5
   sightDistance: 100
+  interactionDistance: 1
   isAiming: 0
   isMoving: 0
   healthPool: 1
@@ -203,18 +204,19 @@ MonoBehaviour:
   gunSlider: {fileID: 0}
   gunSliderObject: {fileID: 0}
   gunSliderFill: {fileID: 0}
---- !u!114 &114000011180509588
+--- !u!114 &114000010223740708
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010357571456}
+  m_GameObject: {fileID: 1000013579858438}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b074f3c543dbcd4dbd218399834df9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1000013579858438}
+  tacticalMode: 0
 --- !u!124 &124000014067094688
 Behaviour:
   m_ObjectHideFlags: 1

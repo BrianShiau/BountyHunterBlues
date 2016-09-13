@@ -12,12 +12,14 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
     public float fov; // angle for visual sight and melee strike
     public float meleeDistance;
     public float sightDistance;
+    public float interactionDistance;
 
     public bool isAiming; // will need to specify "isAiming with what" later for special items
     public bool isMoving;
     public int healthPool;
     public GameActor lookTarget; // null unless look ray collides with an unobstructed valid GameActor
     public GameActor aimTarget; // null unless isAiming is true and aim ray collides with an unobstructed valid GameActor
+    public Interactable interactionTarget; // null unless runVisionDetection sets this to an Interactable
 
     public Animator GameActorAnimator;
     public enum Direction
@@ -122,9 +124,9 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         GameActorAnimator.SetBool("isMoving", isMoving);
 
         // update direction state
-        if(faceDir.y != 0 && Mathf.Abs(faceDir.y) > Mathf.Abs(faceDir.x)) // up and down facing priority over left and right
+        if (faceDir.y != 0 && Mathf.Abs(faceDir.y) >= Mathf.Abs(faceDir.x)) // up and down facing priority over left and right
         {
-            if(faceDir.y > 0)
+            if (faceDir.y > 0)
                 GameActorAnimator.SetInteger("Direction", (int)Direction.UP);
             else
                 GameActorAnimator.SetInteger("Direction", (int)Direction.DOWN);
