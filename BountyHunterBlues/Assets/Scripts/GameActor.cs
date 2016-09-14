@@ -47,11 +47,11 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
     public virtual void Update()
     {
         runVisionDetection();
-        if (lookTarget == null)
-        {
+        //if (lookTarget == null)
+        //{
             Vector2 faceDirWorld = transform.TransformDirection(faceDir);
             Debug.DrawRay(transform.position, faceDirWorld * sightDistance, Color.green);
-        }
+        //}
         updateAnimation();
     }
 

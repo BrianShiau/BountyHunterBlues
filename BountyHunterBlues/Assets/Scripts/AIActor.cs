@@ -27,6 +27,7 @@ public class AIActor : GameActor {
     private bool patrol_backward;
     private float wait_time_counter;
     
+    public float rotation_speed;
     public GameObject playerObject;
     private State alertness;
 
@@ -53,13 +54,13 @@ public class AIActor : GameActor {
     private Vector2 transition_faceDir;
     public float move_speed;
 
-	private GameObject barrel;
+    private GameObject barrel;
 
-	public Color[] stateColors = {
-		Color.green,
-		Color.yellow,
-		Color.red
-	};
+    public Color[] stateColors = {
+        Color.green,
+        Color.yellow,
+        Color.red
+    };
 
     public override void Start()
     {
@@ -72,8 +73,8 @@ public class AIActor : GameActor {
         inc_state_timer = 0;
         dec_state_timer = 0;
         wait_time_counter = 0;
+        rotation_speed = 3f;
 
-        initial_position = transform.position;
         initial_faceDir = faceDir;
         transition_faceDir = faceDir;
 
@@ -84,18 +85,17 @@ public class AIActor : GameActor {
         AI_disableAim = new DisableAimCommand();
         AI_attack = new AttackCommand();
 
-		run_state(State.GREEN);
+        run_state(State.GREEN);
 
-		barrel = GetComponentInChildren<BarrelBase> ().gameObject.GetComponentInChildren<Animator> ().gameObject;
-		//barrel.transform.localRotation.eulerAngles.Set(worldFaceDir.x, worldFaceDir.y, 0);
-		//Debug.Log (new Vector3(worldFaceDir.x, worldFaceDir.y, 0f) + barrel.transform.LocalRotation);
+        barrel = GetComponentInChildren<BarrelBase> ().gameObject.GetComponentInChildren<Animator> ().gameObject;
+        //barrel.transform.localRotation.eulerAngles.Set(worldFaceDir.x, worldFaceDir.y, 0);
+        //Debug.Log (new Vector3(worldFaceDir.x, worldFaceDir.y, 0f) + barrel.transform.LocalRotation);
     }
 
     public override void Update()
     {
         base.Update();
 
-        //print(is_patrol);
         if(is_patrol){
             green_patrol();
         }
@@ -134,7 +134,7 @@ public class AIActor : GameActor {
 
     public void resetState()
     {
-		run_state(State.GREEN);
+        run_state(State.GREEN);
     }
 
     public void updateState(State newAlertState)
@@ -189,7 +189,7 @@ public class AIActor : GameActor {
         {
             lookTarget = tempLookTarget;
             Vector2 worldVector = lookTarget.gameObject.transform.position - transform.position;
-            Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
+            //Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
         }
     }
 
@@ -204,15 +204,21 @@ public class AIActor : GameActor {
         if(alertness == State.GREEN && is_patrol){
             isMoving = false;
             if(lookTarget != null){
-                inc_state_timer += Time.deltaTime;
                 // get world-space vector to target from me
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
-                // transform world-space vector to my coordinate frame
-                faceDir = transform.InverseTransformDirection(worldFaceDir);
-                if(inc_state_timer > state_change_time){
-                    inc_state_timer = 0;
-                    run_state(State.YELLOW);
+
+                Vector2 localWorldFaceDir = transform.InverseTransformDirection(worldFaceDir);
+                Vector2 temp = Vector2.MoveTowards(faceDir, localWorldFaceDir, rotation_speed * Time.deltaTime);
+                temp.Normalize();
+                faceDir = temp;
+
+                if(faceDir == localWorldFaceDir){
+                    inc_state_timer += Time.deltaTime;
+                    if(inc_state_timer > state_change_time){
+                        inc_state_timer = 0;
+                        run_state(State.YELLOW);
+                    }
                 }
             }
             else{
@@ -231,6 +237,7 @@ public class AIActor : GameActor {
                 }
                 else{
                     if(wait_time <= wait_time_counter){
+                        wait_time_counter = 0;
                         if(is_cycle){
                             if(patrol_index == patrol_points.Count() - 1){
                                 patrol_index = 0;
@@ -274,31 +281,28 @@ public class AIActor : GameActor {
         if(alertness == State.GREEN){
             isMoving = false;
             if(lookTarget != null){
-                inc_state_timer += Time.deltaTime;
                 // get world-space vector to target from me
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
-                // transform world-space vector to my coordinate frame
-                //if(transition_faceDir != worldFaceDir){
-                //    if(worldFaceDir.x > 0)
-                //        transition_faceDir.x += 1;
-                //    else
-                //        transition_faceDir.x -= 1;
-                //    if(worldFaceDir.y > 0)
-                //        transition_faceDir.y += 1;
-                //    else
-                //        transition_faceDir.y -= 1;
-                //}
-                //transition_faceDir.Normalize();
-                //faceDir = transform.InverseTransformDirection(transition_faceDir);
-                if(inc_state_timer > state_change_time){
-                    inc_state_timer = 0;
-                    run_state(State.YELLOW);
+
+                Vector2 localWorldFaceDir = transform.InverseTransformDirection(worldFaceDir);
+                Vector2 temp = Vector2.MoveTowards(faceDir, localWorldFaceDir, rotation_speed * Time.deltaTime);
+                temp.Normalize();
+                faceDir = temp;
+
+                if(faceDir == localWorldFaceDir){
+                    inc_state_timer += Time.deltaTime;
+                    if(inc_state_timer > state_change_time){
+                        inc_state_timer = 0;
+                        run_state(State.YELLOW);
+                    }
                 }
             }
             else{
                 positions.Clear();
-                faceDir = initial_faceDir;
+                Vector2 temp = Vector2.MoveTowards(faceDir, initial_faceDir, rotation_speed * Time.deltaTime);
+                temp.Normalize();
+                faceDir = temp;
                 inc_state_timer = 0;
             }
         }
@@ -321,14 +325,11 @@ public class AIActor : GameActor {
                         Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
                         AI_move.updateCommandData(localDir);
                         AI_move.execute(this);
-
-                        transform.position = new_position;
                     }
                     else{
                         dec_state_timer = 0;
                         run_state(State.GREEN);
                     }
-                    faceDir = initial_faceDir;
                 }
             }
             if(lookTarget != null){
