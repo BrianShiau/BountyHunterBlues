@@ -22,12 +22,19 @@ public class PlayerActor : GameActor
     public override void Start()
     {
         base.Start();
-        hasGun = false;
         lastShotTime = reloadTime;
 
-		gunImage.enabled = false;
-		gunSliderObject = gunSlider.gameObject;
-		gunSliderObject.SetActive (false);
+		if (hasGun) {
+			gunImage.enabled = true;
+			gunSliderObject = gunSlider.gameObject;
+			gunSliderObject.SetActive (true);
+			gunSliderFill.color = Color.green;
+		}
+		else {
+			gunImage.enabled = false;
+			gunSliderObject = gunSlider.gameObject;
+			gunSliderObject.SetActive (false);
+		}
     }
 
     public override void Update()
