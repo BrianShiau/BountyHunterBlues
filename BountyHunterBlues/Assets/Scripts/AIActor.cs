@@ -53,6 +53,8 @@ public class AIActor : GameActor {
     private Vector2 transition_faceDir;
     public float move_speed;
 
+	private GameObject barrel;
+
 	public Color[] stateColors = {
 		Color.green,
 		Color.yellow,
@@ -83,6 +85,10 @@ public class AIActor : GameActor {
         AI_attack = new AttackCommand();
 
 		run_state(State.GREEN);
+
+		barrel = GetComponentInChildren<BarrelBase> ().gameObject.GetComponentInChildren<Animator> ().gameObject;
+		//barrel.transform.localRotation.eulerAngles.Set(worldFaceDir.x, worldFaceDir.y, 0);
+		//Debug.Log (new Vector3(worldFaceDir.x, worldFaceDir.y, 0f) + barrel.transform.LocalRotation);
     }
 
     public override void Update()
@@ -100,7 +106,6 @@ public class AIActor : GameActor {
         red_alertness();
 
         updateBarrelAnimation();
-        
     }
     
 
