@@ -93,7 +93,7 @@ public class InputHandler : MonoBehaviour {
                 nextCommands.AddLast(attack);
             }
         } 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             interact = new InteractCommand();
             nextCommands.AddLast(interact);
