@@ -29,7 +29,7 @@ public class AIActor : GameActor {
     
     public float rotation_speed;
     public GameObject playerObject;
-    private State alertness;
+    public State alertness;
 
     /*
      * AI could be attached to AIActor like so
@@ -73,7 +73,7 @@ public class AIActor : GameActor {
         inc_state_timer = 0;
         dec_state_timer = 0;
         wait_time_counter = 0;
-        rotation_speed = 3f;
+        rotation_speed = 4f;
 
         initial_faceDir = faceDir;
         transition_faceDir = faceDir;
@@ -196,7 +196,7 @@ public class AIActor : GameActor {
 
     private void run_state(State color){
         alertness = color;
-        GetComponent<SpriteRenderer> ().color = stateColors [(int)color];
+        
     }
 
 
