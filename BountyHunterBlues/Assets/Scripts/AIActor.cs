@@ -73,7 +73,7 @@ public class AIActor : GameActor {
         inc_state_timer = 0;
         dec_state_timer = 0;
         wait_time_counter = 0;
-        rotation_speed = 3f;
+        rotation_speed = 4f;
 
         initial_faceDir = faceDir;
         transition_faceDir = faceDir;

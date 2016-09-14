@@ -71,8 +71,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013579858438}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.4539634, y: 1.74, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: 28.52, y: 5.92, z: 0}
+  m_LocalScale: {x: 0.09487387, y: 0.09487408, z: 0.4743704}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children:
   - {fileID: 4000011375871692}
@@ -140,9 +140,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.26219204, y: -0.26235723}
   serializedVersion: 2
-  m_Size: {x: 6.49, y: 7.52}
+  m_Size: {x: 7.4220567, y: 17.073908}
 --- !u!81 &81000012663433268
 AudioListener:
   m_ObjectHideFlags: 1
@@ -198,7 +198,7 @@ MonoBehaviour:
   lookTarget: {fileID: 0}
   aimTarget: {fileID: 0}
   GameActorAnimator: {fileID: 0}
-  hasGun: 0
+  hasGun: 1
   reloadTime: 2
   gunImage: {fileID: 0}
   gunSlider: {fileID: 0}
@@ -253,7 +253,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300006, guid: 68e7a8e2d4a4741418047832c5a91481, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 486a5ec157aa231469f45a6fced44f6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
