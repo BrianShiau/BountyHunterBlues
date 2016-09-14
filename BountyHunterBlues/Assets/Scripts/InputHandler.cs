@@ -15,8 +15,13 @@ public class InputHandler : MonoBehaviour {
     private Command interact;
     private Command attack;
 
+    private float attackInputDelay;
+    private float interactInputDelay;
+
     void Start()
     {
+        attackInputDelay = 0;
+        interactInputDelay = 0;
         move = new MoveCommand(new Vector2(0, 0));
         aim = new AimCommand(new Vector2(0, 1));
         disableAim = new DisableAimCommand();
@@ -87,19 +92,29 @@ public class InputHandler : MonoBehaviour {
                 nextCommands.AddLast(disableAim);
             }
 
-            if (Input.GetMouseButtonDown(0)) // pressing down left mouse button
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0) && attackInputDelay < 0) // pressing down left mouse button
             {
                 attack = new AttackCommand();
                 nextCommands.AddLast(attack);
+                attackInputDelay = 1;
             }
+
+            if (Input.GetMouseButtonUp(0))
+                attackInputDelay = 0;
         } 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && interactInputDelay < 0)
         {
             interact = new InteractCommand();
             nextCommands.AddLast(interact);
+            interactInputDelay = 1;
         }
-        
+
+        if (Input.GetKeyUp(KeyCode.Space))
+            interactInputDelay = 0;
+
         // Need to implement Q special ability
+        interactInputDelay -= Time.deltaTime;
+        attackInputDelay -= Time.deltaTime;
 
         return nextCommands;
     }
