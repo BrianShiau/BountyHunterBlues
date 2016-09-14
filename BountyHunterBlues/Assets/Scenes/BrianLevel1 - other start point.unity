@@ -1276,6 +1276,16 @@ Prefab:
       propertyPath: patrol_points.Array.data[1].point
       value: 
       objectReference: {fileID: 964968605}
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: patrol_points.Array.data[0].wait_time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: patrol_points.Array.data[1].wait_time
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
