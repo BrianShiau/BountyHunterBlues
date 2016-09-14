@@ -389,12 +389,12 @@ public class AIActor : GameActor {
         {
             if (faceDir.y > 0)
             {
-                EnemyBarrelAnimator.SetInteger("Direction", (int)Direction.UP);
+                GetComponentInChildren<BarrelRotation>().setOrientation(GameActor.Direction.UP);
                 bBase.facing = Direction.UP;
             }
             else
             {
-                EnemyBarrelAnimator.SetInteger("Direction", (int)Direction.DOWN);
+                GetComponentInChildren<BarrelRotation>().setOrientation(GameActor.Direction.DOWN);
                 bBase.facing = Direction.DOWN;
             }
         }
@@ -403,12 +403,12 @@ public class AIActor : GameActor {
         {
             if (faceDir.x > 0)
             {
-                EnemyBarrelAnimator.SetInteger("Direction", (int)Direction.RIGHT);
+                GetComponentInChildren<BarrelRotation>().setOrientation(GameActor.Direction.RIGHT);
                 bBase.facing = Direction.RIGHT;
             }
             else
             {
-                EnemyBarrelAnimator.SetInteger("Direction", (int)Direction.LEFT);
+                GetComponentInChildren<BarrelRotation>().setOrientation(GameActor.Direction.LEFT);
                 bBase.facing = Direction.LEFT;
             }
         }
