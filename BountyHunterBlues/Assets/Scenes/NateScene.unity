@@ -1612,6 +1612,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1232991862}
   - 212: {fileID: 1232991861}
+  - 114: {fileID: 1232991863}
   m_Layer: 0
   m_Name: GridOverlay
   m_TagString: Untagged
@@ -1665,6 +1666,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 58
+--- !u!114 &1232991863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232991860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd5ef7072a907c4eaea5346964faaec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitsize: 1
+  width: 0
+  height: 0
 --- !u!1 &1241348157
 GameObject:
   m_ObjectHideFlags: 0

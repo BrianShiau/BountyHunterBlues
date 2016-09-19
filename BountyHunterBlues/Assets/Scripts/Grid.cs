@@ -24,6 +24,7 @@ public class Grid : MonoBehaviour {
 
     private float worldWidth;
     private float worldHeight;
+    
 
 
 	// Use this for initialization
@@ -36,31 +37,43 @@ public class Grid : MonoBehaviour {
 
         nodes = new Node[width, height];
 
+        // set up initial grid
         for (int x = 0; x < width; ++x)
             for (int y = 0; y < height; ++y)
                 nodes[x, y] = new Node(x, y, gridToWorld(x, y), this);
 
+        // make connections between unblocked nodes and mark nodes that have less than 3 connections as inactive
         for (int x = 0; x < width; ++x)
             for (int y = 0; y < height; ++y)
                 nodes[x, y].setupConnections();
 
+        // remove connections to and from inactive nodes
         for (int x = 0; x < width; ++x)
-            for (int y = 0; y < height; ++ y)
+            for (int y = 0; y < height; ++y)
                 nodes[x, y].cullInactiveConnections();
 
+    }
+
+    void Update()
+    {
+        // DEBUG MODE
+        for (int x = 0; x < width; ++x)
+            for (int y = 0; y < height; ++y)
+                nodes[x, y].draw();
     }
 	
 	public Vector2 gridToWorld(int x, int y)
     {
-        Vector2 result = new Vector2();
-
-        return result;
+        return new Vector2(unitsize * x + transform.position.x, unitsize * y + transform.position.y);
         
     }
 
     public GridPoint worldToGrid(Vector2 worldPoint)
     {
-        return new GridPoint(0, 0);
+        Vector2 gridSpacePoint = transform.InverseTransformPoint(worldPoint);
+        Vector2 unitNormalizedPoint = gridSpacePoint / unitsize;
+        GridPoint result = new GridPoint(Mathf.RoundToInt(unitNormalizedPoint.x), Mathf.RoundToInt(unitNormalizedPoint.y));
+        return result;
     }
 
     public bool inBounds(Vector2 point)
