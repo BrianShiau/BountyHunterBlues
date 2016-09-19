@@ -35,7 +35,6 @@ public class PlayerActor : GameActor
 			gunSliderObject = gunSlider.gameObject;
 			gunSliderObject.SetActive (false);
 		}
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1, LoadSceneMode.Additive);
     }
 
     public override void Update()
