@@ -8,6 +8,7 @@ TagManager:
   - GameActor
   - DeathFlash
   - Interactable
+  - BlackFade
   layers:
   - Default
   - TransparentFX
