@@ -12,4 +12,16 @@ public class Utility : MonoBehaviour {
         dir.Normalize();
         return dir;
     }
+
+	// yields for the real time delay even when timescale is set to 0 and the game is paused
+	public static IEnumerator WaitForRealTime(float delay){
+		while(true){
+			float pauseEndTime = Time.realtimeSinceStartup + delay;
+			while (Time.realtimeSinceStartup < pauseEndTime){
+				Debug.Log (Time.realtimeSinceStartup);
+				yield return 0;
+			}
+			break;
+		}
+	}
 }

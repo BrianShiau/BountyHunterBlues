@@ -19,6 +19,8 @@ public class PlayerActor : GameActor
 	public GameObject gunSliderObject;
 	public Image gunSliderFill;
 
+	//public Image 
+
     public override void Start()
     {
         base.Start();
@@ -35,7 +37,6 @@ public class PlayerActor : GameActor
 			gunSliderObject = gunSlider.gameObject;
 			gunSliderObject.SetActive (false);
 		}
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1, LoadSceneMode.Additive);
     }
 
     public override void Update()
