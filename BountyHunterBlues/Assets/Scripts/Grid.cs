@@ -32,8 +32,8 @@ public class Grid : MonoBehaviour {
 
         worldWidth = transform.localScale.x;
         worldHeight = transform.localScale.y;
-        width = (int)(worldWidth / unitsize);
-        height = (int)(worldHeight / unitsize);
+        width = Mathf.RoundToInt(worldWidth / unitsize);
+        height = Mathf.RoundToInt(worldHeight / unitsize);
 
         nodes = new Node[width, height];
 
@@ -42,7 +42,7 @@ public class Grid : MonoBehaviour {
             for (int y = 0; y < height; ++y)
                 nodes[x, y] = new Node(x, y, gridToWorld(x, y), this);
 
-        // make connections between unblocked nodes and mark nodes that have less than 3 connections as inactive
+        // make connections between unblocked nodes and mark nodes that have less than 2 connections as inactive
         for (int x = 0; x < width; ++x)
             for (int y = 0; y < height; ++y)
                 nodes[x, y].setupConnections();

@@ -64,7 +64,7 @@ public class Node {
         if (point.Y > 0)
             createConnection(grid.nodes[point.X, point.Y - 1], grid.unitsize);
 
-        active = connections.Count > 2;
+        active = connections.Count > 1;
     }
 
     public void cullInactiveConnections()
@@ -81,8 +81,14 @@ public class Node {
 
     public void draw()
     {
-        foreach (NodeConnection connection in connections)
-            connection.draw();
+        if (active)
+        {
+            // simulate a point
+            for (int i = 0; i < 360; i += 5)
+                Debug.DrawRay(worldPosition, (new Vector2(Mathf.Cos(Mathf.Deg2Rad * i), Mathf.Sin(Mathf.Deg2Rad * i))) * grid.unitsize / 16, Color.blue);
+            foreach (NodeConnection connection in connections)
+                connection.draw();
+        }
     }
 
     private bool createConnection(Node destination, float rayDist)
@@ -90,7 +96,7 @@ public class Node {
         Vector2 dir = destination.worldPosition - worldPosition;
         dir.Normalize();
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, dir, rayDist);
-        if ((hit.collider == null || hit.collider.tag == "GameActor") && grid.inBounds(destination.worldPosition))
+        if ((hit.collider == null || (hit.collider.tag != "Wall" && hit.collider.tag != "Interactable")) && grid.inBounds(destination.worldPosition))
         {
             connections.Add(new NodeConnection(this, destination));
             return true;

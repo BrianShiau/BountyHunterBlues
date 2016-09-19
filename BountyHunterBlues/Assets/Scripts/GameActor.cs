@@ -51,7 +51,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         //if (lookTarget == null)
         //{
             Vector2 faceDirWorld = transform.TransformDirection(faceDir);
-            Debug.DrawRay(transform.position, faceDirWorld * sightDistance, Color.green);
+            //Debug.DrawRay(transform.position, faceDirWorld * sightDistance, Color.green);
         //}
         updateAnimation();
     }
@@ -91,7 +91,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         Vector2 worldDir = transform.TransformDirection(dir);
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldDir, sightDistance);
         IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
-        Debug.DrawRay(transform.position, worldDir * sightDistance, Color.red);
+        //Debug.DrawRay(transform.position, worldDir * sightDistance, Color.red);
 
         aimTarget = null;
         foreach (RaycastHit2D hitinfo in sortedHits) {
