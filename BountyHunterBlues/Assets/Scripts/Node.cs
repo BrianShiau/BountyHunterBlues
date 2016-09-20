@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class NodeConnection
 {
@@ -93,13 +94,27 @@ public class Node {
 
     private bool createConnection(Node destination, float rayDist)
     {
-        Vector2 dir = destination.worldPosition - worldPosition;
-        dir.Normalize();
-        RaycastHit2D hit = Physics2D.Raycast(worldPosition, dir, rayDist);
-        if ((hit.collider == null || (hit.collider.tag != "Wall" && hit.collider.tag != "Interactable")) && grid.inBounds(destination.worldPosition))
+        if (grid.inBounds(destination.worldPosition))
         {
-            connections.Add(new NodeConnection(this, destination));
-            return true;
+            Vector2 dir = destination.worldPosition - worldPosition;
+            dir.Normalize();
+            RaycastHit2D[] hits = Physics2D.RaycastAll(worldPosition, dir, rayDist);
+            IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
+            bool validConnection = true;
+            foreach (RaycastHit2D hit in sortedHits)
+            {
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "Interactable")
+                {
+                    validConnection = false;
+                    break;
+                }
+            }
+
+            if (validConnection)
+            {
+                connections.Add(new NodeConnection(this, destination));
+                return true;
+            }
         }
 
         return false;
