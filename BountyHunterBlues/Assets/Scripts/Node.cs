@@ -31,7 +31,7 @@ public class Node {
     public Vector2 worldPosition;
 
     private Grid grid;
-    private List<NodeConnection> connections;
+    public List<NodeConnection> connections;
 
     public Node(int x, int y, Vector2 position, Grid grid)
     {
