@@ -70,10 +70,14 @@ public class Grid : MonoBehaviour {
 
     public GridPoint worldToGrid(Vector2 worldPoint)
     {
-        Vector2 gridSpacePoint = transform.InverseTransformPoint(worldPoint);
-        Vector2 unitNormalizedPoint = gridSpacePoint / unitsize;
-        GridPoint result = new GridPoint(Mathf.RoundToInt(unitNormalizedPoint.x), Mathf.RoundToInt(unitNormalizedPoint.y));
-        return result;
+        if (inBounds(worldPoint))
+        {
+            Vector2 gridSpacePoint = transform.InverseTransformPoint(worldPoint);
+            Vector2 unitNormalizedPoint = gridSpacePoint / unitsize;
+            GridPoint result = new GridPoint(Mathf.RoundToInt(unitNormalizedPoint.x), Mathf.RoundToInt(unitNormalizedPoint.y));
+            return result;
+        }
+        return null;
     }
 
     public bool inBounds(Vector2 point)
