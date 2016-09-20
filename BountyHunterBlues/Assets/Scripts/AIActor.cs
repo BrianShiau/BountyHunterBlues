@@ -31,6 +31,9 @@ public class AIActor : GameActor {
     public GameObject playerObject;
     public State alertness;
 
+    public int audio_distance = 5;
+    public int shortest_path_index = 0;
+
     /*
      * AI could be attached to AIActor like so
      * AIManager AI;
@@ -199,7 +202,6 @@ public class AIActor : GameActor {
 
     private void run_state(State color){
         alertness = color;
-        
     }
 
 
@@ -307,6 +309,39 @@ public class AIActor : GameActor {
                 temp.Normalize();
                 faceDir = temp;
                 inc_state_timer = 0;
+            }
+        }
+    }
+
+    public bool sound_heard(Vector2 audio_point){
+        return Vector2.Distance(transform.position, audio_point) < audio_distance;
+    }
+
+    public List<Vector3> calc_shortest_path(){
+        return new List<Vector3>();
+    }
+
+    public void yellow_audio(){
+        if(sound_heard(new Vector2(0, 0))){
+            List<Vector3> shortest_path = calc_shortest_path();
+            int path_length = shortest_path.Count;
+            if(shortest_path_index < path_length){
+                Vector3 new_position = shortest_path[shortest_path_index];
+                shortest_path_index += 1;
+                Vector2 worldFaceDir = new_position - transform.position;
+                worldFaceDir.Normalize();
+                Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+                AI_move.updateCommandData(localDir);
+                AI_move.execute(this);
+            }
+            else if(shortest_path_index >= 0){
+                shortest_path_index -= 1;
+                Vector3 new_position = shortest_path[shortest_path_index];
+                Vector2 worldFaceDir = new_position - transform.position;
+                worldFaceDir.Normalize();
+                Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+                AI_move.updateCommandData(localDir);
+                AI_move.execute(this);
             }
         }
     }
