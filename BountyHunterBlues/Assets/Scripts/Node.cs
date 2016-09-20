@@ -26,12 +26,14 @@ public class Node {
 
     public bool active; // node becomes active with more than 2 connections
 
+    private int manhattan;
+
     public GridPoint point;
 
     public Vector2 worldPosition;
 
     private Grid grid;
-    private List<NodeConnection> connections;
+    public List<NodeConnection> connections;
 
     public Node(int x, int y, Vector2 position, Grid grid)
     {
@@ -39,6 +41,14 @@ public class Node {
         worldPosition = position;
         point = new GridPoint(x, y);
         this.grid = grid;
+    }
+
+    public void set_manhattan(int val){
+        manhattan = val;
+    }
+
+    public int get_manhattan(){
+        return manhattan;
     }
 
     public void setupConnections()
