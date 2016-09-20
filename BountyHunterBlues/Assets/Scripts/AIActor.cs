@@ -114,16 +114,19 @@ public class AIActor : GameActor {
         if (isAiming)
         {
             {
-                if(aimTarget is PlayerActor)
+                if (aimTarget is PlayerActor)
                 {
                     aimTarget.takeDamage();
                     if (!aimTarget.isAlive())
                         aimTarget = null;
                 }
-
-                // else for friendly fire with AI
+                else
+                    Debug.Log("AI can't attack other AI");
             }
         }
+        else
+            Debug.Log("AI can't melee");
+        
         // no else since AI can't melee
     }
 

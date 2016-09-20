@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Laser : MonoBehaviour {
 
@@ -23,10 +25,18 @@ public class Laser : MonoBehaviour {
         transform.rotation = Quaternion.AngleAxis(angle, -1 * Vector3.forward);
 
 
-        float distance;
+        float distance = actor.sightDistance;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, actor.transform.TransformDirection(actor.faceDir), actor.sightDistance);
-        distance = hit.distance;
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, actor.transform.TransformDirection(actor.faceDir), actor.sightDistance);
+        IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
+        foreach (RaycastHit2D hit in sortedHits)
+        {
+            if (hit.collider != null && hit.collider.gameObject != GetComponentInParent<GameActor>().gameObject)
+            {
+                distance = hit.distance;
+                break;
+            }
+        }
 
         transform.localScale = new Vector3(scaleFactor * distance, 1, 1);
     }

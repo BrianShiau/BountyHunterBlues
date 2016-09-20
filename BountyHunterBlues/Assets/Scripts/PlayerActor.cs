@@ -112,17 +112,16 @@ public class PlayerActor : GameActor
                     foreach (RaycastHit2D hitinfo in sortedHits)
                     {
                         GameObject hitObj = hitinfo.collider.gameObject;
+
                         if (hitObj.tag != "GameActor")
                             // obstruction in front, ignore the rest of the ray
                             break;
 
-                        else if (!seenActors.Contains(hitObj.GetComponent<GameActor>()))
-                        {
-                            // the next obj in the ray line is a GameActor we haven't accounted for, add it
-                            seenActors.Add(hitObj.GetComponent<GameActor>());
-                        }
+                        else if(hitObj.GetComponent<GameActor>() is AIActor && !seenActors.Contains(hitObj.GetComponent<GameActor>()))
+                            // the next obj in the ray line is a AIActor we haven't accounted for, add it
+                            seenActors.Add(hitObj.GetComponent<GameActor>());   
 
-                        // else the next obj in the ray line is a GameActor we've seen, just ignore it and keep moving down the ray
+                        // else the next obj in the ray line is a PlayerActor or an AIActor we've seen, just ignore it and keep moving down the ray
                     }
                  }
              }
@@ -151,7 +150,6 @@ public class PlayerActor : GameActor
 
 
         // see what interactables are in my vision cone within interactionDistance and pick closest as interactionTarget
-        float shortestInteractionDist = float.MaxValue;
         bool foundInteractable = false;
         GameObject[] InteractableObjects = GameObject.FindGameObjectsWithTag("Interactable");
         foreach (GameObject interactableObject in InteractableObjects)
@@ -162,12 +160,16 @@ public class PlayerActor : GameActor
             if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
             {
                 
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, worldVector, interactionDistance);
-                if (hit.collider != null && hit.collider.tag == "Interactable" && hit.distance <= interactionDistance)
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, interactionDistance);
+                IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
+                foreach (RaycastHit2D hit in sortedHits)
                 {
-                    interactionTarget = (Interactable) hit.collider.GetComponent(typeof(Interactable));
-                    shortestInteractionDist = hit.distance;
-                    foundInteractable = true;
+                    if (hit.collider != null && hit.collider.tag == "Interactable" && hit.distance <= interactionDistance)
+                    {
+                        interactionTarget = (Interactable)hit.collider.GetComponent(typeof(Interactable));
+                        foundInteractable = true;
+                        break;
+                    }
                 }
             }
         }

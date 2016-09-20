@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
 {
@@ -50,7 +51,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         //if (lookTarget == null)
         //{
             Vector2 faceDirWorld = transform.TransformDirection(faceDir);
-            Debug.DrawRay(transform.position, faceDirWorld * sightDistance, Color.green);
+            //Debug.DrawRay(transform.position, faceDirWorld * sightDistance, Color.green);
         //}
         updateAnimation();
     }
@@ -88,16 +89,18 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         faceDir = dir;
 
         Vector2 worldDir = transform.TransformDirection(dir);
-        RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, worldDir, sightDistance);
-        Debug.DrawRay(transform.position, worldDir * sightDistance, Color.red);
-        
-        if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor")
-        {
-            Debug.Log("Have aimTarget");
-            aimTarget = hitinfo.collider.GetComponent<GameActor>();
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldDir, sightDistance);
+        IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
+        //Debug.DrawRay(transform.position, worldDir * sightDistance, Color.red);
+
+        aimTarget = null;
+        foreach (RaycastHit2D hitinfo in sortedHits) {
+            if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor" && hitinfo.collider.gameObject != gameObject)
+            {
+                aimTarget = hitinfo.collider.GetComponent<GameActor>();
+                break;
+            }
         }
-        else
-            aimTarget = null;
 
     }
 
