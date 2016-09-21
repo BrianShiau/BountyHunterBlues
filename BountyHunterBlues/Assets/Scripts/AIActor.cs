@@ -110,7 +110,7 @@ public class AIActor : GameActor {
         }
         yellow_audio();
         yellow_alertness();
-        //red_alertness();
+        red_alertness();
 
     }
     
@@ -177,7 +177,7 @@ public class AIActor : GameActor {
                         if (hitObj.tag != "GameActor")
                             // obstruction in front, ignore the rest of the ray
                             break;
-                        else if (hitObj.GetComponent<GameActor>() is PlayerActor)
+                        else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible)
                         {
                             // PlayerActor
                             tempLookTarget = hitObj.GetComponent<GameActor>();

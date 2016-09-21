@@ -194,13 +194,16 @@ MonoBehaviour:
   interactionDistance: 1
   isAiming: 0
   isMoving: 0
-  healthPool: 1
+  isVisible: 0
+  healthPool: 3
   lookTarget: {fileID: 0}
   aimTarget: {fileID: 0}
   GameActorAnimator: {fileID: 0}
   hasGun: 1
   gun_fired: 0
+  knifeAttacked: 0
   reloadTime: 2
+  cloakTime: 1
   gunImage: {fileID: 0}
   gunSlider: {fileID: 0}
   gunSliderObject: {fileID: 0}

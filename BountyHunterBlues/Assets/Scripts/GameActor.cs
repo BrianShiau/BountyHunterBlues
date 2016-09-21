@@ -17,6 +17,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
 
     public bool isAiming; // will need to specify "isAiming with what" later for special items
     public bool isMoving;
+    public bool isVisible;
     public int healthPool;
     public GameActor lookTarget; // null unless look ray collides with an unobstructed valid GameActor
     public GameActor aimTarget; // null unless isAiming is true and aim ray collides with an unobstructed valid GameActor
@@ -38,6 +39,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
     {
         isAiming = false;
         isMoving = false;
+        isVisible = true;
         lookTarget = null;
         aimTarget = null;
         faceDir.Normalize();
@@ -72,7 +74,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
 		die ();
     }
 
-    public void takeDamage()
+    public virtual void takeDamage()
     {
         healthPool--;
         Debug.Log("GameActor took Damage");
@@ -95,7 +97,9 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
 
         aimTarget = null;
         foreach (RaycastHit2D hitinfo in sortedHits) {
-            if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor" && hitinfo.collider.gameObject != gameObject)
+            if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor" 
+                    && hitinfo.collider.GetComponent<GameActor>().isVisible 
+                    && hitinfo.collider.gameObject != gameObject)
             {
                 aimTarget = hitinfo.collider.GetComponent<GameActor>();
                 break;

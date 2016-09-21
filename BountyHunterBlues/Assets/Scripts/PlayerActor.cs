@@ -12,8 +12,10 @@ public class PlayerActor : GameActor
     public bool gun_fired;
     public bool knifeAttacked;
     public float reloadTime;
+    public float cloakTime;
 
     private float lastShotTime;
+    private float cloakTimer;
 
 	// UI
 	public Image gunImage;
@@ -27,6 +29,7 @@ public class PlayerActor : GameActor
     {
         base.Start();
         lastShotTime = reloadTime;
+        cloakTimer = 0;
         gun_fired = false;
         knifeAttacked = false;
 
@@ -49,6 +52,11 @@ public class PlayerActor : GameActor
         lastShotTime += Time.deltaTime;
         knifeAttacked = false;
 
+        if (!isVisible)
+            cloakTimer += Time.deltaTime;
+        if (cloakTimer >= cloakTime)
+            isVisible = true;
+
         gunSlider.value = lastShotTime;
 		if (lastShotTime >= 2) {
 			gunSliderFill.color = Color.green;
@@ -69,27 +77,30 @@ public class PlayerActor : GameActor
 
     public override void attack()
     {
-        if (hasGun && isAiming && lastShotTime >= reloadTime)
+        if (isVisible)
         {
-            Debug.Log("Player shoots");
-            gun_fired = true;
-            if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
+            if (hasGun && isAiming && lastShotTime >= reloadTime)
             {
-                aimTarget.takeDamage();
-                if (!aimTarget.isAlive())
-                    aimTarget = null;
+                Debug.Log("Player shoots");
+                gun_fired = true;
+                if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
+                {
+                    aimTarget.takeDamage();
+                    if (!aimTarget.isAlive())
+                        aimTarget = null;
+                }
+                lastShotTime = 0;
             }
-            lastShotTime = 0;
-        }
-        else
-        {
-            knifeAttacked = true;
-            Debug.Log("attack happening on left click");
-            if (lookTarget != null && Vector2.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
+            else
             {
-                lookTarget.takeDamage();
-                if (!lookTarget.isAlive())
-                    lookTarget = null;
+                knifeAttacked = true;
+                Debug.Log("attack happening on left click");
+                if (lookTarget != null && Vector2.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
+                {
+                    lookTarget.takeDamage();
+                    if (!lookTarget.isAlive())
+                        lookTarget = null;
+                }
             }
         }
         
@@ -101,7 +112,17 @@ public class PlayerActor : GameActor
             interactionTarget.runInteraction();
     }
 
-	public override void die()
+    public override void takeDamage()
+    {
+        base.takeDamage();
+        if(isAlive())
+        {
+            isVisible = false;
+            cloakTimer = 0;
+        }
+    }
+
+    public override void die()
 	{
 		GameObject.FindGameObjectWithTag ("DeathFlash").GetComponent<Image>().enabled = true;
 
@@ -132,7 +153,8 @@ public class PlayerActor : GameActor
                             // obstruction in front, ignore the rest of the ray
                             break;
 
-                        else if(hitObj.GetComponent<GameActor>() is AIActor && !seenActors.Contains(hitObj.GetComponent<GameActor>()))
+                        else if(hitObj.GetComponent<GameActor>() is AIActor && hitObj.GetComponent<GameActor>().isVisible 
+                                && !seenActors.Contains(hitObj.GetComponent<GameActor>()))
                             // the next obj in the ray line is a AIActor we haven't accounted for, add it
                             seenActors.Add(hitObj.GetComponent<GameActor>());   
 
@@ -197,6 +219,14 @@ public class PlayerActor : GameActor
     {
         base.updateAnimation();
         GameActorAnimator.SetBool("isKnifing", knifeAttacked);
+
+        float red = gameObject.GetComponent<SpriteRenderer>().color.r;
+        float green = gameObject.GetComponent<SpriteRenderer>().color.g;
+        float blue = gameObject.GetComponent<SpriteRenderer>().color.b;
+        if (!isVisible)
+            GetComponent<SpriteRenderer>().color = new Color(red, blue, green, .5f);
+        else
+            GetComponent<SpriteRenderer>().color = new Color(red, blue, green, 1.0f);
 
     }
 
