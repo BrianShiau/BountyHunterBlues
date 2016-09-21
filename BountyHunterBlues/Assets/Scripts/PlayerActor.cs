@@ -123,6 +123,9 @@ public class PlayerActor : GameActor
         {
             isVisible = false;
             cloakTimer = 0;
+			if (GetComponentInChildren<HealthBar> ()) {
+				GetComponentInChildren<HealthBar> ().setHealth (healthPool);
+			}
         }
     }
 
