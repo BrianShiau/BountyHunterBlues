@@ -2443,7 +2443,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1336954095
 RectTransform:
@@ -4269,11 +4269,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000013760697518, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 28.52
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 4000013760697518, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.2
+      value: 15.83
       objectReference: {fileID: 0}
     - target: {fileID: 4000013760697518, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4323,16 +4323,16 @@ Prefab:
       propertyPath: hasGun
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
-        type: 2}
-      propertyPath: healthPool
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 95000013673125480, guid: 16323df88e96c404e9ceffb52c9ca0cf,
         type: 2}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b4851f4c2a8cb264dbbb09f2be4edce1, type: 2}
+    - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+        type: 2}
+      propertyPath: healthPool
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
   m_IsPrefabParent: 0
