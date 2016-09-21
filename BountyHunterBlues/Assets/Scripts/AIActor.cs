@@ -112,7 +112,6 @@ public class AIActor : GameActor {
         yellow_alertness();
         //red_alertness();
 
-        updateBarrelAnimation();
     }
     
 
@@ -424,8 +423,9 @@ public class AIActor : GameActor {
         }
     }
 
-    private void updateBarrelAnimation()
+    public override void updateAnimation()
     {
+        base.updateAnimation();
         BarrelBase bBase = GetComponentInChildren<BarrelBase>();
 
 

@@ -121,7 +121,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         
     }
 
-    private void updateAnimation()
+    public virtual void updateAnimation()
     {
         // update moving state
         GameActorAnimator.SetBool("isMoving", isMoving);

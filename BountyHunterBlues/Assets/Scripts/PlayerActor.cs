@@ -10,6 +10,7 @@ public class PlayerActor : GameActor
 {
     public bool hasGun;
     public bool gun_fired;
+    public bool knifeAttacked;
     public float reloadTime;
 
     private float lastShotTime;
@@ -27,6 +28,7 @@ public class PlayerActor : GameActor
         base.Start();
         lastShotTime = reloadTime;
         gun_fired = false;
+        knifeAttacked = false;
 
 		if (hasGun) {
 			gunImage.enabled = true;
@@ -45,8 +47,9 @@ public class PlayerActor : GameActor
     {
         base.Update();
         lastShotTime += Time.deltaTime;
+        knifeAttacked = false;
 
-		gunSlider.value = lastShotTime;
+        gunSlider.value = lastShotTime;
 		if (lastShotTime >= 2) {
 			gunSliderFill.color = Color.green;
 		}else if(lastShotTime >= 1){
@@ -80,6 +83,7 @@ public class PlayerActor : GameActor
         }
         else
         {
+            knifeAttacked = true;
             Debug.Log("attack happening on left click");
             if (lookTarget != null && Vector2.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
             {
@@ -188,4 +192,12 @@ public class PlayerActor : GameActor
         if (!foundInteractable)
             interactionTarget = null;
     }
+
+    public override void updateAnimation()
+    {
+        base.updateAnimation();
+        GameActorAnimator.SetBool("isKnifing", knifeAttacked);
+
+    }
+
 }
