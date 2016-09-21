@@ -9,6 +9,7 @@ TagManager:
   - DeathFlash
   - Interactable
   - BlackFade
+  - ChatPanel
   layers:
   - Default
   - TransparentFX
