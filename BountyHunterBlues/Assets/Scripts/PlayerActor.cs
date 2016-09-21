@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PlayerActor : GameActor
 {
     public bool hasGun;
+    public bool gun_fired;
     public float reloadTime;
 
     private float lastShotTime;
@@ -25,6 +26,7 @@ public class PlayerActor : GameActor
     {
         base.Start();
         lastShotTime = reloadTime;
+        gun_fired = false;
 
 		if (hasGun) {
 			gunImage.enabled = true;
@@ -54,11 +56,20 @@ public class PlayerActor : GameActor
 		}
     }
 
+    public Vector3 bullet_shot(){
+        if(gun_fired){
+            gun_fired = false;
+            return transform.position;
+        }
+        return new Vector3(0, 0, 0);
+    }
+
     public override void attack()
     {
         if (hasGun && isAiming && lastShotTime >= reloadTime)
         {
             Debug.Log("Player shoots");
+            gun_fired = true;
             if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
             {
                 aimTarget.takeDamage();
@@ -123,8 +134,8 @@ public class PlayerActor : GameActor
 
                         // else the next obj in the ray line is a PlayerActor or an AIActor we've seen, just ignore it and keep moving down the ray
                     }
-                 }
-             }
+                }
+            }
         }
 
         if (seenActors.Count == 0)

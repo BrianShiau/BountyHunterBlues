@@ -31,6 +31,9 @@ public class AIActor : GameActor {
     public GameObject playerObject;
     public State alertness;
 
+    public int audio_distance = 10;
+    public int shortest_path_index = 0;
+
     /*
      * AI could be attached to AIActor like so
      * AIManager AI;
@@ -55,6 +58,8 @@ public class AIActor : GameActor {
     public float move_speed;
 
     private GameObject barrel;
+    private PathFinding path;
+    private PlayerActor player; 
 
     public Color[] stateColors = {
         Color.green,
@@ -66,6 +71,7 @@ public class AIActor : GameActor {
     {
         base.Start();
 
+        player = GameObject.Find("Player Character").GetComponent<PlayerActor>();
         patrol_forward = true;
         patrol_backward = false;
 
@@ -102,8 +108,9 @@ public class AIActor : GameActor {
         else{
             green_alertness();
         }
+        yellow_audio();
         yellow_alertness();
-        red_alertness();
+        //red_alertness();
 
         updateBarrelAnimation();
     }
@@ -199,7 +206,6 @@ public class AIActor : GameActor {
 
     private void run_state(State color){
         alertness = color;
-        
     }
 
 
@@ -308,6 +314,42 @@ public class AIActor : GameActor {
                 faceDir = temp;
                 inc_state_timer = 0;
             }
+        }
+    }
+
+    public bool sound_heard(Vector3 audio_point){
+        if(audio_point.x != 0 && audio_point.y != 0){
+            return Vector2.Distance(transform.position, audio_point) < audio_distance;
+        }
+        return false;
+    }
+
+    public void yellow_audio(){
+        if(sound_heard(player.bullet_shot())){
+            path.initialize();
+            int path_length = path.length();
+            //if(shortest_path_index < path_length){
+            //    Node current_node = shortest_path[shortest_path_index];
+            //    shortest_path_index += 1;
+            //    print(current_node.point.X);
+            //    print(current_node.point.Y);
+            //    //Vector2 pos = path.get_world_space(current_node.point.X, current_node.point.Y);
+            //    //Vector3 new_position = new Vector3(pos.x, pos.y, 0);
+            //    //Vector2 worldFaceDir = new_position - transform.position;
+            //    //worldFaceDir.Normalize();
+            //    //Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+            //    //AI_move.updateCommandData(localDir);
+            //    //AI_move.execute(this);
+            //}
+            //else if(shortest_path_index >= 0){
+            //    shortest_path_index -= 1;
+            //    Vector3 new_position = shortest_path[shortest_path_index];
+            //    Vector2 worldFaceDir = new_position - transform.position;
+            //    worldFaceDir.Normalize();
+            //    Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+            //    AI_move.updateCommandData(localDir);
+            //    AI_move.execute(this);
+            //}
         }
     }
 

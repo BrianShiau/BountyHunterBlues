@@ -25,8 +25,6 @@ public class Grid : MonoBehaviour {
     private float worldWidth;
     private float worldHeight;
     
-
-
 	// Use this for initialization
 	void Start () {
 
