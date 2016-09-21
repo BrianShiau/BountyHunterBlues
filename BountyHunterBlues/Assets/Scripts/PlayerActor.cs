@@ -91,19 +91,23 @@ public class PlayerActor : GameActor
                 }
                 lastShotTime = 0;
             }
-            else
-            {
-                knifeAttacked = true;
-                Debug.Log("attack happening on left click");
-                if (lookTarget != null && Vector2.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
-                {
-                    lookTarget.takeDamage();
-                    if (!lookTarget.isAlive())
-                        lookTarget = null;
-                }
-            }
         }
         
+    }
+
+    public override void meleeAttack()
+    {
+        if (isVisible)
+        {
+            knifeAttacked = true;
+            Debug.Log("attack happening on left click");
+            if (lookTarget != null && Vector2.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
+            {
+                lookTarget.takeDamage();
+                if (!lookTarget.isAlive())
+                    lookTarget = null;
+            }
+        }
     }
 
     public override void interact()

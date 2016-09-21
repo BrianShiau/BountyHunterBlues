@@ -41,6 +41,14 @@ public class AttackCommand : Command
     }
 }
 
+public class MeleeAttackCommand : Command
+{
+    public override void execute(GameActor actor)
+    {
+        actor.meleeAttack();
+    }
+}
+
 public class InteractCommand : Command
 {
     public override void execute(GameActor actor)

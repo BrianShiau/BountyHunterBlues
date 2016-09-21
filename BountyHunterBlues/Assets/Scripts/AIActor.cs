@@ -133,10 +133,12 @@ public class AIActor : GameActor {
                     Debug.Log("AI can't attack other AI");
             }
         }
-        else
-            Debug.Log("AI can't melee");
-        
-        // no else since AI can't melee
+    }
+
+
+    public override void meleeAttack()
+    {
+        throw new NotImplementedException();
     }
 
     public override void interact()
@@ -461,4 +463,5 @@ public class AIActor : GameActor {
             }
         }
     }
+
 }

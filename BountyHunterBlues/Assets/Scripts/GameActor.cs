@@ -29,7 +29,8 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         DOWN, LEFT, UP, RIGHT
     }
 
-    public abstract void attack(); 
+    public abstract void attack();
+    public abstract void meleeAttack();
     public abstract void interact();
 	public abstract void die();
 

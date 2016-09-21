@@ -14,19 +14,23 @@ public class InputHandler : MonoBehaviour {
 
     private Command interact;
     private Command attack;
+    private Command meleeAttack;
 
     private float attackInputDelay;
+    private float meleeAttackInputDelay;
     private float interactInputDelay;
 
     void Start()
     {
         attackInputDelay = 0;
+        meleeAttackInputDelay = 0;
         interactInputDelay = 0;
         move = new MoveCommand(new Vector2(0, 0));
         aim = new AimCommand(new Vector2(0, 1));
         disableAim = new DisableAimCommand();
         interact = new InteractCommand();
         attack = new AttackCommand();
+        meleeAttack = new MeleeAttackCommand();
         tacticalMode = false;
     }
 
@@ -76,32 +80,34 @@ public class InputHandler : MonoBehaviour {
                 // reinit isMoving to false when no move command is issued
                 player.GetComponent<GameActor>().isMoving = false;
 
+            // Always aim with mouse
+            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+            Vector2 aimVector = player.transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
+            aimVector.Normalize();
+            aim.updateCommandData(aimVector);
+            nextCommands.AddLast(aim);
 
-            if (Input.GetMouseButton(1)) // pressed or pressing down right mouse button
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0) && meleeAttackInputDelay < 0)
             {
-                // check for ranged attack
-                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-                Vector2 aimVector = player.transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
-                aimVector.Normalize();
-                aim.updateCommandData(aimVector);
-                nextCommands.AddLast(aim);
-            }
-            else if (Input.GetMouseButtonUp(1)) // releasing right mouse button
-            {
-                disableAim = new DisableAimCommand();
-                nextCommands.AddLast(disableAim);
+                nextCommands.AddLast(meleeAttack);
+                meleeAttackInputDelay = 1;
             }
 
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0) && attackInputDelay < 0) // pressing down left mouse button
+            if (Input.GetMouseButtonUp(0))
             {
-                attack = new AttackCommand();
+                meleeAttackInputDelay = 0;
+            }
+
+            if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
+            {
                 nextCommands.AddLast(attack);
                 attackInputDelay = 1;
             }
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(1))
                 attackInputDelay = 0;
-        } 
+        }
+         
         if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKey(KeyCode.Space) && interactInputDelay < 0) 
             || Input.GetKeyDown(KeyCode.E) ||  (Input.GetKey(KeyCode.E) && interactInputDelay < 0))
         {
@@ -118,6 +124,7 @@ public class InputHandler : MonoBehaviour {
         // Need to implement Q special ability
         interactInputDelay -= Time.deltaTime;
         attackInputDelay -= Time.deltaTime;
+        meleeAttackInputDelay -= Time.deltaTime;
 
         return nextCommands;
     }
