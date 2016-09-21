@@ -8,37 +8,65 @@ public class BarrelRotation : MonoBehaviour {
     public Sprite upSprite;
     public Sprite rightSprite;
 
+    public Sprite downAttackSprite;
+    public Sprite leftAttackSprite;
+    public Sprite upAttackSprite;
+    public Sprite rightAttackSprite;
+
+    public const float attackTime = .1f;
+
+
     private GameActor.Direction orientation;
+    private AIActor myActor;
+    private float attackTimer;
     
 	// Use this for initialization
 	void Start () {
         orientation = GameActor.Direction.LEFT;
+        myActor = GetComponentInParent<AIActor>();
+        attackTimer = attackTime;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (myActor.hasAttacked)
+            attackTimer = 0;
+        if (attackTimer < attackTime)
+            attackTimer += Time.deltaTime;
         
         if (orientation == GameActor.Direction.LEFT)
         {
-            GetComponent<SpriteRenderer>().sprite = leftSprite;
+            if (attackTimer >= attackTime)
+                GetComponent<SpriteRenderer>().sprite = leftSprite;
+            else
+                GetComponent<SpriteRenderer>().sprite = leftAttackSprite;
             float angle = Mathf.Atan2(-1 * GetComponentInParent<AIActor>().faceDir.x, -1 * GetComponentInParent<AIActor>().faceDir.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, -1 * Vector3.forward);
         }
         else if(orientation == GameActor.Direction.DOWN)
         {
-            GetComponent<SpriteRenderer>().sprite = downSprite;
+            if (attackTimer >= attackTime)
+                GetComponent<SpriteRenderer>().sprite = downSprite;
+            else
+                GetComponent<SpriteRenderer>().sprite = downAttackSprite;
             float angle = Mathf.Atan2(-1 * GetComponentInParent<AIActor>().faceDir.y, 1 * GetComponentInParent<AIActor>().faceDir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, -1 * Vector3.forward);
         }
         else if (orientation == GameActor.Direction.RIGHT)
         {
-            GetComponent<SpriteRenderer>().sprite = rightSprite;
+            if (attackTimer >= attackTime)
+                GetComponent<SpriteRenderer>().sprite = rightSprite;
+            else
+                GetComponent<SpriteRenderer>().sprite = rightAttackSprite;
             float angle = Mathf.Atan2(1 * GetComponentInParent<AIActor>().faceDir.x, 1 * GetComponentInParent<AIActor>().faceDir.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, -1 * Vector3.forward);
         }
         else if (orientation == GameActor.Direction.UP)
         {
-            GetComponent<SpriteRenderer>().sprite = upSprite;
+            if (attackTimer >= attackTime)
+                GetComponent<SpriteRenderer>().sprite = upSprite;
+            else
+                GetComponent<SpriteRenderer>().sprite = upAttackSprite;
             float angle = Mathf.Atan2(1 * GetComponentInParent<AIActor>().faceDir.y, -1 * GetComponentInParent<AIActor>().faceDir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, -1 * Vector3.forward);
         }

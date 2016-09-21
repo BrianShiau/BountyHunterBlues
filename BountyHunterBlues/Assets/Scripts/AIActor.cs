@@ -23,6 +23,7 @@ public class AIActor : GameActor {
     private int patrol_index;
     public bool is_patrol;
     public bool is_cycle;
+    public bool hasAttacked;
     private bool patrol_forward;
     private bool patrol_backward;
     private float wait_time_counter;
@@ -101,6 +102,7 @@ public class AIActor : GameActor {
     public override void Update()
     {
         base.Update();
+        hasAttacked = false;
 
         if(is_patrol){
             green_patrol();
@@ -122,6 +124,7 @@ public class AIActor : GameActor {
             {
                 if (aimTarget is PlayerActor)
                 {
+                    hasAttacked = true;
                     aimTarget.takeDamage();
                     if (!aimTarget.isAlive())
                         aimTarget = null;

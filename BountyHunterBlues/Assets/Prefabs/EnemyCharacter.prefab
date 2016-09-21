@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013306044712}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 14.18, y: 10.27, z: 0}
+  m_LocalPosition: {x: 4.15, y: 6.84, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children:
@@ -147,7 +147,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013306044712}
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  faceDir: {x: 1, y: 0}
+  faceDir: {x: 0, y: 1}
   aimDir: {x: 0, y: 0}
   fov: 140
   meleeDistance: 2
@@ -248,6 +248,7 @@ MonoBehaviour:
   interactionDistance: 2
   isAiming: 0
   isMoving: 0
+  isVisible: 0
   healthPool: 1
   lookTarget: {fileID: 0}
   aimTarget: {fileID: 0}
@@ -298,6 +299,10 @@ MonoBehaviour:
   leftSprite: {fileID: 21300002, guid: d951508d900b62a48bf0bfbfd13de7de, type: 3}
   upSprite: {fileID: 21300000, guid: d951508d900b62a48bf0bfbfd13de7de, type: 3}
   rightSprite: {fileID: 21300006, guid: d951508d900b62a48bf0bfbfd13de7de, type: 3}
+  downAttackSprite: {fileID: 21300008, guid: 8372d217e753a4c5b9625bbc2fde49f4, type: 3}
+  leftAttackSprite: {fileID: 21300002, guid: 8372d217e753a4c5b9625bbc2fde49f4, type: 3}
+  upAttackSprite: {fileID: 21300000, guid: 8372d217e753a4c5b9625bbc2fde49f4, type: 3}
+  rightAttackSprite: {fileID: 21300006, guid: 8372d217e753a4c5b9625bbc2fde49f4, type: 3}
 --- !u!212 &212000010074931996
 SpriteRenderer:
   m_ObjectHideFlags: 1
