@@ -11,6 +11,7 @@ public class PlayerActor : GameActor
     public bool hasGun;
     public bool gun_fired;
     public bool knifeAttacked;
+    public bool inTacticalMode;
     public float reloadTime;
     public float cloakTime;
 
@@ -225,6 +226,10 @@ public class PlayerActor : GameActor
     public override void updateAnimation()
     {
         base.updateAnimation();
+        if(inTacticalMode)
+        {
+            GameActorAnimator.SetBool("isMoving", false);
+        }
         GameActorAnimator.SetBool("isKnifing", knifeAttacked);
 
         float red = gameObject.GetComponent<SpriteRenderer>().color.r;

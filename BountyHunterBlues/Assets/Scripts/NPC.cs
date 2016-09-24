@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour, Interactable {
 	//we should really put this disable in player
-	private InputHandler inputHandler;
+	private PlayerActor player;
 	private GameObject chatPanel;
 
 	public int currentLine;
 
 	// Use this for initialization
 	void Start () {
-		inputHandler = GameObject.FindObjectOfType<InputHandler>();
+		player = GameObject.FindObjectOfType<PlayerActor>();
 		chatPanel = GameObject.FindGameObjectWithTag ("ChatPanel");
 		currentLine = 0;
 	}
@@ -28,7 +28,7 @@ public class NPC : MonoBehaviour, Interactable {
 			chatPanel.GetComponentInChildren<Text> ().text = "A lot more ships leaving than coming these days…";
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
 			currentLine++;
-			inputHandler.tacticalMode = true;
+			player.inTacticalMode = true;
 		} else if(currentLine == 1){
 			currentLine++;
 			chatPanel.GetComponentInChildren<Text> ().text = "A lot more ships leaving than coming these days… Things have changed since you’ve last been here. ";
@@ -51,7 +51,7 @@ public class NPC : MonoBehaviour, Interactable {
 			chatPanel.GetComponent<Image>().enabled = false;
 			chatPanel.GetComponentInChildren<Text> ().enabled = false;
 			currentLine = 0;
-			inputHandler.tacticalMode = false;
+			player.inTacticalMode = false;
 		}
 	}
 }
