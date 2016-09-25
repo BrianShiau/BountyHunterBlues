@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class TerminalBall : AIActor, Interactable {
+	public Door opensThisdoor;
 
 	// Use this for initialization
 	void NotCalledStart () {
@@ -15,7 +16,8 @@ public class TerminalBall : AIActor, Interactable {
 
 	public void runInteraction()
 	{
-		
+		opensThisdoor.specialDoor = false;
+		opensThisdoor.runInteraction ();
 	}
 
 	public override void updateAnimation(){
