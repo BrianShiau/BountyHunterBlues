@@ -93,10 +93,6 @@ public class AIActor : GameActor {
         AI_attack = new AttackCommand();
 
         run_state(State.GREEN);
-
-        barrel = GetComponentInChildren<BarrelBase> ().gameObject.GetComponentInChildren<Animator> ().gameObject;
-        //barrel.transform.localRotation.eulerAngles.Set(worldFaceDir.x, worldFaceDir.y, 0);
-        //Debug.Log (new Vector3(worldFaceDir.x, worldFaceDir.y, 0f) + barrel.transform.LocalRotation);
     }
 
     public override void Update()
@@ -213,7 +209,7 @@ public class AIActor : GameActor {
     }
 
 
-    public void green_patrol(){
+    public virtual void green_patrol(){
         if(alertness == State.GREEN && is_patrol){
             isMoving = false;
             if(lookTarget != null){
@@ -290,7 +286,7 @@ public class AIActor : GameActor {
         }
     }
 
-    public void green_alertness(){
+	public virtual void green_alertness(){
         if(alertness == State.GREEN){
             isMoving = false;
             if(lookTarget != null){
@@ -328,7 +324,7 @@ public class AIActor : GameActor {
         return false;
     }
 
-    public void yellow_audio(){
+	public virtual void yellow_audio(){
         if(sound_heard(player.bullet_shot())){
             path.initialize();
             int path_length = path.length();
@@ -357,7 +353,7 @@ public class AIActor : GameActor {
         }
     }
 
-    public void yellow_alertness(){
+	public virtual void yellow_alertness(){
         if(alertness == State.YELLOW){
             if(lookTarget == null){
                 isMoving = false;
@@ -399,7 +395,7 @@ public class AIActor : GameActor {
         }
     }
 
-    public void red_alertness(){
+	public virtual void red_alertness(){
         if(alertness == State.RED){
             if(lookTarget != null){
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
