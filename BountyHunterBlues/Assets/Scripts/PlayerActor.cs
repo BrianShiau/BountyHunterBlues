@@ -194,33 +194,33 @@ public class PlayerActor : GameActor
 
 
 
-        // see what interactables are in my vision cone within interactionDistance and pick closest as interactionTarget
-        bool foundInteractable = false;
+        // see what interactables are near me and unobstructed and pick closest as interactionTarget
+        Interactable closestInteractable = null;
+        float closestDist = float.MaxValue;
         GameObject[] InteractableObjects = GameObject.FindGameObjectsWithTag("Interactable");
         foreach (GameObject interactableObject in InteractableObjects)
         {
-            Vector2 worldVector = interactableObject.transform.position - transform.position;
-            worldVector.Normalize();
-            Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
-            if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
+            
+            float dist = Vector2.Distance(interactableObject.transform.position, transform.position);
+            if (dist <= interactionDistance)
             {
-                
+                Vector2 worldVector = (interactableObject.transform.position - transform.position).normalized;
                 RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, interactionDistance);
                 IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
                 foreach (RaycastHit2D hit in sortedHits)
                 {
-                    if (hit.collider != null && hit.collider.tag == "Interactable" && hit.distance <= interactionDistance)
-                    {
-                        interactionTarget = (Interactable)hit.collider.GetComponent(typeof(Interactable));
-                        foundInteractable = true;
+                    if (hit.collider.gameObject != gameObject && hit.collider.tag != "Interactable")
                         break;
+
+                    if (hit.collider.tag == "Interactable" && hit.distance <= closestDist)
+                    {
+                        closestInteractable = (Interactable)hit.collider.GetComponent(typeof(Interactable));
+                        closestDist = dist;
                     }
                 }
             }
         }
-
-        if (!foundInteractable)
-            interactionTarget = null;
+        interactionTarget = closestInteractable;
     }
 
     public override void updateAnimation()
