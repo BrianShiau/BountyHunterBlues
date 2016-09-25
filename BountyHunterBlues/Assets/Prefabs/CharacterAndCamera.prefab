@@ -44,6 +44,7 @@ GameObject:
   - 50: {fileID: 50000011544581874}
   - 95: {fileID: 95000013673125480}
   - 114: {fileID: 114000010223740708}
+  - 114: {fileID: 114000010173354748}
   m_Layer: 0
   m_Name: CharacterAndCamera
   m_TagString: GameActor
@@ -71,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013579858438}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 28.52, y: 5.92, z: 0}
+  m_LocalPosition: {x: 33.61, y: -10, z: 0}
   m_LocalScale: {x: 0.09487387, y: 0.09487408, z: 0.4743704}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children:
@@ -166,7 +167,7 @@ Animator:
   m_GameObject: {fileID: 1000013579858438}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 04b8cf6be07d22b4ebbd3d2e4532f815, type: 2}
+  m_Controller: {fileID: 9100000, guid: b4851f4c2a8cb264dbbb09f2be4edce1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -191,23 +192,37 @@ MonoBehaviour:
   fov: 140
   meleeDistance: 2.5
   sightDistance: 100
-  interactionDistance: 1
+  interactionDistance: 2
   isAiming: 0
   isMoving: 0
   isVisible: 0
-  healthPool: 3
+  healthPool: 1
   lookTarget: {fileID: 0}
   aimTarget: {fileID: 0}
   GameActorAnimator: {fileID: 0}
   hasGun: 1
   gun_fired: 0
   knifeAttacked: 0
+  inTacticalMode: 0
   reloadTime: 2
   cloakTime: 1
   gunImage: {fileID: 0}
   gunSlider: {fileID: 0}
   gunSliderObject: {fileID: 0}
   gunSliderFill: {fileID: 0}
+--- !u!114 &114000010173354748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013579858438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d3ad26eaffbb44ba1fb065c77c0260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: 9c32d1d5d15deda46b347a40b02310d7, type: 3}
+  cursorMode: 0
 --- !u!114 &114000010223740708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,7 +235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1000013579858438}
-  tacticalMode: 0
 --- !u!124 &124000014067094688
 Behaviour:
   m_ObjectHideFlags: 1
@@ -256,7 +270,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a8214cac16cc99c42aeb6177201c35a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
