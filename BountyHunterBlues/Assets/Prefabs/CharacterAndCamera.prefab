@@ -191,7 +191,7 @@ MonoBehaviour:
   fov: 140
   meleeDistance: 2.5
   sightDistance: 100
-  interactionDistance: 1
+  interactionDistance: 2
   isAiming: 0
   isMoving: 0
   isVisible: 0
@@ -202,6 +202,7 @@ MonoBehaviour:
   hasGun: 1
   gun_fired: 0
   knifeAttacked: 0
+  inTacticalMode: 0
   reloadTime: 2
   cloakTime: 1
   gunImage: {fileID: 0}
@@ -220,7 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1000013579858438}
-  tacticalMode: 0
 --- !u!124 &124000014067094688
 Behaviour:
   m_ObjectHideFlags: 1
