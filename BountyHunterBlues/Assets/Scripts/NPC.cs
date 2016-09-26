@@ -10,10 +10,9 @@ public class NPC : MonoBehaviour, Interactable {
 	public int currentLine;
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		player = GameObject.FindObjectOfType<PlayerActor>();
 		chatPanel = GameObject.FindGameObjectWithTag ("ChatPanel");
-		currentLine = 0;
 	}
 
 	// Update is called once per frame
@@ -23,6 +22,9 @@ public class NPC : MonoBehaviour, Interactable {
 
 	public void runInteraction()
 	{
+		string[] RestAreaBigBad = ["A lot more ships leaving than coming these days…",
+			"A lot more ships leaving than coming these days… Things have changed since you’ve last been here. ",
+			"Though you’ve surely seen this before."];
 		if (currentLine == 0) {
 			chatPanel.GetComponent<Image> ().enabled = true;
 			chatPanel.GetComponentInChildren<Text> ().text = "A lot more ships leaving than coming these days…";
@@ -53,5 +55,7 @@ public class NPC : MonoBehaviour, Interactable {
 			currentLine = 0;
 			player.inTacticalMode = false;
 		}
+
+		//destroy if opening text
 	}
 }

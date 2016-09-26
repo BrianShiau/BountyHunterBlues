@@ -8,6 +8,7 @@ public class RestartGameTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col)
     {
 		if (col.tag == "GameActor" && col.GetComponent<GameActor> () is PlayerActor) {
+			PlayerActor.deaths = 0;
 			StartCoroutine(LoadNextLevel ());
 			//GameObject.FindGameObjectWithTag ("BlackFade").GetComponent<Image>().enabled = true;
 			//yield return new WaitForSeconds (1);

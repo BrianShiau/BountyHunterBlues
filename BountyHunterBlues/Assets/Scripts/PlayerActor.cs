@@ -18,6 +18,10 @@ public class PlayerActor : GameActor
     private float lastShotTime;
     private float cloakTimer;
 
+	public int currentLevel;
+	public NPC openingText;
+	public static int deaths = 0;
+
 	// UI
 	public Image gunImage;
 	public Slider gunSlider;
@@ -33,6 +37,13 @@ public class PlayerActor : GameActor
         cloakTimer = 0;
         gun_fired = false;
         knifeAttacked = false;
+
+		// play opening text only once
+		if (deaths == 0) {
+			//play opening text
+			openingText.Start();
+			openingText.runInteraction();
+		}
 
 		if (hasGun) {
 			gunImage.enabled = true;
@@ -133,6 +144,7 @@ public class PlayerActor : GameActor
     public override void die()
 	{
 		GameObject.FindGameObjectWithTag ("DeathFlash").GetComponent<Image>().enabled = true;
+		deaths++;
 
 		// reset the game here for now
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
