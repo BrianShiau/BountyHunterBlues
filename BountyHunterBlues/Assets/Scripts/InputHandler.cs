@@ -78,16 +78,18 @@ public class InputHandler : MonoBehaviour {
                 // reinit isMoving to false when no move command is issued
                 player.GetComponent<GameActor>().isMoving = false;
 
-            // Always aim with mouse
-            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-            Vector2 aimVector = player.transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
-            aimVector.Normalize();
-            aim.updateCommandData(aimVector);
-            nextCommands.AddLast(aim);
+            
 
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0) && meleeAttackInputDelay < 0)
             {
+                // Aim and knife in the same frame
+                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+                Vector2 aimVector = player.transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
+                aimVector.Normalize();
+                aim.updateCommandData(aimVector);
+                nextCommands.AddLast(aim);
                 nextCommands.AddLast(meleeAttack);
+                nextCommands.AddLast(disableAim);
                 meleeAttackInputDelay = 1;
             }
 
@@ -98,12 +100,21 @@ public class InputHandler : MonoBehaviour {
 
             if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
             {
+                // Aim and shoot in same frame
+                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+                Vector2 aimVector = player.transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
+                aimVector.Normalize();
+                aim.updateCommandData(aimVector);
+                nextCommands.AddLast(aim);
                 nextCommands.AddLast(attack);
+                nextCommands.AddLast(disableAim);
                 attackInputDelay = 1;
             }
 
             if (Input.GetMouseButtonUp(1))
                 attackInputDelay = 0;
+
+            
         }
          
         if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKey(KeyCode.Space) && interactInputDelay < 0) 
@@ -120,6 +131,8 @@ public class InputHandler : MonoBehaviour {
         
 
         // Need to implement Q special ability
+
+        // input delay timers
         interactInputDelay -= Time.deltaTime;
         attackInputDelay -= Time.deltaTime;
         meleeAttackInputDelay -= Time.deltaTime;

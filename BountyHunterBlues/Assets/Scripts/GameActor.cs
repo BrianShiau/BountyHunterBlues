@@ -34,7 +34,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
     public abstract void interact();
 	public abstract void die();
 
-    protected abstract void runVisionDetection();
+    public abstract void runVisionDetection();
 
     public virtual void Start()
     {
@@ -90,6 +90,9 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         dir.Normalize();
         aimDir = dir;
         faceDir = dir;
+
+        // before you do anything, update your lookTarget
+        runVisionDetection();
 
         Vector2 worldDir = transform.TransformDirection(dir);
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldDir, sightDistance);
