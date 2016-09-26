@@ -26,8 +26,6 @@ public class Node {
 
     public bool active; // node becomes active with more than 2 connections
 
-    private int manhattan;
-
     public GridPoint point;
 
     public Vector2 worldPosition;
@@ -41,14 +39,6 @@ public class Node {
         worldPosition = position;
         point = new GridPoint(x, y);
         this.grid = grid;
-    }
-
-    public void set_manhattan(int val){
-        manhattan = val;
-    }
-
-    public int get_manhattan(){
-        return manhattan;
     }
 
     public void setupConnections()
