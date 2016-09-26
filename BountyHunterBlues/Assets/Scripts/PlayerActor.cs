@@ -41,8 +41,10 @@ public class PlayerActor : GameActor
 		// play opening text only once
 		if (deaths == 0) {
 			//play opening text
-			openingText.Start();
-			openingText.runInteraction();
+			if (openingText) {
+				openingText.Start ();
+				openingText.runInteraction ();
+			}
 		}
 
 		if (hasGun) {
