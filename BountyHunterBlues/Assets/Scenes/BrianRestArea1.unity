@@ -969,7 +969,8 @@ GameObject:
   - 224: {fileID: 1138528482}
   - 222: {fileID: 1138528484}
   - 114: {fileID: 1138528483}
-  m_Layer: 0
+  - 114: {fileID: 1138528485}
+  m_Layer: 5
   m_Name: E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1035,6 +1036,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1138528481}
+--- !u!114 &1138528485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1138528481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be22d931b94b9944282f5c22c08cabe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1424070897
 Prefab:
   m_ObjectHideFlags: 0
@@ -1138,7 +1150,7 @@ GameObject:
   - 223: {fileID: 1615830227}
   - 114: {fileID: 1615830226}
   - 114: {fileID: 1615830225}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1198,7 +1210,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1359391913
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1615830228
@@ -1217,7 +1229,7 @@ RectTransform:
   m_RootOrder: 22
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 36.526, y: -19.349}
+  m_AnchoredPosition: {x: 33.38, y: -19.349}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1726852700
@@ -1671,6 +1683,11 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: NPCNumber
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
@@ -1775,15 +1792,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 1000013579858438, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
-      propertyPath: m_Name
-      value: Player Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
-        type: 2}
-      propertyPath: gunSlider
-      value: 
-      objectReference: {fileID: 822512563}
     - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
         type: 2}
       propertyPath: gunImage
@@ -1791,31 +1799,21 @@ Prefab:
       objectReference: {fileID: 822512564}
     - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
         type: 2}
+      propertyPath: gunSlider
+      value: 
+      objectReference: {fileID: 822512563}
+    - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+        type: 2}
       propertyPath: gunSliderFill
       value: 
       objectReference: {fileID: 822512562}
-    - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
-        type: 2}
-      propertyPath: hasGun
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
-        type: 2}
-      propertyPath: healthPool
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 95000013673125480, guid: 16323df88e96c404e9ceffb52c9ca0cf,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b4851f4c2a8cb264dbbb09f2be4edce1, type: 2}
     - target: {fileID: 1000013579858438, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_Name
+      value: Player Character
       objectReference: {fileID: 0}
-    - target: {fileID: 212000013826165434, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+    - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
         type: 2}
-      propertyPath: m_SortingOrder
+      propertyPath: currentLevel
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

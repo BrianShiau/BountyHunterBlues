@@ -6,6 +6,7 @@ public class Door : MonoBehaviour, Interactable {
 	// use animation for this later
 	public Sprite openSprite;
 	public bool closed;
+	public bool specialDoor;
 
     void Start()
     {
@@ -15,6 +16,8 @@ public class Door : MonoBehaviour, Interactable {
 
     public void runInteraction()
     {
+		if (specialDoor)
+			return;
         if (closed)
         {
             closed = false;

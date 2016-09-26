@@ -3,12 +3,12 @@ using System.Collections;
 
 public class TacticalTerminal : MonoBehaviour, Interactable {
 
-    private InputHandler inputHandler;
+    private PlayerActor player;
     private Camera playerCamera;
     private Camera tacticalCamera;
 	// Use this for initialization
 	void Start () {
-        inputHandler = GameObject.FindObjectOfType<InputHandler>();
+        player = GameObject.FindObjectOfType<PlayerActor>();
         playerCamera = GameObject.Find("Player Character").GetComponentInChildren<Camera>();
         tacticalCamera = GameObject.Find("TacticalCamera").GetComponent<Camera>();
 	}
@@ -22,7 +22,7 @@ public class TacticalTerminal : MonoBehaviour, Interactable {
     {
         tacticalCamera.enabled = !tacticalCamera.enabled;
         playerCamera.enabled = !playerCamera.enabled;
-        inputHandler.tacticalMode = !inputHandler.tacticalMode;
+        player.inTacticalMode = !player.inTacticalMode;
 
 
     }

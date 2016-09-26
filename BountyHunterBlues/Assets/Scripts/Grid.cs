@@ -71,6 +71,8 @@ public class Grid : MonoBehaviour {
         if (inBounds(worldPoint))
         {
             Vector2 gridSpacePoint = transform.InverseTransformPoint(worldPoint);
+            gridSpacePoint.x *= worldWidth;
+            gridSpacePoint.y *= worldHeight;
             Vector2 unitNormalizedPoint = gridSpacePoint / unitsize;
             GridPoint result = new GridPoint(Mathf.RoundToInt(unitNormalizedPoint.x), Mathf.RoundToInt(unitNormalizedPoint.y));
             return result;

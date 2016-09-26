@@ -98,13 +98,18 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
 
         aimTarget = null;
         foreach (RaycastHit2D hitinfo in sortedHits) {
-            if (hitinfo.collider != null && hitinfo.collider.tag == "GameActor" 
-                    && hitinfo.collider.GetComponent<GameActor>().isVisible 
-                    && hitinfo.collider.gameObject != gameObject)
+            GameObject obj = hitinfo.collider.gameObject;
+            if (obj.tag != "GameActor")
+                // non-game actor in front, obstruction blocking aim
+                break;
+            else if(hitinfo.collider.GetComponent<GameActor>().isVisible && hitinfo.collider.gameObject != gameObject)
             {
+                // visible GameActor in Ray that is unobstructed and not me
                 aimTarget = hitinfo.collider.GetComponent<GameActor>();
                 break;
             }
+
+            // else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
         }
 
     }

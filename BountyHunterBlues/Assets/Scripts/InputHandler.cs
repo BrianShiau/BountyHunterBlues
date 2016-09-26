@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class InputHandler : MonoBehaviour {
 
     public GameObject player;
-    public bool tacticalMode;
     // Here lists all the controls available
     private Command move;
 
@@ -31,7 +30,6 @@ public class InputHandler : MonoBehaviour {
         interact = new InteractCommand();
         attack = new AttackCommand();
         meleeAttack = new MeleeAttackCommand();
-        tacticalMode = false;
     }
 
     void FixedUpdate()
@@ -45,7 +43,7 @@ public class InputHandler : MonoBehaviour {
     {
         LinkedList<Command> nextCommands = new LinkedList<Command>();
         bool movement = false;
-        if (!tacticalMode)
+        if (!player.GetComponent<PlayerActor>().inTacticalMode)
         { 
             Vector2 movementVector = new Vector2(0, 0);
             // basing WASD on +x-axis, +y-axis, -x-axis, -y-axis respectively

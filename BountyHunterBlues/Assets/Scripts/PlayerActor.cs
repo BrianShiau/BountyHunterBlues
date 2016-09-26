@@ -11,11 +11,16 @@ public class PlayerActor : GameActor
     public bool hasGun;
     public bool gun_fired;
     public bool knifeAttacked;
+    public bool inTacticalMode;
     public float reloadTime;
     public float cloakTime;
 
     private float lastShotTime;
     private float cloakTimer;
+
+	public int currentLevel;
+	public NPC openingText;
+	public static int deaths = 0;
 
 	// UI
 	public Image gunImage;
@@ -32,6 +37,15 @@ public class PlayerActor : GameActor
         cloakTimer = 0;
         gun_fired = false;
         knifeAttacked = false;
+
+		// play opening text only once
+		if (deaths == 0) {
+			//play opening text
+			if (openingText) {
+				openingText.Start ();
+				openingText.runInteraction ();
+			}
+		}
 
 		if (hasGun) {
 			gunImage.enabled = true;
@@ -132,6 +146,7 @@ public class PlayerActor : GameActor
     public override void die()
 	{
 		GameObject.FindGameObjectWithTag ("DeathFlash").GetComponent<Image>().enabled = true;
+		deaths++;
 
 		// reset the game here for now
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -193,38 +208,42 @@ public class PlayerActor : GameActor
 
 
 
-        // see what interactables are in my vision cone within interactionDistance and pick closest as interactionTarget
-        bool foundInteractable = false;
+        // see what interactables are near me and unobstructed and pick closest as interactionTarget
+        Interactable closestInteractable = null;
+        float closestDist = float.MaxValue;
         GameObject[] InteractableObjects = GameObject.FindGameObjectsWithTag("Interactable");
         foreach (GameObject interactableObject in InteractableObjects)
         {
-            Vector2 worldVector = interactableObject.transform.position - transform.position;
-            worldVector.Normalize();
-            Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
-            if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
+            
+            float dist = Vector2.Distance(interactableObject.transform.position, transform.position);
+            if (dist <= interactionDistance)
             {
-                
+                Vector2 worldVector = (interactableObject.transform.position - transform.position).normalized;
                 RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, interactionDistance);
                 IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
                 foreach (RaycastHit2D hit in sortedHits)
                 {
-                    if (hit.collider != null && hit.collider.tag == "Interactable" && hit.distance <= interactionDistance)
-                    {
-                        interactionTarget = (Interactable)hit.collider.GetComponent(typeof(Interactable));
-                        foundInteractable = true;
+                    if (hit.collider.gameObject != gameObject && hit.collider.tag != "Interactable")
                         break;
+
+                    if (hit.collider.tag == "Interactable" && hit.distance <= closestDist)
+                    {
+                        closestInteractable = (Interactable)hit.collider.GetComponent(typeof(Interactable));
+                        closestDist = dist;
                     }
                 }
             }
         }
-
-        if (!foundInteractable)
-            interactionTarget = null;
+        interactionTarget = closestInteractable;
     }
 
     public override void updateAnimation()
     {
         base.updateAnimation();
+        if(inTacticalMode)
+        {
+            GameActorAnimator.SetBool("isMoving", false);
+        }
         GameActorAnimator.SetBool("isKnifing", knifeAttacked);
 
         float red = gameObject.GetComponent<SpriteRenderer>().color.r;
