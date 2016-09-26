@@ -2,17 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public class PathData
+{
+    public float trueDistance;
+    public float moveCost;
+    public PathData parent;
+    public Node node;
+
+    public PathData(float trueDistance, float moveCost, PathData parent, Node node)
+    {
+        this.trueDistance = trueDistance;
+        this.moveCost = moveCost;
+        this.parent = parent;
+        this.node = node;
+    }
+}
+
 public class PathFinding : MonoBehaviour {
 
 	public Grid grid;
 	public Node start_node;
 	public Node end_node;
 	private List<Node> path = new List<Node>();
-	private List<Node> open = new List<Node>();
-	private List<Node> closed = new List<Node>();
+	private List<PathData> open = new List<PathData>();
+	private List<PathData> closed = new List<PathData>();
 
 	void Start () {
 		grid = GameObject.Find("GridOverlay").GetComponent<Grid>();
+
 	}
 
 	public void initialize(){
