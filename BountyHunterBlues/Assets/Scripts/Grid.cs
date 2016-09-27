@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 
 public class GridPoint
 {
@@ -66,6 +66,7 @@ public class Grid : MonoBehaviour {
         
     }
 
+    // returns null if the worldPoint is outside the grid bounds or if the grid nodes surrounding it are all !active
     public GridPoint worldToGrid(Vector2 worldPoint)
     {
         if (inBounds(worldPoint))
@@ -74,7 +75,27 @@ public class Grid : MonoBehaviour {
             gridSpacePoint.x *= worldWidth;
             gridSpacePoint.y *= worldHeight;
             Vector2 unitNormalizedPoint = gridSpacePoint / unitsize;
-            GridPoint result = new GridPoint(Mathf.RoundToInt(unitNormalizedPoint.x), Mathf.RoundToInt(unitNormalizedPoint.y));
+
+            // check the four corners that surround the unitNormalizedPoint and select the closest active node
+            List<GridPoint> points = new List<GridPoint>();
+            points.Add(new GridPoint(Mathf.FloorToInt(unitNormalizedPoint.x), Mathf.FloorToInt(unitNormalizedPoint.y)));
+            points.Add(new GridPoint(Mathf.FloorToInt(unitNormalizedPoint.x), Mathf.CeilToInt(unitNormalizedPoint.y)));
+            points.Add(new GridPoint(Mathf.CeilToInt(unitNormalizedPoint.x), Mathf.CeilToInt(unitNormalizedPoint.y)));
+            points.Add(new GridPoint(Mathf.CeilToInt(unitNormalizedPoint.x), Mathf.FloorToInt(unitNormalizedPoint.y)));
+
+            float dist = float.MaxValue;
+            GridPoint result = null;
+            foreach (GridPoint point in points)
+            {
+                Node node = nodes[point.X, point.Y];
+                float currDist = Vector2.Distance(node.worldPosition, worldPoint);
+                if (node.active && currDist < dist)
+                {
+                    result = point;
+                    dist = currDist;
+                }
+            }
+
             return result;
         }
         return null;
