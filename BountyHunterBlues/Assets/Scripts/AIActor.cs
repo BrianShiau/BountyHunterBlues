@@ -340,7 +340,6 @@ public class AIActor : GameActor {
             path.initialize(from, to);
             path.calc_path();
             shortest_path_calculated = true;
-            print("ok");
         }
     }
 
@@ -350,39 +349,50 @@ public class AIActor : GameActor {
 
             if(shortest_path_index < path.length()){
                 Node current_node = path.get_node(shortest_path_index);
-                if(Vector2.Distance(transform.position, current_node.worldPosition) < .1){
-                     shortest_path_index += 1;   
-                }
+                float distance_from_node = Vector2.Distance(transform.position, current_node.worldPosition);
+                
 
                 Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
                 worldFaceDir.Normalize();
                 Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
                 AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
+                
+                if(shortest_path_index == path.length() - 1 && distance_from_node < .1){
+                    isMoving = false;
+                    shortest_path_index = 0;
+                    shortest_path_calculated = false;
+                }
+
+                if(distance_from_node < .1){
+                     shortest_path_index += 1;   
+                }
             }
         }
     }
 
-	public virtual void yellow_audio(){
+    public virtual void yellow_audio(){
         if(alertness == State.YELLOW_AUDIO){
             calc_shortest_path(transform.position, sound_location);
             if(shortest_path_index < path.length()){
                 Node current_node = path.get_node(shortest_path_index);
-                if((shortest_path_index == path.length() - 1) && Vector2.Distance(transform.position, current_node.worldPosition) < .1){
+                float distance_from_node = Vector2.Distance(transform.position, current_node.worldPosition);
+
+                Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
+                worldFaceDir.Normalize();
+                Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+                AI_move.updateCommandData(localDir);
+                AI_move.execute(this);
+                
+                if(distance_from_node < .1){
+                     shortest_path_index += 1;   
+                }
+                if((shortest_path_index == path.length() - 1) && distance_from_node < .1){
                     shortest_path_index = 0;
                     shortest_path_calculated = false;
                     isMoving = false;
                     run_state(State.RETURN);
                 }
-                if(Vector2.Distance(transform.position, current_node.worldPosition) < .1){
-                     shortest_path_index += 1;   
-                }
-
-                Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
-                worldFaceDir.Normalize();
-                Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-                AI_move.updateCommandData(localDir);
-                AI_move.execute(this);
             }
         }
     }
