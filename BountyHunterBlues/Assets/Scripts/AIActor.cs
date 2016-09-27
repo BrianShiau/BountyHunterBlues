@@ -89,7 +89,6 @@ public class AIActor : GameActor {
         rotation_speed = 4f;
 
         default_position = transform.position;
-        print(default_position);
         initial_faceDir = faceDir;
         transition_faceDir = faceDir;
 
@@ -120,8 +119,6 @@ public class AIActor : GameActor {
         return_to_default();
         yellow_alertness();
         red_alertness();
-        print(alertness);
-
     }
     
 
@@ -305,7 +302,6 @@ public class AIActor : GameActor {
                 run_state(State.YELLOW_AUDIO);
             }
             else if(lookTarget != null){
-                // get world-space vector to target from me
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
 
@@ -350,7 +346,11 @@ public class AIActor : GameActor {
 
     public void return_to_default(){
         if(alertness == State.RETURN && lookTarget == null){
-            print(default_position);
+            if(sound_detection(player.bullet_shot()) && lookTarget == null){                
+                shortest_path_calculated = false;
+                run_state(State.YELLOW_AUDIO);
+                return;
+            }
             calc_shortest_path(transform.position, default_position);
 
             if(shortest_path_index < path.length()){
@@ -381,6 +381,9 @@ public class AIActor : GameActor {
 
     public virtual void yellow_audio(){
         if(alertness == State.YELLOW_AUDIO){
+            if(sound_detection(player.bullet_shot()) && lookTarget == null){                
+                shortest_path_calculated = false;
+            }
             calc_shortest_path(transform.position, sound_location);
             
             if(shortest_path_index < path.length()){
