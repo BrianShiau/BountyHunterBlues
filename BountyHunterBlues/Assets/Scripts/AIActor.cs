@@ -347,7 +347,7 @@ public class AIActor : GameActor {
         if(alertness == State.RETURN){
             calc_shortest_path(transform.position, default_position);
 
-            if(shortest_path_index < path.length()){
+            if(shortest_path_index <= path.length()){
                 Node current_node = path.get_node(shortest_path_index);
                 float distance_from_node = Vector2.Distance(transform.position, current_node.worldPosition);
                 
@@ -358,15 +358,16 @@ public class AIActor : GameActor {
                 AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
                 
-                if(shortest_path_index == path.length() - 1 && distance_from_node < .1){
-                    isMoving = false;
-                    shortest_path_index = 0;
-                    shortest_path_calculated = false;
-                }
-
                 if(distance_from_node < .1){
                      shortest_path_index += 1;   
                 }
+                if(shortest_path_index > path.length() - 1 && distance_from_node < .1){
+                    isMoving = false;
+                    shortest_path_index = 0;
+                    shortest_path_calculated = false;
+                    run_state(State.GREEN);
+                }
+
             }
         }
     }
@@ -387,12 +388,12 @@ public class AIActor : GameActor {
                 if(distance_from_node < .1){
                      shortest_path_index += 1;   
                 }
-                //if((shortest_path_index == path.length() - 1) && distance_from_node < .1){
-                //    shortest_path_index = 0;
-                //    shortest_path_calculated = false;
-                //    isMoving = false;
-                //    run_state(State.RETURN);
-                //}
+                if((shortest_path_index > path.length() - 1) && distance_from_node < .1){
+                    shortest_path_index = 0;
+                    shortest_path_calculated = false;
+                    isMoving = false;
+                    run_state(State.RETURN);
+                }
             }
         }
     }
