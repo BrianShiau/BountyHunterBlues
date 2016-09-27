@@ -6,7 +6,7 @@ using System.Linq;
 
 public enum State
 {
-    GREEN, YELLOW, RED, YELLOW_AUDIO
+    GREEN, YELLOW, RED, YELLOW_AUDIO, RETURN
 }
 
 public class AIActor : GameActor {
@@ -53,6 +53,7 @@ public class AIActor : GameActor {
     private Command AI_disableAim;
     private Command AI_attack;
 
+    private Vector3 default_position;
     private Vector2 initial_position;
     private Vector2 initial_faceDir;
     private List<Vector3> positions = new List<Vector3>();
@@ -87,6 +88,7 @@ public class AIActor : GameActor {
         wait_time_counter = 0;
         rotation_speed = 4f;
 
+        default_position = transform.position;
         initial_faceDir = faceDir;
         transition_faceDir = faceDir;
 
@@ -114,6 +116,7 @@ public class AIActor : GameActor {
         if(sound_detection(player.bullet_shot()))
             run_state(State.YELLOW_AUDIO);
         yellow_audio();
+        return_to_default();
         //yellow_alertness();
         //red_alertness();
 
@@ -332,16 +335,19 @@ public class AIActor : GameActor {
         return false;
     }
 
-	public virtual void yellow_audio(){
-        if(alertness == State.YELLOW_AUDIO){
-            if(!shortest_path_calculated){
-                path.initialize(sound_location);
-                path.calc_path();
-                shortest_path_calculated = true;
-            }
+    public void calc_shortest_path(Vector3 from, Vector3 to){
+        if(!shortest_path_calculated){
+            path.initialize(from, to);
+            path.calc_path();
+            shortest_path_calculated = true;
+        }
+    }
+
+    public void return_to_default(){
+        if(alertness == State.RETURN){
+            calc_shortest_path(transform.position, default_position);
+
             if(shortest_path_index < path.length()){
-                print(path.length());
-                print(shortest_path_index);
                 Node current_node = path.get_node(shortest_path_index);
                 if(Vector2.Distance(transform.position, current_node.worldPosition) < .1){
                      shortest_path_index += 1;   
@@ -353,15 +359,31 @@ public class AIActor : GameActor {
                 AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
             }
-            //else if(shortest_path_index >= path_length){
-            //    shortest_path_index -= 1;
-            //    Vector3 new_position = final_path[shortest_path_index];
-            //    Vector2 worldFaceDir = new_position - transform.position;
-            //    worldFaceDir.Normalize();
-            //    Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-            //    AI_move.updateCommandData(localDir);
-            //    AI_move.execute(this);
-            //}
+        }
+    }
+
+	public virtual void yellow_audio(){
+        if(alertness == State.YELLOW_AUDIO){
+            calc_shortest_path(transform.position, sound_location);
+            if(shortest_path_index < path.length()){
+                Node current_node = path.get_node(shortest_path_index);
+                if((shortest_path_index == path.length() - 1) && Vector2.Distance(transform.position, current_node.worldPosition) < .1){
+                    shortest_path_index = 0;
+                    shortest_path_calculated = false;
+                    isMoving = false;
+                    run_state(State.RETURN);
+                }
+                print(isMoving);
+                if(Vector2.Distance(transform.position, current_node.worldPosition) < .1){
+                     shortest_path_index += 1;   
+                }
+
+                Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
+                worldFaceDir.Normalize();
+                Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
+                AI_move.updateCommandData(localDir);
+                AI_move.execute(this);
+            }
         }
     }
 

@@ -25,7 +25,7 @@ public class PathFinding : MonoBehaviour {
 	private Grid grid;
 	public Node start_node;
 	public Node end_node;
-	private List<Node> path = new List<Node>();
+	private List<Node> path = new List<Node();
 	private List<PathData> open = new List<PathData>();
 	private List<PathData> closed = new List<PathData>();
 
@@ -33,8 +33,9 @@ public class PathFinding : MonoBehaviour {
 		grid = GameObject.Find("GridOverlay").GetComponent<Grid>();
 	}
 
-	public void initialize(Vector3 end_position){
-		set_start_node();
+	public void initialize(Vector3 start_position, Vector3 end_position){
+		path.Clear();
+		set_start_node(start_position);
 		set_end_node(end_position);
 	}
 
@@ -132,8 +133,8 @@ public class PathFinding : MonoBehaviour {
 		return path.Count;
 	}
 
-	public void set_start_node(){
-		GridPoint point = grid.worldToGrid(new Vector2(transform.position.x, transform.position.y));
+	public void set_start_node(Vector3 start_position){
+		GridPoint point = grid.worldToGrid(new Vector2(start_position.x, start_position.y));
 		start_node = grid.nodes[point.X, point.Y];
 	}
 
