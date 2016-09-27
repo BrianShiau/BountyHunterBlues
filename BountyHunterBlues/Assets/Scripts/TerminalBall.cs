@@ -47,7 +47,7 @@ public class TerminalBall : AIActor, Interactable {
 	}
 
 	//override these so the ball does nothing
-	protected override void runVisionDetection(){}
+	public override void runVisionDetection(){}
 	public override void attack(){}
 	public override void yellow_audio(){}
 	public override void yellow_alertness(){}

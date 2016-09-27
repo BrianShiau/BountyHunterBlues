@@ -164,7 +164,7 @@ public class AIActor : GameActor {
         Destroy (gameObject);
     }
 
-    protected override void runVisionDetection()
+    public override void runVisionDetection()
     {
         GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
         GameActor tempLookTarget = null;

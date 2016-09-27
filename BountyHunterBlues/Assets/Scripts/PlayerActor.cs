@@ -152,7 +152,7 @@ public class PlayerActor : GameActor
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
-    protected override void runVisionDetection()
+    public override void runVisionDetection()
     {
         GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
         List<GameActor> seenActors = new List<GameActor>();
