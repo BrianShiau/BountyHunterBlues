@@ -340,6 +340,7 @@ public class AIActor : GameActor {
             path.initialize(from, to);
             path.calc_path();
             shortest_path_calculated = true;
+            print("ok");
         }
     }
 
@@ -373,7 +374,6 @@ public class AIActor : GameActor {
                     isMoving = false;
                     run_state(State.RETURN);
                 }
-                print(isMoving);
                 if(Vector2.Distance(transform.position, current_node.worldPosition) < .1){
                      shortest_path_index += 1;   
                 }

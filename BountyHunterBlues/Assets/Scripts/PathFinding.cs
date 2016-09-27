@@ -25,7 +25,7 @@ public class PathFinding : MonoBehaviour {
 	private Grid grid;
 	public Node start_node;
 	public Node end_node;
-	private List<Node> path = new List<Node();
+	private List<Node> path = new List<Node>();
 	private List<PathData> open = new List<PathData>();
 	private List<PathData> closed = new List<PathData>();
 
@@ -35,6 +35,8 @@ public class PathFinding : MonoBehaviour {
 
 	public void initialize(Vector3 start_position, Vector3 end_position){
 		path.Clear();
+		open.Clear();
+		closed.Clear();
 		set_start_node(start_position);
 		set_end_node(end_position);
 	}
