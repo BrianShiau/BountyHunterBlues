@@ -65,7 +65,7 @@ public class Node {
         if (point.Y > 0)
             createConnection(grid.nodes[point.X, point.Y - 1], grid.unitsize);
 
-        active = connections.Count > 1;
+        active = connections.Count > 0;
     }
 
     public void cullInactiveConnections()
