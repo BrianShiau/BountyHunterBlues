@@ -374,7 +374,7 @@ public class AIActor : GameActor {
     public virtual void yellow_audio(){
         if(alertness == State.YELLOW_AUDIO){
             calc_shortest_path(transform.position, sound_location);
-            if(shortest_path_index < path.length()){
+            if(shortest_path_index <= path.length()){
                 Node current_node = path.get_node(shortest_path_index);
                 float distance_from_node = Vector2.Distance(transform.position, current_node.worldPosition);
 
@@ -387,12 +387,12 @@ public class AIActor : GameActor {
                 if(distance_from_node < .1){
                      shortest_path_index += 1;   
                 }
-                if((shortest_path_index == path.length() - 1) && distance_from_node < .1){
-                    shortest_path_index = 0;
-                    shortest_path_calculated = false;
-                    isMoving = false;
-                    run_state(State.RETURN);
-                }
+                //if((shortest_path_index == path.length() - 1) && distance_from_node < .1){
+                //    shortest_path_index = 0;
+                //    shortest_path_calculated = false;
+                //    isMoving = false;
+                //    run_state(State.RETURN);
+                //}
             }
         }
     }
