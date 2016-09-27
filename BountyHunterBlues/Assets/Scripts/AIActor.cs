@@ -113,12 +113,12 @@ public class AIActor : GameActor {
         else{
             green_alertness();
         }
-        if(sound_detection(player.bullet_shot()))
-            run_state(State.YELLOW_AUDIO);
+
+
         yellow_audio();
-        return_to_default();
+        //return_to_default();
         yellow_alertness();
-        //red_alertness();
+        red_alertness();
 
     }
     
@@ -296,10 +296,13 @@ public class AIActor : GameActor {
         }
     }
 
-	public virtual void green_alertness(){
+    public virtual void green_alertness(){
         if(alertness == State.GREEN){
             isMoving = false;
-            if(lookTarget != null){
+            if(sound_detection(player.bullet_shot()) && lookTarget == null){
+                run_state(State.YELLOW_AUDIO);
+            }
+            else if(lookTarget != null){
                 // get world-space vector to target from me
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
@@ -344,7 +347,7 @@ public class AIActor : GameActor {
     }
 
     public void return_to_default(){
-        if(alertness == State.RETURN){
+        if(alertness == State.RETURN && lookTarget == null){
             calc_shortest_path(transform.position, default_position);
 
             if(shortest_path_index < path.length()){
@@ -354,6 +357,7 @@ public class AIActor : GameActor {
 
                 Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
                 worldFaceDir.Normalize();
+                faceDir = transform.InverseTransformDirection(worldFaceDir);
                 Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
                 AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
@@ -361,6 +365,9 @@ public class AIActor : GameActor {
                 if(distance_from_node < .1){
                      shortest_path_index += 1;   
                 }
+            }
+            else if(lookTarget != null){
+                run_state(State.YELLOW);
             }
             else{
                 isMoving = false;
@@ -380,6 +387,7 @@ public class AIActor : GameActor {
 
                 Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
                 worldFaceDir.Normalize();
+                faceDir = transform.InverseTransformDirection(worldFaceDir);
                 Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
                 AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
@@ -387,6 +395,10 @@ public class AIActor : GameActor {
                 if(distance_from_node < .1){
                      shortest_path_index += 1;   
                 }
+            }
+            else if(lookTarget != null){
+                print("ok");
+                run_state(State.YELLOW);
             }
             else{
                 shortest_path_index = 0;
@@ -397,35 +409,12 @@ public class AIActor : GameActor {
         }
     }
 
-	public virtual void yellow_alertness(){
+    public virtual void yellow_alertness(){
         if(alertness == State.YELLOW){
-            if(lookTarget == null){
-                isMoving = false;
-                inc_state_timer = 0;
-                dec_state_timer += Time.deltaTime;
-                
-                if(dec_state_timer > state_change_time){
-                    if(positions.Count > 0){
-                        Vector3 new_position = positions[positions.Count - 1];
-                        positions.RemoveAt(positions.Count - 1);
-
-                        Vector2 worldFaceDir = new_position - transform.position;
-                        worldFaceDir.Normalize();
-                        Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-                        AI_move.updateCommandData(localDir);
-                        AI_move.execute(this);
-                    }
-                    else{
-                        dec_state_timer = 0;
-                        run_state(State.GREEN);
-                    }
-                }
-            }
             if(lookTarget != null){
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
                 Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-                positions.Add(transform.position);
                 
                 AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
@@ -434,6 +423,15 @@ public class AIActor : GameActor {
                 if(inc_state_timer > state_change_time){
                     inc_state_timer = 0;
                     run_state(State.RED);
+                }
+            }
+            if(lookTarget == null){
+                isMoving = false;
+                inc_state_timer = 0;
+                dec_state_timer += Time.deltaTime;
+                
+                if(dec_state_timer > state_change_time){
+                    run_state(State.RETURN);
                 }
             }
         }
