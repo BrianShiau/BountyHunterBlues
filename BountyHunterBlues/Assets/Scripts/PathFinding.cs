@@ -37,6 +37,8 @@ public class PathFinding : MonoBehaviour {
 		path.Clear();
 		open.Clear();
 		closed.Clear();
+		start_node = null;
+		end_node = null;
 		set_start_node(start_position);
 		set_end_node(end_position);
 	}
@@ -143,9 +145,5 @@ public class PathFinding : MonoBehaviour {
 	public void set_end_node(Vector3 location){
 		GridPoint point = grid.worldToGrid(new Vector2(location.x, location.y));
 		end_node = grid.nodes[point.X, point.Y];
-	}
-
-	public Vector2 get_world_space(int x, int y){
-		return grid.gridToWorld(x, y);
 	}
 }

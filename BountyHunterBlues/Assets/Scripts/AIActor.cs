@@ -89,6 +89,7 @@ public class AIActor : GameActor {
         rotation_speed = 4f;
 
         default_position = transform.position;
+        print(default_position);
         initial_faceDir = faceDir;
         transition_faceDir = faceDir;
 
@@ -116,9 +117,10 @@ public class AIActor : GameActor {
 
 
         yellow_audio();
-        //return_to_default();
+        return_to_default();
         yellow_alertness();
         red_alertness();
+        print(alertness);
 
     }
     
@@ -209,7 +211,7 @@ public class AIActor : GameActor {
         {
             lookTarget = tempLookTarget;
             Vector2 worldVector = lookTarget.gameObject.transform.position - transform.position;
-            //Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
+            Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
         }
     }
 
@@ -348,26 +350,22 @@ public class AIActor : GameActor {
 
     public void return_to_default(){
         if(alertness == State.RETURN && lookTarget == null){
+            print(default_position);
             calc_shortest_path(transform.position, default_position);
 
             if(shortest_path_index < path.length()){
                 Node current_node = path.get_node(shortest_path_index);
                 float distance_from_node = Vector2.Distance(transform.position, current_node.worldPosition);
                 
-
                 Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
                 worldFaceDir.Normalize();
                 faceDir = transform.InverseTransformDirection(worldFaceDir);
-                Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-                AI_move.updateCommandData(localDir);
+                AI_move.updateCommandData(faceDir);
                 AI_move.execute(this);
                 
                 if(distance_from_node < .1){
                      shortest_path_index += 1;   
                 }
-            }
-            else if(lookTarget != null){
-                run_state(State.YELLOW);
             }
             else{
                 isMoving = false;
@@ -375,12 +373,16 @@ public class AIActor : GameActor {
                 shortest_path_calculated = false;
                 run_state(State.GREEN);
             }
+            if(lookTarget != null){
+                run_state(State.YELLOW);
+            }
         }
     }
 
     public virtual void yellow_audio(){
         if(alertness == State.YELLOW_AUDIO){
             calc_shortest_path(transform.position, sound_location);
+            
             if(shortest_path_index < path.length()){
                 Node current_node = path.get_node(shortest_path_index);
                 float distance_from_node = Vector2.Distance(transform.position, current_node.worldPosition);
@@ -388,23 +390,21 @@ public class AIActor : GameActor {
                 Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
                 worldFaceDir.Normalize();
                 faceDir = transform.InverseTransformDirection(worldFaceDir);
-                Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-                AI_move.updateCommandData(localDir);
+                AI_move.updateCommandData(faceDir);
                 AI_move.execute(this);
                 
                 if(distance_from_node < .1){
                      shortest_path_index += 1;   
                 }
             }
-            else if(lookTarget != null){
-                print("ok");
-                run_state(State.YELLOW);
-            }
             else{
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
                 isMoving = false;
                 run_state(State.RETURN);
+            }
+            if(lookTarget != null){
+                run_state(State.YELLOW);
             }
         }
     }
@@ -431,6 +431,7 @@ public class AIActor : GameActor {
                 dec_state_timer += Time.deltaTime;
                 
                 if(dec_state_timer > state_change_time){
+                    shortest_path_calculated = false;
                     run_state(State.RETURN);
                 }
             }
