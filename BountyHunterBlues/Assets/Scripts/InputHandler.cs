@@ -80,7 +80,7 @@ public class InputHandler : MonoBehaviour {
 
             
 
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0) && meleeAttackInputDelay < 0)
+            if (Input.GetMouseButton(0) && meleeAttackInputDelay < 0)
             {
                 // Aim and knife in the same frame
                 Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
@@ -98,7 +98,7 @@ public class InputHandler : MonoBehaviour {
                 meleeAttackInputDelay = 0;
             }
 
-            if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
+            if (Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
             {
                 // Aim and shoot in same frame
                 Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space

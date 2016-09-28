@@ -4,6 +4,12 @@ using System.Collections;
 public class TerminalBall : AIActor, Interactable {
 	public Door opensThisdoor;
 
+    // Audio
+    public AudioClip beepSound;
+
+    private AudioSource beepSoundSource;
+    private bool interacted = false;
+
 	// Use this for initialization
 	void NotCalledStart () {
 	
@@ -16,6 +22,7 @@ public class TerminalBall : AIActor, Interactable {
 
 	public void runInteraction()
 	{
+        interacted = true;
 		opensThisdoor.specialDoor = false;
 		opensThisdoor.runInteraction ();
 	}
@@ -55,6 +62,20 @@ public class TerminalBall : AIActor, Interactable {
 	public override void return_to_default(){}
 	public override void chase_alertness(){}
 	public override bool sound_detection(Vector3 audio_point){return false;}
-    public override void initAudio() {}
-    public override void runAudio() {}
+    public override void initAudio()
+    {
+        beepSoundSource = gameObject.AddComponent<AudioSource>();
+        beepSoundSource.clip = beepSound;
+        beepSoundSource.loop = false;
+        beepSoundSource.playOnAwake = false;
+        beepSoundSource.volume = 1.0f;
+    }
+    public override void runAudio()
+    {
+        if(interacted)
+        {
+            interacted = false;
+            beepSoundSource.Play();
+        }
+    }
 }

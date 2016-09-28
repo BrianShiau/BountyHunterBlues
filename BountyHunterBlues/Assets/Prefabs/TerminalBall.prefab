@@ -134,13 +134,19 @@ MonoBehaviour:
   alertness: 0
   audio_distance: 10
   shortest_path_index: 0
+  sound_location: {x: 0, y: 0, z: 0}
   state_change_time: 0
   attack_time_confirmation: 0
   move_speed: 0
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  opensThisdoor: {fileID: 0}
+  beepSound: {fileID: 8300000, guid: af5540167c9474845b9d2b94bff0c1f2, type: 3}
 --- !u!212 &212000011573713130
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -215,7 +215,7 @@ MonoBehaviour:
   gunSliderFill: {fileID: 0}
   fire_location: {x: 0, y: 0, z: 0}
   hitShotSound: {fileID: 8300000, guid: 27546f41c215cce4181e92aa89a451db, type: 3}
-  missShotSound: {fileID: 8300000, guid: b67f83098a5e88f478cb521139e9eb42, type: 3}
+  missShotSound: {fileID: 8300000, guid: 2f65b8c028d0d7147b046062b3fb1ab8, type: 3}
 --- !u!114 &114000010173354748
 MonoBehaviour:
   m_ObjectHideFlags: 1
