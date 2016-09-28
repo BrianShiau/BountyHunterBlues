@@ -342,7 +342,7 @@ public class AIActor : GameActor {
         }
     }
 
-    public bool sound_detection(Vector3 audio_point){
+    public virtual bool sound_detection(Vector3 audio_point){
         if(audio_point.x != 0 && audio_point.y != 0){
             if(Vector2.Distance(transform.position, audio_point) < audio_distance){
                 return true;
@@ -359,7 +359,7 @@ public class AIActor : GameActor {
         }
     }
 
-    public void chase_alertness(){
+    public virtual void chase_alertness(){
         if(alertness == State.CHASE){
             if(sound_detection(sound_location) && lookTarget == null){                
                 shortest_path_index = 0;
@@ -399,7 +399,7 @@ public class AIActor : GameActor {
         }
     }
 
-    public void return_to_default(){
+    public virtual void return_to_default(){
         if(alertness == State.RETURN){
             if(sound_detection(sound_location) && lookTarget == null){                
                 shortest_path_index = 0;
