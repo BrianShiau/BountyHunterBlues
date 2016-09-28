@@ -17,8 +17,7 @@ public class Utility : MonoBehaviour {
 	public static IEnumerator WaitForRealTime(float delay){
 		while(true){
 			float pauseEndTime = Time.realtimeSinceStartup + delay;
-			while (Time.realtimeSinceStartup < pauseEndTime){
-				Debug.Log (Time.realtimeSinceStartup);
+			while (Time.realtimeSinceStartup < pauseEndTime){				
 				yield return 0;
 			}
 			break;
