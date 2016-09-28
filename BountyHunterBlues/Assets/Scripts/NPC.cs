@@ -83,13 +83,13 @@ public class NPC : MonoBehaviour, Interactable {
 			chatPanel.GetComponentInChildren<Text> ().text = strings [currentLine];
 			currentLine++;
 		} else {
+			if(destroyAfterPlay && this.gameObject){
+				Destroy(this.gameObject);
+			}
 			chatPanel.GetComponent<Image> ().enabled = false;
 			chatPanel.GetComponentInChildren<Text> ().enabled = false;
 			currentLine = 0;
 			player.inTacticalMode = false;
-			if(destroyAfterPlay){
-				Destroy(this.gameObject);
-			}
 		}
 	}
 }
