@@ -206,6 +206,8 @@ MonoBehaviour:
   inTacticalMode: 0
   reloadTime: 2
   cloakTime: 1
+  currentLevel: 0
+  openingText: {fileID: 0}
   gunImage: {fileID: 0}
   gunSlider: {fileID: 0}
   gunSliderObject: {fileID: 0}
@@ -221,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d3ad26eaffbb44ba1fb065c77c0260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 9c32d1d5d15deda46b347a40b02310d7, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 8d52d4c160bdb4a4fa7c146cf3df1755, type: 3}
   cursorMode: 0
 --- !u!114 &114000010223740708
 MonoBehaviour:
