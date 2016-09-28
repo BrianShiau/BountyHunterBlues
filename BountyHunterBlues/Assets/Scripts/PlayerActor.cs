@@ -11,6 +11,7 @@ public class PlayerActor : GameActor
     public bool hasGun;
     public bool gun_fired;
     public bool knifeAttacked;
+    public bool gunHit;
     public bool inTacticalMode;
     public float reloadTime;
     public float cloakTime;
@@ -33,12 +34,18 @@ public class PlayerActor : GameActor
     public Vector3 fire_location;
     private Grid mGrid;
 
+    // Audio
+    public AudioClip hitShotSound;
+    public AudioClip missShotSound;
+    private AudioSource gunAudioSource;
+
     public override void Start()
     {
         base.Start();
         lastShotTime = reloadTime;
         cloakTimer = 0;
         gun_fired = false;
+        gunHit = false;
         knifeAttacked = false;
         fire_location = new Vector3(0, 0, 0);
 
@@ -71,6 +78,8 @@ public class PlayerActor : GameActor
         base.Update();
         lastShotTime += Time.deltaTime;
         knifeAttacked = false;
+        gun_fired = false;
+        gunHit = false;
 
         if (!isVisible)
             cloakTimer += Time.deltaTime;
@@ -85,14 +94,6 @@ public class PlayerActor : GameActor
 		} else {
 			gunSliderFill.color = Color.red;
 		}
-    }
-
-    public Vector3 bullet_shot(){
-        if(gun_fired){
-            //gun_fired = false;
-            return transform.position;
-        }
-        return new Vector3(0, 0, 0);
     }
 
     public override void attack()
@@ -111,6 +112,7 @@ public class PlayerActor : GameActor
                 gun_fired = true;
                 if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
                 {
+                    gunHit = true;
                     aimTarget.takeDamage();
                     if (!aimTarget.isAlive())
                         aimTarget = null;
@@ -316,11 +318,23 @@ public class PlayerActor : GameActor
 
     public override void initAudio()
     {
-        
+        gunAudioSource = gameObject.AddComponent<AudioSource>();
+        gunAudioSource.clip = hitShotSound;
+        gunAudioSource.loop = false;
+        gunAudioSource.playOnAwake = false;
+        gunAudioSource.volume = 1.0f;
     }
 
     public override void runAudio()
     {
-        
+        if(gun_fired)
+        {
+            gunAudioSource.PlayOneShot(missShotSound);
+            if(gunHit)
+            {
+                gunAudioSource.PlayDelayed(missShotSound.length/4);
+            }
+
+        }
     }
 }
