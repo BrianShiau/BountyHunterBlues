@@ -375,6 +375,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 8300000, guid: bab06f649e83c3b468ff40a9c847a85a, type: 3}
+  chaseStompSound: {fileID: 8300000, guid: 58f0dc6653169534aa78b21635674de5, type: 3}
+  fireShotSound: {fileID: 8300000, guid: 534131d4c7bb00e4ea92016a8a83b475, type: 3}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

@@ -25,6 +25,7 @@ public class NodeConnection
 public class Node {
 
     public bool active; // node becomes active with more than 2 connections
+    public bool dynamic; // true if the node can change active states after being initialized (e.g. with the opening of a door)
 
     public GridPoint point;
 
