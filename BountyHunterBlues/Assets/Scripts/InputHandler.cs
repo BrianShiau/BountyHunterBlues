@@ -117,16 +117,19 @@ public class InputHandler : MonoBehaviour {
             
         }
          
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKey(KeyCode.Space) && interactInputDelay < 0) 
-            || Input.GetKeyDown(KeyCode.E) ||  (Input.GetKey(KeyCode.E) && interactInputDelay < 0))
+        if ((Input.GetKey(KeyCode.Space) && interactInputDelay < 0) 
+            ||  (Input.GetKey(KeyCode.E) && interactInputDelay < 0))
         {
+			Debug.Log("DOWN" + interactInputDelay + " " + Input.GetKeyDown(KeyCode.E));
+			interactInputDelay = 1;
             interact = new InteractCommand();
             nextCommands.AddLast(interact);
-            interactInputDelay = 1;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.E))
-            interactInputDelay = 0;
+		if (Input.GetKeyUp (KeyCode.Space) || Input.GetKeyUp (KeyCode.E)) {
+			Debug.Log("UP");
+			interactInputDelay = 0;
+		}
 
         
 
