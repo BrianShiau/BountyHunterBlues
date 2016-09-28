@@ -581,6 +581,8 @@ public class AIActor : GameActor {
         moveAudioSource.loop = true;
         moveAudioSource.playOnAwake = false;
         moveAudioSource.volume = 1.0f;
+        
+        
 
         shotAudioSource = gameObject.AddComponent<AudioSource>();
         shotAudioSource.clip = fireShotSound;
@@ -593,10 +595,17 @@ public class AIActor : GameActor {
     {
         if (isMoving)
         {
+            float volumeRolloff = .05f * (Vector2.Distance(transform.position, player.transform.position));
             if (is_patrol)
+            {
+                moveAudioSource.volume = .7f - volumeRolloff;
                 moveAudioSource.clip = patrolStompSound;
+            }
             else
+            {
+                moveAudioSource.volume = 1.0f - volumeRolloff;
                 moveAudioSource.clip = chaseStompSound;
+            }
             if(!moveAudioSource.isPlaying)
                 moveAudioSource.Play();
         }

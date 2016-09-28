@@ -11,7 +11,7 @@ public class PlayerActor : GameActor
     public bool hasGun;
     public bool gun_fired;
     public bool knifeAttacked;
-    public bool gunHit;
+    public bool enemyHit;
     public bool inTacticalMode;
     public float reloadTime;
     public float cloakTime;
@@ -45,7 +45,7 @@ public class PlayerActor : GameActor
         lastShotTime = reloadTime;
         cloakTimer = 0;
         gun_fired = false;
-        gunHit = false;
+        enemyHit = false;
         knifeAttacked = false;
         fire_location = new Vector3(0, 0, 0);
 
@@ -79,7 +79,7 @@ public class PlayerActor : GameActor
         lastShotTime += Time.deltaTime;
         knifeAttacked = false;
         gun_fired = false;
-        gunHit = false;
+        enemyHit = false;
 
         if (!isVisible)
             cloakTimer += Time.deltaTime;
@@ -112,7 +112,7 @@ public class PlayerActor : GameActor
                 gun_fired = true;
                 if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
                 {
-                    gunHit = true;
+                    enemyHit = true;
                     aimTarget.takeDamage();
                     if (!aimTarget.isAlive())
                         aimTarget = null;
@@ -167,6 +167,7 @@ public class PlayerActor : GameActor
             Debug.Log("attack happening on left click");
             if (lookTarget != null && Vector2.Distance(lookTarget.transform.position, transform.position) <= meleeDistance)
             {
+                enemyHit = true;
                 lookTarget.takeDamage();
                 if (!lookTarget.isAlive())
                     lookTarget = null;
@@ -330,11 +331,16 @@ public class PlayerActor : GameActor
         if(gun_fired)
         {
             gunAudioSource.PlayOneShot(missShotSound);
-            if(gunHit)
-            {
-                gunAudioSource.PlayDelayed(missShotSound.length/4);
-            }
 
+            if (enemyHit)
+                gunAudioSource.PlayDelayed(missShotSound.length/4);
+                
+
+        }
+
+        if(knifeAttacked && enemyHit)
+        {
+            gunAudioSource.PlayOneShot(hitShotSound);
         }
     }
 }
