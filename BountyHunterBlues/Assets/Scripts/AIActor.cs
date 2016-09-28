@@ -122,7 +122,6 @@ public class AIActor : GameActor {
         yellow_alertness();
         red_alertness();
         chase_alertness();
-        print(alertness);
     }
     
 
@@ -356,6 +355,9 @@ public class AIActor : GameActor {
                 run_state(State.YELLOW_AUDIO);
                 return;
             }
+            if(last_seen == null){
+                print("ok");
+            }
             calc_shortest_path(transform.position, last_seen);
 
             if(shortest_path_index < path.length()){
@@ -368,7 +370,7 @@ public class AIActor : GameActor {
                 AI_move.updateCommandData(faceDir);
                 AI_move.execute(this);
                 
-                if(distance_from_node < .1){
+                if(distance_from_node < .8){
                      shortest_path_index += 1;   
                 }
             }
@@ -408,7 +410,7 @@ public class AIActor : GameActor {
                 AI_move.updateCommandData(faceDir);
                 AI_move.execute(this);
                 
-                if(distance_from_node < .1){
+                if(distance_from_node < .8){
                      shortest_path_index += 1;   
                 }
             }
@@ -446,7 +448,7 @@ public class AIActor : GameActor {
                 AI_move.updateCommandData(faceDir);
                 AI_move.execute(this);
                 
-                if(distance_from_node < .1){
+                if(distance_from_node < .8){
                      shortest_path_index += 1;   
                 }
             }

@@ -1617,39 +1617,9 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: faceDir.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: faceDir.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: audio_distance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 82000011805521826, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61000012707084372, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 61000012707084372, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
