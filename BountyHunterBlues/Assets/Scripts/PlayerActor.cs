@@ -27,6 +27,9 @@ public class PlayerActor : GameActor
 	public Slider gunSlider;
 	public GameObject gunSliderObject;
 	public Image gunSliderFill;
+
+	private Image hitFlash;
+
     public Vector3 fire_location;
 
     public override void Start()
@@ -58,7 +61,7 @@ public class PlayerActor : GameActor
 			gunSliderObject = gunSlider.gameObject;
 			gunSliderObject.SetActive (false);
 		}
-
+		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
     }
 
     public override void Update()
@@ -145,8 +148,18 @@ public class PlayerActor : GameActor
 			if (GetComponentInChildren<HealthBar> ()) {
 				GetComponentInChildren<HealthBar> ().setHealth (healthPool);
 			}
+			StartCoroutine (PlayHitFlash());
         }
     }
+
+	IEnumerator PlayHitFlash(){
+		hitFlash.color = new Color (hitFlash.color.r, hitFlash.color.g, hitFlash.color.b, 1f);
+		yield return new WaitForSeconds (.1f);
+		while (hitFlash.color.a > 0) {
+			hitFlash.color = new Color (hitFlash.color.r, hitFlash.color.g, hitFlash.color.b, hitFlash.color.a - .1f);
+			yield return new WaitForSeconds (.1f);
+		}
+	}
 
     public override void die()
 	{

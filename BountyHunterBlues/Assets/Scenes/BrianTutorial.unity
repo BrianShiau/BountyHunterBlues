@@ -2440,6 +2440,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -3175,6 +3178,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -3441,11 +3447,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010206827312, guid: 090e127d394eaaa43a01df054efb0ca8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 19
+      value: 19.23
       objectReference: {fileID: 0}
     - target: {fileID: 4000010206827312, guid: 090e127d394eaaa43a01df054efb0ca8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 8.5
+      value: 8.64
       objectReference: {fileID: 0}
     - target: {fileID: 4000010206827312, guid: 090e127d394eaaa43a01df054efb0ca8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3470,6 +3476,14 @@ Prefab:
     - target: {fileID: 4000010206827312, guid: 090e127d394eaaa43a01df054efb0ca8, type: 2}
       propertyPath: m_RootOrder
       value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010206827312, guid: 090e127d394eaaa43a01df054efb0ca8, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.54906017
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010206827312, guid: 090e127d394eaaa43a01df054efb0ca8, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.36788166
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 090e127d394eaaa43a01df054efb0ca8, type: 2}
