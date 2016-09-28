@@ -104,7 +104,7 @@ public class Node {
             bool validConnection = true;
             foreach (RaycastHit2D hit in sortedHits)
             {
-                if (hit.collider.tag == "Wall" || hit.collider.tag == "Interactable")
+                if (hit.collider.tag == "Wall" || (hit.collider.tag == "Interactable" && hit.collider.GetComponent<Door>() == null))
                 {
                     validConnection = false;
                     break;
