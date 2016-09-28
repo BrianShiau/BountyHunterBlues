@@ -50,7 +50,7 @@ public class NPC : MonoBehaviour, Interactable {
 		case 20: 
 			//Opening Level 1
 			strings = new string[] {"Glad to see he’s creepy as ever. How the hell did he know I was gonna be here?",
-				"OK, the door out of the loading bay is probably locked.",
+				"Okay, the door out of the loading bay is probably locked.",
 				"I wonder if they’re still using those rolly things…"
 			};
 			break;
@@ -83,12 +83,13 @@ public class NPC : MonoBehaviour, Interactable {
 			chatPanel.GetComponentInChildren<Text> ().text = strings [currentLine];
 			currentLine++;
 		} else {
-			if(destroyAfterPlay && this.gameObject){
-				Destroy(this.gameObject);
+			if (destroyAfterPlay && this.gameObject) {
+				Destroy (this.gameObject);
+			} else {
+				currentLine = 0;
 			}
 			chatPanel.GetComponent<Image> ().enabled = false;
 			chatPanel.GetComponentInChildren<Text> ().enabled = false;
-			currentLine = 0;
 			player.inTacticalMode = false;
 		}
 	}
