@@ -120,7 +120,7 @@ public class AIActor : GameActor {
         yellow_audio();
         return_to_default();
         yellow_alertness();
-        //red_alertness();
+        red_alertness();
         chase_alertness();
         print(alertness);
     }
