@@ -6,7 +6,7 @@ using System.Linq;
 
 public enum State
 {
-    GREEN, YELLOW, RED, YELLOW_AUDIO, RETURN
+    GREEN, YELLOW, RED, YELLOW_AUDIO, RETURN, CHASE
 }
 
 public class AIActor : GameActor {
@@ -56,6 +56,7 @@ public class AIActor : GameActor {
     private Vector3 default_position;
     private Vector2 initial_position;
     private Vector2 initial_faceDir;
+    private Vector3 last_seen;
     private List<Vector3> positions = new List<Vector3>();
     private Vector2 transition_faceDir;
     public float move_speed;
@@ -88,6 +89,7 @@ public class AIActor : GameActor {
         wait_time_counter = 0;
         rotation_speed = 4f;
 
+        last_seen = transform.position;
         default_position = transform.position;
         initial_faceDir = faceDir;
         transition_faceDir = faceDir;
@@ -118,7 +120,8 @@ public class AIActor : GameActor {
         yellow_audio();
         return_to_default();
         yellow_alertness();
-        red_alertness();
+        //red_alertness();
+        chase_alertness();
         print(alertness);
     }
     
@@ -345,6 +348,46 @@ public class AIActor : GameActor {
         }
     }
 
+    public void chase_alertness(){
+        if(alertness == State.CHASE){
+            if(sound_detection(player.bullet_shot()) && lookTarget == null){                
+                shortest_path_index = 0;
+                shortest_path_calculated = false;
+                run_state(State.YELLOW_AUDIO);
+                return;
+            }
+            calc_shortest_path(transform.position, last_seen);
+
+            if(shortest_path_index < path.length()){
+                Node current_node = path.get_node(shortest_path_index);
+                float distance_from_node = Vector2.Distance(transform.position, current_node.worldPosition);
+                
+                Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
+                worldFaceDir.Normalize();
+                faceDir = transform.InverseTransformDirection(worldFaceDir);
+                AI_move.updateCommandData(faceDir);
+                AI_move.execute(this);
+                
+                if(distance_from_node < .1){
+                     shortest_path_index += 1;   
+                }
+            }
+            else{
+                isMoving = false;
+                shortest_path_index = 0;
+                shortest_path_calculated = false;
+                run_state(State.RETURN);
+                return;
+            }
+            if(lookTarget != null){
+                shortest_path_index = 0;
+                shortest_path_calculated = false;
+                run_state(State.YELLOW);
+                return;
+            }
+        }
+    }
+
     public void return_to_default(){
         if(alertness == State.RETURN){
             if(sound_detection(player.bullet_shot()) && lookTarget == null){                
@@ -434,6 +477,7 @@ public class AIActor : GameActor {
                 AI_move.execute(this);
                 dec_state_timer = 0;
                 inc_state_timer += Time.deltaTime;
+                last_seen = lookTarget.transform.position; 
                 if(inc_state_timer > state_change_time){
                     inc_state_timer = 0;
                     run_state(State.RED);
@@ -445,7 +489,9 @@ public class AIActor : GameActor {
                 dec_state_timer += Time.deltaTime;
                 
                 if(dec_state_timer > state_change_time){
-                    run_state(State.RETURN);
+                    shortest_path_index = 0;
+                    shortest_path_calculated = false;
+                    run_state(State.CHASE);
                 }
             }
         }
