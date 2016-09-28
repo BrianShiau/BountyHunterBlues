@@ -28,6 +28,7 @@ public class Node {
     public bool dynamic; // true if the node can change active states after being initialized (e.g. with the opening of a door)
 
     public GridPoint point;
+    public bool visited;
 
     public Vector2 worldPosition;
 
@@ -40,6 +41,7 @@ public class Node {
         worldPosition = position;
         point = new GridPoint(x, y);
         this.grid = grid;
+        visited = false;
     }
 
     public void setupConnections()
@@ -104,7 +106,7 @@ public class Node {
             bool validConnection = true;
             foreach (RaycastHit2D hit in sortedHits)
             {
-                if (hit.collider.tag == "Wall" || (hit.collider.tag == "Interactable" && hit.collider.GetComponent<Door>() == null))
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "Interactable")
                 {
                     validConnection = false;
                     break;

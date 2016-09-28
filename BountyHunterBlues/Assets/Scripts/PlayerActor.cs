@@ -31,6 +31,7 @@ public class PlayerActor : GameActor
 	private Image hitFlash;
 
     public Vector3 fire_location;
+    private Grid mGrid;
 
     public override void Start()
     {
@@ -62,6 +63,7 @@ public class PlayerActor : GameActor
 			gunSliderObject.SetActive (false);
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
+        mGrid = GameObject.Find("GridOverlay").GetComponent<Grid>();
     }
 
     public override void Update()
@@ -100,10 +102,11 @@ public class PlayerActor : GameActor
             if (hasGun && isAiming && lastShotTime >= reloadTime)
             {
                 Debug.Log("Player shoots");
-                AIActor[] actors = FindObjectsOfType(typeof(AIActor)) as AIActor[];
-                for(int i=0; i < actors.Length; i++){
-                    actors[i].sound_location = transform.position;
-                }
+                // AIActor[] actors = FindObjectsOfType(typeof(AIActor)) as AIActor[];
+                //for(int i=0; i < actors.Length; i++){
+                //    actors[i].sound_location = transform.position;
+                //}
+                notifyEnemies();
                 fire_location = transform.position;
                 gun_fired = true;
                 if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
@@ -115,6 +118,43 @@ public class PlayerActor : GameActor
                 lastShotTime = 0;
             }
         }
+    }
+
+    private void notifyEnemies()
+    {
+        AIActor[] enemies = FindObjectsOfType<AIActor>();
+        GridPoint gPoint = mGrid.worldToGrid(transform.position);
+        Node node = mGrid.nodes[gPoint.X, gPoint.Y];
+
+        LinkedList<Node> queue = new LinkedList<Node>();
+        LinkedList<Node> toBeReset = new LinkedList<Node>();
+        queue.AddLast(node);
+
+        while (queue.Count > 0)
+        {
+            Node curr = queue.First.Value;
+            queue.RemoveFirst();
+            toBeReset.AddFirst(curr);
+            foreach(AIActor enemy in enemies)
+            {
+                if (Vector2.Distance(enemy.transform.position, mGrid.gridToWorld(curr.point.X, curr.point.Y)) < mGrid.unitsize / 2.0f)
+                    enemy.sound_location = transform.position;
+            }
+            foreach(NodeConnection connection in curr.connections)
+            {
+                if(!connection.destination.visited)
+                {
+                    connection.destination.visited = true;
+                    queue.AddLast(connection.destination);
+                }
+            }
+        }
+
+        foreach(Node n in toBeReset)
+        {
+            n.visited = false;
+        }
+
     }
 
     public override void meleeAttack()
