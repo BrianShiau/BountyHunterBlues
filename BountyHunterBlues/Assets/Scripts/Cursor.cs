@@ -18,6 +18,13 @@ public class Cursor : MonoBehaviour {
 	}
 
 	void OnGUI(){
+		if (GetComponentInParent<PlayerActor> ().inTacticalMode) {
+			UnityEngine.Cursor.visible = false;
+			return;
+		} else {
+			UnityEngine.Cursor.visible = true;
+		}
+
 		Vector2 pivot = new Vector2(Screen.width/2, Screen.height/2);
 		float distFromCenterX = Event.current.mousePosition.x - Screen.width / 2;
 		float distFromCenterY = Event.current.mousePosition.y - Screen.height / 2;

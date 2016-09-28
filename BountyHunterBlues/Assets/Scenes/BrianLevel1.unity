@@ -2290,6 +2290,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -2904,6 +2907,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -3067,11 +3073,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010667469734, guid: e0d4d20104826524e8dc983acac48de8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.83
+      value: -1.52
       objectReference: {fileID: 0}
     - target: {fileID: 4000010667469734, guid: e0d4d20104826524e8dc983acac48de8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -17.17
+      value: -3.56
       objectReference: {fileID: 0}
     - target: {fileID: 4000010667469734, guid: e0d4d20104826524e8dc983acac48de8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3099,11 +3105,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010667469734, guid: e0d4d20104826524e8dc983acac48de8, type: 2}
       propertyPath: m_LocalScale.y
-      value: 41.240845
+      value: 21.52642
       objectReference: {fileID: 0}
     - target: {fileID: 4000010667469734, guid: e0d4d20104826524e8dc983acac48de8, type: 2}
       propertyPath: m_LocalScale.x
-      value: 44.020485
+      value: 40.618782
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0d4d20104826524e8dc983acac48de8, type: 2}
@@ -3219,6 +3225,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -4458,6 +4467,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -5852,6 +5864,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -6783,6 +6798,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -7610,6 +7628,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -7875,6 +7896,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -8515,6 +8539,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -9510,6 +9537,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -10435,6 +10465,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -10867,6 +10900,9 @@ MonoBehaviour:
   state_change_time: 0.5
   attack_time_confirmation: 0.3
   move_speed: 1
+  patrolStompSound: {fileID: 0}
+  chaseStompSound: {fileID: 0}
+  fireShotSound: {fileID: 0}
   stateColors:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
