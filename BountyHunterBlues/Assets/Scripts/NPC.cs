@@ -84,7 +84,12 @@ public class NPC : MonoBehaviour, Interactable {
 			currentLine++;
 		} else {
 			if (destroyAfterPlay && this.gameObject) {
-				Destroy (this.gameObject);
+				Text tutorialText = GetComponentInChildren<Text> ();
+				if (tutorialText) {
+					tutorialText.text = "Use WASD to move";
+				}
+				//Destroy (this.gameObject);
+				this.tag = "Untagged";
 			} else {
 				currentLine = 0;
 			}

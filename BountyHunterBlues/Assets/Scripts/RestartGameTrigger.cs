@@ -34,7 +34,6 @@ public class RestartGameTrigger : MonoBehaviour {
 			color = blackFade.color;
 			color.a += 0.1f;
 			blackFade.color = color;
-			Debug.Log (color);
 			yield return StartCoroutine(Utility.WaitForRealTime (.03f));
 		}
 		Time.timeScale = 1;
