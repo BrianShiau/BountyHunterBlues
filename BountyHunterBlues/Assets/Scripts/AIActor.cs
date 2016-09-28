@@ -232,6 +232,9 @@ public class AIActor : GameActor {
     public virtual void green_patrol(){
         if(alertness == State.GREEN && is_patrol){
             isMoving = false;
+            if(sound_detection(sound_location) && lookTarget == null){
+                run_state(State.YELLOW_AUDIO);
+            }
             if(lookTarget != null){
                 // get world-space vector to target from me
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
