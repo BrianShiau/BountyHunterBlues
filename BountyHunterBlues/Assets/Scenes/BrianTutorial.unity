@@ -2201,6 +2201,7 @@ GameObject:
   - 224: {fileID: 1167295599}
   - 222: {fileID: 1167295601}
   - 114: {fileID: 1167295600}
+  - 114: {fileID: 1167295602}
   m_Layer: 0
   m_Name: Right Click + Left Click
   m_TagString: Untagged
@@ -2258,17 +2259,24 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Right Click
-
-    +
-
-    Left Click'
+  m_Text: Right Click to Shoot
 --- !u!222 &1167295601
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1167295598}
+--- !u!114 &1167295602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1167295598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be22d931b94b9944282f5c22c08cabe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1181655142
 Prefab:
   m_ObjectHideFlags: 0
@@ -3993,6 +4001,7 @@ GameObject:
   - 224: {fileID: 1816334695}
   - 222: {fileID: 1816334697}
   - 114: {fileID: 1816334696}
+  - 114: {fileID: 1816334698}
   m_Layer: 0
   m_Name: Left Click
   m_TagString: Untagged
@@ -4015,8 +4024,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 800}
+  m_AnchoredPosition: {x: -0.83, y: 0}
+  m_SizeDelta: {x: 800, y: 1600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816334696
 MonoBehaviour:
@@ -4050,13 +4059,24 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Left Click
+  m_Text: Left Click to Attack
 --- !u!222 &1816334697
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1816334694}
+--- !u!114 &1816334698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1816334694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be22d931b94b9944282f5c22c08cabe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1831045609
 Prefab:
   m_ObjectHideFlags: 0
