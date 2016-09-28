@@ -345,7 +345,7 @@ public class AIActor : GameActor {
     }
 
     public void return_to_default(){
-        if(alertness == State.RETURN && lookTarget == null){
+        if(alertness == State.RETURN){
             if(sound_detection(player.bullet_shot()) && lookTarget == null){                
                 shortest_path_calculated = false;
                 run_state(State.YELLOW_AUDIO);
@@ -372,9 +372,13 @@ public class AIActor : GameActor {
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
                 run_state(State.GREEN);
+                return;
             }
             if(lookTarget != null){
+                shortest_path_index = 0;
+                shortest_path_calculated = false;
                 run_state(State.YELLOW);
+                return;
             }
         }
     }
@@ -401,13 +405,17 @@ public class AIActor : GameActor {
                 }
             }
             else{
+                isMoving = false;
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
-                isMoving = false;
                 run_state(State.RETURN);
+                return;
             }
             if(lookTarget != null){
+                shortest_path_index = 0;
+                shortest_path_calculated = false;
                 run_state(State.YELLOW);
+                return;
             }
         }
     }
@@ -434,7 +442,6 @@ public class AIActor : GameActor {
                 dec_state_timer += Time.deltaTime;
                 
                 if(dec_state_timer > state_change_time){
-                    shortest_path_calculated = false;
                     run_state(State.RETURN);
                 }
             }
