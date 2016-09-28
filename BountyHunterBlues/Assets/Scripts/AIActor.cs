@@ -66,7 +66,15 @@ public class AIActor : GameActor {
 
     private GameObject barrel;
     PathFinding path; 
-    private PlayerActor player; 
+    private PlayerActor player;
+
+    // Audio
+    public AudioClip patrolStompSound;
+    public AudioClip chaseStompSound;
+    public AudioClip fireShotSound;
+
+    private AudioSource moveAudioSource;
+    private AudioSource shotAudioSource;
 
     public Color[] stateColors = {
         Color.green,
@@ -562,4 +570,36 @@ public class AIActor : GameActor {
         }
     }
 
+    public override void initAudio()
+    {
+        moveAudioSource = gameObject.AddComponent<AudioSource>();
+        moveAudioSource.clip = patrolStompSound;
+        moveAudioSource.loop = true;
+        moveAudioSource.playOnAwake = false;
+        moveAudioSource.volume = 1.0f;
+
+        shotAudioSource = gameObject.AddComponent<AudioSource>();
+        shotAudioSource.clip = fireShotSound;
+        shotAudioSource.loop = false;
+        shotAudioSource.playOnAwake = false;
+        shotAudioSource.volume = 1.0f;
+    }
+
+    public override void runAudio()
+    {
+        if (isMoving)
+        {
+            if (is_patrol)
+                moveAudioSource.clip = patrolStompSound;
+            else
+                moveAudioSource.clip = chaseStompSound;
+            if(!moveAudioSource.isPlaying)
+                moveAudioSource.Play();
+        }
+        else
+            moveAudioSource.Stop();
+
+        if (hasAttacked)
+            shotAudioSource.Play();
+    }
 }

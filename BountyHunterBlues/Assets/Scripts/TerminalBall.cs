@@ -52,4 +52,6 @@ public class TerminalBall : AIActor, Interactable {
 	public override void yellow_audio(){}
 	public override void yellow_alertness(){}
 	public override void red_alertness(){}
+    public override void initAudio() {}
+    public override void runAudio() {}
 }

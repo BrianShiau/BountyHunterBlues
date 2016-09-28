@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
-public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
+public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>, Hearable
 {
 
     public float moveSpeed; // subject to change based on testing
@@ -33,6 +33,8 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
     public abstract void meleeAttack();
     public abstract void interact();
 	public abstract void die();
+    public abstract void initAudio();
+    public abstract void runAudio();
 
     public abstract void runVisionDetection();
 
@@ -46,6 +48,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
         faceDir.Normalize();
         aimDir.Normalize();
         GameActorAnimator = GetComponent<Animator>();
+        initAudio();
     }
 
     public virtual void Update()
@@ -57,6 +60,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>
             //Debug.DrawRay(transform.position, faceDirWorld * sightDistance, Color.green);
         //}
         updateAnimation();
+        runAudio();
     }
 
     public bool Equals(GameActor other)

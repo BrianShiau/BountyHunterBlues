@@ -28,8 +28,6 @@ public class PlayerActor : GameActor
 	public GameObject gunSliderObject;
 	public Image gunSliderFill;
 
-	//public Image 
-
     public override void Start()
     {
         base.Start();
@@ -58,6 +56,7 @@ public class PlayerActor : GameActor
 			gunSliderObject = gunSlider.gameObject;
 			gunSliderObject.SetActive (false);
 		}
+
     }
 
     public override void Update()
@@ -256,4 +255,13 @@ public class PlayerActor : GameActor
 
     }
 
+    public override void initAudio()
+    {
+        
+    }
+
+    public override void runAudio()
+    {
+        
+    }
 }
