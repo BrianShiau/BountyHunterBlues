@@ -38,18 +38,18 @@ GameObject:
   - 4: {fileID: 4000013480450662}
   - 212: {fileID: 212000010074931996}
   - 61: {fileID: 61000012707084372}
-  - 114: {fileID: 114000011496164906}
   - 95: {fileID: 95000012415338422}
   - 50: {fileID: 50000011559316906}
   - 82: {fileID: 82000011805521826}
   - 114: {fileID: 114000010617809190}
+  - 114: {fileID: 114000014214070012}
   m_Layer: 0
   m_Name: EnemyCharacter
   m_TagString: GameActor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013363525762
 GameObject:
   m_ObjectHideFlags: 1
@@ -302,48 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813c8bf2760f2154f87a09143f4a10f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000011496164906
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013306044712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc9e4ba3d03afae44bd436a4c3fa2666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  faceDir: {x: 0, y: 1}
-  aimDir: {x: 0, y: 0}
-  fov: 140
-  meleeDistance: 2
-  sightDistance: 100
-  interactionDistance: 2
-  isAiming: 0
-  isMoving: 0
-  isVisible: 0
-  healthPool: 1
-  lookTarget: {fileID: 0}
-  aimTarget: {fileID: 0}
-  GameActorAnimator: {fileID: 0}
-  patrol_points: []
-  is_patrol: 0
-  is_cycle: 0
-  hasAttacked: 0
-  rotation_speed: 0
-  playerObject: {fileID: 0}
-  alertness: 0
-  audio_distance: 10
-  shortest_path_index: 0
-  sound_location: {x: 0, y: 0, z: 0}
-  state_change_time: 0.5
-  attack_time_confirmation: 0.3
-  move_speed: 1
-  stateColors:
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114000012564751000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,6 +337,48 @@ MonoBehaviour:
   leftAttackSprite: {fileID: 21300002, guid: 8372d217e753a4c5b9625bbc2fde49f4, type: 3}
   upAttackSprite: {fileID: 21300000, guid: 8372d217e753a4c5b9625bbc2fde49f4, type: 3}
   rightAttackSprite: {fileID: 21300006, guid: 8372d217e753a4c5b9625bbc2fde49f4, type: 3}
+--- !u!114 &114000014214070012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013306044712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9e4ba3d03afae44bd436a4c3fa2666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  faceDir: {x: 0, y: 0}
+  aimDir: {x: 0, y: 0}
+  fov: 140
+  meleeDistance: 2
+  sightDistance: 100
+  interactionDistance: 2
+  isAiming: 0
+  isMoving: 0
+  isVisible: 0
+  healthPool: 1
+  lookTarget: {fileID: 0}
+  aimTarget: {fileID: 0}
+  GameActorAnimator: {fileID: 0}
+  patrol_points: []
+  is_patrol: 0
+  is_cycle: 0
+  hasAttacked: 0
+  rotation_speed: 0
+  playerObject: {fileID: 0}
+  alertness: 0
+  audio_distance: 10
+  shortest_path_index: 0
+  sound_location: {x: 0, y: 0, z: 0}
+  state_change_time: 0.5
+  attack_time_confirmation: 0.3
+  move_speed: 1
+  stateColors:
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!212 &212000010074931996
 SpriteRenderer:
   m_ObjectHideFlags: 1

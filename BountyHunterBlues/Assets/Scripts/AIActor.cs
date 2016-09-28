@@ -116,12 +116,12 @@ public class AIActor : GameActor {
             green_alertness();
         }
 
-
         yellow_audio();
         return_to_default();
         yellow_alertness();
         red_alertness();
         chase_alertness();
+        //player.gun_fired = false;
     }
     
 
@@ -301,7 +301,7 @@ public class AIActor : GameActor {
     public virtual void green_alertness(){
         if(alertness == State.GREEN){
             isMoving = false;
-            if(sound_detection(player.bullet_shot()) && lookTarget == null){
+            if(sound_detection(sound_location) && lookTarget == null){
                 run_state(State.YELLOW_AUDIO);
             }
             else if(lookTarget != null){
@@ -333,8 +333,9 @@ public class AIActor : GameActor {
 
     public bool sound_detection(Vector3 audio_point){
         if(audio_point.x != 0 && audio_point.y != 0){
-            sound_location = audio_point;
-            return Vector2.Distance(transform.position, audio_point) < audio_distance;
+            if(Vector2.Distance(transform.position, audio_point) < audio_distance){
+                return true;
+            }
         }
         return false;
     }
@@ -349,14 +350,11 @@ public class AIActor : GameActor {
 
     public void chase_alertness(){
         if(alertness == State.CHASE){
-            if(sound_detection(player.bullet_shot()) && lookTarget == null){                
+            if(sound_detection(sound_location) && lookTarget == null){                
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
                 run_state(State.YELLOW_AUDIO);
                 return;
-            }
-            if(last_seen == null){
-                print("ok");
             }
             calc_shortest_path(transform.position, last_seen);
 
@@ -392,7 +390,7 @@ public class AIActor : GameActor {
 
     public void return_to_default(){
         if(alertness == State.RETURN){
-            if(sound_detection(player.bullet_shot()) && lookTarget == null){                
+            if(sound_detection(sound_location) && lookTarget == null){                
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
                 run_state(State.YELLOW_AUDIO);
@@ -432,11 +430,12 @@ public class AIActor : GameActor {
 
     public virtual void yellow_audio(){
         if(alertness == State.YELLOW_AUDIO){
-            if(sound_detection(player.bullet_shot()) && lookTarget == null){                
+            if(sound_detection(sound_location) && lookTarget == null){                
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
             }
             calc_shortest_path(transform.position, sound_location);
+            sound_location = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
             
             if(shortest_path_index < path.length()){
                 Node current_node = path.get_node(shortest_path_index);

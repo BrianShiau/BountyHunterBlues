@@ -27,6 +27,7 @@ public class PlayerActor : GameActor
 	public Slider gunSlider;
 	public GameObject gunSliderObject;
 	public Image gunSliderFill;
+    public Vector3 fire_location;
 
 	//public Image 
 
@@ -37,6 +38,7 @@ public class PlayerActor : GameActor
         cloakTimer = 0;
         gun_fired = false;
         knifeAttacked = false;
+        fire_location = new Vector3(0, 0, 0);
 
 		// play opening text only once
 		if (deaths == 0) {
@@ -83,7 +85,7 @@ public class PlayerActor : GameActor
 
     public Vector3 bullet_shot(){
         if(gun_fired){
-            gun_fired = false;
+            //gun_fired = false;
             return transform.position;
         }
         return new Vector3(0, 0, 0);
@@ -96,6 +98,11 @@ public class PlayerActor : GameActor
             if (hasGun && isAiming && lastShotTime >= reloadTime)
             {
                 Debug.Log("Player shoots");
+                AIActor[] actors = FindObjectsOfType(typeof(AIActor)) as AIActor[];
+                for(int i=0; i < actors.Length; i++){
+                    actors[i].sound_location = transform.position;
+                }
+                fire_location = transform.position;
                 gun_fired = true;
                 if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
                 {
@@ -106,7 +113,6 @@ public class PlayerActor : GameActor
                 lastShotTime = 0;
             }
         }
-        
     }
 
     public override void meleeAttack()

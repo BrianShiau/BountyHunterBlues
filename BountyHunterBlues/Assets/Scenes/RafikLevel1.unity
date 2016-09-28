@@ -90,6 +90,22 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &33848229 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981,
+    type: 2}
+  m_PrefabInternal: {fileID: 479142810}
+--- !u!114 &33848230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33848229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813c8bf2760f2154f87a09143f4a10f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &122097995
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,13 +564,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.y
       value: 1
       objectReference: {fileID: 0}
@@ -1006,14 +1020,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013480450662, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_Name
       value: EnemyCharacter (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: 0
       objectReference: {fileID: 0}
@@ -1021,7 +1034,9 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000010617809190, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &570037794
@@ -1617,8 +1632,9 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 114000014214070012, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: faceDir.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1973,8 +1989,7 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: patrol_points.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2014,43 +2029,35 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: patrol_points.Array.data[0].point
       value: 
       objectReference: {fileID: 1585664581}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: is_patrol
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: is_cycle
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: patrol_points.Array.data[1].point
       value: 
       objectReference: {fileID: 964968605}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: patrol_points.Array.data[0].wait_time
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: patrol_points.Array.data[1].wait_time
       value: 1
       objectReference: {fileID: 0}
@@ -2354,13 +2361,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.y
       value: -1
       objectReference: {fileID: 0}
@@ -2595,13 +2600,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.y
       value: -1
       objectReference: {fileID: 0}
@@ -2649,19 +2652,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013480450662, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_Name
       value: EnemyCharacter (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.y
       value: 0
       objectReference: {fileID: 0}
@@ -3268,13 +3269,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.y
       value: 0
       objectReference: {fileID: 0}
@@ -4304,19 +4303,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013480450662, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_Name
       value: EnemyCharacter (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.y
       value: -1
       objectReference: {fileID: 0}
@@ -4512,13 +4509,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyCharacter (10)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.y
       value: -1
       objectReference: {fileID: 0}
@@ -4873,19 +4868,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013480450662, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1000013306044712, guid: 99a84a35732c1684a9c732d512cfe981, type: 2}
       propertyPath: m_Name
       value: EnemyCharacter (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011496164906, guid: 99a84a35732c1684a9c732d512cfe981,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: faceDir.y
       value: -1
       objectReference: {fileID: 0}
