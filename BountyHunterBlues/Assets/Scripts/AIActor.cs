@@ -6,7 +6,7 @@ using System.Linq;
 
 public enum State
 {
-    GREEN, YELLOW, RED
+    GREEN, YELLOW, RED, YELLOW_AUDIO, RETURN
 }
 
 public class AIActor : GameActor {
@@ -34,6 +34,7 @@ public class AIActor : GameActor {
 
     public int audio_distance = 10;
     public int shortest_path_index = 0;
+    public Vector3 sound_location;
 
     /*
      * AI could be attached to AIActor like so
@@ -52,14 +53,18 @@ public class AIActor : GameActor {
     private Command AI_disableAim;
     private Command AI_attack;
 
+    private Vector3 default_position;
     private Vector2 initial_position;
     private Vector2 initial_faceDir;
     private List<Vector3> positions = new List<Vector3>();
     private Vector2 transition_faceDir;
     public float move_speed;
 
+    private bool shortest_path_calculated = false;
+    private bool sound_detected = false;
+
     private GameObject barrel;
-    private PathFinding path;
+    PathFinding path; 
     private PlayerActor player; 
 
     public Color[] stateColors = {
@@ -72,6 +77,7 @@ public class AIActor : GameActor {
     {
         base.Start();
 
+        path = gameObject.GetComponent<PathFinding>();
         player = GameObject.Find("Player Character").GetComponent<PlayerActor>();
         patrol_forward = true;
         patrol_backward = false;
@@ -82,6 +88,7 @@ public class AIActor : GameActor {
         wait_time_counter = 0;
         rotation_speed = 4f;
 
+        default_position = transform.position;
         initial_faceDir = faceDir;
         transition_faceDir = faceDir;
 
@@ -106,10 +113,12 @@ public class AIActor : GameActor {
         else{
             green_alertness();
         }
+
+
         yellow_audio();
+        return_to_default();
         yellow_alertness();
         red_alertness();
-
     }
     
 
@@ -199,7 +208,7 @@ public class AIActor : GameActor {
         {
             lookTarget = tempLookTarget;
             Vector2 worldVector = lookTarget.gameObject.transform.position - transform.position;
-            //Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
+            Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
         }
     }
 
@@ -286,11 +295,13 @@ public class AIActor : GameActor {
         }
     }
 
-	public virtual void green_alertness(){
+    public virtual void green_alertness(){
         if(alertness == State.GREEN){
             isMoving = false;
-            if(lookTarget != null){
-                // get world-space vector to target from me
+            if(sound_detection(player.bullet_shot()) && lookTarget == null){
+                run_state(State.YELLOW_AUDIO);
+            }
+            else if(lookTarget != null){
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
 
@@ -317,71 +328,96 @@ public class AIActor : GameActor {
         }
     }
 
-    public bool sound_heard(Vector3 audio_point){
+    public bool sound_detection(Vector3 audio_point){
         if(audio_point.x != 0 && audio_point.y != 0){
+            sound_location = audio_point;
             return Vector2.Distance(transform.position, audio_point) < audio_distance;
         }
         return false;
     }
 
-	public virtual void yellow_audio(){
-        if(sound_heard(player.bullet_shot())){
-            path.initialize();
-            int path_length = path.length();
-            //if(shortest_path_index < path_length){
-            //    Node current_node = shortest_path[shortest_path_index];
-            //    shortest_path_index += 1;
-            //    print(current_node.point.X);
-            //    print(current_node.point.Y);
-            //    //Vector2 pos = path.get_world_space(current_node.point.X, current_node.point.Y);
-            //    //Vector3 new_position = new Vector3(pos.x, pos.y, 0);
-            //    //Vector2 worldFaceDir = new_position - transform.position;
-            //    //worldFaceDir.Normalize();
-            //    //Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-            //    //AI_move.updateCommandData(localDir);
-            //    //AI_move.execute(this);
-            //}
-            //else if(shortest_path_index >= 0){
-            //    shortest_path_index -= 1;
-            //    Vector3 new_position = shortest_path[shortest_path_index];
-            //    Vector2 worldFaceDir = new_position - transform.position;
-            //    worldFaceDir.Normalize();
-            //    Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-            //    AI_move.updateCommandData(localDir);
-            //    AI_move.execute(this);
-            //}
+    public void calc_shortest_path(Vector3 from, Vector3 to){
+        if(!shortest_path_calculated){
+            path.initialize(from, to);
+            path.calc_path();
+            shortest_path_calculated = true;
         }
     }
 
-	public virtual void yellow_alertness(){
-        if(alertness == State.YELLOW){
-            if(lookTarget == null){
-                isMoving = false;
-                inc_state_timer = 0;
-                dec_state_timer += Time.deltaTime;
-                
-                if(dec_state_timer > state_change_time){
-                    if(positions.Count > 0){
-                        Vector3 new_position = positions[positions.Count - 1];
-                        positions.RemoveAt(positions.Count - 1);
+    public void return_to_default(){
+        if(alertness == State.RETURN && lookTarget == null){
+            if(sound_detection(player.bullet_shot()) && lookTarget == null){                
+                shortest_path_calculated = false;
+                run_state(State.YELLOW_AUDIO);
+                return;
+            }
+            calc_shortest_path(transform.position, default_position);
 
-                        Vector2 worldFaceDir = new_position - transform.position;
-                        worldFaceDir.Normalize();
-                        Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-                        AI_move.updateCommandData(localDir);
-                        AI_move.execute(this);
-                    }
-                    else{
-                        dec_state_timer = 0;
-                        run_state(State.GREEN);
-                    }
+            if(shortest_path_index < path.length()){
+                Node current_node = path.get_node(shortest_path_index);
+                float distance_from_node = Vector2.Distance(transform.position, current_node.worldPosition);
+                
+                Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
+                worldFaceDir.Normalize();
+                faceDir = transform.InverseTransformDirection(worldFaceDir);
+                AI_move.updateCommandData(faceDir);
+                AI_move.execute(this);
+                
+                if(distance_from_node < .1){
+                     shortest_path_index += 1;   
                 }
             }
+            else{
+                isMoving = false;
+                shortest_path_index = 0;
+                shortest_path_calculated = false;
+                run_state(State.GREEN);
+            }
+            if(lookTarget != null){
+                run_state(State.YELLOW);
+            }
+        }
+    }
+
+    public virtual void yellow_audio(){
+        if(alertness == State.YELLOW_AUDIO){
+            if(sound_detection(player.bullet_shot()) && lookTarget == null){                
+                shortest_path_calculated = false;
+            }
+            calc_shortest_path(transform.position, sound_location);
+            
+            if(shortest_path_index < path.length()){
+                Node current_node = path.get_node(shortest_path_index);
+                float distance_from_node = Vector2.Distance(transform.position, current_node.worldPosition);
+
+                Vector2 worldFaceDir = current_node.worldPosition - new Vector2(transform.position.x, transform.position.y);
+                worldFaceDir.Normalize();
+                faceDir = transform.InverseTransformDirection(worldFaceDir);
+                AI_move.updateCommandData(faceDir);
+                AI_move.execute(this);
+                
+                if(distance_from_node < .1){
+                     shortest_path_index += 1;   
+                }
+            }
+            else{
+                shortest_path_index = 0;
+                shortest_path_calculated = false;
+                isMoving = false;
+                run_state(State.RETURN);
+            }
+            if(lookTarget != null){
+                run_state(State.YELLOW);
+            }
+        }
+    }
+
+    public virtual void yellow_alertness(){
+        if(alertness == State.YELLOW){
             if(lookTarget != null){
                 Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
                 worldFaceDir.Normalize();
                 Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
-                positions.Add(transform.position);
                 
                 AI_move.updateCommandData(localDir);
                 AI_move.execute(this);
@@ -390,6 +426,16 @@ public class AIActor : GameActor {
                 if(inc_state_timer > state_change_time){
                     inc_state_timer = 0;
                     run_state(State.RED);
+                }
+            }
+            if(lookTarget == null){
+                isMoving = false;
+                inc_state_timer = 0;
+                dec_state_timer += Time.deltaTime;
+                
+                if(dec_state_timer > state_change_time){
+                    shortest_path_calculated = false;
+                    run_state(State.RETURN);
                 }
             }
         }
