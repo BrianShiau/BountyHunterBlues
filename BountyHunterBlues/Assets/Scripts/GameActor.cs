@@ -107,8 +107,8 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>, Hearable
         aimTarget = null;
         foreach (RaycastHit2D hitinfo in sortedHits) {
             GameObject obj = hitinfo.collider.gameObject;
+			aimPoint = hitinfo.point;
 			if (obj.tag != "GameActor"){
-				aimPoint = hitinfo.point;
                 // non-game actor in front, obstruction blocking aim
                 break;
 			} else if(hitinfo.collider.GetComponent<GameActor>().isVisible && hitinfo.collider.gameObject != gameObject)
