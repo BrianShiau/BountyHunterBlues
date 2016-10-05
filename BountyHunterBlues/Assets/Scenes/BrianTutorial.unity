@@ -4353,7 +4353,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: b4851f4c2a8cb264dbbb09f2be4edce1, type: 2}
+      objectReference: {fileID: 9100000, guid: 5b0d2035a0d51274ca0421b4eef15089, type: 2}
     - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
         type: 2}
       propertyPath: openingText
@@ -4374,6 +4374,26 @@ Prefab:
       propertyPath: secondaryCursorTexture
       value: 
       objectReference: {fileID: 2800000, guid: 93fa9ce123c2d451c89ce0cbbf5431ef, type: 3}
+    - target: {fileID: 20000012440476946, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+        type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20000012440476946, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+        type: 2}
+      propertyPath: m_HDR
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20000012440476946, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+        type: 2}
+      propertyPath: m_TargetDisplay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20000012440476946, guid: 16323df88e96c404e9ceffb52c9ca0cf,
+        type: 2}
+      propertyPath: orthographic size
+      value: 7.22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16323df88e96c404e9ceffb52c9ca0cf, type: 2}
   m_IsPrefabParent: 0

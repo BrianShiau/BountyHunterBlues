@@ -6105,7 +6105,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: b4851f4c2a8cb264dbbb09f2be4edce1, type: 2}
+      objectReference: {fileID: 9100000, guid: 5b0d2035a0d51274ca0421b4eef15089, type: 2}
     - target: {fileID: 114000010014971206, guid: 16323df88e96c404e9ceffb52c9ca0cf,
         type: 2}
       propertyPath: healthPool

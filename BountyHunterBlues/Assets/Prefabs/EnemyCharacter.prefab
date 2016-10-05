@@ -353,7 +353,7 @@ MonoBehaviour:
   aimDir: {x: 0, y: 0}
   fov: 140
   meleeDistance: 2
-  sightDistance: 100
+  sightDistance: 12
   interactionDistance: 2
   isAiming: 0
   isMoving: 0
@@ -369,10 +369,10 @@ MonoBehaviour:
   rotation_speed: 0
   playerObject: {fileID: 0}
   alertness: 0
-  audio_distance: 10
+  audio_distance: 8
   shortest_path_index: 0
   sound_location: {x: 0, y: 0, z: 0}
-  state_change_time: 0.5
+  state_change_time: 1
   attack_time_confirmation: 0.3
   move_speed: 1
   patrolStompSound: {fileID: 8300000, guid: bab06f649e83c3b468ff40a9c847a85a, type: 3}
