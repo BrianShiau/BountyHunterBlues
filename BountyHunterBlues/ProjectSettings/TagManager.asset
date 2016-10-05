@@ -11,6 +11,7 @@ TagManager:
   - BlackFade
   - ChatPanel
   - HitFlash
+  - ChatImage
   layers:
   - Default
   - TransparentFX

@@ -87,7 +87,7 @@ public class AIActor : GameActor {
         base.Start();
 
         path = gameObject.GetComponent<PathFinding>();
-        player = GameObject.Find("Player Character").GetComponent<PlayerActor>();
+        player = GameObject.Find("Player").GetComponent<PlayerActor>();
         patrol_forward = true;
         patrol_backward = false;
 
