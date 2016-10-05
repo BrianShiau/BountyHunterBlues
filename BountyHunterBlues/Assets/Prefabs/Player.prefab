@@ -248,6 +248,7 @@ MonoBehaviour:
   fire_location: {x: 0, y: 0, z: 0}
   hitShotSound: {fileID: 8300000, guid: 27546f41c215cce4181e92aa89a451db, type: 3}
   missShotSound: {fileID: 8300000, guid: 2f65b8c028d0d7147b046062b3fb1ab8, type: 3}
+  rechargeSound: {fileID: 0}
 --- !u!114 &114000011092929566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,7 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: a3d89f226ade345e9a818843f6abf99e, type: 3}
-  secondaryCursorTexture: {fileID: 2800000, guid: 93fa9ce123c2d451c89ce0cbbf5431ef,
+  secondaryCursorTexture: {fileID: 2800000, guid: 1c21a052270f440d7833f65bb671d1ef,
     type: 3}
   cursorMode: 0
   cursorTextures:
