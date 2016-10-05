@@ -306,6 +306,7 @@ public class PlayerActor : GameActor
             GameActorAnimator.SetBool("isMoving", false);
         }
         GameActorAnimator.SetBool("isKnifing", knifeAttacked);
+        GameActorAnimator.SetBool("isShooting", gun_fired);
 
         float red = gameObject.GetComponent<SpriteRenderer>().color.r;
         float green = gameObject.GetComponent<SpriteRenderer>().color.g;
