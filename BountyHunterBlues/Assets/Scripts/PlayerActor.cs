@@ -38,7 +38,9 @@ public class PlayerActor : GameActor
     // Audio
     public AudioClip hitShotSound;
     public AudioClip missShotSound;
+    public AudioClip rechargeSound;
     private AudioSource gunAudioSource;
+    private AudioSource gunRechargeSource;
 
     public override void Start()
     {
@@ -325,21 +327,31 @@ public class PlayerActor : GameActor
 
     public override void initAudio()
     {
+        rechargeSound = Resources.Load<AudioClip>("GunRecharge");
+
         gunAudioSource = gameObject.AddComponent<AudioSource>();
         gunAudioSource.clip = hitShotSound;
         gunAudioSource.loop = false;
         gunAudioSource.playOnAwake = false;
         gunAudioSource.volume = 1.0f;
+
+        gunRechargeSource = gameObject.AddComponent<AudioSource>();
+        gunRechargeSource.clip = rechargeSound;
+        gunRechargeSource.loop = false;
+        gunRechargeSource.playOnAwake = false;
+        gunRechargeSource.volume = 0.8f;
     }
 
     public override void runAudio()
     {
         if(gun_fired)
         {
-            gunAudioSource.PlayOneShot(missShotSound);
+            gunAudioSource.PlayOneShot(missShotSound, 0.8f);
 
             if (enemyHit)
                 gunAudioSource.PlayDelayed(missShotSound.length/4);
+
+            gunRechargeSource.Play();
                 
 
         }
