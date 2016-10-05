@@ -13,9 +13,18 @@ public class NPC : MonoBehaviour, Interactable {
 	public bool destroyAfterPlay;
 
 	public int currentLine;
+	private bool typing;
+	Coroutine typingRoutine;
+
+	//have to call start twice for some reason. dont do it the second time.
+	private bool startedAlready = false;
 
 	// Use this for initialization
 	public void Start () {
+		if (startedAlready)
+			return;
+		startedAlready = true;
+
 		if(destroyAfterPlay && PlayerActor.deaths!=0){
 			Destroy(this.gameObject);
 		}
@@ -23,11 +32,14 @@ public class NPC : MonoBehaviour, Interactable {
 		player = GameObject.FindObjectOfType<PlayerActor>();
 		chatPanel = GameObject.FindGameObjectWithTag ("ChatPanel");
 
+		typing = false;
+		typingRoutine = null;
+
 		switch (NPCNumber){
 		case 0: 
 			//Opening Tutorial
-			strings = new string[] {"Oh. I guess I better…",
-				"Oh. I guess I better… get off this ship",
+			strings = new string[] {
+				"Oh. I guess I better... get off this ship",
 				"Thanks, you hunk of junk.",
 			};
 			break;
@@ -38,20 +50,19 @@ public class NPC : MonoBehaviour, Interactable {
 			break;
 		case 10: 
 			//Rest Area Big Bad NPC
-			strings = new string[] {"A lot more ships leaving than coming these days…",
-				"A lot more ships leaving than coming these days… Things have changed since you’ve last been here. ",
-				"Though you’ve surely seen this before.",
+			strings = new string[] {
+				"A lot more ships leaving than coming these days... Things have changed since you’ve last been here. ",
 				"Though you’ve surely seen this before. Happening everywhere these days.",
-				"But don’t worry, it’s the riff-raff that are getting jettisoned.",
 				"But don’t worry, it’s the riff-raff that are getting jettisoned. [chuckles] Consider it a long-overdue spring cleaning.",
 				"You’d best watch yourself, lest you be sent the same way."
 			};
 			break;
 		case 20: 
 			//Opening Level 1
-			strings = new string[] {"Glad to see he’s creepy as ever. How the hell did he know I was gonna be here?",
+			strings = new string[] {
+				"Glad to see he’s creepy as ever. How the hell did he know I was gonna be here?",
 				"Okay, the door out of the loading bay is probably locked.",
-				"I wonder if they’re still using those rolly things…"
+				"I wonder if they’re still using those rolly things..."
 			};
 			break;
 		case 21: 
@@ -75,13 +86,19 @@ public class NPC : MonoBehaviour, Interactable {
 			return;
 		if (currentLine == 0) {
 			chatPanel.GetComponent<Image> ().enabled = true;
-			chatPanel.GetComponentInChildren<Text> ().text = strings [0];
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
-			currentLine++;
 			player.inTacticalMode = true;
-		} else if (currentLine < strings.Length) {
-			chatPanel.GetComponentInChildren<Text> ().text = strings [currentLine];
-			currentLine++;
+		}
+		if (currentLine < strings.Length) {
+			if (!typing) {
+				typing = true;
+				typingRoutine = StartCoroutine (TypeText (strings [currentLine]));
+			} else {
+				StopCoroutine (typingRoutine);
+				typing = false;
+				chatPanel.GetComponentInChildren<Text> ().text = strings [currentLine];
+				currentLine++;
+			}
 		} else {
 			if (destroyAfterPlay && this.gameObject) {
 				Text tutorialText = GetComponentInChildren<Text> ();
@@ -97,5 +114,20 @@ public class NPC : MonoBehaviour, Interactable {
 			chatPanel.GetComponentInChildren<Text> ().enabled = false;
 			player.inTacticalMode = false;
 		}
+
+		
+	}
+
+	IEnumerator TypeText (string message) 
+	{
+		chatPanel.GetComponentInChildren<Text> ().text = "";
+		foreach (char letter in message.ToCharArray()) 
+		{
+			chatPanel.GetComponentInChildren<Text> ().text += letter;
+			//play typing sound here if there is one
+			yield return new WaitForSeconds (.02f);
+		}
+		typing = false;
+		currentLine++;
 	}
 }

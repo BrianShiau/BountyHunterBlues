@@ -343,4 +343,8 @@ public class PlayerActor : GameActor
             gunAudioSource.PlayOneShot(hitShotSound);
         }
     }
+
+	public float getLastShotTime(){
+		return lastShotTime;
+	}
 }
