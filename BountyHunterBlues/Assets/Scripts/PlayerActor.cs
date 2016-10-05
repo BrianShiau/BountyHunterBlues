@@ -115,6 +115,8 @@ public class PlayerActor : GameActor
                 notifyEnemies();
                 fire_location = transform.position;
                 gun_fired = true;
+				//StartCoroutine(Utility.drawLine (transform.position, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.red, 1f));
+				//Debug.Log (transform.position + " " + aimPoint);
                 if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
                 {
                     enemyHit = true;

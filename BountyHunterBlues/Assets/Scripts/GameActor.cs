@@ -20,6 +20,7 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>, Hearable
     public bool isVisible;
     public int healthPool;
     public GameActor lookTarget; // null unless look ray collides with an unobstructed valid GameActor
+	public Vector2 aimPoint;
     public GameActor aimTarget; // null unless isAiming is true and aim ray collides with an unobstructed valid GameActor
     public Interactable interactionTarget; // null unless runVisionDetection sets this to an Interactable
 
@@ -106,10 +107,11 @@ public abstract class GameActor : MonoBehaviour, IEquatable<GameActor>, Hearable
         aimTarget = null;
         foreach (RaycastHit2D hitinfo in sortedHits) {
             GameObject obj = hitinfo.collider.gameObject;
-            if (obj.tag != "GameActor")
+			if (obj.tag != "GameActor"){
+				aimPoint = hitinfo.point;
                 // non-game actor in front, obstruction blocking aim
                 break;
-            else if(hitinfo.collider.GetComponent<GameActor>().isVisible && hitinfo.collider.gameObject != gameObject)
+			} else if(hitinfo.collider.GetComponent<GameActor>().isVisible && hitinfo.collider.gameObject != gameObject)
             {
                 // visible GameActor in Ray that is unobstructed and not me
                 aimTarget = hitinfo.collider.GetComponent<GameActor>();
