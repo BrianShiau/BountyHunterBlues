@@ -21,6 +21,7 @@ public class InputHandler : MonoBehaviour {
 
     void Start()
     {
+        player = GameObject.FindObjectOfType<PlayerActor>().gameObject;
         attackInputDelay = 0;
         meleeAttackInputDelay = 0;
         interactInputDelay = 0;
