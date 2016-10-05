@@ -13,6 +13,7 @@ public class PlayerActor : GameActor
     public bool knifeAttacked;
     public bool enemyHit;
     public bool inTacticalMode;
+    public bool tookDamage;
     public float reloadTime;
     public float cloakTime;
 
@@ -47,6 +48,7 @@ public class PlayerActor : GameActor
         gun_fired = false;
         enemyHit = false;
         knifeAttacked = false;
+        tookDamage = false;
         fire_location = new Vector3(0, 0, 0);
 
 		// play opening text only once
@@ -80,6 +82,7 @@ public class PlayerActor : GameActor
         knifeAttacked = false;
         gun_fired = false;
         enemyHit = false;
+        tookDamage = false;
 
         if (!isVisible)
             cloakTimer += Time.deltaTime;
@@ -186,6 +189,7 @@ public class PlayerActor : GameActor
         base.takeDamage();
         if(isAlive())
         {
+            tookDamage = true;
             isVisible = false;
             cloakTimer = 0;
 			if (GetComponentInChildren<HealthBar> ()) {
@@ -307,6 +311,7 @@ public class PlayerActor : GameActor
         }
         GameActorAnimator.SetBool("isKnifing", knifeAttacked);
         GameActorAnimator.SetBool("isShooting", gun_fired);
+        GameActorAnimator.SetBool("tookDamage", tookDamage);
 
         float red = gameObject.GetComponent<SpriteRenderer>().color.r;
         float green = gameObject.GetComponent<SpriteRenderer>().color.g;
