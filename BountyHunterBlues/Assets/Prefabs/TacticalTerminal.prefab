@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1000011812170614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.06, y: 7.93, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -67,9 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa367df39a36e547849e630ff9da9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 20000012440476946, guid: 16323df88e96c404e9ceffb52c9ca0cf,
-    type: 2}
-  TacticalCamera: {fileID: 0}
 --- !u!212 &212000010682054626
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -99,7 +96,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c0137342d60bb2841b0c13df5a3893b5, type: 3}
-  m_Color: {r: 0, g: 0.04827571, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 666e43dce302c4138aedec10386f9af5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
