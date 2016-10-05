@@ -52,26 +52,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
---- !u!1 &1000014015305876
-=======
+
 --- !u!1 &1000014293338286
->>>>>>> b8d2ddfa51e5351089a570e08a3c1cdae36d53c7
+
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-<<<<<<< HEAD
-  - 4: {fileID: 4000014018461642}
-  - 212: {fileID: 212000012579373124}
-  - 114: {fileID: 114000014091514018}
-=======
   - 4: {fileID: 4000012797864494}
   - 212: {fileID: 212000011548811354}
   - 114: {fileID: 114000010256641790}
->>>>>>> b8d2ddfa51e5351089a570e08a3c1cdae36d53c7
   m_Layer: 0
   m_Name: health bar_0
   m_TagString: Untagged
@@ -112,20 +104,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013579858438}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-<<<<<<< HEAD
-  m_LocalPosition: {x: 0.43, y: 22.42, z: 0}
-=======
   m_LocalPosition: {x: 0.4539634, y: 1.74, z: 0}
->>>>>>> b8d2ddfa51e5351089a570e08a3c1cdae36d53c7
   m_LocalScale: {x: 0.09487387, y: 0.09487408, z: 0.4743704}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children:
   - {fileID: 4000011375871692}
-<<<<<<< HEAD
-  - {fileID: 4000014018461642}
-=======
   - {fileID: 4000012797864494}
->>>>>>> b8d2ddfa51e5351089a570e08a3c1cdae36d53c7
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000014018461642
@@ -314,20 +298,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1000013579858438}
-<<<<<<< HEAD
---- !u!114 &114000014091514018
-=======
 --- !u!114 &114000010256641790
->>>>>>> b8d2ddfa51e5351089a570e08a3c1cdae36d53c7
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1000014015305876}
-=======
   m_GameObject: {fileID: 1000014293338286}
->>>>>>> b8d2ddfa51e5351089a570e08a3c1cdae36d53c7
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a190115e78a10f4e83903478b2e3051, type: 3}
@@ -345,20 +321,12 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010357571456}
   m_Enabled: 1
-<<<<<<< HEAD
---- !u!212 &212000012579373124
-=======
 --- !u!212 &212000011548811354
->>>>>>> b8d2ddfa51e5351089a570e08a3c1cdae36d53c7
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1000014015305876}
-=======
   m_GameObject: {fileID: 1000014293338286}
->>>>>>> b8d2ddfa51e5351089a570e08a3c1cdae36d53c7
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
