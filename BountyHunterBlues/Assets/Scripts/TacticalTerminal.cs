@@ -9,7 +9,7 @@ public class TacticalTerminal : MonoBehaviour, Interactable {
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindObjectOfType<PlayerActor>();
-        playerCamera = GameObject.Find("Player Character").GetComponentInChildren<Camera>();
+        playerCamera = GameObject.Find("Player").GetComponentInChildren<Camera>();
         tacticalCamera = GameObject.Find("TacticalCamera").GetComponent<Camera>();
 	}
 	

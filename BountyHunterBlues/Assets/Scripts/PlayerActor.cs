@@ -13,6 +13,7 @@ public class PlayerActor : GameActor
     public bool knifeAttacked;
     public bool enemyHit;
     public bool inTacticalMode;
+    public bool tookDamage;
     public float reloadTime;
     public float cloakTime;
 
@@ -37,7 +38,9 @@ public class PlayerActor : GameActor
     // Audio
     public AudioClip hitShotSound;
     public AudioClip missShotSound;
+    public AudioClip rechargeSound;
     private AudioSource gunAudioSource;
+    private AudioSource gunRechargeSource;
 
     public override void Start()
     {
@@ -47,6 +50,7 @@ public class PlayerActor : GameActor
         gun_fired = false;
         enemyHit = false;
         knifeAttacked = false;
+        tookDamage = false;
         fire_location = new Vector3(0, 0, 0);
 
 		// play opening text only once
@@ -80,6 +84,7 @@ public class PlayerActor : GameActor
         knifeAttacked = false;
         gun_fired = false;
         enemyHit = false;
+        tookDamage = false;
 
         if (!isVisible)
             cloakTimer += Time.deltaTime;
@@ -110,6 +115,8 @@ public class PlayerActor : GameActor
                 notifyEnemies();
                 fire_location = transform.position;
                 gun_fired = true;
+				StartCoroutine(Utility.drawLine (transform.position, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.red, 1f));
+				//Debug.Log (transform.position + " " + aimPoint);
                 if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
                 {
                     enemyHit = true;
@@ -186,6 +193,7 @@ public class PlayerActor : GameActor
         base.takeDamage();
         if(isAlive())
         {
+            tookDamage = true;
             isVisible = false;
             cloakTimer = 0;
 			if (GetComponentInChildren<HealthBar> ()) {
@@ -306,6 +314,8 @@ public class PlayerActor : GameActor
             GameActorAnimator.SetBool("isMoving", false);
         }
         GameActorAnimator.SetBool("isKnifing", knifeAttacked);
+        GameActorAnimator.SetBool("isShooting", gun_fired);
+        GameActorAnimator.SetBool("tookDamage", tookDamage);
 
         float red = gameObject.GetComponent<SpriteRenderer>().color.r;
         float green = gameObject.GetComponent<SpriteRenderer>().color.g;
@@ -319,21 +329,31 @@ public class PlayerActor : GameActor
 
     public override void initAudio()
     {
+        rechargeSound = Resources.Load<AudioClip>("GunRecharge");
+
         gunAudioSource = gameObject.AddComponent<AudioSource>();
         gunAudioSource.clip = hitShotSound;
         gunAudioSource.loop = false;
         gunAudioSource.playOnAwake = false;
         gunAudioSource.volume = 1.0f;
+
+        gunRechargeSource = gameObject.AddComponent<AudioSource>();
+        gunRechargeSource.clip = rechargeSound;
+        gunRechargeSource.loop = false;
+        gunRechargeSource.playOnAwake = false;
+        gunRechargeSource.volume = 0.8f;
     }
 
     public override void runAudio()
     {
         if(gun_fired)
         {
-            gunAudioSource.PlayOneShot(missShotSound);
+            gunAudioSource.PlayOneShot(missShotSound, 0.8f);
 
             if (enemyHit)
                 gunAudioSource.PlayDelayed(missShotSound.length/4);
+
+            gunRechargeSource.Play();
                 
 
         }

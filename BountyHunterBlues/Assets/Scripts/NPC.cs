@@ -6,6 +6,9 @@ public class NPC : MonoBehaviour, Interactable {
 	//we should really put this disable in player
 	private PlayerActor player;
 	private GameObject chatPanel;
+	private GameObject chatImage;
+
+	public Sprite npcImage;
 
 	private string[] strings;
 
@@ -31,6 +34,7 @@ public class NPC : MonoBehaviour, Interactable {
 
 		player = GameObject.FindObjectOfType<PlayerActor>();
 		chatPanel = GameObject.FindGameObjectWithTag ("ChatPanel");
+		chatImage = GameObject.FindGameObjectWithTag ("ChatImage");
 
 		typing = false;
 		typingRoutine = null;
@@ -45,7 +49,8 @@ public class NPC : MonoBehaviour, Interactable {
 			break;
 		case 1: 
 			//Ending Tutorial
-			strings = new string[] {""
+			strings = new string[] {
+				""
 			};
 			break;
 		case 10: 
@@ -67,7 +72,8 @@ public class NPC : MonoBehaviour, Interactable {
 			break;
 		case 21: 
 			//Ending Level 1
-			strings = new string[] {"Ending Level 1 Text",
+			strings = new string[] {
+				"Ending Level 1 Text",
 			};
 			break;
 		default:
@@ -87,6 +93,8 @@ public class NPC : MonoBehaviour, Interactable {
 		if (currentLine == 0) {
 			chatPanel.GetComponent<Image> ().enabled = true;
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
+			chatImage.GetComponent<Image> ().enabled = true;
+			chatImage.GetComponent<Image> ().sprite = npcImage;
 			player.inTacticalMode = true;
 		}
 		if (currentLine < strings.Length) {
@@ -112,6 +120,7 @@ public class NPC : MonoBehaviour, Interactable {
 			}
 			chatPanel.GetComponent<Image> ().enabled = false;
 			chatPanel.GetComponentInChildren<Text> ().enabled = false;
+			chatImage.GetComponent<Image> ().enabled = false;
 			player.inTacticalMode = false;
 		}
 
