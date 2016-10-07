@@ -76,6 +76,9 @@ public class AIActor : GameActor {
     private AudioSource moveAudioSource;
     private AudioSource shotAudioSource;
 
+	// UI Reactions
+	Animator reactionAnim;
+
     public Color[] stateColors = {
         Color.green,
         Color.yellow,
@@ -110,6 +113,11 @@ public class AIActor : GameActor {
         AI_attack = new AttackCommand();
 
         run_state(State.GREEN);
+
+		if (transform.FindChild ("Reactions")) {
+			reactionAnim = transform.FindChild ("Reactions").GetComponent<Animator> ();
+			reactionAnim.speed = 3.0f;
+		}
     }
 
     public override void Update()
@@ -228,11 +236,18 @@ public class AIActor : GameActor {
         alertness = color;
     }
 
+	private void resetReactionAnim(){
+		reactionAnim.SetInteger ("State", 0);
+	}
 
     public virtual void green_patrol(){
         if(alertness == State.GREEN && is_patrol){
             isMoving = false;
             if(sound_detection(sound_location) && lookTarget == null){
+				if (reactionAnim) {
+					reactionAnim.SetInteger ("State", 1);
+					Invoke ("resetReactionAnim", 2);
+				}
                 run_state(State.YELLOW_AUDIO);
             }
             if(lookTarget != null){
@@ -313,6 +328,10 @@ public class AIActor : GameActor {
         if(alertness == State.GREEN){
             isMoving = false;
             if(sound_detection(sound_location) && lookTarget == null){
+				if (reactionAnim) {
+					reactionAnim.SetInteger ("State", 1);
+					Invoke ("resetReactionAnim", 2);
+				}
                 run_state(State.YELLOW_AUDIO);
             }
             else if(lookTarget != null){
@@ -542,7 +561,6 @@ public class AIActor : GameActor {
     {
         base.updateAnimation();
         BarrelBase bBase = GetComponentInChildren<BarrelBase>();
-
 
         Animator EnemyBarrelAnimator = bBase.GetComponentInChildren<Animator>();
         if (faceDir.y != 0 && Mathf.Abs(faceDir.y) >= Mathf.Abs(faceDir.x)) // up and down facing priority over left and right
