@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public abstract class Command {
+public abstract class Command
+{
 
     public abstract void execute(GameActor actor);
     public virtual void updateCommandData(Vector2 data)
@@ -21,7 +22,7 @@ public class MoveCommand : Command
     {
         this.dir = dir;
     }
-    
+
     public override void execute(GameActor actor)
     {
         actor.move(dir);
@@ -33,7 +34,15 @@ public class MoveCommand : Command
     }
 }
 
-public class AttackCommand : Command
+public class MoveStopCommand : Command
+{
+    public override void execute(GameActor actor)
+    {
+        actor.stopMove();
+    }
+}
+
+public class RangedAttackCommand : Command
 {
     public override void execute(GameActor actor)
     {
@@ -57,30 +66,3 @@ public class InteractCommand : Command
     }
 }
 
-public class AimCommand : Command
-{
-    Vector2 dir;
-
-    public AimCommand(Vector2 dir)
-    {
-        this.dir = dir;
-    }
-
-    public override void execute(GameActor actor)
-    {
-        actor.aim(dir);
-    }
-
-    public override void updateCommandData(Vector2 data)
-    {
-        dir = data;
-    }
-}
-
-public class DisableAimCommand : Command
-{
-    public override void execute(GameActor actor)
-    {
-        actor.disableAim();
-    }
-}

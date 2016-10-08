@@ -7,12 +7,9 @@ public class InputHandler : MonoBehaviour {
     public GameObject player;
     // Here lists all the controls available
     private Command move;
-
-    private Command aim;
-    private Command disableAim;
-
+    private Command stopMove;
     private Command interact;
-    private Command attack;
+    private Command rangedAttack;
     private Command meleeAttack;
 
     private float attackInputDelay;
@@ -26,10 +23,9 @@ public class InputHandler : MonoBehaviour {
         meleeAttackInputDelay = 0;
         interactInputDelay = 0;
         move = new MoveCommand(new Vector2(0, 0));
-        aim = new AimCommand(new Vector2(0, 1));
-        disableAim = new DisableAimCommand();
+        stopMove = new MoveStopCommand();
         interact = new InteractCommand();
-        attack = new AttackCommand();
+        rangedAttack = new RangedAttackCommand();
         meleeAttack = new MeleeAttackCommand();
     }
 
@@ -76,21 +72,14 @@ public class InputHandler : MonoBehaviour {
                 nextCommands.AddLast(move);
             }
             else
-                // reinit isMoving to false when no move command is issued
-                player.GetComponent<GameActor>().isMoving = false;
+                // issue stopMove command if no WASD input given this frame
+                nextCommands.AddLast(stopMove);
 
             
 
             if (Input.GetMouseButton(0) && meleeAttackInputDelay < 0)
             {
-                // Aim and knife in the same frame
-                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-                Vector2 aimVector = player.transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
-                aimVector.Normalize();
-                aim.updateCommandData(aimVector);
-                nextCommands.AddLast(aim);
                 nextCommands.AddLast(meleeAttack);
-                nextCommands.AddLast(disableAim);
                 meleeAttackInputDelay = 1;
             }
 
@@ -101,14 +90,7 @@ public class InputHandler : MonoBehaviour {
 
             if (Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
             {
-                // Aim and shoot in same frame
-                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-                Vector2 aimVector = player.transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
-                aimVector.Normalize();
-                aim.updateCommandData(aimVector);
-                nextCommands.AddLast(aim);
-                nextCommands.AddLast(attack);
-                nextCommands.AddLast(disableAim);
+                nextCommands.AddLast(rangedAttack);
                 attackInputDelay = 1;
             }
 
