@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/*
 public class AudioSourceWrapper
 {
-    /*
+    
     public string sourceName;
     public AudioSource source;
 
@@ -26,9 +27,19 @@ public class AudioClipWrapper
         this.clip = clip;
     }
 }
+*/
+public class AudioManager
+{
+    public AudioManager()
+    {
 
-public class AudioManager : MonoBehaviour {
+    }
 
+    public void updateAudio() //placeholder
+    {
+
+    }
+    /*
     Dictionary<AudioSourceWrapper, AudioClipWrapper> sources;
 
 	void Start()
