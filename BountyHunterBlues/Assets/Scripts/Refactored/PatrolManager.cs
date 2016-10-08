@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PatrolManager :{
+public class PatrolManager { 
 	private PatrolPoint[] patrol_points;
 	private GameObject AI_reference;
 	private float patrol_distance;
@@ -12,14 +12,14 @@ public class PatrolManager :{
 	private bool is_reverse;
 
 	PatrolManager(GameObject obj, bool is_cycle = false){
-		AI_referece = obj;
+		AI_reference = obj;
 		this.is_cycle = is_cycle;
 		is_reverse = false;
 		wait_time = 0;
 	}
 
 	public Vector2 get_next_patrol_index(){
-		patrol_distance = Vector2.Distance(AI_reference.transform.position, patrol_points[patrol_index]);
+		patrol_distance = Vector2.Distance(AI_reference.transform.position, patrol_points[patrol_index].point.position);
 		if(patrol_distance < distance_threshold){
 			if(wait_time < patrol_points[patrol_index].wait_time){
 				wait_time += Time.deltaTime;
@@ -36,7 +36,7 @@ public class PatrolManager :{
 						}
 					}
 					else{
-						if(patrol_index == patrol_points.Count - 1){
+						if(patrol_index == patrol_points.Length - 1){
 							is_reverse = true;
 						}
 						else{
@@ -46,8 +46,8 @@ public class PatrolManager :{
 					}			
 				}
 				else{
-					if(patrol_index == patrol_points.Count() - 1){
-						patrol_index = 0
+					if(patrol_index == patrol_points.Length - 1){
+                        patrol_index = 0;
 					}
 					else{
 						patrol_index += 1;
