@@ -13,6 +13,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     public Vector2 faceDir;
     public float moveSpeed;
     public int health;
+    public PatrolPoint[] patrolPoints;
 
     protected AudioManager audioManager;
     //protected PatrolManager patrolManager;
