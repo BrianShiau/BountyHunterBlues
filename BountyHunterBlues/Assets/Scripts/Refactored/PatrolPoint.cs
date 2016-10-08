@@ -4,5 +4,5 @@
 public class PatrolPoint
 {
     public Transform point;
-    public float waitTime;
+    public float wait_time;
 }
