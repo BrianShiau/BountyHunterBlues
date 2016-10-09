@@ -20,6 +20,7 @@ public class PatrolManager {
 
 	public Vector2 get_next_patrol_index(){
 		patrol_distance = Vector2.Distance(AI_reference.transform.position, patrol_points[patrol_index].point.position);
+		
 		if(patrol_distance < distance_threshold){
 			if(wait_time < patrol_points[patrol_index].wait_time){
 				wait_time += Time.deltaTime;
@@ -42,7 +43,6 @@ public class PatrolManager {
 						else{
 							patrol_index += 1;
 						}
-	
 					}			
 				}
 				else{
@@ -56,7 +56,6 @@ public class PatrolManager {
 			}
 		}
 		
-
 		return patrol_points[patrol_index].point.position;
 	}
 }
