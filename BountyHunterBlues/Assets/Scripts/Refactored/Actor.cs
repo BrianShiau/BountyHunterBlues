@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
@@ -14,6 +15,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     public float moveSpeed;
     public int health;
     public PatrolPoint[] patrolPoints;
+    public AudioSerializable[] sourcesToClips;
 
     protected AudioManager audioManager;
     //protected PatrolManager patrolManager;
@@ -29,7 +31,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     // Use this for initialization
     public virtual void Start () {
         gameActorAnimator = GetComponent<Animator>();
-        audioManager = new AudioManager();
+        audioManager = initAudioManager();
         //patrolManager = new PatrolManager();
         isMoving = false;
         
@@ -39,20 +41,13 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
 	public virtual void Update () {
         updateDirection();
         runAnimation();
-        audioManager.updateAudio();
+        updateAudio();
         //patrolManager.updatePatrol();
 	}
 
     public bool Equals(Actor other)
     {
         return other != null && other.gameObject == gameObject;
-    }
-
-    // implements animation for direction and moving. Override as needed
-    public virtual void runAnimation()
-    {
-        gameActorAnimator.SetBool("isMoving", isMoving);
-        gameActorAnimator.SetInteger("Direction", (int)currDirection);
     }
 
 
@@ -94,6 +89,35 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
         isMoving = false;
     }
 
+    // implements animation for direction and moving. Override as needed
+    public virtual void runAnimation()
+    {
+        gameActorAnimator.SetBool("isMoving", isMoving);
+        gameActorAnimator.SetInteger("Direction", (int)currDirection);
+    }
+
+    // implements default init for AudioManager. Needs to be overriden for sound to work
+    protected virtual AudioManager initAudioManager()
+    {
+        List<KeyValuePair<string, DynamicAudioSource>> dySources = new List<KeyValuePair<string, DynamicAudioSource>>();
+        foreach(AudioSerializable sourceMapping in sourcesToClips)
+        {
+            List<KeyValuePair<string, AudioClip>> clips = new List<KeyValuePair<string, AudioClip>>();
+            foreach(AudioClip clip in sourceMapping.clips)
+                clips.Add(new KeyValuePair<string, AudioClip>("defaultSourceName", clip));
+
+            DynamicAudioSource dySource = new DynamicAudioSource(sourceMapping.source, clips.ToArray());
+            dySources.Add(new KeyValuePair<string, DynamicAudioSource>("defaultSourceName", dySource));
+        }
+
+        return new AudioManager(dySources.ToArray());
+    }
+
+    // implements default behavior for sound. Needs to be overriden for sound to work
+    protected virtual void updateAudio()
+    {
+
+    }
 
     protected void updateDirection()
     {
