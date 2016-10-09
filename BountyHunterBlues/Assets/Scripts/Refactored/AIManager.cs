@@ -14,7 +14,25 @@ public class AIManager{
 	    NEUTRAL, ALERT, AGGRESIVE, CONFUSED
 	}
 
+	void neutral_state(){
+
+	}
+	void alert_state(){
+
+	}
+	void aggresive_state(){
+
+	}
+	void confused_state(){
+		
+	}
+
 	State get_state(){
+		neutral_state();
+		alert_state();
+		aggresive_state();
+		confused_state();
+
 		return state;
 	}
 }
