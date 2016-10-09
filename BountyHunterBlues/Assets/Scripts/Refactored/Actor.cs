@@ -15,7 +15,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     public float moveSpeed;
     public int health;
     public PatrolPoint[] patrolPoints;
-    public AudioSerializable[] sourcesToClips;
+    public AudioSerializable[] sources;
 
     protected AudioManager audioManager;
     //protected PatrolManager patrolManager;
@@ -96,27 +96,37 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
         gameActorAnimator.SetInteger("Direction", (int)currDirection);
     }
 
-    // implements default init for AudioManager. Needs to be overriden for sound to work
-    protected virtual AudioManager initAudioManager()
+    // implements default init for AudioManager. Needs AudioSerializable sources to be defined in prefab
+    protected AudioManager initAudioManager()
     {
-        List<KeyValuePair<string, DynamicAudioSource>> dySources = new List<KeyValuePair<string, DynamicAudioSource>>();
-        foreach(AudioSerializable sourceMapping in sourcesToClips)
+        List<DynamicAudioSource> dySources = new List<DynamicAudioSource>();
+        foreach(AudioSerializable namedSource in sources)
         {
-            List<KeyValuePair<string, AudioClip>> clips = new List<KeyValuePair<string, AudioClip>>();
-            foreach(AudioClip clip in sourceMapping.clips)
-                clips.Add(new KeyValuePair<string, AudioClip>("defaultSourceName", clip));
+            List<NamedAudioClip> clips = new List<NamedAudioClip>();
+            foreach(NamedAudioClip clip in namedSource.Clips)
+                clips.Add(clip);
 
-            DynamicAudioSource dySource = new DynamicAudioSource(sourceMapping.source, clips.ToArray());
-            dySources.Add(new KeyValuePair<string, DynamicAudioSource>("defaultSourceName", dySource));
+            DynamicAudioSource dySource = new DynamicAudioSource(namedSource.Source, clips);
+            dySources.Add(dySource);
         }
 
-        return new AudioManager(dySources.ToArray());
+        return new AudioManager(dySources);
     }
 
-    // implements default behavior for sound. Needs to be overriden for sound to work
+    // implements default behavior for updating audio. Needs to be overriden to work properly
     protected virtual void updateAudio()
     {
-
+        /*
+         * This is an example implementation. 
+         * The prefab would define a NamedAudioSource with a name ("MotionSource" in this example)
+         * and a list of NamedAudioClip which the AudioSource can dynamically rotate in and out of use.
+         * In this example, "DefaultMotionClip" is the only clip associated with "MotionSource"
+        /*
+        if (isMoving)
+            audioManager.Play("MotionSource", "DefaultMotionClip");
+        else
+            audioManager.Stop("MotionSource");
+        */
     }
 
     protected void updateDirection()
