@@ -244,11 +244,11 @@ public class PlayerActor : GameActor
 		base.runAnimation();
 		if(inTacticalMode)
 		{
-			GameActorAnimator.SetBool("isMoving", false);
+			gameActorAnimator.SetBool("isMoving", false);
 		}
-		GameActorAnimator.SetBool("isKnifing", knifeAttacked);
-		GameActorAnimator.SetBool("isShooting", gun_fired);
-		GameActorAnimator.SetBool("tookDamage", tookDamage);
+		gameActorAnimator.SetBool("isKnifing", knifeAttacked);
+		gameActorAnimator.SetBool("isShooting", gun_fired);
+		gameActorAnimator.SetBool("tookDamage", tookDamage);
 
 		float red = gameObject.GetComponent<SpriteRenderer>().color.r;
 		float green = gameObject.GetComponent<SpriteRenderer>().color.g;
@@ -258,6 +258,61 @@ public class PlayerActor : GameActor
 		else
 			GetComponent<SpriteRenderer>().color = new Color(red, blue, green, 1.0f);
 
+	}
+
+	public override GameActor[] runVisionDetection(float fov, float sightDistance)
+	{
+		GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
+		List<GameActor> seenActors = new List<GameActor>();
+		foreach (GameObject actorObject in ActorObjects)
+		{
+			if (actorObject != this.gameObject) // ignore myself
+			{
+				Vector2 worldVector = actorObject.transform.position - transform.position;
+				worldVector.Normalize();
+				Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
+				if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
+				{
+					RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, sightDistance);
+					IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance); // sorted by ascending by default
+					foreach (RaycastHit2D hitinfo in sortedHits)
+					{
+						GameObject hitObj = hitinfo.collider.gameObject;
+
+						if (hitObj.tag != "GameActor")
+							// obstruction in front, ignore the rest of the ray
+							break;
+
+						else if(hitObj.GetComponent<GameActor>() is AIActor && hitObj.GetComponent<GameActor>().isVisible 
+							&& !seenActors.Contains(hitObj.GetComponent<GameActor>()))
+							// the next obj in the ray line is a AIActor we haven't accounted for, add it
+							seenActors.Add(hitObj.GetComponent<GameActor>());   
+
+						// else the next obj in the ray line is a PlayerActor or an AIActor we've seen, just ignore it and keep moving down the ray
+					}
+				}
+			}
+		}
+
+		if (seenActors.Count == 0)
+			closestAttackable = null;
+		else
+		{
+			// make the closest GameActor in seenActors the new lookTarget
+			float dist = sightDistance;
+			foreach (GameActor actor in seenActors)
+			{
+				float nextDist = Vector2.Distance(actor.gameObject.transform.position, transform.position);
+				if (nextDist <= dist)
+				{
+					dist = nextDist;
+					closestAttackable = actor;
+				}
+			}
+			Vector2 worldVector = closestAttackable.transform.position - transform.position;
+			worldVector.Normalize();
+			Debug.DrawRay(transform.position, worldVector * sightDistance, Color.blue);
+		}
 	}
 
 	public float getLastShotTime(){

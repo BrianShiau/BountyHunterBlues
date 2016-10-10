@@ -32,23 +32,23 @@ public class TerminalBall : NPCActor, Interactable {
 		//damn this is some bad code
 
 		// update moving state
-		GameActorAnimator.SetBool("isMoving", isMoving);
+		gameActorAnimator.SetBool("isMoving", isMoving);
 
 		// update direction state
 		if (faceDir.y != 0 && Mathf.Abs(faceDir.y) >= Mathf.Abs(faceDir.x)) // up and down facing priority over left and right
 		{
 			if (faceDir.y > 0)
-				GameActorAnimator.SetInteger("Direction", (int)Direction.UP);
+				gameActorAnimator.SetInteger("Direction", (int)Direction.UP);
 			else
-				GameActorAnimator.SetInteger("Direction", (int)Direction.DOWN);
+				gameActorAnimator.SetInteger("Direction", (int)Direction.DOWN);
 		}
 
 		else
 		{
 			if (faceDir.x > 0)
-				GameActorAnimator.SetInteger("Direction", (int)Direction.RIGHT);
+				gameActorAnimator.SetInteger("Direction", (int)Direction.RIGHT);
 			else
-				GameActorAnimator.SetInteger("Direction", (int)Direction.LEFT);
+				gameActorAnimator.SetInteger("Direction", (int)Direction.LEFT);
 		}
 
 	}
