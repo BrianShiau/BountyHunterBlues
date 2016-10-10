@@ -12,11 +12,11 @@ public class DogEnemy : EnemyActor {
 
 	public override void Update(){
 		base.Update();
-		if(_stateManager.get_state(this.gameObject, false) == StateManager.State.NEUTRAL)
+		if(_stateManager.get_state(closestAttackable, false) == StateManager.State.NEUTRAL)
 			current_state = new NeutralDog();
-		if(_stateManager.get_state(this.gameObject, false) == StateManager.State.ALERT)
+		if(_stateManager.get_state(closestAttackable, false) == StateManager.State.ALERT)
 			current_state = new AlertDog();
-		if(_stateManager.get_state(this.gameObject, false) == StateManager.State.AGGRESIVE)
+		if(_stateManager.get_state(closestAttackable, false) == StateManager.State.AGGRESIVE)
 			current_state = new AggresiveDog();
 
 		Debug.Log(current_state.name());

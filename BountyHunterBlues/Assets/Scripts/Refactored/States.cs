@@ -9,7 +9,6 @@ public class NeutralDog: AIState {
 	public void execute(){}
 
 	public string name(){
-		Debug.Log("NEULTRAL");
 		return "NEUTRAL";
 	}
 }
@@ -22,7 +21,6 @@ public class AlertDog: AIState {
 	public void execute(){}
 
 	public string name(){
-		Debug.Log("ALERT");
 		return "ALERT";
 	}
 }
@@ -35,7 +33,6 @@ public class AggresiveDog: AIState {
 	public void execute(){}
 
 	public string name(){
-		Debug.Log("AGGRESIVE");
 		return "AGGRESIVE";
 	}
 }

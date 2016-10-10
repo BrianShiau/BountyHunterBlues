@@ -11,6 +11,7 @@ public abstract class EnemyActor : GameActor {
 	protected StateManager _stateManager;
 	protected bool hasAttacked;
 	protected AIState current_state;
+	private bool found = false;
 
 	//prefab
 	public int audio_distance;
@@ -18,7 +19,7 @@ public abstract class EnemyActor : GameActor {
 	public override void Start(){
 		base.Start();
 		hasAttacked = false;
-		_stateManager = new StateManager(2);
+		_stateManager = new StateManager(3);
 		current_state = new NeutralDog();
 	}
 
@@ -52,11 +53,15 @@ public abstract class EnemyActor : GameActor {
                 {
                     // PlayerActor
                     GameActors.Add(hitObj.GetComponent<GameActor>());
+                    found = true;
                     break;
                 }
             }
         }
-
+        if(!found){
+        	GameActors.Clear();
+        }
+		found = false;
         return GameActors.ToArray();
     }
 
