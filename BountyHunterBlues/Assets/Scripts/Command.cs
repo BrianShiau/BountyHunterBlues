@@ -46,7 +46,7 @@ public class RangedAttackCommand : Command
 {
     public override void execute(GameActor actor)
     {
-        actor.attack();
+		actor.rangedAttack();
     }
 }
 
