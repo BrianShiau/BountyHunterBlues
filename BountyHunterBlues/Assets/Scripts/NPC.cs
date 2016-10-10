@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class NPC : NPCActor, Interactable {
+public class NPC : NPCActor, Interactable, Dialogue {
 	//we should really put this disable in player
 	private PlayerActor player;
 	private GameObject chatPanel;
@@ -88,6 +88,11 @@ public class NPC : NPCActor, Interactable {
 
 	public void runInteraction()
 	{
+		runDialogue ();
+	}
+
+	public void runDialogue()
+	{
 		if (strings.Length == 0)
 			return;
 		if (currentLine == 0) {
@@ -123,8 +128,6 @@ public class NPC : NPCActor, Interactable {
 			chatImage.GetComponent<Image> ().enabled = false;
 			player.inTacticalMode = false;
 		}
-
-		
 	}
 
 	IEnumerator TypeText (string message) 
