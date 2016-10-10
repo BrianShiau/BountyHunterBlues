@@ -34,7 +34,6 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
         audioManager = initAudioManager();
         //patrolManager = new PatrolManager();
         isMoving = false;
-        
 	}
 	
 	// Update is called once per frame
