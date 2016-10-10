@@ -315,6 +315,11 @@ public class PlayerActor : GameActor
 		}
 	}
 
+	public override bool isVisible()
+	{
+		return isVisible;
+	}
+
 	public float getLastShotTime(){
 		return lastShotTime;
 	}
