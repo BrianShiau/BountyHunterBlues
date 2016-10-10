@@ -75,6 +75,15 @@
 //    private void run_state(State color){
 //        alertness = color;
 //    }
+
+//    public virtual bool sound_detection(Vector3 audio_point){
+//        if(audio_point.x != 0 && audio_point.y != 0){
+//            if(Vector2.Distance(transform.position, audio_point) < audio_distance){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 //
 //    public virtual void green_alertness(){
 //        if(alertness == State.GREEN){
@@ -113,14 +122,6 @@
 //        }
 //    }
 //
-//    public virtual bool sound_detection(Vector3 audio_point){
-//        if(audio_point.x != 0 && audio_point.y != 0){
-//            if(Vector2.Distance(transform.position, audio_point) < audio_distance){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 //
 //    public void calc_shortest_path(Vector3 from, Vector3 to){
 //        if(!shortest_path_calculated){
