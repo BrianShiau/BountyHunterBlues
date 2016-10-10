@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class NPC : MonoBehaviour, Interactable {
+public class NPC : NPCActor, Interactable {
 	//we should really put this disable in player
 	private PlayerActor player;
 	private GameObject chatPanel;
@@ -23,7 +23,7 @@ public class NPC : MonoBehaviour, Interactable {
 	private bool startedAlready = false;
 
 	// Use this for initialization
-	public void Start () {
+	public override void Start () {
 		if (startedAlready)
 			return;
 		startedAlready = true;
@@ -82,8 +82,8 @@ public class NPC : MonoBehaviour, Interactable {
 	}
 
 	// Update is called once per frame
-	void Update () {
-
+	public override void Update () {
+		base.Update ();
 	}
 
 	public void runInteraction()

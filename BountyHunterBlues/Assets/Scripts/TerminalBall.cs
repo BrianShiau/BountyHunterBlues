@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TerminalBall : AIActor, Interactable {
+public class TerminalBall : NPCActor, Interactable {
 	public Door opensThisdoor;
 
     // Audio
@@ -27,7 +27,7 @@ public class TerminalBall : AIActor, Interactable {
 		opensThisdoor.runInteraction ();
 	}
 
-	public override void updateAnimation(){
+	public override void runAnimation(){
 		//from GameActor.updateAnimation
 		//damn this is some bad code
 
@@ -52,30 +52,4 @@ public class TerminalBall : AIActor, Interactable {
 		}
 
 	}
-
-	//override these so the ball does nothing
-	public override void runVisionDetection(){}
-	public override void attack(){}
-	public override void yellow_audio(){}
-	public override void yellow_alertness(){}
-	public override void red_alertness(){}
-	public override void return_to_default(){}
-	public override void chase_alertness(){}
-	public override bool sound_detection(Vector3 audio_point){return false;}
-    public override void initAudio()
-    {
-        beepSoundSource = gameObject.AddComponent<AudioSource>();
-        beepSoundSource.clip = beepSound;
-        beepSoundSource.loop = false;
-        beepSoundSource.playOnAwake = false;
-        beepSoundSource.volume = 1.0f;
-    }
-    public override void runAudio()
-    {
-        if(interacted)
-        {
-            interacted = false;
-            beepSoundSource.Play();
-        }
-    }
 }
