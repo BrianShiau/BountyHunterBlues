@@ -108,9 +108,9 @@ public class AIActor : GameActor {
         move_speed = 2;
 
         AI_move = new MoveCommand(new Vector2(0, 0));
-        AI_aim = new AimCommand(faceDir);
-        AI_disableAim = new DisableAimCommand();
-        AI_attack = new AttackCommand();
+        //AI_aim = new AimCommand(faceDir);
+        //AI_disableAim = new DisableAimCommand();
+        //AI_attack = new AttackCommand();
 
         run_state(State.GREEN);
 
@@ -160,6 +160,10 @@ public class AIActor : GameActor {
     //}
 
 
+    public override void rangedAttack(){
+        throw new NotImplementedException();
+    }
+
     public override void meleeAttack()
     {
         throw new NotImplementedException();
@@ -185,51 +189,53 @@ public class AIActor : GameActor {
         Destroy (gameObject);
     }
 
-    //public override void runVisionDetection()
-    //{
-    //    GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
-    //    GameActor tempLookTarget = null;
-    //    foreach (GameObject actorObject in ActorObjects)
-    //    {
-    //        if (actorObject != this.gameObject) // ignore myself
-    //        {
-    //            Vector2 worldVector = actorObject.transform.position - transform.position;
-    //            worldVector.Normalize();
-    //            Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
-    //            if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
-    //            {
-    //                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, sightDistance);
-    //                IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance); // sorted by ascending by default
-    //                foreach (RaycastHit2D hitinfo in sortedHits)
-    //                {
-    //                    GameObject hitObj = hitinfo.collider.gameObject;
-    //                    if (hitObj.tag != "GameActor")
-    //                        // obstruction in front, ignore the rest of the ray
-    //                        break;
-    //                    else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible)
-    //                    {
-    //                        // PlayerActor
-    //                        tempLookTarget = hitObj.GetComponent<GameActor>();
-    //                        break;
-    //                    }
-    //                    // else the next obj in the ray line is an AIActor, just ignore it and keep moving down the ray
-    //                }
-//
-    //            }
-    //        }
-//
-    //        if (tempLookTarget != null)
-    //            break; // found player, no need to keep looping
-    //    }
-    //    if (tempLookTarget == null)
-    //        lookTarget = null;
-    //    else
-    //    {
-    //        lookTarget = tempLookTarget;
-    //        Vector2 worldVector = lookTarget.gameObject.transform.position - transform.position;
-    //        Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
-    //    }
-    //}
+    public override GameActor[] runVisionDetection(float fov, float sightDistance)
+    {
+        GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
+        GameActor tempclosestAttackable = null;
+        foreach (GameObject actorObject in ActorObjects)
+        {
+            if (actorObject != this.gameObject) // ignore myself
+            {
+                Vector2 worldVector = actorObject.transform.position - transform.position;
+                worldVector.Normalize();
+                Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
+                if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
+                {
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, sightDistance);
+                    IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance); // sorted by ascending by default
+                    foreach (RaycastHit2D hitinfo in sortedHits)
+                    {
+                        GameObject hitObj = hitinfo.collider.gameObject;
+                        if (hitObj.tag != "GameActor")
+                            // obstruction in front, ignore the rest of the ray
+                            break;
+                        else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible())
+                        {
+                            // PlayerActor
+                            tempclosestAttackable = hitObj.GetComponent<GameActor>();
+                            break;
+                        }
+                        // else the next obj in the ray line is an AIActor, just ignore it and keep moving down the ray
+                    }
+
+                }
+            }
+
+            if (tempclosestAttackable != null)
+                break; // found player, no need to keep looping
+        }
+        if (tempclosestAttackable == null)
+            closestAttackable = null;
+        else
+        {
+            closestAttackable = tempclosestAttackable;
+            Vector2 worldVector = closestAttackable.gameObject.transform.position - transform.position;
+            Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
+        }
+
+        return new GameActor[3];
+    }
 
 
     private void run_state(State color){
@@ -243,16 +249,16 @@ public class AIActor : GameActor {
     public virtual void green_patrol(){
         if(alertness == State.GREEN && is_patrol){
             isMoving = false;
-            if(sound_detection(sound_location) && lookTarget == null){
+            if(sound_detection(sound_location) && closestAttackable == null){
 				if (reactionAnim) {
 					reactionAnim.SetInteger ("State", 1);
 					Invoke ("resetReactionAnim", 2);
 				}
                 run_state(State.YELLOW_AUDIO);
             }
-            if(lookTarget != null){
+            if(closestAttackable != null){
                 // get world-space vector to target from me
-                Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
+                Vector2 worldFaceDir = closestAttackable.transform.position - transform.position;
                 worldFaceDir.Normalize();
 
                 Vector2 localWorldFaceDir = transform.InverseTransformDirection(worldFaceDir);
@@ -327,15 +333,15 @@ public class AIActor : GameActor {
     public virtual void green_alertness(){
         if(alertness == State.GREEN){
             isMoving = false;
-            if(sound_detection(sound_location) && lookTarget == null){
+            if(sound_detection(sound_location) && closestAttackable == null){
 				if (reactionAnim) {
 					reactionAnim.SetInteger ("State", 1);
 					Invoke ("resetReactionAnim", 2);
 				}
                 run_state(State.YELLOW_AUDIO);
             }
-            else if(lookTarget != null){
-                Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
+            else if(closestAttackable != null){
+                Vector2 worldFaceDir = closestAttackable.transform.position - transform.position;
                 worldFaceDir.Normalize();
 
                 Vector2 localWorldFaceDir = transform.InverseTransformDirection(worldFaceDir);
@@ -380,7 +386,7 @@ public class AIActor : GameActor {
 
     public virtual void chase_alertness(){
         if(alertness == State.CHASE){
-            if(sound_detection(sound_location) && lookTarget == null){                
+            if(sound_detection(sound_location) && closestAttackable == null){                
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
                 run_state(State.YELLOW_AUDIO);
@@ -409,7 +415,7 @@ public class AIActor : GameActor {
                 run_state(State.RETURN);
                 return;
             }
-            if(lookTarget != null){
+            if(closestAttackable != null){
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
                 run_state(State.YELLOW);
@@ -420,7 +426,7 @@ public class AIActor : GameActor {
 
     public virtual void return_to_default(){
         if(alertness == State.RETURN){
-            if(sound_detection(sound_location) && lookTarget == null){                
+            if(sound_detection(sound_location) && closestAttackable == null){                
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
                 run_state(State.YELLOW_AUDIO);
@@ -449,7 +455,7 @@ public class AIActor : GameActor {
                 run_state(State.GREEN);
                 return;
             }
-            if(lookTarget != null){
+            if(closestAttackable != null){
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
                 run_state(State.YELLOW);
@@ -460,7 +466,7 @@ public class AIActor : GameActor {
 
     public virtual void yellow_audio(){
         if(alertness == State.YELLOW_AUDIO){
-            if(sound_detection(sound_location) && lookTarget == null){                
+            if(sound_detection(sound_location) && closestAttackable == null){                
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
             }
@@ -488,7 +494,7 @@ public class AIActor : GameActor {
                 run_state(State.RETURN);
                 return;
             }
-            if(lookTarget != null){
+            if(closestAttackable != null){
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
                 run_state(State.YELLOW);
@@ -499,8 +505,8 @@ public class AIActor : GameActor {
 
     public virtual void yellow_alertness(){
         if(alertness == State.YELLOW){
-            if(lookTarget != null){
-                Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
+            if(closestAttackable != null){
+                Vector2 worldFaceDir = closestAttackable.transform.position - transform.position;
                 worldFaceDir.Normalize();
                 Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
                 
@@ -508,13 +514,13 @@ public class AIActor : GameActor {
                 AI_move.execute(this);
                 dec_state_timer = 0;
                 inc_state_timer += Time.deltaTime;
-                last_seen = lookTarget.transform.position; 
+                last_seen = closestAttackable.transform.position; 
                 if(inc_state_timer > state_change_time){
                     inc_state_timer = 0;
                     run_state(State.RED);
                 }
             }
-            if(lookTarget == null){
+            if(closestAttackable == null){
                 isMoving = false;
                 inc_state_timer = 0;
                 dec_state_timer += Time.deltaTime;
@@ -530,8 +536,8 @@ public class AIActor : GameActor {
 
 	public virtual void red_alertness(){
         if(alertness == State.RED){
-            if(lookTarget != null){
-                Vector2 worldFaceDir = lookTarget.transform.position - transform.position;
+            if(closestAttackable != null){
+                Vector2 worldFaceDir = closestAttackable.transform.position - transform.position;
                 worldFaceDir.Normalize();
                 Vector2 localDir = transform.InverseTransformDirection(worldFaceDir);
                 AI_move.updateCommandData(localDir);
@@ -544,7 +550,7 @@ public class AIActor : GameActor {
                     AI_attack.execute(this);
                 }
             }
-            if(lookTarget == null){
+            if(closestAttackable == null){
                 isMoving = false;
                 attack_timer = 0;
                 dec_state_timer += Time.deltaTime;
