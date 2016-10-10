@@ -201,44 +201,39 @@ public class AIActor : GameActor {
     {
         GameObject[] ActorObjects = GameObject.FindGameObjectsWithTag("GameActor");
         GameActor tempclosestAttackable = null;
-        foreach (GameObject actorObject in ActorObjects)
+
+        PlayerActor actorObject = GameObject.FindObjectOfType<PlayerActor>();
+
+
+        Vector2 worldVector = actorObject.transform.position - transform.position;
+        worldVector.Normalize();
+        Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
+        if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
         {
-            if (actorObject != this.gameObject) // ignore myself
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, sightDistance);
+            IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance); // sorted by ascending by default
+            foreach (RaycastHit2D hitinfo in sortedHits)
             {
-                Vector2 worldVector = actorObject.transform.position - transform.position;
-                worldVector.Normalize();
-                Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
-                if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2)
+                GameObject hitObj = hitinfo.collider.gameObject;
+                if (hitObj.tag != "GameActor")
+                    // obstruction in front, ignore the rest of the ray
+                    break;
+                else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible())
                 {
-                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, sightDistance);
-                    IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance); // sorted by ascending by default
-                    foreach (RaycastHit2D hitinfo in sortedHits)
-                    {
-                        GameObject hitObj = hitinfo.collider.gameObject;
-                        if (hitObj.tag != "GameActor")
-                            // obstruction in front, ignore the rest of the ray
-                            break;
-                        else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible())
-                        {
-                            // PlayerActor
-                            tempclosestAttackable = hitObj.GetComponent<GameActor>();
-                            break;
-                        }
-                        // else the next obj in the ray line is an AIActor, just ignore it and keep moving down the ray
-                    }
-
+                    // PlayerActor
+                    tempclosestAttackable = hitObj.GetComponent<GameActor>();
+                    break;
                 }
+                // else the next obj in the ray line is an AIActor, just ignore it and keep moving down the ray
             }
-
-            if (tempclosestAttackable != null)
-                break; // found player, no need to keep looping
         }
+        
         if (tempclosestAttackable == null)
             closestAttackable = null;
         else
         {
             closestAttackable = tempclosestAttackable;
-            Vector2 worldVector = closestAttackable.gameObject.transform.position - transform.position;
+            worldVector = closestAttackable.gameObject.transform.position - transform.position;
             Debug.DrawRay(transform.position, worldVector * sightDistance, Color.magenta);
         }
 
