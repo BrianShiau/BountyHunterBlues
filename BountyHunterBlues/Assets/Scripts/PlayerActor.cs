@@ -19,6 +19,8 @@ public class PlayerActor : GameActor
 
 	private float lastShotTime;
 	private float cloakTimer;
+	private bool visible;
+	private Vector2 aimPoint;
 
 	public int currentLevel;
 	public NPC openingText;
@@ -51,6 +53,7 @@ public class PlayerActor : GameActor
 		enemyHit = false;
 		knifeAttacked = false;
 		tookDamage = false;
+		visible = true;
 		fire_location = new Vector3(0, 0, 0);
 
 		// play opening text only once
@@ -86,10 +89,10 @@ public class PlayerActor : GameActor
 		enemyHit = false;
 		tookDamage = false;
 
-		if (!isVisible)
+		if (!visible)
 			cloakTimer += Time.deltaTime;
 		if (cloakTimer >= cloakTime)
-			isVisible = true;
+			visible = true;
 
 		gunSlider.value = lastShotTime;
 		if (lastShotTime >= 2) {
@@ -103,7 +106,7 @@ public class PlayerActor : GameActor
 
 	public override void rangedAttack()
 	{
-		if (isVisible)
+		if (visible)
 		{
 			if (hasGun && lastShotTime >= reloadTime)
 			{
@@ -118,11 +121,11 @@ public class PlayerActor : GameActor
 				GameActor aimTarget = null;
 				foreach (RaycastHit2D hitinfo in sortedHits) {
 					GameObject obj = hitinfo.collider.gameObject;
-					Vector2 aimPoint = hitinfo.point;
+					aimPoint = hitinfo.point;
 					if (obj.tag != "GameActor"){
 						// non-game actor in front, obstruction blocking aim
 						break;
-					} else if(hitinfo.collider.GetComponent<GameActor>().isVisible && hitinfo.collider.gameObject != gameObject)
+					} else if(hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
 					{
 						// visible GameActor in Ray that is unobstructed and not me
 						aimTarget = hitinfo.collider.GetComponent<GameActor>();
@@ -185,7 +188,7 @@ public class PlayerActor : GameActor
 
 	public override void meleeAttack()
 	{
-		if (isVisible)
+		if (visible)
 		{
 			knifeAttacked = true;
 			if (closestAttackable != null && Vector2.Distance(closestAttackable.transform.position, transform.position) <= meleeDistance)
@@ -210,10 +213,10 @@ public class PlayerActor : GameActor
 		if(isAlive())
 		{
 			tookDamage = true;
-			isVisible = false;
+			visible = false;
 			cloakTimer = 0;
 			if (GetComponentInChildren<HealthBar> ()) {
-				GetComponentInChildren<HealthBar> ().setHealth (healthPool);
+				GetComponentInChildren<HealthBar> ().setHealth (health);
 			}
 			StartCoroutine (PlayHitFlash());
 		}
@@ -253,7 +256,7 @@ public class PlayerActor : GameActor
 		float red = gameObject.GetComponent<SpriteRenderer>().color.r;
 		float green = gameObject.GetComponent<SpriteRenderer>().color.g;
 		float blue = gameObject.GetComponent<SpriteRenderer>().color.b;
-		if (!isVisible)
+		if (!visible)
 			GetComponent<SpriteRenderer>().color = new Color(red, blue, green, .5f);
 		else
 			GetComponent<SpriteRenderer>().color = new Color(red, blue, green, 1.0f);
@@ -283,7 +286,7 @@ public class PlayerActor : GameActor
 							// obstruction in front, ignore the rest of the ray
 							break;
 
-						else if(hitObj.GetComponent<GameActor>() is AIActor && hitObj.GetComponent<GameActor>().isVisible 
+						else if(hitObj.GetComponent<GameActor>() is AIActor && hitObj.GetComponent<GameActor>().isVisible() 
 							&& !seenActors.Contains(hitObj.GetComponent<GameActor>()))
 							// the next obj in the ray line is a AIActor we haven't accounted for, add it
 							seenActors.Add(hitObj.GetComponent<GameActor>());   
@@ -293,31 +296,12 @@ public class PlayerActor : GameActor
 				}
 			}
 		}
-
-		if (seenActors.Count == 0)
-			closestAttackable = null;
-		else
-		{
-			// make the closest GameActor in seenActors the new lookTarget
-			float dist = sightDistance;
-			foreach (GameActor actor in seenActors)
-			{
-				float nextDist = Vector2.Distance(actor.gameObject.transform.position, transform.position);
-				if (nextDist <= dist)
-				{
-					dist = nextDist;
-					closestAttackable = actor;
-				}
-			}
-			Vector2 worldVector = closestAttackable.transform.position - transform.position;
-			worldVector.Normalize();
-			Debug.DrawRay(transform.position, worldVector * sightDistance, Color.blue);
-		}
+		return seenActors.ToArray();
 	}
 
 	public override bool isVisible()
 	{
-		return isVisible;
+		return visible;
 	}
 
 	public float getLastShotTime(){

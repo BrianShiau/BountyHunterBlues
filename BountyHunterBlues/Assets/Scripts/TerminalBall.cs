@@ -11,18 +11,18 @@ public class TerminalBall : NPCActor, Interactable {
     private bool interacted = false;
 
 	// Use this for initialization
-	void NotCalledStart () {
-	
+	public override void Start(){
+		
 	}
 	
 	// Update is called once per frame
-	void NotCalledUpdate () {
+	public override void Update(){
 	
 	}
 
 	public void runInteraction()
 	{
-        interacted = true;
+		interacted = true;
 		opensThisdoor.specialDoor = false;
 		opensThisdoor.runInteraction ();
 	}
