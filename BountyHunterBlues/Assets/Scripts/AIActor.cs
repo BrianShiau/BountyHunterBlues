@@ -161,7 +161,15 @@ public class AIActor : GameActor {
 
 
     public override void rangedAttack(){
-        throw new NotImplementedException();
+        if (closestAttackable is PlayerActor){
+            hasAttacked = true;
+            closestAttackable.takeDamage();
+            if (!closestAttackable.isAlive())
+                closestAttackable = null;
+        }
+        else
+            Debug.Log("AI can't attack other AI");
+        
     }
 
     public override void meleeAttack()
