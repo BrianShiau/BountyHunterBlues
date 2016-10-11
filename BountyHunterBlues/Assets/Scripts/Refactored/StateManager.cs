@@ -42,15 +42,11 @@ public class StateManager{
 	}
 
 	private void alert_state(GameActor target, bool sound_detected, bool is_alert){
-		if(sound_detected && target == null){
-			state_time_up = 0;
-			state_time_down = 0;
-		}
 		if(target != null){
 			state_time_down = 0;
 			state_time_up += Time.deltaTime;
 			if(state_time_up >= state_time_threshold){
-				//set_state(State.AGGRESIVE);
+				set_state(State.AGGRESIVE);
 				state_time_up = 0;
 			}
 		}

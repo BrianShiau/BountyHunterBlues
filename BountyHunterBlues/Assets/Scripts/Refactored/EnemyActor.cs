@@ -12,6 +12,7 @@ public abstract class EnemyActor : GameActor {
 	protected AIState current_state;
     protected bool hasAttacked;
     private bool alert;
+    protected Vector2 last_seen;
 
     private Vector2 last_neutral_position;
     private Vector2 initial_faceDir;
@@ -39,12 +40,21 @@ public abstract class EnemyActor : GameActor {
         initial_faceDir = faceDir;
         audio_location = new Vector2(Int32.MaxValue, Int32.MaxValue);
         alert = false;
+        last_seen = new Vector2(0, 0);
 	}
 
 	public override void Update(){
 		hasAttacked = false;
         base.Update();
 	}
+
+    public Vector2 get_last_seen(){
+        return last_seen;
+    }
+
+    public void set_last_seen(Vector2 value){
+        last_seen = value;
+    }
 
     public void set_alert(bool value){
         alert = value;

@@ -80,7 +80,6 @@ public class NeutralDog: DogState {
 }
 
 public class AlertDog: DogState {
-	Vector2 last_seen;
 
 	public AlertDog(DogEnemy enemy) : base(enemy) { }
 
@@ -90,13 +89,18 @@ public class AlertDog: DogState {
 	}
 
 	public override void on_exit(){
-		last_seen = new Vector2(0, 0);
-		enemy.set_audio_location(new Vector2(0, 0));
+		enemy.set_alert(false);
+		enemy.set_last_seen(new Vector2(0, 0));
+		enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
 		enemy.path.clear();
 	    enemy.reset_path_index();
 	}
 
 	public override void execute(){
+		Debug.Log("here");
+		Debug.Log(enemy.getClosestAttackable());
+		Debug.Log(enemy.get_last_seen().x);
+		Debug.Log(enemy.get_last_seen().y);
 		if(enemy.getClosestAttackable() != null){
 			enemy.set_alert(true);
 			Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
@@ -108,15 +112,15 @@ public class AlertDog: DogState {
 	        enemy.faceDir = dir;
 	        move.updateCommandData(localFaceDir);
 	        move.execute(enemy);
-	        last_seen = new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y);
+	        enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
     	    enemy.path.clear();
 	        enemy.reset_path_index();
 			enemy.set_shortest_path_calculated(false);
 		}
-		else if(enemy.getClosestAttackable() == null && last_seen.x != 0 && last_seen.y != 0){
+		else if(enemy.getClosestAttackable() == null && enemy.get_last_seen().x != 0 && enemy.get_last_seen().y != 0){
 			enemy.set_alert(true);
 			enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
-        	enemy.calc_shortest_path(enemy.transform.position, last_seen);
+        	enemy.calc_shortest_path(enemy.transform.position, enemy.get_last_seen());
         	if(enemy.get_path_index() < enemy.path_length()){
 	        	Node current_node = enemy.path.get_node(enemy.get_path_index());
 	        	float distance_from_node = Vector2.Distance(enemy.transform.position, current_node.worldPosition);
@@ -135,11 +139,11 @@ public class AlertDog: DogState {
 	        	enemy.path.clear();
 	        	enemy.reset_path_index();
 	        	enemy.set_shortest_path_calculated(false);
-				last_seen = new Vector2(0, 0);
+				enemy.set_last_seen(new Vector2(0, 0));
 	        }
 		}
 		else if(enemy.getClosestAttackable() == null && enemy.get_audio_location().x != Int32.MaxValue && enemy.get_audio_location().y != Int32.MaxValue){
-			last_seen = new Vector2(0, 0);
+			enemy.set_last_seen(new Vector2(0, 0));
 			if(Vector2.Distance(enemy.get_audio_location(), enemy.gameObject.transform.position) <= enemy.audio_distance){
 	        	if(enemy.get_path_index() < enemy.path_length()){
 		        	Node current_node = enemy.path.get_node(enemy.get_path_index());
@@ -164,7 +168,7 @@ public class AlertDog: DogState {
 			}
 		}
 		else{
-            enemy.stopMove();
+            stopMove.execute(enemy);
             enemy.set_alert(false);
 		}
 	}
@@ -179,20 +183,39 @@ public class AlertDog: DogState {
 }
 
 public class AggresiveDog: DogState {
-    public AggresiveDog(DogEnemy enemy) : base(enemy) { }
 
-	public override void on_enter(){}
+	private float shoot_timer = 0;
+	private float shoot_timer_threshold = 1;
 
-	public override void on_exit(){}
+    public AggresiveDog(DogEnemy enemy) : base(enemy) { 
+    }
+
+	public override void on_enter(){
+		stopMove.execute(enemy);
+	}
+
+	public override void on_exit(){
+		enemy.set_shortest_path_calculated(false);
+		Debug.Log(enemy.get_last_seen());
+	}
 
 	public override void execute(){
-		Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
-        worldFaceDir.Normalize();
+		if(enemy.getClosestAttackable() != null){
+			Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
+	        worldFaceDir.Normalize();
 
-        Vector2 localFaceDir = enemy.transform.InverseTransformDirection(worldFaceDir);
-        Vector2 dir = Vector2.MoveTowards(enemy.faceDir, localFaceDir, enemy.rotation_speed * Time.deltaTime);
-        dir.Normalize();
-        enemy.faceDir = dir;
+	        Vector2 localFaceDir = enemy.transform.InverseTransformDirection(worldFaceDir);
+	        Vector2 dir = Vector2.MoveTowards(enemy.faceDir, localFaceDir, enemy.rotation_speed * Time.deltaTime);
+	        dir.Normalize();
+	        enemy.faceDir = dir;
+
+	        shoot_timer += Time.deltaTime;
+	        if(shoot_timer > shoot_timer_threshold){
+	        	rangedAttack.execute(enemy);
+	        	shoot_timer = 0;
+	        }
+	        enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
+    	}
 	}
 
 	public override string name(){
