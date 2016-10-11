@@ -7,4 +7,5 @@ public interface AIState {
 	void on_exit();
 	void execute();
 	string name();
+    State get_state();
 }

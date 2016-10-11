@@ -9,19 +9,18 @@ using System.Linq;
 public abstract class EnemyActor : GameActor {
 
 	protected StateManager _stateManager;
-	protected bool hasAttacked;
 	protected AIState current_state;
+    protected bool hasAttacked;
+    private bool alert;
 
-	private bool found = false;
     private Vector2 last_neutral_position;
-    private bool shortest_path_calculated;
     private Vector2 initial_faceDir;
+    private Vector2 audio_location;
     
-    public Command AI_move;
     public PathFinding path;
+    private bool shortest_path_calculated;
     public float node_transition_threshold;
     private int path_index;
-    private Vector2 audio_location;
 
 	//prefab
 	public float audio_distance;
@@ -33,13 +32,13 @@ public abstract class EnemyActor : GameActor {
 		hasAttacked = false;
 		_stateManager = new StateManager(transition_time);
 		current_state = new NeutralDog(null);
-        AI_move = new MoveCommand(new Vector2(0, 0));
         last_neutral_position = transform.position;
         path = gameObject.GetComponent<PathFinding>();
         shortest_path_calculated = false;
         path_index = 0;
         initial_faceDir = faceDir;
-        audio_location = new Vector2(0, 0);
+        audio_location = new Vector2(Int32.MaxValue, Int32.MaxValue);
+        alert = false;
 	}
 
 	public override void Update(){
@@ -47,12 +46,35 @@ public abstract class EnemyActor : GameActor {
         base.Update();
 	}
 
+    public void set_alert(bool value){
+        alert = value;
+    }
+
+    public bool is_alert(){
+        return alert;
+    }
+
     public Vector2 get_audio_location(){
         return audio_location;
     }
 
     public void set_audio_location(Vector2 location){
+        //Debug.Log("HERERERERER");
         audio_location = location;
+    }
+
+    public bool sound_heard(){
+        //Debug.Log(transform.position);
+        //Debug.Log(audio_location);
+        //Debug.Log(Vector2.Distance(transform.position, audio_location));
+        if(Vector2.Distance(transform.position, audio_location) <= audio_distance){
+        //    Debug.Log("in");
+            set_alert(true);
+            set_shortest_path_calculated(false);
+            calc_shortest_path(transform.position, get_audio_location());
+            return true;
+        }
+        return false;
     }
 
     public void calc_shortest_path(Vector3 from, Vector3 to){
@@ -66,6 +88,7 @@ public abstract class EnemyActor : GameActor {
     public void set_shortest_path_calculated(bool value){
         shortest_path_calculated = value;
     }
+
 
     public Vector2 get_initial_faceDir(){
         return initial_faceDir;
@@ -121,15 +144,10 @@ public abstract class EnemyActor : GameActor {
                 else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible()){
                     // PlayerActor
                     GameActors.Add(hitObj.GetComponent<GameActor>());
-                    found = true;
                     break;
                 }
             }
         }
-        if(!found){
-        	GameActors.Clear();
-        }
-		found = false;
         return GameActors.ToArray();
     }
 

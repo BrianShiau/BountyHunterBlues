@@ -41,7 +41,7 @@ public class StateManager{
 		}
 	}
 
-	private void alert_state(GameActor target, bool sound_detected){
+	private void alert_state(GameActor target, bool sound_detected, bool is_alert){
 		if(sound_detected && target == null){
 			state_time_up = 0;
 			state_time_down = 0;
@@ -53,13 +53,15 @@ public class StateManager{
 				//set_state(State.AGGRESIVE);
 				state_time_up = 0;
 			}
-			last_known_position = target.transform.position;
+		}
+		else if(is_alert){
+			return;
 		}
 		else{
 			state_time_up = 0;
 			state_time_down += Time.deltaTime;
 			if(state_time_down >= state_time_threshold){
-				//set_state(State.NEUTRAL);
+				set_state(State.NEUTRAL);
 				state_time_down = 0;
 			}
 		}
@@ -76,9 +78,9 @@ public class StateManager{
 	}
 
 
-	public void update_state(GameActor target, bool sound_detected){
+	public void update_state(GameActor target, bool sound_detected, bool is_alert){
 		if(state == State.NEUTRAL) 	 neutral_state(target, sound_detected);
-		if(state == State.ALERT) 	 alert_state(target, sound_detected);
+		if(state == State.ALERT) 	 alert_state(target, sound_detected, is_alert);
 		if(state == State.AGGRESIVE) aggresive_state(target);
 	}
 

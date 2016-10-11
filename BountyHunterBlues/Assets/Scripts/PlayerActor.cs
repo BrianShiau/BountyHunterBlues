@@ -166,8 +166,11 @@ public class PlayerActor : GameActor
 			toBeReset.AddFirst(curr);
 			foreach(EnemyActor enemy in enemies)
 			{
-				if (Vector2.Distance(enemy.transform.position, mGrid.gridToWorld(curr.point.X, curr.point.Y)) < mGrid.unitsize / 2.0f)
+				if (Vector2.Distance(enemy.transform.position, mGrid.gridToWorld(curr.point.X, curr.point.Y)) < mGrid.unitsize / 2.0f){
+					Debug.Log("OKOKOK");
 					enemy.set_audio_location(transform.position);
+					
+				}
 			}
 			foreach(NodeConnection connection in curr.connections)
 			{

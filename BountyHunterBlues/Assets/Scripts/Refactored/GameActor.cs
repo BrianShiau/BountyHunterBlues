@@ -35,10 +35,6 @@ public abstract class GameActor : Actor, Vision
         acquireInteractionTarget();
     }
 
-    public GameActor getGameActor(){
-        return this;
-    }
-
     public GameActor getClosestAttackable(){
         return closestAttackable;
     }
