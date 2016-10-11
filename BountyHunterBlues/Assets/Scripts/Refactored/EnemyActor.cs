@@ -64,4 +64,9 @@ public abstract class EnemyActor : GameActor {
         return GameActors.ToArray();
     }
 
+    public bool attackedThisFrame()
+    {
+        return hasAttacked;
+    }
+
 }

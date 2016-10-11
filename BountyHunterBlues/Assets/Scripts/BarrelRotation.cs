@@ -17,19 +17,19 @@ public class BarrelRotation : MonoBehaviour {
 
 
     private GameActor.Direction orientation;
-    private AIActor myActor;
+    private DogEnemy myActor;
     private float attackTimer;
     
 	// Use this for initialization
 	void Start () {
         orientation = GameActor.Direction.LEFT;
-        myActor = GetComponentInParent<AIActor>();
+        myActor = GetComponentInParent<DogEnemy>();
         attackTimer = attackTime;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (myActor.hasAttacked)
+        if (myActor.attackedThisFrame())
             attackTimer = 0;
         if (attackTimer < attackTime)
             attackTimer += Time.deltaTime;
