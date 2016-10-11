@@ -12,12 +12,10 @@ public abstract class EnemyActor : GameActor {
 	protected bool hasAttacked;
 	protected AIState current_state;
 
-	private bool found = false;
     private Vector2 last_neutral_position;
     private bool shortest_path_calculated;
     private Vector2 initial_faceDir;
     
-    public Command AI_move;
     public PathFinding path;
     public float node_transition_threshold;
     private int path_index;
@@ -32,7 +30,6 @@ public abstract class EnemyActor : GameActor {
 		hasAttacked = false;
 		_stateManager = new StateManager(transition_time, this);
 		current_state = new NeutralDog(null);
-        AI_move = new MoveCommand(new Vector2(0, 0));
         last_neutral_position = transform.position;
         path = gameObject.GetComponent<PathFinding>();
         shortest_path_calculated = false;
@@ -111,15 +108,10 @@ public abstract class EnemyActor : GameActor {
                 else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible()){
                     // PlayerActor
                     GameActors.Add(hitObj.GetComponent<GameActor>());
-                    found = true;
                     break;
                 }
             }
         }
-        if(!found){
-        	GameActors.Clear();
-        }
-		found = false;
         return GameActors.ToArray();
     }
 

@@ -1,19 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class NeutralDog: AIState {
+public abstract class DogState : AIState
+{
+    protected Command move;
+    protected Command stopMove;
+    protected Command rangedAttack;
+    protected DogEnemy enemy;
+    protected DogState(DogEnemy enemy)
+    {
+        this.enemy = enemy;
+        move = new MoveCommand(new Vector2(0,0));
+        stopMove = new MoveStopCommand();
+        rangedAttack = new RangedAttackCommand();
+    }
+    public abstract void on_enter();
+    public abstract void on_exit();
+    public abstract void execute();
+    public abstract string name();
+    public abstract State getState();
+}
 
-	DogEnemy enemy;
+public class NeutralDog: DogState {
 
-	public NeutralDog(DogEnemy enemy){
-		this.enemy = enemy;
-	}
 
-	public void on_enter(){ Debug.Log("enter neutral"); }
+	public NeutralDog(DogEnemy enemy) : base(enemy) {}
 
-	public void on_exit(){ Debug.Log("exit neutral"); }
+	public override void on_enter(){ Debug.Log("enter neutral"); }
 
-	public void execute(){
+	public override void on_exit(){ Debug.Log("exit neutral"); }
+
+	public override void execute(){
         enemy.calc_shortest_path(enemy.transform.position, enemy.get_neutral_position());
     	if(enemy.getClosestAttackable() != null){
 			Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
@@ -31,8 +49,8 @@ public class NeutralDog: AIState {
             Vector2 worldFace = current_node.worldPosition - new Vector2(enemy.transform.position.x, enemy.transform.position.y);
             worldFace.Normalize();
             enemy.faceDir = enemy.transform.InverseTransformDirection(worldFace);
-            enemy.AI_move.updateCommandData(enemy.faceDir);
-            enemy.AI_move.execute(enemy.getGameActor());
+            move.updateCommandData(enemy.faceDir);
+            move.execute(enemy);
             if(distance_from_node < enemy.get_node_transition_threshold()){
                 enemy.inc_path_index();   
             }
@@ -43,66 +61,75 @@ public class NeutralDog: AIState {
 			Vector2 temp = Vector2.MoveTowards(enemy.faceDir, enemy.get_initial_faceDir(), enemy.rotation_speed * Time.deltaTime);
             temp.Normalize();
             enemy.faceDir = temp;
-            enemy.stopMove();
+            stopMove.execute(enemy);
     	}
 	}
 
 
-	public string name(){
+	public override string name(){
 		return "NEUTRAL";
 	}
+
+    public override State getState()
+    {
+        return State.NEUTRAL;
+    }
 }
 
-public class AlertDog: AIState {
-	DogEnemy enemy;
+public class AlertDog: DogState {
 
-	public AlertDog(DogEnemy enemy){
-		this.enemy = enemy;
-	}
-	public void on_enter(){ Debug.Log("enter alert"); }
+    public AlertDog(DogEnemy enemy) : base(enemy) { }
+	public override void on_enter(){ Debug.Log("enter alert"); }
 
-	public void on_exit(){ Debug.Log("exit alert"); }
+	public override void on_exit(){ Debug.Log("exit alert"); }
 
-	public void execute(){
+	public override void execute(){
 		Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
         worldFaceDir.Normalize();
 
         Vector2 localFaceDir = enemy.transform.InverseTransformDirection(worldFaceDir);
-        Vector2 dir = Vector2.MoveTowards(enemy.faceDir, localFaceDir, 2 * Time.deltaTime);
+        Vector2 dir = Vector2.MoveTowards(enemy.faceDir, localFaceDir, enemy.rotation_speed * Time.deltaTime);
         dir.Normalize();
         enemy.faceDir = dir;
 
-        enemy.AI_move.updateCommandData(localFaceDir);
-        enemy.AI_move.execute(enemy.getGameActor());
+        move.updateCommandData(localFaceDir);
+        move.execute(enemy);
 	}
 
-	public string name(){
+	public override string name(){
 		return "ALERT";
 	}
+
+    public override State getState()
+    {
+        return State.ALERT;
+    }
 }
 
-public class AggresiveDog: AIState {
-	DogEnemy enemy;
+public class AggresiveDog: DogState
+{
+    public AggresiveDog(DogEnemy enemy) : base(enemy) { }
 
-	public AggresiveDog(DogEnemy enemy){
-		this.enemy = enemy;
-	}
+	public override void on_enter(){}
 
-	public void on_enter(){}
+	public override void on_exit(){}
 
-	public void on_exit(){}
-
-	public void execute(){
+	public override void execute(){
 		Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
         worldFaceDir.Normalize();
 
         Vector2 localFaceDir = enemy.transform.InverseTransformDirection(worldFaceDir);
-        Vector2 dir = Vector2.MoveTowards(enemy.faceDir, localFaceDir, 2 * Time.deltaTime);
+        Vector2 dir = Vector2.MoveTowards(enemy.faceDir, localFaceDir, enemy.rotation_speed * Time.deltaTime);
         dir.Normalize();
         enemy.faceDir = dir;
 	}
 
-	public string name(){
+	public override string name(){
 		return "AGGRESIVE";
 	}
+
+    public override State getState()
+    {
+        return State.AGGRESIVE;
+    }
 }

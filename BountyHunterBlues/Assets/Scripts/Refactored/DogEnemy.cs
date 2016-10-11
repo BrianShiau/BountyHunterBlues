@@ -14,7 +14,7 @@ public class DogEnemy : EnemyActor {
 		base.Update();
 
         _stateManager.update_state(closestAttackable, false);
-        if(current_state.name() != Enum.GetName(typeof(State), _stateManager.get_state())){
+        if(current_state.getState() != _stateManager.get_state()){
             current_state.on_exit();
             if(_stateManager.get_state() == State.NEUTRAL)
                 current_state = new NeutralDog(this);
