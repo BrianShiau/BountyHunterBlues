@@ -11,7 +11,7 @@ public abstract class DogState : AIState
     protected DogState(DogEnemy enemy)
     {
         this.enemy = enemy;
-        move = new MoveCommand(new Vector2(0,0));
+        move = new MoveCommand(new Vector2(Int32.MaxValue,Int32.MaxValue));
         stopMove = new MoveStopCommand();
         rangedAttack = new RangedAttackCommand();
     }
@@ -90,7 +90,7 @@ public class AlertDog: DogState {
 
 	public override void on_exit(){
 		enemy.set_alert(false);
-		enemy.set_last_seen(new Vector2(0, 0));
+		enemy.set_last_seen(new Vector2(Int32.MaxValue, Int32.MaxValue));
 		enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
 		enemy.path.clear();
 	    enemy.reset_path_index();
@@ -117,7 +117,7 @@ public class AlertDog: DogState {
 	        enemy.reset_path_index();
 			enemy.set_shortest_path_calculated(false);
 		}
-		else if(enemy.getClosestAttackable() == null && enemy.get_last_seen().x != 0 && enemy.get_last_seen().y != 0){
+		else if(enemy.getClosestAttackable() == null && enemy.get_last_seen().x != Int32.MaxValue && enemy.get_last_seen().y != Int32.MaxValue){
 			enemy.set_alert(true);
 			enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
         	enemy.calc_shortest_path(enemy.transform.position, enemy.get_last_seen());
@@ -139,11 +139,11 @@ public class AlertDog: DogState {
 	        	enemy.path.clear();
 	        	enemy.reset_path_index();
 	        	enemy.set_shortest_path_calculated(false);
-				enemy.set_last_seen(new Vector2(0, 0));
+				enemy.set_last_seen(new Vector2(Int32.MaxValue, Int32.MaxValue));
 	        }
 		}
 		else if(enemy.getClosestAttackable() == null && enemy.get_audio_location().x != Int32.MaxValue && enemy.get_audio_location().y != Int32.MaxValue){
-			enemy.set_last_seen(new Vector2(0, 0));
+			enemy.set_last_seen(new Vector2(Int32.MaxValue, Int32.MaxValue));
 			if(Vector2.Distance(enemy.get_audio_location(), enemy.gameObject.transform.position) <= enemy.audio_distance){
 	        	if(enemy.get_path_index() < enemy.path_length()){
 		        	Node current_node = enemy.path.get_node(enemy.get_path_index());

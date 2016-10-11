@@ -40,7 +40,7 @@ public abstract class EnemyActor : GameActor {
         initial_faceDir = faceDir;
         audio_location = new Vector2(Int32.MaxValue, Int32.MaxValue);
         alert = false;
-        last_seen = new Vector2(0, 0);
+        last_seen = new Vector2(Int32.MaxValue, Int32.MaxValue);
 	}
 
 	public override void Update(){
