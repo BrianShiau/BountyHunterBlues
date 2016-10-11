@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7917ca6e9e6737144b2399d04b4d12d2
-timeCreated: 1476128931
+timeCreated: 1476223619
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -258,10 +258,10 @@ TextureImporter:
       name: wall tiles 02_40
       rect:
         serializedVersion: 2
-        x: 388
+        x: 393
         y: 680
-        width: 365
-        height: 365
+        width: 360
+        height: 362
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -273,8 +273,8 @@ TextureImporter:
         serializedVersion: 2
         x: 830
         y: 680
-        width: 369
-        height: 365
+        width: 359
+        height: 363
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,7 +286,7 @@ TextureImporter:
         serializedVersion: 2
         x: 1676
         y: 795
-        width: 354
+        width: 353
         height: 186
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -297,9 +297,9 @@ TextureImporter:
       name: wall tiles 02_43
       rect:
         serializedVersion: 2
-        x: 3163
+        x: 3169
         y: 809
-        width: 184
+        width: 178
         height: 185
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -326,7 +326,7 @@ TextureImporter:
         x: 2425
         y: 604
         width: 184
-        height: 186
+        height: 182
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,12 +337,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2744
-        y: 609
+        y: 613
         width: 185
-        height: 184
+        height: 180
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
@@ -351,7 +351,7 @@ TextureImporter:
         serializedVersion: 2
         x: 3156
         y: 546
-        width: 186
+        width: 180
         height: 184
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -362,10 +362,10 @@ TextureImporter:
       name: wall tiles 02_48
       rect:
         serializedVersion: 2
-        x: 388
-        y: 222
-        width: 368
-        height: 368
+        x: 393
+        y: 225
+        width: 363
+        height: 365
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -376,9 +376,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 836
-        y: 222
-        width: 366
-        height: 364
+        y: 225
+        width: 361
+        height: 361
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -389,9 +389,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1733
-        y: 242
+        y: 245
         width: 186
-        height: 364
+        height: 358
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

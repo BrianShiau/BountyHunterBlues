@@ -22,7 +22,7 @@ GameObject:
   - 212: {fileID: 212000012559589614}
   - 61: {fileID: 61000010372998426}
   m_Layer: 0
-  m_Name: VerticalWallEnding
+  m_Name: VerticalStandalone
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010006461194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.82, y: 6.92, z: 0}
+  m_LocalPosition: {x: -0.7432249, y: 2.2302403, z: 0}
   m_LocalScale: {x: 0.55, y: 0.55, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -52,9 +52,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.000004795465, y: 0.36107704}
+  m_Offset: {x: -0.0000047683716, y: 0.020545179}
   serializedVersion: 2
-  m_Size: {x: 1.8399999, y: 6.092807}
+  m_Size: {x: 1.8399999, y: 5.4117436}
 --- !u!212 &212000012559589614
 SpriteRenderer:
   m_ObjectHideFlags: 1
