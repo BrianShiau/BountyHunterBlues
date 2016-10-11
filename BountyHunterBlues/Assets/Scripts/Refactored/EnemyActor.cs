@@ -70,4 +70,8 @@ public abstract class EnemyActor : GameActor {
         return hasAttacked;
     }
 
+    public AIState getCurrentState()
+    {
+        return current_state;
+    }
 }
