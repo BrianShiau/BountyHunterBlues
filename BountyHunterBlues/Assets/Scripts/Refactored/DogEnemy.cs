@@ -12,34 +12,16 @@ public class DogEnemy : EnemyActor {
 
 	public override void Update(){
 		base.Update();
-        //current_state = new AlertDog();
-        //current_state = new AggresiveDog();
-        //execute_neutral();
         if(_stateManager.get_state(closestAttackable, false) == StateManager.State.NEUTRAL)
-            current_state = new NeutralDog(closestAttackable, this);
+            current_state = new NeutralDog(this);
         if(_stateManager.get_state(closestAttackable, false) == StateManager.State.ALERT)
-            execute_alert();
+            current_state = new AlertDog(this);
         if(_stateManager.get_state(closestAttackable, false) == StateManager.State.AGGRESIVE)
-            execute_aggresive();
+            current_state = new AggresiveDog(this);
 
-
-		current_state.execute(this.gameObject);
+        Debug.Log(current_state.name());
+		current_state.execute();
 	}
-
-
-    //public void execute_neutral(){
-    //    stopMove();
-    //    Vector2 worldFaceDir = closestAttackable.gameObject.transform.position - transform.position;
-    //    worldFaceDir.Normalize();
-//
-    //    Vector2 localFaceDir = transform.InverseTransformDirection(worldFaceDir);
-    //    Vector2 dir = Vector2.MoveTowards(faceDir, localFaceDir, rotation_speed * Time.deltaTime);
-    //    dir.Normalize();
-    //    faceDir = dir;
-    //}
-
-    public void execute_alert(){}
-    public void execute_aggresive(){}
 
 	public override void rangedAttack(){
         if (closestAttackable is PlayerActor){

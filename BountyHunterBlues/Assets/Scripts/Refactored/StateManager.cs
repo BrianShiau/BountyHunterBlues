@@ -41,7 +41,7 @@ public class StateManager{
 			state_time_down = 0;
 			state_time_up += Time.deltaTime;
 			if(state_time_up >= state_time_threshold){
-				set_state(State.AGGRESIVE);
+				//set_state(State.AGGRESIVE);
 				state_time_up = 0;
 			}
 		}

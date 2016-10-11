@@ -12,6 +12,13 @@ public abstract class EnemyActor : GameActor {
 	protected bool hasAttacked;
 	protected AIState current_state;
 	private bool found = false;
+    private Vector2 last_neutral_position;
+    private bool shortest_path_calculated;
+    
+    public Command AI_move;
+    public PathFinding path;
+    public float node_transition_threshold;
+    private int path_index;
 
 	//prefab
 	public float audio_distance;
@@ -22,13 +29,50 @@ public abstract class EnemyActor : GameActor {
 		base.Start();
 		hasAttacked = false;
 		_stateManager = new StateManager(transition_time);
-		current_state = new NeutralDog(null, null);
+		current_state = new NeutralDog(null);
+        AI_move = new MoveCommand(new Vector2(0, 0));
+        last_neutral_position = transform.position;
+        path = gameObject.GetComponent<PathFinding>();
+        shortest_path_calculated = false;
+        path_index = 0;
 	}
 
 	public override void Update(){
 		hasAttacked = false;
         base.Update();
 	}
+
+    public void calc_shortest_path(Vector3 from, Vector3 to){
+        if(!shortest_path_calculated){
+            path.initialize(from, to);
+            path.calc_path();
+            shortest_path_calculated = true;
+        }
+    }
+
+    public float get_node_transition_threshold(){
+        return node_transition_threshold;
+    }
+
+    public void inc_path_index(){
+        path_index += 1;
+    }
+
+    public int get_path_index(){
+        return path_index;
+    }
+
+    public int path_length(){
+        return path.length();
+    }
+
+    public Vector2 get_neutral_position(){
+        return last_neutral_position;
+    }
+
+    public void set_neutral_position(Vector2 last_neutral_position){
+        this.last_neutral_position = last_neutral_position;
+    }
 
     public override void die(){
         Destroy (gameObject);
