@@ -6,8 +6,10 @@ using System.Linq;
 
 public class DogEnemy : EnemyActor {
 
+
 	public override void Start(){
 		base.Start();
+        current_state = new NeutralDog(this);
 	}
 
 	public override void Update(){

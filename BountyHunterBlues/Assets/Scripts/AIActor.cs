@@ -187,7 +187,7 @@ public class AIActor : GameActor {
         run_state(State2.GREEN);
     }
 
-    public void updateState(State2 newAlertState)
+    public void updateState(State newAlertState)
     {
 
     }

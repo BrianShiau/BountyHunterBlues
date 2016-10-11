@@ -21,6 +21,7 @@ public abstract class EnemyActor : GameActor {
     public PathFinding path;
     public float node_transition_threshold;
     private int path_index;
+    private Vector2 audio_location;
 
 	//prefab
 	public float audio_distance;
@@ -30,7 +31,7 @@ public abstract class EnemyActor : GameActor {
 	public override void Start(){
 		base.Start();
 		hasAttacked = false;
-		_stateManager = new StateManager(transition_time, this);
+		_stateManager = new StateManager(transition_time);
 		current_state = new NeutralDog(null);
         AI_move = new MoveCommand(new Vector2(0, 0));
         last_neutral_position = transform.position;
@@ -38,12 +39,21 @@ public abstract class EnemyActor : GameActor {
         shortest_path_calculated = false;
         path_index = 0;
         initial_faceDir = faceDir;
+        audio_location = new Vector2(0, 0);
 	}
 
 	public override void Update(){
 		hasAttacked = false;
         base.Update();
 	}
+
+    public Vector2 get_audio_location(){
+        return audio_location;
+    }
+
+    public void set_audio_location(Vector2 location){
+        audio_location = location;
+    }
 
     public void calc_shortest_path(Vector3 from, Vector3 to){
         if(!shortest_path_calculated){

@@ -151,7 +151,7 @@ public class PlayerActor : GameActor
 
 	private void notifyEnemies()
 	{
-		AIActor[] enemies = FindObjectsOfType<AIActor>();
+		EnemyActor[] enemies = FindObjectsOfType<EnemyActor>();
 		GridPoint gPoint = mGrid.worldToGrid(transform.position);
 		Node node = mGrid.nodes[gPoint.X, gPoint.Y];
 
@@ -164,10 +164,10 @@ public class PlayerActor : GameActor
 			Node curr = queue.First.Value;
 			queue.RemoveFirst();
 			toBeReset.AddFirst(curr);
-			foreach(AIActor enemy in enemies)
+			foreach(EnemyActor enemy in enemies)
 			{
 				if (Vector2.Distance(enemy.transform.position, mGrid.gridToWorld(curr.point.X, curr.point.Y)) < mGrid.unitsize / 2.0f)
-					enemy.sound_location = transform.position;
+					enemy.set_audio_location(transform.position);
 			}
 			foreach(NodeConnection connection in curr.connections)
 			{

@@ -14,7 +14,7 @@ public class StateManager{
 	private EnemyActor enemy;
 	private Vector2 last_known_position;
 
-	public StateManager(float state_time_threshold, EnemyActor enemy){
+	public StateManager(float state_time_threshold){
 		this.state_time_threshold = state_time_threshold;
 		this.enemy = enemy;
 		state_time_up = 0;
@@ -41,7 +41,11 @@ public class StateManager{
 		}
 	}
 
-	private void alert_state(GameActor target){
+	private void alert_state(GameActor target, bool sound_detected){
+		if(sound_detected && target == null){
+			state_time_up = 0;
+			state_time_down = 0;
+		}
 		if(target != null){
 			state_time_down = 0;
 			state_time_up += Time.deltaTime;
@@ -55,8 +59,7 @@ public class StateManager{
 			state_time_up = 0;
 			state_time_down += Time.deltaTime;
 			if(state_time_down >= state_time_threshold){
-				enemy.set_shortest_path_calculated(false);
-				set_state(State.NEUTRAL);
+				//set_state(State.NEUTRAL);
 				state_time_down = 0;
 			}
 		}
@@ -75,7 +78,7 @@ public class StateManager{
 
 	public void update_state(GameActor target, bool sound_detected){
 		if(state == State.NEUTRAL) 	 neutral_state(target, sound_detected);
-		if(state == State.ALERT) 	 alert_state(target);
+		if(state == State.ALERT) 	 alert_state(target, sound_detected);
 		if(state == State.AGGRESIVE) aggresive_state(target);
 	}
 
