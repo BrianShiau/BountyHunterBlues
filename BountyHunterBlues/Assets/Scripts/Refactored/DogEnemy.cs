@@ -19,7 +19,7 @@ public class DogEnemy : EnemyActor {
         if(_stateManager.get_state(closestAttackable, false) == StateManager.State.AGGRESIVE)
             current_state = new AggresiveDog(this);
 
-        Debug.Log(current_state.name());
+        //Debug.Log(current_state.name());
 		current_state.execute();
 	}
 

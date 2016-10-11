@@ -133,6 +133,10 @@ public class PathFinding : MonoBehaviour {
 		}
 	}
 
+	public void clear(){
+		path.Clear();
+	}
+
 	public int length(){
 		return path.Count;
 	}
