@@ -11,3 +11,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BrianRestArea1.unity
   - enabled: 1
     path: Assets/Scenes/BrianLevel1.unity
+  - enabled: 1
+    path: Assets/Scenes/BrianBarRestArea.unity
+  - enabled: 1
+    path: Assets/Scenes/BrianLevel2.unity
+  - enabled: 1
+    path: Assets/Scenes/BrianWarehouseRestArea.unity

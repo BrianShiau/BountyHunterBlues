@@ -78,6 +78,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			};
 			break;
 		default:
+			strings = new string[] { };
 			break;
 		}
 	}
