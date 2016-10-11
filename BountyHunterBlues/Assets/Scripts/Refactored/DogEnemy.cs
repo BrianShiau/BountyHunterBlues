@@ -12,16 +12,34 @@ public class DogEnemy : EnemyActor {
 
 	public override void Update(){
 		base.Update();
-		if(_stateManager.get_state(closestAttackable, false) == StateManager.State.NEUTRAL)
-			current_state = new NeutralDog();
-		if(_stateManager.get_state(closestAttackable, false) == StateManager.State.ALERT)
-			current_state = new AlertDog();
-		if(_stateManager.get_state(closestAttackable, false) == StateManager.State.AGGRESIVE)
-			current_state = new AggresiveDog();
+        //current_state = new AlertDog();
+        //current_state = new AggresiveDog();
+        //execute_neutral();
+        if(_stateManager.get_state(closestAttackable, false) == StateManager.State.NEUTRAL)
+            current_state = new NeutralDog(closestAttackable, this);
+        if(_stateManager.get_state(closestAttackable, false) == StateManager.State.ALERT)
+            execute_alert();
+        if(_stateManager.get_state(closestAttackable, false) == StateManager.State.AGGRESIVE)
+            execute_aggresive();
 
-		Debug.Log(current_state.name());
-		current_state.execute();
+
+		current_state.execute(this.gameObject);
 	}
+
+
+    //public void execute_neutral(){
+    //    stopMove();
+    //    Vector2 worldFaceDir = closestAttackable.gameObject.transform.position - transform.position;
+    //    worldFaceDir.Normalize();
+//
+    //    Vector2 localFaceDir = transform.InverseTransformDirection(worldFaceDir);
+    //    Vector2 dir = Vector2.MoveTowards(faceDir, localFaceDir, rotation_speed * Time.deltaTime);
+    //    dir.Normalize();
+    //    faceDir = dir;
+    //}
+
+    public void execute_alert(){}
+    public void execute_aggresive(){}
 
 	public override void rangedAttack(){
         if (closestAttackable is PlayerActor){
@@ -32,7 +50,6 @@ public class DogEnemy : EnemyActor {
         }
         else
             Debug.Log("AI can't attack other AI");
-        
     }
 
     public override void meleeAttack(){

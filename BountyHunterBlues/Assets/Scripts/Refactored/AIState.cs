@@ -5,6 +5,6 @@ public interface AIState {
 	
 	void on_enter();
 	void on_exit();
-	void execute();
+	void execute(GameObject self);
 	string name();
 }
