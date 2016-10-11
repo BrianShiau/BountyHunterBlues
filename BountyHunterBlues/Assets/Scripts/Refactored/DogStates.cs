@@ -97,10 +97,6 @@ public class AlertDog: DogState {
 	}
 
 	public override void execute(){
-		Debug.Log("here");
-		Debug.Log(enemy.getClosestAttackable());
-		Debug.Log(enemy.get_last_seen().x);
-		Debug.Log(enemy.get_last_seen().y);
 		if(enemy.getClosestAttackable() != null){
 			enemy.set_alert(true);
 			Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
@@ -196,7 +192,6 @@ public class AggresiveDog: DogState {
 
 	public override void on_exit(){
 		enemy.set_shortest_path_calculated(false);
-		Debug.Log(enemy.get_last_seen());
 	}
 
 	public override void execute(){

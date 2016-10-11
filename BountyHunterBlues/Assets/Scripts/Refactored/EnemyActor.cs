@@ -69,16 +69,11 @@ public abstract class EnemyActor : GameActor {
     }
 
     public void set_audio_location(Vector2 location){
-        //Debug.Log("HERERERERER");
         audio_location = location;
     }
 
     public bool sound_heard(){
-        //Debug.Log(transform.position);
-        //Debug.Log(audio_location);
-        //Debug.Log(Vector2.Distance(transform.position, audio_location));
         if(Vector2.Distance(transform.position, audio_location) <= audio_distance){
-        //    Debug.Log("in");
             set_alert(true);
             set_shortest_path_calculated(false);
             calc_shortest_path(transform.position, get_audio_location());
