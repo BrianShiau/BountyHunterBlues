@@ -47,7 +47,6 @@ public abstract class EnemyActor : GameActor {
 
     public void calc_shortest_path(Vector3 from, Vector3 to){
         if(!shortest_path_calculated){
-            Debug.Log("here");
             path.initialize(from, to);
             path.calc_path();
             shortest_path_calculated = true;

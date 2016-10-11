@@ -9,9 +9,9 @@ public class NeutralDog: AIState {
 		this.enemy = enemy;
 	}
 
-	public void on_enter(){}
+	public void on_enter(){ Debug.Log("enter neutral"); }
 
-	public void on_exit(){}
+	public void on_exit(){ Debug.Log("exit neutral"); }
 
 	public void execute(){
         enemy.calc_shortest_path(enemy.transform.position, enemy.get_neutral_position());
@@ -33,8 +33,6 @@ public class NeutralDog: AIState {
             enemy.faceDir = enemy.transform.InverseTransformDirection(worldFace);
             enemy.AI_move.updateCommandData(enemy.faceDir);
             enemy.AI_move.execute(enemy.getGameActor());
-            Debug.Log(distance_from_node);
-            Debug.Log(enemy.get_node_transition_threshold());
             if(distance_from_node < enemy.get_node_transition_threshold()){
                 enemy.inc_path_index();   
             }
@@ -61,9 +59,9 @@ public class AlertDog: AIState {
 	public AlertDog(DogEnemy enemy){
 		this.enemy = enemy;
 	}
-	public void on_enter(){}
+	public void on_enter(){ Debug.Log("enter alert"); }
 
-	public void on_exit(){}
+	public void on_exit(){ Debug.Log("exit alert"); }
 
 	public void execute(){
 		Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;

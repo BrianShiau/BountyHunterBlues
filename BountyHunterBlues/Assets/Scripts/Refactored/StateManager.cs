@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum State{
+	NEUTRAL, ALERT, AGGRESIVE
+}
 
 public class StateManager{
 
@@ -9,16 +12,13 @@ public class StateManager{
 	private float state_time_down;
 	private State state;
 	private EnemyActor enemy;
+	private Vector2 last_known_position;
 
 	public StateManager(float state_time_threshold, EnemyActor enemy){
 		this.state_time_threshold = state_time_threshold;
 		this.enemy = enemy;
 		state_time_up = 0;
 		state_time_down = 0;
-	}
-
-	public enum State{
-    	NEUTRAL, ALERT, AGGRESIVE
 	}
 
 	private void set_state(State state){
@@ -49,6 +49,7 @@ public class StateManager{
 				//set_state(State.AGGRESIVE);
 				state_time_up = 0;
 			}
+			last_known_position = target.transform.position;
 		}
 		else{
 			state_time_up = 0;
@@ -72,11 +73,13 @@ public class StateManager{
 	}
 
 
-	public State get_state(GameActor target, bool sound_detected){
+	public void update_state(GameActor target, bool sound_detected){
 		if(state == State.NEUTRAL) 	 neutral_state(target, sound_detected);
 		if(state == State.ALERT) 	 alert_state(target);
 		if(state == State.AGGRESIVE) aggresive_state(target);
+	}
 
+	public State get_state(){
 		return state;
 	}
 }

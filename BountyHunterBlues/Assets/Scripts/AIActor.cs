@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum State
+public enum State2
 {
     GREEN, YELLOW, RED, YELLOW_AUDIO, RETURN, CHASE
 }
@@ -30,7 +30,7 @@ public class AIActor : GameActor {
     
     public float rotation_speed;
     public GameObject playerObject;
-    public State alertness;
+    public State2 alertness;
 
     public int audio_distance = 10;
     public int shortest_path_index = 0;
@@ -112,7 +112,7 @@ public class AIActor : GameActor {
         //AI_disableAim = new DisableAimCommand();
         //AI_attack = new AttackCommand();
 
-        run_state(State.GREEN);
+        run_state(State2.GREEN);
 
 		if (transform.FindChild ("Reactions")) {
 			reactionAnim = transform.FindChild ("Reactions").GetComponent<Animator> ();
@@ -184,10 +184,10 @@ public class AIActor : GameActor {
 
     public void resetState()
     {
-        run_state(State.GREEN);
+        run_state(State2.GREEN);
     }
 
-    public void updateState(State newAlertState)
+    public void updateState(State2 newAlertState)
     {
 
     }
@@ -241,7 +241,7 @@ public class AIActor : GameActor {
     }
 
 
-    private void run_state(State color){
+    private void run_state(State2 color){
         alertness = color;
     }
 
@@ -250,14 +250,14 @@ public class AIActor : GameActor {
 	}
 
     public virtual void green_patrol(){
-        if(alertness == State.GREEN && is_patrol){
+        if(alertness == State2.GREEN && is_patrol){
             isMoving = false;
             if(sound_detection(sound_location) && closestAttackable == null){
 				if (reactionAnim) {
 					reactionAnim.SetInteger ("State", 1);
 					Invoke ("resetReactionAnim", 2);
 				}
-                run_state(State.YELLOW_AUDIO);
+                run_state(State2.YELLOW_AUDIO);
             }
             if(closestAttackable != null){
                 // get world-space vector to target from me
@@ -273,7 +273,7 @@ public class AIActor : GameActor {
                     inc_state_timer += Time.deltaTime;
                     if(inc_state_timer > state_change_time){
                         inc_state_timer = 0;
-                        run_state(State.YELLOW);
+                        run_state(State2.YELLOW);
                     }
                 }
             }
@@ -334,14 +334,14 @@ public class AIActor : GameActor {
     }
 
     public virtual void green_alertness(){
-        if(alertness == State.GREEN){
+        if(alertness == State2.GREEN){
             isMoving = false;
             if(sound_detection(sound_location) && closestAttackable == null){
 				if (reactionAnim) {
 					reactionAnim.SetInteger ("State", 1);
 					Invoke ("resetReactionAnim", 2);
 				}
-                run_state(State.YELLOW_AUDIO);
+                run_state(State2.YELLOW_AUDIO);
             }
             else if(closestAttackable != null){
                 Vector2 worldFaceDir = closestAttackable.transform.position - transform.position;
@@ -356,7 +356,7 @@ public class AIActor : GameActor {
                     inc_state_timer += Time.deltaTime;
                     if(inc_state_timer > state_change_time){
                         inc_state_timer = 0;
-                        run_state(State.YELLOW);
+                        run_state(State2.YELLOW);
                     }
                 }
             }
@@ -388,11 +388,11 @@ public class AIActor : GameActor {
     }
 
     public virtual void chase_alertness(){
-        if(alertness == State.CHASE){
+        if(alertness == State2.CHASE){
             if(sound_detection(sound_location) && closestAttackable == null){                
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
-                run_state(State.YELLOW_AUDIO);
+                run_state(State2.YELLOW_AUDIO);
                 return;
             }
             calc_shortest_path(transform.position, last_seen);
@@ -415,24 +415,24 @@ public class AIActor : GameActor {
                 isMoving = false;
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
-                run_state(State.RETURN);
+                run_state(State2.RETURN);
                 return;
             }
             if(closestAttackable != null){
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
-                run_state(State.YELLOW);
+                run_state(State2.YELLOW);
                 return;
             }
         }
     }
 
     public virtual void return_to_default(){
-        if(alertness == State.RETURN){
+        if(alertness == State2.RETURN){
             if(sound_detection(sound_location) && closestAttackable == null){                
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
-                run_state(State.YELLOW_AUDIO);
+                run_state(State2.YELLOW_AUDIO);
                 return;
             }
             calc_shortest_path(transform.position, default_position);
@@ -455,20 +455,20 @@ public class AIActor : GameActor {
                 isMoving = false;
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
-                run_state(State.GREEN);
+                run_state(State2.GREEN);
                 return;
             }
             if(closestAttackable != null){
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
-                run_state(State.YELLOW);
+                run_state(State2.YELLOW);
                 return;
             }
         }
     }
 
     public virtual void yellow_audio(){
-        if(alertness == State.YELLOW_AUDIO){
+        if(alertness == State2.YELLOW_AUDIO){
             if(sound_detection(sound_location) && closestAttackable == null){                
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
@@ -494,20 +494,20 @@ public class AIActor : GameActor {
                 isMoving = false;
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
-                run_state(State.RETURN);
+                run_state(State2.RETURN);
                 return;
             }
             if(closestAttackable != null){
                 shortest_path_index = 0;
                 shortest_path_calculated = false;
-                run_state(State.YELLOW);
+                run_state(State2.YELLOW);
                 return;
             }
         }
     }
 
     public virtual void yellow_alertness(){
-        if(alertness == State.YELLOW){
+        if(alertness == State2.YELLOW){
             if(closestAttackable != null){
                 Vector2 worldFaceDir = closestAttackable.transform.position - transform.position;
                 worldFaceDir.Normalize();
@@ -520,7 +520,7 @@ public class AIActor : GameActor {
                 last_seen = closestAttackable.transform.position; 
                 if(inc_state_timer > state_change_time){
                     inc_state_timer = 0;
-                    run_state(State.RED);
+                    run_state(State2.RED);
                 }
             }
             if(closestAttackable == null){
@@ -531,14 +531,14 @@ public class AIActor : GameActor {
                 if(dec_state_timer > state_change_time){
                     shortest_path_index = 0;
                     shortest_path_calculated = false;
-                    run_state(State.CHASE);
+                    run_state(State2.CHASE);
                 }
             }
         }
     }
 
 	public virtual void red_alertness(){
-        if(alertness == State.RED){
+        if(alertness == State2.RED){
             if(closestAttackable != null){
                 Vector2 worldFaceDir = closestAttackable.transform.position - transform.position;
                 worldFaceDir.Normalize();
@@ -560,7 +560,7 @@ public class AIActor : GameActor {
                 if(dec_state_timer > state_change_time){
                     dec_state_timer = 0;
                     AI_disableAim.execute(this);
-                    run_state(State.YELLOW);
+                    run_state(State2.YELLOW);
                 }
             }
         }
