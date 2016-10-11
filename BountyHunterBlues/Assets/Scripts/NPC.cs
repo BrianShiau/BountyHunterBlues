@@ -77,6 +77,7 @@ public class NPC : MonoBehaviour, Interactable {
 			};
 			break;
 		default:
+			strings = new string[] { };
 			break;
 		}
 	}
