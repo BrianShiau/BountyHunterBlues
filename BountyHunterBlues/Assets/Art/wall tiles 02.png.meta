@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7917ca6e9e6737144b2399d04b4d12d2
-timeCreated: 1473829461
+timeCreated: 1476128931
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -284,9 +284,9 @@ TextureImporter:
       name: wall tiles 02_42
       rect:
         serializedVersion: 2
-        x: 1670
+        x: 1676
         y: 795
-        width: 366
+        width: 354
         height: 186
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
