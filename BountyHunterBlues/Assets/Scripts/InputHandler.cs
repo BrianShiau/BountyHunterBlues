@@ -11,6 +11,7 @@ public class InputHandler : MonoBehaviour {
     private Command interact;
     private Command rangedAttack;
     private Command meleeAttack;
+    private Command look;
 
     private float attackInputDelay;
     private float meleeAttackInputDelay;
@@ -27,6 +28,7 @@ public class InputHandler : MonoBehaviour {
         interact = new InteractCommand();
         rangedAttack = new RangedAttackCommand();
         meleeAttack = new MeleeAttackCommand();
+        look = new LookCommand();
     }
 
     void FixedUpdate()
@@ -79,6 +81,9 @@ public class InputHandler : MonoBehaviour {
 
             if (Input.GetMouseButton(0) && meleeAttackInputDelay < 0)
             {
+                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+                look.updateCommandData(worldPoint);
+                nextCommands.AddLast(look);
                 nextCommands.AddLast(meleeAttack);
                 meleeAttackInputDelay = 1;
             }

@@ -24,6 +24,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
 	// Use this for initialization
 	public override void Start () {
+        base.Start();
 		if (startedAlready)
 			return;
 		startedAlready = true;

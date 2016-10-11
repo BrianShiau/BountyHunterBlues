@@ -193,6 +193,7 @@ public class PlayerActor : GameActor
 	{
 		if (visible)
 		{
+            acquireClosestAttackable();
 			knifeAttacked = true;
 			if (closestAttackable != null && Vector2.Distance(closestAttackable.transform.position, transform.position) <= meleeDistance)
 			{
@@ -289,7 +290,7 @@ public class PlayerActor : GameActor
 							// obstruction in front, ignore the rest of the ray
 							break;
 
-						else if(hitObj.GetComponent<GameActor>() is AIActor && hitObj.GetComponent<GameActor>().isVisible() 
+						else if(hitObj.GetComponent<GameActor>() is EnemyActor && hitObj.GetComponent<GameActor>().isVisible() 
 							&& !seenActors.Contains(hitObj.GetComponent<GameActor>()))
 							// the next obj in the ray line is a AIActor we haven't accounted for, add it
 							seenActors.Add(hitObj.GetComponent<GameActor>());   

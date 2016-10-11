@@ -66,3 +66,18 @@ public class InteractCommand : Command
     }
 }
 
+public class LookCommand : Command
+{
+
+    Vector2 worldPos;
+
+    public override void updateCommandData(Vector2 data)
+    {
+        worldPos = data;
+    }
+    public override void execute(GameActor actor)
+    {
+        actor.lookAt(worldPos);
+    }
+}
+

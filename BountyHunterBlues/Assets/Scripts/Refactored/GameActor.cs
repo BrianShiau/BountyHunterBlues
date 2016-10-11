@@ -35,6 +35,13 @@ public abstract class GameActor : Actor, Vision
         acquireInteractionTarget();
     }
 
+    public void lookAt(Vector2 worldPos)
+    {
+        Vector2 worldFaceDir = worldPos - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+        worldFaceDir.Normalize();
+        faceDir = transform.InverseTransformDirection(worldFaceDir);
+    }
+
     public GameActor getClosestAttackable(){
         return closestAttackable;
     }

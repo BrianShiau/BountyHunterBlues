@@ -91,8 +91,11 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     // implements animation for direction and moving. Override as needed
     public virtual void runAnimation()
     {
-        gameActorAnimator.SetBool("isMoving", isMoving);
-        gameActorAnimator.SetInteger("Direction", (int)currDirection);
+        if (gameActorAnimator != null)
+        {
+            gameActorAnimator.SetBool("isMoving", isMoving);
+            gameActorAnimator.SetInteger("Direction", (int)currDirection);
+        }
     }
 
     // implements default init for AudioManager. Needs AudioSerializable sources to be defined in prefab
