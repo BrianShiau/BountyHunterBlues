@@ -21,5 +21,6 @@ public class TerminalBall : NPCActor, Interactable {
 		interacted = true;
 		opensThisdoor.specialDoor = false;
 		opensThisdoor.runInteraction ();
+        audioManager.Play("Beep");
 	}
 }
