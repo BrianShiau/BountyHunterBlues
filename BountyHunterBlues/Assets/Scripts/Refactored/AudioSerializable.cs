@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
+
 public class NamedAudioSource
 {
     public string name;
@@ -17,7 +17,7 @@ public class NamedAudioClip
 [System.Serializable]
 public class AudioSerializable
 {
-    public NamedAudioSource Source;
+    public string sourceName;
     public NamedAudioClip[] Clips;
 }
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class DynamicAudioSource
 {
@@ -21,6 +22,8 @@ public class DynamicAudioSource
         foreach (NamedAudioClip namedClip in namedClips)
             clips.Add(namedClip.name, namedClip.clip);
 
+        if (namedClips.Count > 0)
+            Source.clip = namedClips[0].clip;
         Source.loop = false;
         Source.playOnAwake = false;
         Source.volume = 1.0f;
@@ -31,7 +34,11 @@ public class DynamicAudioSource
     
     public DynamicAudioSource swapToClip(string name)
     {
-        Source.clip = clips[name];
+        AudioClip newClip;
+        if (clips.TryGetValue(name, out newClip))
+            Source.clip = newClip;
+        else
+            Debug.Log("*** DynamicAudioSource could not find clip " + name + " in source " + Source.name + " ***");
         return this;
     }
 
@@ -43,6 +50,7 @@ public class DynamicAudioSource
     public void Play() { Source.Play(); }
     public void Stop() { Source.Stop(); }
     public void Pause() { Source.Pause(); }
+    public bool isPlaying() { return Source.isPlaying; }
 
 }
 
@@ -77,5 +85,10 @@ public class AudioManager
     public void Pause(string sourceName)
     {
         sources[sourceName].Pause();
+    }
+
+    public bool isPlaying(string sourceName)
+    {
+        return sources[sourceName].isPlaying();
     }
 }

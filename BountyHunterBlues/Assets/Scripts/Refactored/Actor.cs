@@ -40,7 +40,6 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
 	public virtual void Update () {
         updateDirection();
         runAnimation();
-        updateAudio();
         //patrolManager.updatePatrol();
 	}
 
@@ -102,33 +101,21 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     protected AudioManager initAudioManager()
     {
         List<DynamicAudioSource> dySources = new List<DynamicAudioSource>();
-        foreach(AudioSerializable namedSource in sources)
+        foreach(AudioSerializable element in sources)
         {
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            NamedAudioSource namedSource = new NamedAudioSource();
+            namedSource.name = element.sourceName;
+            namedSource.source = source;
             List<NamedAudioClip> clips = new List<NamedAudioClip>();
-            foreach(NamedAudioClip clip in namedSource.Clips)
+            foreach(NamedAudioClip clip in element.Clips)
                 clips.Add(clip);
 
-            DynamicAudioSource dySource = new DynamicAudioSource(namedSource.Source, clips);
+            DynamicAudioSource dySource = new DynamicAudioSource(namedSource, clips);
             dySources.Add(dySource);
         }
 
         return new AudioManager(dySources);
-    }
-
-    // implements default behavior for updating audio. Needs to be overriden to work properly
-    protected virtual void updateAudio()
-    {
-        /*
-         * This is an example implementation. 
-         * The prefab would define a NamedAudioSource with a name ("MotionSource" in this example)
-         * and a list of NamedAudioClip which the AudioSource can dynamically rotate in and out of use.
-         * In this example, "DefaultMotionClip" is the only clip associated with "MotionSource"
-        /*
-        if (isMoving)
-            audioManager.Play("MotionSource", "DefaultMotionClip");
-        else
-            audioManager.Stop("MotionSource");
-        */
     }
 
     protected void updateDirection()

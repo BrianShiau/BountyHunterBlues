@@ -43,6 +43,7 @@ GameObject:
   - 95: {fileID: 95000010032085470}
   - 114: {fileID: 114000013946030618}
   - 114: {fileID: 114000012935824980}
+  - 81: {fileID: 81000011524607102}
   m_Layer: 0
   m_Name: Player
   m_TagString: GameActor
@@ -61,7 +62,6 @@ GameObject:
   - 20: {fileID: 20000010485373920}
   - 92: {fileID: 92000013388119882}
   - 124: {fileID: 124000014271827246}
-  - 81: {fileID: 81000010105620434}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -175,12 +175,12 @@ BoxCollider2D:
   m_Offset: {x: 0.26219204, y: -0.26235723}
   serializedVersion: 2
   m_Size: {x: 7.4220567, y: 17.073908}
---- !u!81 &81000010105620434
+--- !u!81 &81000011524607102
 AudioListener:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013066010544}
+  m_GameObject: {fileID: 1000010692404168}
   m_Enabled: 1
 --- !u!92 &92000013388119882
 Behaviour:
@@ -217,20 +217,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71f1c9b25e318f45a5de0c37c243d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
   faceDir: {x: 0, y: -1}
-  aimDir: {x: 0, y: 0}
+  moveSpeed: 6
+  health: 0
+  patrolPoints: []
+  sources:
+  - sourceName: Gun
+    Clips:
+    - name: GunFire
+      clip: {fileID: 8300000, guid: 2f65b8c028d0d7147b046062b3fb1ab8, type: 3}
   fov: 140
   meleeDistance: 2.5
   sightDistance: 100
   interactionDistance: 2
-  isAiming: 0
-  isMoving: 0
-  isVisible: 0
-  healthPool: 3
-  lookTarget: {fileID: 0}
-  aimTarget: {fileID: 0}
-  GameActorAnimator: {fileID: 0}
   hasGun: 0
   gun_fired: 0
   knifeAttacked: 0
