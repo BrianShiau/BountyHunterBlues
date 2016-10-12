@@ -9,13 +9,14 @@ using UnityEngine.UI;
 public class PlayerActor : GameActor
 {
 	public bool hasGun;
-	public bool gun_fired;
-	public bool knifeAttacked;
-	public bool enemyHit;
-	public bool inTacticalMode;
-	public bool tookDamage;
 	public float reloadTime;
 	public float cloakTime;
+
+	private bool gun_fired;
+	private bool knifeAttacked;
+	private bool enemyHit;
+	private bool inTacticalMode;
+	private bool tookDamage;
 
 	private float lastShotTime;
 	private float cloakTimer;
@@ -24,25 +25,17 @@ public class PlayerActor : GameActor
 
 	public int currentLevel;
 	public NPC openingText;
-	public static int deaths = 0;
+	private static int deaths = 0;
 
 	// UI
-	public Image gunImage;
-	public Slider gunSlider;
-	public GameObject gunSliderObject;
-	public Image gunSliderFill;
+	private Image gunImage;
+	private Slider gunSlider;
+	private GameObject gunSliderObject;
+	private Image gunSliderFill;
 
 	private Image hitFlash;
 
-	public Vector3 fire_location;
 	private Grid mGrid;
-
-	// Audio
-	public AudioClip hitShotSound;
-	public AudioClip missShotSound;
-	public AudioClip rechargeSound;
-	private AudioSource gunAudioSource;
-	private AudioSource gunRechargeSource;
 
 	public override void Start()
 	{
@@ -54,7 +47,6 @@ public class PlayerActor : GameActor
 		knifeAttacked = false;
 		tookDamage = false;
 		visible = true;
-		fire_location = new Vector3(0, 0, 0);
 
 		// play opening text only once
 		if (deaths == 0) {
@@ -65,15 +57,15 @@ public class PlayerActor : GameActor
 			}
 		}
 
+		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
+		gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
+		gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
+		gunSliderObject = gunSlider.gameObject;
 		if (hasGun) {
-			gunImage.enabled = true;
-			gunSliderObject = gunSlider.gameObject;
-			gunSliderObject.SetActive (true);
-			gunSliderFill.color = Color.green;
+			EnableGun ();
 		}
 		else {
 			gunImage.enabled = false;
-			gunSliderObject = gunSlider.gameObject;
 			gunSliderObject.SetActive (false);
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
@@ -134,7 +126,6 @@ public class PlayerActor : GameActor
 					// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
 				}
 				notifyEnemies();
-				fire_location = transform.position;
 				gun_fired = true;
 				StartCoroutine(Utility.drawLine (transform.position, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.red, 1f));
 				if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
@@ -307,6 +298,13 @@ public class PlayerActor : GameActor
         return seenActors.ToArray();
     }
 
+	public void EnableGun(){
+		hasGun = true;
+		gunImage.enabled = true;
+		gunSliderObject.SetActive (true);
+		gunSliderFill.color = Color.green;
+	}
+
     public override bool isVisible()
 	{
 		return visible;
@@ -314,5 +312,21 @@ public class PlayerActor : GameActor
 
 	public float getLastShotTime(){
 		return lastShotTime;
+	}
+
+	public static int Deaths(){
+		return deaths;
+	}
+
+	public static void SetDeaths(int num){
+		deaths = num;
+	}
+
+	public bool InTacticalMode(){
+		return inTacticalMode;
+	}
+
+	public void SetTacticalMode(bool mode){
+		inTacticalMode = mode;
 	}
 }

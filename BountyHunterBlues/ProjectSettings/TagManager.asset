@@ -12,6 +12,9 @@ TagManager:
   - ChatPanel
   - HitFlash
   - ChatImage
+  - GunImage
+  - GunSlider
+  - GunFill
   layers:
   - Default
   - TransparentFX

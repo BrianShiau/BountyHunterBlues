@@ -29,7 +29,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			return;
 		startedAlready = true;
 
-		if(destroyAfterPlay && PlayerActor.deaths!=0){
+		if(destroyAfterPlay && PlayerActor.Deaths()!=0){
 			Destroy(this.gameObject);
 		}
 
@@ -102,7 +102,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
 			chatImage.GetComponent<Image> ().enabled = true;
 			chatImage.GetComponent<Image> ().sprite = npcImage;
-			player.inTacticalMode = true;
+			player.SetTacticalMode(true);
 		}
 		if (currentLine < strings.Length) {
 			if (!typing) {
@@ -128,7 +128,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatPanel.GetComponent<Image> ().enabled = false;
 			chatPanel.GetComponentInChildren<Text> ().enabled = false;
 			chatImage.GetComponent<Image> ().enabled = false;
-			player.inTacticalMode = false;
+			player.SetTacticalMode(false);
 		}
 	}
 
