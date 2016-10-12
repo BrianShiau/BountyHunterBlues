@@ -226,6 +226,10 @@ MonoBehaviour:
     Clips:
     - name: GunFire
       clip: {fileID: 8300000, guid: 2f65b8c028d0d7147b046062b3fb1ab8, type: 3}
+  - sourceName: EnemyDeath
+    Clips:
+    - name: Shutdown
+      clip: {fileID: 8300000, guid: 27546f41c215cce4181e92aa89a451db, type: 3}
   fov: 140
   meleeDistance: 2.5
   sightDistance: 100

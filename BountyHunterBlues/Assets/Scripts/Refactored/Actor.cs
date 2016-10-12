@@ -22,10 +22,14 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     protected Animator gameActorAnimator;
     protected Direction currDirection;
     protected bool isMoving;
+    protected bool markedToDie;
     
 
-    // abstract methods
-    public abstract void die();
+    
+    public virtual void die()
+    {
+        markedToDie = true;
+    }
     
 
     // Use this for initialization
@@ -34,6 +38,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
         audioManager = initAudioManager();
         //patrolManager = new PatrolManager();
         isMoving = false;
+        markedToDie = false;
 	}
 	
 	// Update is called once per frame

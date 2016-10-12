@@ -291,7 +291,17 @@ MonoBehaviour:
   moveSpeed: 2
   health: 1
   patrolPoints: []
-  sources: []
+  sources:
+  - sourceName: Gun
+    Clips:
+    - name: GunFire
+      clip: {fileID: 8300000, guid: 534131d4c7bb00e4ea92016a8a83b475, type: 3}
+  - sourceName: Feet
+    Clips:
+    - name: Patrol
+      clip: {fileID: 8300000, guid: bab06f649e83c3b468ff40a9c847a85a, type: 3}
+    - name: Chase
+      clip: {fileID: 8300000, guid: 58f0dc6653169534aa78b21635674de5, type: 3}
   fov: 140
   meleeDistance: 2
   sightDistance: 12
