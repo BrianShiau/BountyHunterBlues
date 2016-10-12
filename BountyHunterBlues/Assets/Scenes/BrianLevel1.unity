@@ -1623,6 +1623,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000011643985610, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: patrolPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 114000014214070012, guid: 99a84a35732c1684a9c732d512cfe981,
         type: 2}
       propertyPath: patrol_points.Array.size
@@ -1697,6 +1702,26 @@ Prefab:
     - target: {fileID: 114000014214070012, guid: 99a84a35732c1684a9c732d512cfe981,
         type: 2}
       propertyPath: is_cycle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011643985610, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: patrolPoints.Array.data[0].point
+      value: 
+      objectReference: {fileID: 867480810}
+    - target: {fileID: 114000011643985610, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: patrolPoints.Array.data[1].point
+      value: 
+      objectReference: {fileID: 2142439144}
+    - target: {fileID: 114000011643985610, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: patrolPoints.Array.data[0].wait_time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011643985610, guid: 99a84a35732c1684a9c732d512cfe981,
+        type: 2}
+      propertyPath: patrolPoints.Array.data[1].wait_time
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6132,6 +6157,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000010266485838, guid: 03cb7c7bc294137428131fade67fd7af,
+        type: 2}
+      propertyPath: patrolPoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013492976278, guid: 03cb7c7bc294137428131fade67fd7af, type: 2}
       propertyPath: m_LocalPosition.x
       value: 4.78
@@ -6189,6 +6219,26 @@ Prefab:
       propertyPath: opensThisdoor
       value: 
       objectReference: {fileID: 218166725}
+    - target: {fileID: 114000010266485838, guid: 03cb7c7bc294137428131fade67fd7af,
+        type: 2}
+      propertyPath: patrolPoints.Array.data[0].point
+      value: 
+      objectReference: {fileID: 39344142}
+    - target: {fileID: 114000010266485838, guid: 03cb7c7bc294137428131fade67fd7af,
+        type: 2}
+      propertyPath: patrolPoints.Array.data[1].point
+      value: 
+      objectReference: {fileID: 795485474}
+    - target: {fileID: 114000010266485838, guid: 03cb7c7bc294137428131fade67fd7af,
+        type: 2}
+      propertyPath: patrolPoints.Array.data[2].point
+      value: 
+      objectReference: {fileID: 1190951628}
+    - target: {fileID: 114000010266485838, guid: 03cb7c7bc294137428131fade67fd7af,
+        type: 2}
+      propertyPath: patrolPoints.Array.data[3].point
+      value: 
+      objectReference: {fileID: 1178123588}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 03cb7c7bc294137428131fade67fd7af, type: 2}
   m_IsPrefabParent: 0
