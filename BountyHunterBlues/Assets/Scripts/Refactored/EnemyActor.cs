@@ -23,6 +23,9 @@ public abstract class EnemyActor : GameActor {
     public float node_transition_threshold;
     private int path_index;
 
+	// UI Reactions
+	Animator reactionAnim;
+
 	//prefab
 	public float audio_distance;
     public float transition_time;
@@ -41,6 +44,11 @@ public abstract class EnemyActor : GameActor {
         audio_location = new Vector2(Int32.MaxValue, Int32.MaxValue);
         alert = false;
         last_seen = new Vector2(Int32.MaxValue, Int32.MaxValue);
+
+		if (transform.FindChild ("Reactions")) {
+			reactionAnim = transform.FindChild ("Reactions").GetComponent<Animator> ();
+			reactionAnim.speed = 10.0f;
+		}
 	}
 
 	public override void Update(){
@@ -77,10 +85,20 @@ public abstract class EnemyActor : GameActor {
             set_alert(true);
             set_shortest_path_calculated(false);
             calc_shortest_path(transform.position, get_audio_location());
+
+			if (reactionAnim) {
+				reactionAnim.SetInteger ("State", 1);
+				Invoke ("resetReactionAnim", 2);
+			}
+
             return true;
         }
         return false;
     }
+
+	private void resetReactionAnim(){
+		reactionAnim.SetInteger ("State", 0);
+	}
 
     public void calc_shortest_path(Vector3 from, Vector3 to){
         if(!shortest_path_calculated){
