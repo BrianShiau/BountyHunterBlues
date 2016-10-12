@@ -56,7 +56,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
 
     public bool isAlive()
     {
-        return health < 0;
+        return health > 0;
     }
 
     public virtual void takeDamage()

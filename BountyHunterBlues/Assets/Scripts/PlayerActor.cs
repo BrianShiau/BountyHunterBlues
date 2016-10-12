@@ -221,6 +221,7 @@ public class PlayerActor : GameActor
 		{
 			tookDamage = true;
 			visible = false;
+			Debug.Log (visible);
 			cloakTimer = 0;
 			if (GetComponentInChildren<HealthBar> ()) {
 				GetComponentInChildren<HealthBar> ().setHealth (health);
