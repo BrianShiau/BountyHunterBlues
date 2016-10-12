@@ -19,7 +19,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     public AudioSerializable[] sources;
 
     protected AudioManager audioManager;
-    protected PatrolManager patrolManager;
+    public PatrolManager patrolManager;
     protected Animator gameActorAnimator;
     protected Direction currDirection;
     protected bool isMoving;
@@ -43,8 +43,6 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     public virtual void Update () {
         updateDirection();
         runAnimation();
-        //Debug.Log(patrolManager.get_patrol_length());
-        Debug.Log(patrolPoints.Length);
 	}
 
     public bool Equals(Actor other)

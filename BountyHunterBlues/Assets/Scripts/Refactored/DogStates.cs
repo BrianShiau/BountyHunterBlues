@@ -44,6 +44,7 @@ public class NeutralDog: DogState {
 	        Vector2 dir = Vector2.MoveTowards(enemy.faceDir, localFaceDir, enemy.rotation_speed * Time.deltaTime);
 	        dir.Normalize();
 	        enemy.faceDir = dir;
+	        stopMove.execute(enemy);
     	}
     	else if(enemy.get_path_index() < enemy.path_length()){
         	Node current_node = enemy.path.get_node(enemy.get_path_index());
@@ -58,6 +59,16 @@ public class NeutralDog: DogState {
             if(distance_from_node < enemy.get_node_transition_threshold()){
                 enemy.inc_path_index();   
             }
+        }
+        else if(enemy.patrolManager.get_patrol_length() > 0){
+        	enemy.set_neutral_position(enemy.patrolManager.get_next_patrol_point());
+
+        	Vector2 worldFace = enemy.get_neutral_position() - new Vector2(enemy.transform.position.x, enemy.transform.position.y);
+            worldFace.Normalize();
+            enemy.faceDir = enemy.transform.InverseTransformDirection(worldFace);
+
+            move.updateCommandData(enemy.faceDir);
+            move.execute(enemy);
         }
     	else{
     		enemy.path.clear();

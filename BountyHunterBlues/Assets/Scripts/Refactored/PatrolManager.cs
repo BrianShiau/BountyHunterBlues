@@ -16,15 +16,16 @@ public class PatrolManager {
 		this.is_cycle = is_cycle;
 		is_reverse = false;
 		wait_time = 0;
-		//patrol_points.CopyTo(this.patrol_points);
 		this.patrol_points = patrol_points;
+		distance_threshold = 0.2f;
+		patrol_index = 0;
 	}
 
 	public int get_patrol_length(){
 		return patrol_points.Length;
 	}
 
-	public Vector2 get_next_patrol_index(){
+	public Vector2 get_next_patrol_point(){
 		patrol_distance = Vector2.Distance(AI_reference.transform.position, patrol_points[patrol_index].point.position);
 		
 		if(patrol_distance < distance_threshold){
@@ -34,6 +35,14 @@ public class PatrolManager {
 			else{
 				wait_time = 0;
 				if(is_cycle){
+					if(patrol_index == patrol_points.Length - 1){
+                        patrol_index = 0;
+					}
+					else{
+						patrol_index += 1;
+					}
+				}
+				else{
 					if(is_reverse){
 						if(patrol_index == 0){
 							is_reverse = false;
@@ -49,15 +58,7 @@ public class PatrolManager {
 						else{
 							patrol_index += 1;
 						}
-					}			
-				}
-				else{
-					if(patrol_index == patrol_points.Length - 1){
-                        patrol_index = 0;
-					}
-					else{
-						patrol_index += 1;
-					}
+					}	
 				}
 			}
 		}
