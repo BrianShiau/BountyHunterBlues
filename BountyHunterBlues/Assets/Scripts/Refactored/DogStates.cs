@@ -53,7 +53,7 @@ public class NeutralDog: DogState {
             Vector2 worldFace = current_node.worldPosition - new Vector2(enemy.transform.position.x, enemy.transform.position.y);
             worldFace.Normalize();
             enemy.faceDir = enemy.transform.InverseTransformDirection(worldFace);
-
+            enemy.setIsPatrolling(false);
             move.updateCommandData(enemy.faceDir);
             move.execute(enemy);
             if(distance_from_node < enemy.get_node_transition_threshold()){
@@ -69,7 +69,7 @@ public class NeutralDog: DogState {
 	        	Vector2 worldFace = enemy.get_neutral_position() - new Vector2(enemy.transform.position.x, enemy.transform.position.y);
 	            worldFace.Normalize();
 	            enemy.faceDir = enemy.transform.InverseTransformDirection(worldFace);
-
+                enemy.setIsPatrolling(true);
 	            move.updateCommandData(enemy.faceDir);
 	            move.execute(enemy);
         	}
