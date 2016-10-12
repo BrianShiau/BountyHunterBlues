@@ -18,7 +18,7 @@ public class Cursor : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		if (GetComponentInParent<PlayerActor> ().inTacticalMode) {
+		if (GetComponentInParent<PlayerActor> ().InTacticalMode()) {
 			UnityEngine.Cursor.visible = false;
 			return;
 		} else {

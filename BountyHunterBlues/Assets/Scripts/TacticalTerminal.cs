@@ -22,7 +22,7 @@ public class TacticalTerminal : MonoBehaviour, Interactable {
     {
         tacticalCamera.enabled = !tacticalCamera.enabled;
         playerCamera.enabled = !playerCamera.enabled;
-        player.inTacticalMode = !player.inTacticalMode;
+		player.SetTacticalMode(!player.InTacticalMode());
 
 
     }

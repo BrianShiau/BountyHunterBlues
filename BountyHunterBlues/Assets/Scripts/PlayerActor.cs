@@ -9,13 +9,14 @@ using UnityEngine.UI;
 public class PlayerActor : GameActor
 {
 	public bool hasGun;
-	public bool gun_fired;
-	public bool knifeAttacked;
-	public bool enemyHit;
-	public bool inTacticalMode;
-	public bool tookDamage;
 	public float reloadTime;
 	public float cloakTime;
+
+	private bool gun_fired;
+	private bool knifeAttacked;
+	private bool enemyHit;
+	private bool inTacticalMode;
+	private bool tookDamage;
 
 	private float lastShotTime;
 	private float cloakTimer;
@@ -24,7 +25,7 @@ public class PlayerActor : GameActor
 
 	public int currentLevel;
 	public NPC openingText;
-	public static int deaths = 0;
+	private static int deaths = 0;
 
 	// UI
 	public Image gunImage;
@@ -314,5 +315,21 @@ public class PlayerActor : GameActor
 
 	public float getLastShotTime(){
 		return lastShotTime;
+	}
+
+	public static int Deaths(){
+		return deaths;
+	}
+
+	public static void SetDeaths(int num){
+		deaths = num;
+	}
+
+	public bool InTacticalMode(){
+		return inTacticalMode;
+	}
+
+	public void SetTacticalMode(bool mode){
+		inTacticalMode = mode;
 	}
 }
