@@ -62,13 +62,17 @@ public class NeutralDog: DogState {
         }
         else if(enemy.patrolManager.get_patrol_length() > 0){
         	enemy.set_neutral_position(enemy.patrolManager.get_next_patrol_point());
+        	if(enemy.get_neutral_position().x == Int32.MaxValue && enemy.get_neutral_position().y == Int32.MaxValue){
+        		stopMove.execute(enemy);
+        	}
+        	else{
+	        	Vector2 worldFace = enemy.get_neutral_position() - new Vector2(enemy.transform.position.x, enemy.transform.position.y);
+	            worldFace.Normalize();
+	            enemy.faceDir = enemy.transform.InverseTransformDirection(worldFace);
 
-        	Vector2 worldFace = enemy.get_neutral_position() - new Vector2(enemy.transform.position.x, enemy.transform.position.y);
-            worldFace.Normalize();
-            enemy.faceDir = enemy.transform.InverseTransformDirection(worldFace);
-
-            move.updateCommandData(enemy.faceDir);
-            move.execute(enemy);
+	            move.updateCommandData(enemy.faceDir);
+	            move.execute(enemy);
+        	}
         }
     	else{
     		enemy.path.clear();

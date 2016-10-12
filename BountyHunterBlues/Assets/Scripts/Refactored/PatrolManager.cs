@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PatrolManager { 
 	private PatrolPoint[] patrol_points;
@@ -31,6 +32,7 @@ public class PatrolManager {
 		if(patrol_distance < distance_threshold){
 			if(wait_time < patrol_points[patrol_index].wait_time){
 				wait_time += Time.deltaTime;
+				return new Vector2(Int32.MaxValue, Int32.MaxValue);
 			}
 			else{
 				wait_time = 0;
