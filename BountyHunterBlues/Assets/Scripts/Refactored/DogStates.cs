@@ -84,7 +84,6 @@ public class NeutralDog: DogState {
     	}
 	}
 
-
 	public override string name(){
 		return "NEUTRAL";
 	}
