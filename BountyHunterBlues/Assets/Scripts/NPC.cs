@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class NPC : MonoBehaviour, Interactable {
+public class NPC : NPCActor, Interactable, Dialogue {
 	//we should really put this disable in player
 	private PlayerActor player;
 	private GameObject chatPanel;
@@ -23,7 +23,8 @@ public class NPC : MonoBehaviour, Interactable {
 	private bool startedAlready = false;
 
 	// Use this for initialization
-	public void Start () {
+	public override void Start () {
+        base.Start();
 		if (startedAlready)
 			return;
 		startedAlready = true;
@@ -77,16 +78,22 @@ public class NPC : MonoBehaviour, Interactable {
 			};
 			break;
 		default:
+			strings = new string[] { };
 			break;
 		}
 	}
 
 	// Update is called once per frame
-	void Update () {
-
+	public override void Update () {
+		base.Update ();
 	}
 
 	public void runInteraction()
+	{
+		runDialogue ();
+	}
+
+	public void runDialogue()
 	{
 		if (strings.Length == 0)
 			return;
@@ -123,8 +130,6 @@ public class NPC : MonoBehaviour, Interactable {
 			chatImage.GetComponent<Image> ().enabled = false;
 			player.inTacticalMode = false;
 		}
-
-		
 	}
 
 	IEnumerator TypeText (string message) 

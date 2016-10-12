@@ -6,23 +6,25 @@ using System.Linq;
 public class Laser : MonoBehaviour {
 
     public float scaleFactor;
+    public DogEnemy myDog;
 
 	// Use this for initialization
 	void Start () {
-
+        myDog = GetComponentInParent<DogEnemy>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        AIActor actor = GetComponentInParent<AIActor>();
-        if (actor.alertness == State.GREEN)
+        DogEnemy actor = GetComponentInParent<DogEnemy>();
+        AIState currState = actor.getCurrentState();
+        if (currState.name() == "NEUTRAL")
             GetComponent<SpriteRenderer>().color = Color.green;
-        else if (actor.alertness == State.YELLOW)
+        else if (currState.name() == "ALERT")
             GetComponent<SpriteRenderer>().color = Color.yellow;
-        else if (actor.alertness == State.RED)
+        else if (currState.name() == "AGGRESIVE")
             GetComponent<SpriteRenderer>().color = Color.red;
-        float angle = Mathf.Atan2(-1 * GetComponentInParent<AIActor>().faceDir.x, -1 * GetComponentInParent<AIActor>().faceDir.y) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, -1 * Vector3.forward);
+        float angle = Mathf.Atan2(actor.faceDir.y, actor.faceDir.x) * Mathf.Rad2Deg + 90; // corrected for sprite angle
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
 
         float distance = actor.sightDistance;
@@ -31,7 +33,7 @@ public class Laser : MonoBehaviour {
         IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
         foreach (RaycastHit2D hit in sortedHits)
         {
-            if (hit.collider != null && hit.collider.gameObject != GetComponentInParent<GameActor>().gameObject)
+            if (hit.collider != null && hit.collider.gameObject != myDog.gameObject)
             {
                 distance = hit.distance;
                 break;

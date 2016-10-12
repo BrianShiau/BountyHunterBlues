@@ -11,11 +11,17 @@ public class PatrolManager {
 	private bool is_cycle;
 	private bool is_reverse;
 
-	PatrolManager(GameObject obj, bool is_cycle = false){
+	public PatrolManager(GameObject obj, PatrolPoint[] patrol_points, bool is_cycle = false){
 		AI_reference = obj;
 		this.is_cycle = is_cycle;
 		is_reverse = false;
 		wait_time = 0;
+		//patrol_points.CopyTo(this.patrol_points);
+		this.patrol_points = patrol_points;
+	}
+
+	public int get_patrol_length(){
+		return patrol_points.Length;
 	}
 
 	public Vector2 get_next_patrol_index(){
