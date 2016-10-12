@@ -17,3 +17,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BrianLevel2.unity
   - enabled: 1
     path: Assets/Scenes/BrianWarehouseRestArea.unity
+  - enabled: 1
+    path: Assets/Scenes/FinalLevelRoom1.unity
+  - enabled: 1
+    path: Assets/Scenes/FinalLevelRoom2.unity
+  - enabled: 1
+    path: Assets/Scenes/FinalLevelRoom3.unity
