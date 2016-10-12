@@ -23,7 +23,8 @@ public class Laser : MonoBehaviour {
             GetComponent<SpriteRenderer>().color = Color.yellow;
         else if (currState.name() == "AGGRESIVE")
             GetComponent<SpriteRenderer>().color = Color.red;
-        float angle = Mathf.Atan2(actor.faceDir.y, actor.faceDir.x) * Mathf.Rad2Deg + 90; // corrected for sprite angle
+		float angle = Mathf.Atan2(actor.faceDir.y, actor.faceDir.x) * Mathf.Rad2Deg
+			+ 180 + myDog.transform.localRotation.eulerAngles.z; // corrected for sprite angle
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
 
