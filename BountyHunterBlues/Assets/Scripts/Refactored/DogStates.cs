@@ -217,7 +217,7 @@ public class AggresiveDog: DogState {
 
 	        shoot_timer += Time.deltaTime;
 	        if(shoot_timer > shoot_timer_threshold){
-	        	//rangedAttack.execute(enemy);
+	        	rangedAttack.execute(enemy);
 	        	shoot_timer = 0;
 	        }
 	        enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
