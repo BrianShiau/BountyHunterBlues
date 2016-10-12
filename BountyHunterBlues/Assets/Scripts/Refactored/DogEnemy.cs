@@ -10,6 +10,7 @@ public class DogEnemy : EnemyActor {
 	public override void Start(){
 		base.Start();
         current_state = new NeutralDog(this);
+        audioManager.setLoop("Feet", true);
 	}
 
 	public override void Update(){
@@ -28,6 +29,17 @@ public class DogEnemy : EnemyActor {
             current_state.on_enter();
         }
 		current_state.execute();
+
+        if(isMoving)
+        {
+            if (!audioManager.isPlaying("Feet"))
+                audioManager.Play("Feet", "Chase");
+
+        }
+        else
+        {
+            audioManager.Stop("Feet");
+        }
 	}
 
 	public override void rangedAttack(){
@@ -36,6 +48,9 @@ public class DogEnemy : EnemyActor {
             closestAttackable.takeDamage();
             if (!closestAttackable.isAlive())
                 closestAttackable = null;
+            if (audioManager.isPlaying("Gun"))
+                audioManager.Stop("Gun");
+            audioManager.Play("Gun");
         }
         else
             Debug.Log("AI can't attack other AI");
@@ -47,6 +62,13 @@ public class DogEnemy : EnemyActor {
 
     public override void interact(){
         throw new NotImplementedException();
+    }
+
+    public override void die()
+    {
+        //StartCoroutine(DeathCleanUp());
+        Destroy(gameObject);
+        
     }
 
     public override void runAnimation(){
@@ -81,4 +103,12 @@ public class DogEnemy : EnemyActor {
             }
         }
     }
+    /*
+    private IEnumerator DeathCleanUp()
+    {
+        audioManager.Play("Death");
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
+    }
+    */
 }

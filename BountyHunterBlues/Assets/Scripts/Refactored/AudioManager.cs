@@ -91,4 +91,10 @@ public class AudioManager
     {
         return sources[sourceName].isPlaying();
     }
+
+    public void setLoop(string sourceName, bool isLooping) { sources[sourceName].setLoop(isLooping); }
+    public void setPlayOnAwake(string sourceName, bool playOnAwake) { sources[sourceName].setPlayOnAwake(playOnAwake); }
+    public void setVolume(string sourceName, float volume) { sources[sourceName].setVolume(volume); }
+    public void setMinDistance(string sourceName, float minDistance) { sources[sourceName].setMinDistance(minDistance); }
+    public void setMaxDistance(string sourceName, float maxDistance) { sources[sourceName].setMaxDistance(maxDistance); }
 }

@@ -127,10 +127,6 @@ public abstract class EnemyActor : GameActor {
         this.last_neutral_position = last_neutral_position;
     }
 
-    public override void die(){
-        Destroy (gameObject);
-    }
-
     public override GameActor[] runVisionDetection(float fov, float sightDistance){
         PlayerActor actorObject = GameObject.FindObjectOfType<PlayerActor>();
         List<GameActor> GameActors = new List<GameActor>();

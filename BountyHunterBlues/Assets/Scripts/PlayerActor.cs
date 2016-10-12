@@ -139,6 +139,7 @@ public class PlayerActor : GameActor
 				StartCoroutine(Utility.drawLine (transform.position, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.red, 1f));
 				if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
 				{
+                    audioManager.Play("EnemyDeath");
 					enemyHit = true;
 					aimTarget.takeDamage();
 					if (!aimTarget.isAlive())
@@ -200,7 +201,8 @@ public class PlayerActor : GameActor
 			knifeAttacked = true;
 			if (closestAttackable != null && Vector2.Distance(closestAttackable.transform.position, transform.position) <= meleeDistance)
 			{
-				enemyHit = true;
+                audioManager.Play("EnemyDeath");
+                enemyHit = true;
 				closestAttackable.takeDamage();
 				if (!closestAttackable.isAlive())
 					closestAttackable = null;
