@@ -299,18 +299,21 @@ public class PlayerActor : GameActor
                     IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance); // sorted by ascending by default
                     foreach (RaycastHit2D hitinfo in sortedHits)
                     {
-                        GameObject hitObj = hitinfo.collider.gameObject;
+                        if (hitinfo.collider.isTrigger) // only deal with trigger colliders for finding attackable target
+                        {
+                            GameObject hitObj = hitinfo.collider.gameObject;
 
-                        if (hitObj.tag != "GameActor")
-                            // obstruction in front, ignore the rest of the ray
-                            break;
+                            if (hitObj.tag != "GameActor")
+                                // obstruction in front, ignore the rest of the ray
+                                break;
 
-                        else if (hitObj.GetComponent<GameActor>() is EnemyActor && hitObj.GetComponent<GameActor>().isVisible()
-                            && !seenActors.Contains(hitObj.GetComponent<GameActor>()))
-                            // the next obj in the ray line is a AIActor we haven't accounted for, add it
-                            seenActors.Add(hitObj.GetComponent<GameActor>());
+                            else if (hitObj.GetComponent<GameActor>() is EnemyActor && hitObj.GetComponent<GameActor>().isVisible()
+                                && !seenActors.Contains(hitObj.GetComponent<GameActor>()))
+                                // the next obj in the ray line is a AIActor we haven't accounted for, add it
+                                seenActors.Add(hitObj.GetComponent<GameActor>());
 
-                        // else the next obj in the ray line is a PlayerActor or an AIActor we've seen, just ignore it and keep moving down the ray
+                            // else the next obj in the ray line is a PlayerActor or an AIActor we've seen, just ignore it and keep moving down the ray
+                        }
                     }
                 }
             }

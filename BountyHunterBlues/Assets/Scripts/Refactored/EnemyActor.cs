@@ -155,15 +155,19 @@ public abstract class EnemyActor : GameActor {
         if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2){
             RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldVector, sightDistance);
             IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance); // sorted by ascending by default
-            foreach (RaycastHit2D hitinfo in sortedHits){
-                GameObject hitObj = hitinfo.collider.gameObject;
-                if (hitObj.tag != "GameActor")
-                    // obstruction in front, ignore the rest of the ray
-                    break;
-                else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible()){
-                    // PlayerActor
-                    GameActors.Add(hitObj.GetComponent<GameActor>());
-                    break;
+            foreach (RaycastHit2D hitinfo in sortedHits){      
+                if (hitinfo.collider.isTrigger) // only deal with trigger colliders for finding attackable target
+                {
+                    GameObject hitObj = hitinfo.collider.gameObject;
+                    if (hitObj.tag != "GameActor")
+                        // obstruction in front, ignore the rest of the ray
+                        break;
+                    else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible())
+                    {
+                        // PlayerActor
+                        GameActors.Add(hitObj.GetComponent<GameActor>());
+                        break;
+                    }
                 }
             }
         }
