@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010692404168}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.4539634, y: 1.74, z: 0}
+  m_LocalPosition: {x: 0.68, y: 22.1, z: 0}
   m_LocalScale: {x: 0.09487387, y: 0.09487408, z: 0.4743704}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children:
@@ -198,7 +198,7 @@ Animator:
   m_GameObject: {fileID: 1000010692404168}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a5daaf439022a468d8f67f07a7f89cac, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5b0d2035a0d51274ca0421b4eef15089, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceDir: {x: 0, y: -1}
-  moveSpeed: 8
+  moveSpeed: 8.5
   health: 3
   is_cycle: 0
   patrolPoints: []
@@ -235,11 +235,12 @@ MonoBehaviour:
   meleeDistance: 2.5
   sightDistance: 100
   interactionDistance: 2
-  hasGun: 0
+  hasGun: 1
   reloadTime: 2
   cloakTime: 1
   currentLevel: 2
   openingText: {fileID: 0}
+  magazine_cap: 3
 --- !u!114 &114000011092929566
 MonoBehaviour:
   m_ObjectHideFlags: 1

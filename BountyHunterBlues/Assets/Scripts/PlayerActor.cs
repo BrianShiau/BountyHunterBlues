@@ -25,6 +25,8 @@ public class PlayerActor : GameActor
 
 	public int currentLevel;
 	public NPC openingText;
+	public int magazine_cap;
+	private int magazine_size;
 	private static int deaths = 0;
 
 	// UI
@@ -47,6 +49,7 @@ public class PlayerActor : GameActor
 		knifeAttacked = false;
 		tookDamage = false;
 		visible = true;
+		magazine_size = magazine_cap;
 
 		// play opening text only once
 		if (deaths == 0) {
@@ -75,7 +78,7 @@ public class PlayerActor : GameActor
 	public override void Update()
 	{
 		base.Update();
-		lastShotTime += Time.deltaTime;
+
 		knifeAttacked = false;
 		gun_fired = false;
 		enemyHit = false;
@@ -94,14 +97,33 @@ public class PlayerActor : GameActor
 		} else {
 			gunSliderFill.color = Color.red;
 		}
+
+		reload_magazine();
+	}
+
+	public void reload_magazine(){
+		if(magazine_size < magazine_cap){
+			lastShotTime += Time.deltaTime;
+			if(lastShotTime >= reloadTime){
+				magazine_size += 1;
+				lastShotTime = 0;
+			}
+		}
+		else{
+			lastShotTime = reloadTime;
+		}
 	}
 
 	public override void rangedAttack()
 	{
 		if (visible)
 		{
-			if (hasGun && lastShotTime >= reloadTime)
+			if (hasGun && magazine_size > 0)
 			{
+				if(magazine_size == magazine_cap){
+					lastShotTime = 0;
+				}
+				magazine_size -= 1;
 				Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
 				Vector2 aimVector = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
 				aimVector.Normalize();
@@ -136,7 +158,6 @@ public class PlayerActor : GameActor
 					if (!aimTarget.isAlive())
 						aimTarget = null;
 				}
-				lastShotTime = 0;
                 if (audioManager.isPlaying("Gun"))
                     audioManager.Stop("Gun");
                 audioManager.Play("Gun");
