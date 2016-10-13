@@ -80,6 +80,7 @@ public class DogEnemy : EnemyActor {
     {
         base.runAnimation();
         BarrelBase bBase = GetComponentInChildren<BarrelBase>();
+        bBase.facing = currDirection;
         Animator EnemyBarrelAnimator = bBase.GetComponentInChildren<Animator>();
         EnemyBarrelAnimator.SetInteger("Direction", (int)currDirection);
     }
