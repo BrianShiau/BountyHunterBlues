@@ -76,37 +76,12 @@ public class DogEnemy : EnemyActor {
         
     }
 
-    public override void runAnimation(){
-    	base.runAnimation();
-    	BarrelBase bBase = GetComponentInChildren<BarrelBase>();
-    	Animator EnemyBarrelAnimator = bBase.GetComponentInChildren<Animator>();
-    	if (faceDir.y != 0 && Mathf.Abs(faceDir.y) >= Mathf.Abs(faceDir.x)) // up and down facing priority over left and right
-        {
-            if (faceDir.y > 0)
-            {
-                GetComponentInChildren<BarrelRotation>().setOrientation(GameActor.Direction.UP);
-                bBase.facing = Direction.UP;
-            }
-            else
-            {
-                GetComponentInChildren<BarrelRotation>().setOrientation(GameActor.Direction.DOWN);
-                bBase.facing = Direction.DOWN;
-            }
-        }
-
-        else
-        {
-            if (faceDir.x > 0)
-            {
-                GetComponentInChildren<BarrelRotation>().setOrientation(GameActor.Direction.RIGHT);
-                bBase.facing = Direction.RIGHT;
-            }
-            else
-            {
-                GetComponentInChildren<BarrelRotation>().setOrientation(GameActor.Direction.LEFT);
-                bBase.facing = Direction.LEFT;
-            }
-        }
+    public override void runAnimation()
+    {
+        base.runAnimation();
+        BarrelBase bBase = GetComponentInChildren<BarrelBase>();
+        Animator EnemyBarrelAnimator = bBase.GetComponentInChildren<Animator>();
+        EnemyBarrelAnimator.SetInteger("Direction", (int)currDirection);
     }
     /*
     private IEnumerator DeathCleanUp()
