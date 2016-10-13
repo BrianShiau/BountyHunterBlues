@@ -1,9 +1,25 @@
 fileFormatVersion: 2
 guid: 77c265234305e45ca81d42f939ba3954
-timeCreated: 1476151259
+timeCreated: 1476303483
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: MouseLeft_sprite_0
+    21300002: MouseLeft_sprite_1
+    21300004: MouseLeft_sprite_2
+    21300006: MouseLeft_sprite_3
+    21300008: MouseLeft_sprite_4
+    21300010: MouseLeft_sprite_5
+    21300012: MouseLeft_sprite_6
+    21300014: MouseLeft_sprite_7
+    21300016: MouseLeft_sprite_8
+    21300018: MouseLeft_sprite_9
+    21300020: MouseLeft_sprite_10
+    21300022: MouseLeft_sprite_11
+    21300024: MouseLeft_sprite_12
+    21300026: MouseLeft_sprite_13
+    21300028: MouseLeft_sprite_14
+    21300030: MouseLeft_sprite_15
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +54,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,7 +67,215 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MouseLeft_sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2808
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_1
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 2808
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_2
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 2808
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_3
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 2808
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1872
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_5
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 1872
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_6
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 1872
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_7
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 1872
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 936
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_9
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 936
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_10
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 936
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_11
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 936
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_13
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 0
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_14
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 0
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseLeft_sprite_15
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 0
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

@@ -33,7 +33,12 @@ public class DogEnemy : EnemyActor {
         if(isMoving)
         {
             if (!audioManager.isPlaying("Feet"))
-                audioManager.Play("Feet", "Chase");
+            {
+                if (isPatrolling)
+                    audioManager.Play("Feet", "Patrol");
+                else
+                    audioManager.Play("Feet", "Chase");
+            }
 
         }
         else

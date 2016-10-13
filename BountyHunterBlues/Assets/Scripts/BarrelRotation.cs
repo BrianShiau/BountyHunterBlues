@@ -43,8 +43,6 @@ public class BarrelRotation : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sprite = leftSprite;
             else
                 GetComponent<SpriteRenderer>().sprite = leftAttackSprite;
-            float angle = Mathf.Atan2(-1 * faceDir.x, -1 * faceDir.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, 1 * Vector3.forward);
         }
         else if(orientation == Actor.Direction.DOWN)
         {
@@ -52,8 +50,6 @@ public class BarrelRotation : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sprite = downSprite;
             else
                 GetComponent<SpriteRenderer>().sprite = downAttackSprite;
-            float angle = Mathf.Atan2(-1 * faceDir.y, 1 * faceDir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, 1 * Vector3.forward);
         }
         else if (orientation == Actor.Direction.RIGHT)
         {
@@ -61,8 +57,6 @@ public class BarrelRotation : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sprite = rightSprite;
             else
                 GetComponent<SpriteRenderer>().sprite = rightAttackSprite;
-            float angle = Mathf.Atan2(1 * faceDir.x, 1 * faceDir.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, 1 * Vector3.forward);
         }
         else if (orientation == Actor.Direction.UP)
         {
@@ -70,13 +64,14 @@ public class BarrelRotation : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sprite = upSprite;
             else
                 GetComponent<SpriteRenderer>().sprite = upAttackSprite;
-            float angle = Mathf.Atan2(1 * faceDir.y, -1 * faceDir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, 1 * Vector3.forward);
         }
-        
+        float angle = Mathf.Atan2(myActor.faceDir.y, myActor.faceDir.x) * Mathf.Rad2Deg
+            + 180 + myActor.transform.localRotation.eulerAngles.z; // corrected for sprite angle
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        
-	}
+
+
+    }
 
     public void setOrientation (Actor.Direction dir)
     {

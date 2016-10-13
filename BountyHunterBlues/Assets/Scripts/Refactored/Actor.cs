@@ -23,6 +23,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     protected Animator gameActorAnimator;
     protected Direction currDirection;
     protected bool isMoving;
+    protected bool isPatrolling;
     protected bool markedToDie;
     
     public virtual void die()
@@ -36,6 +37,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
         audioManager = initAudioManager();
         patrolManager = new PatrolManager(this.gameObject, patrolPoints, is_cycle);
         isMoving = false;
+        isPatrolling = false;
         markedToDie = false;
     }
     
@@ -138,6 +140,11 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
             else
                 currDirection = Direction.LEFT;
         }
+    }
+
+    public void setIsPatrolling(bool patrol)
+    {
+        isPatrolling = patrol;
     }
 
     

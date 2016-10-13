@@ -1,9 +1,23 @@
 fileFormatVersion: 2
 guid: 1c902ae456fe94cf18924df6db7516c9
-timeCreated: 1476151313
+timeCreated: 1476303536
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: MouseAppear_Sprite_0
+    21300002: MouseAppear_Sprite_1
+    21300004: MouseAppear_Sprite_2
+    21300006: MouseAppear_Sprite_3
+    21300008: MouseAppear_Sprite_4
+    21300010: MouseAppear_Sprite_5
+    21300012: MouseAppear_Sprite_6
+    21300014: MouseAppear_Sprite_7
+    21300016: MouseAppear_Sprite_8
+    21300018: MouseAppear_Sprite_9
+    21300020: MouseAppear_Sprite_10
+    21300022: MouseAppear_Sprite_11
+    21300024: MouseAppear_Sprite_12
+    21300026: MouseAppear_Sprite_13
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +44,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +52,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,7 +65,189 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_0
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 2808
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 2808
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 2808
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1872
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_4
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 1872
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_5
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 1872
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_6
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 1872
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 936
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_8
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 936
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_9
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 936
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_10
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 936
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_12
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 0
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MouseAppear_Sprite_13
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 0
+        width: 936
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
