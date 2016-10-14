@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000013429468374}
   m_IsPrefabParent: 1
+--- !u!1 &1000011626947058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013538060720}
+  - 61: {fileID: 61000011110124968}
+  m_Layer: 0
+  m_Name: Physics Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000013429468374
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,6 +45,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4000013538060720
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011626947058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013684197154}
+  m_RootOrder: 0
 --- !u!4 &4000013684197154
 Transform:
   m_ObjectHideFlags: 1
@@ -36,12 +65,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013429468374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.5, y: 13.85, z: 0}
+  m_LocalPosition: {x: 41.724907, y: -17.359636, z: 0}
   m_LocalScale: {x: 0.55, y: 0.55, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 4000013538060720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!61 &61000011110124968
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011626947058}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.058566008}
+  serializedVersion: 2
+  m_Size: {x: 3.6061983, y: 1.117133}
 --- !u!61 &61000011505374912
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -51,7 +95,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0.008974942, y: 0.2871791}
   serializedVersion: 2
@@ -69,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openSprite: {fileID: 21300002, guid: fcee94e182c59544682e1de014f610da, type: 3}
   closed: 0
+  specialDoor: 0
 --- !u!212 &212000010925132988
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -91,4 +91,20 @@ public abstract class GameActor : Actor, Vision
             }
         }
     }
+
+    // inherited from MonoBehaviour
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.isTrigger)
+        {
+            SpriteRenderer otherSprite = other.gameObject.GetComponent<SpriteRenderer>();
+            if (otherSprite != null) {
+                if (GetComponentInChildren<Collider2D>().bounds.center.y < other.transform.position.y)
+                    GetComponent<SpriteRenderer>().sortingOrder = otherSprite.sortingOrder + 1;
+                else
+                    GetComponent<SpriteRenderer>().sortingOrder = otherSprite.sortingOrder - 1;
+            }
+
+        }
+    }
 }
