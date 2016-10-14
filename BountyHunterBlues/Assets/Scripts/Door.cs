@@ -24,6 +24,7 @@ public class Door : MonoBehaviour, Interactable {
             GetComponent<SpriteRenderer>().sprite = openSprite;
 
             Destroy(GetComponent<BoxCollider2D>());
+            Destroy(GetComponentInChildren<BoxCollider2D>());
 
             // pictures arent cut right, offset for now
             transform.Translate(0.0f, 0.5f, 0.0f);
