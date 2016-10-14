@@ -63,13 +63,16 @@ public abstract class GameActor : Actor, Vision
                 IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
                 foreach (RaycastHit2D hit in sortedHits)
                 {
-                    if (hit.collider.gameObject != gameObject && hit.collider.tag != "Interactable")
-                        break;
-
-                    if (hit.collider.tag == "Interactable" && hit.distance <= closestDist)
+                    if (hit.collider.isTrigger)
                     {
-                        interactionTarget = (Interactable)hit.collider.GetComponent(typeof(Interactable));
-                        closestDist = dist;
+                        if (hit.collider.gameObject != gameObject && hit.collider.tag != "Interactable")
+                            break;
+
+                        if (hit.collider.tag == "Interactable" && hit.distance <= closestDist)
+                        {
+                            interactionTarget = (Interactable)hit.collider.GetComponent(typeof(Interactable));
+                            closestDist = dist;
+                        }
                     }
                 }
             }

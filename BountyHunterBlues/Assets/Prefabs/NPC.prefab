@@ -51,7 +51,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0.008974942, y: 0.2871791}
   serializedVersion: 2
@@ -67,7 +67,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd785fdada0a4fe47a30d87e86648000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentlyTalking: 0
+  faceDir: {x: 0, y: 0}
+  moveSpeed: 0
+  health: 0
+  is_cycle: 0
+  patrolPoints: []
+  sources: []
+  npcImage: {fileID: 0}
+  NPCNumber: 0
+  destroyAfterPlay: 0
+  currentLine: 0
 --- !u!212 &212000013327682414
 SpriteRenderer:
   m_ObjectHideFlags: 1
