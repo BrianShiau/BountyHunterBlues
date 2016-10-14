@@ -22,6 +22,7 @@ public abstract class EnemyActor : GameActor {
     private bool shortest_path_calculated;
     public float node_transition_threshold;
     private int path_index;
+    public int path_threshold;
 
 	// UI Reactions
 	Animator reactionAnim;
@@ -85,6 +86,9 @@ public abstract class EnemyActor : GameActor {
             set_alert(true);
             set_shortest_path_calculated(false);
             calc_shortest_path(transform.position, get_audio_location());
+            if(path.length() == 0){
+                return false;
+            }
 
 			if (reactionAnim) {
 				reactionAnim.SetInteger ("State", 1);
@@ -104,6 +108,11 @@ public abstract class EnemyActor : GameActor {
         if(!shortest_path_calculated){
             path.initialize(from, to);
             path.calc_path();
+            Debug.Log(path.length());
+            if(path.length() > path_threshold){
+                path.clear();
+            }
+            Debug.Log(path.length());
             shortest_path_calculated = true;
         }
     }
