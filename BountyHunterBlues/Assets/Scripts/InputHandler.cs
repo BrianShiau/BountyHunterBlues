@@ -109,7 +109,6 @@ public class InputHandler : MonoBehaviour {
             ||  (Input.GetKey(KeyCode.E) && interactInputDelay < 0))
         {
 			interactInputDelay = 1;
-            interact = new InteractCommand();
             nextCommands.AddLast(interact);
         }
 
