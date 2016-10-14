@@ -134,17 +134,22 @@ public class PlayerActor : GameActor
 
 				GameActor aimTarget = null;
 				foreach (RaycastHit2D hitinfo in sortedHits) {
-					GameObject obj = hitinfo.collider.gameObject;
-					aimPoint = hitinfo.point;
-					if (obj.tag != "GameActor"){
-						// non-game actor in front, obstruction blocking aim
-						break;
-					} else if(hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
-					{
-						// visible GameActor in Ray that is unobstructed and not me
-						aimTarget = hitinfo.collider.GetComponent<GameActor>();
-						break;
-					}
+                    if (hitinfo.collider.isTrigger)
+                    { // only deal with trigger colliders for finding attackable target
+                        GameObject obj = hitinfo.collider.gameObject;
+                        aimPoint = hitinfo.point;
+                        if (obj.tag != "GameActor")
+                        {
+                            // non-game actor in front, obstruction blocking aim
+                            break;
+                        }
+                        else if (hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
+                        {
+                            // visible GameActor in Ray that is unobstructed and not me
+                            aimTarget = hitinfo.collider.GetComponent<GameActor>();
+                            break;
+                        }
+                    }
 					// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
 				}
 				notifyEnemies();
