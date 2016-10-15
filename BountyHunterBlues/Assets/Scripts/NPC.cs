@@ -44,7 +44,12 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 0: 
 			//Opening Tutorial
 			strings = new string[] {
-				"Oh. I guess I better... get off this ship",
+				"Of all the backwater space stations he could have sent me to, it had to be the one where I grew up…",
+				"I haven’t been there in years and I can’t say I’ve missed the place.",
+				"I’ll try to make it quick; take out my target and get out as quick as possible.",
+				"Bounty better be worth it.",
+				"He could’ve given me more to go on, though. “CEO of Eva Corporation,” what am I supposed to do with that?",
+				"Ah, are we docking? Better get out quick.",
 				"Thanks, you hunk of junk.",
 			};
 			break;
@@ -57,18 +62,18 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 10: 
 			//Rest Area Big Bad NPC
 			strings = new string[] {
-				"A lot more ships leaving than coming these days... Things have changed since you’ve last been here. ",
-				"Though you’ve surely seen this before. Happening everywhere these days.",
-				"But don’t worry, it’s the riff-raff that are getting jettisoned. [chuckles] Consider it a long-overdue spring cleaning.",
-				"You’d best watch yourself, lest you be sent the same way."
+				"My God! Is that you? I never thought I’d see you again!",
+				"Considering how we broke up, I would’ve been fine with that.",
+				"What are you doing here? You shouldn’t have come back.",
 			};
 			break;
 		case 20: 
 			//Opening Level 1
 			strings = new string[] {
-				"Glad to see he’s creepy as ever. How the hell did he know I was gonna be here?",
+				"Soon as I get home I run into my ex. Wonderful.",
+				"Let's just... move on.",
 				"Okay, the door out of the loading bay is probably locked.",
-				"I wonder if they’re still using those rolly things..."
+				"I wonder if they’re still using those rolly things...",
 			};
 			break;
 		case 21: 

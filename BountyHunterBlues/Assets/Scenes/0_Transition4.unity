@@ -1670,7 +1670,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7c0fd26553f775740bbb1150b82e711f,
+      objectReference: {fileID: 21300000, guid: ad38c226af9cd804b8a9d8459fdae60d,
         type: 3}
     - target: {fileID: 4000013051926680, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1718,18 +1718,8 @@ Prefab:
         type: 2}
       propertyPath: npcImage
       value: 
-      objectReference: {fileID: 21300000, guid: b15162e5797b88a4aa36e1647106451a,
+      objectReference: {fileID: 21300000, guid: 416efbbddd497b940b9ff7c2f0a46e52,
         type: 3}
-    - target: {fileID: 212000013327682414, guid: 1e000e91c311bda43b75c0efa5cbf69a,
-        type: 2}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000013327682414, guid: 1e000e91c311bda43b75c0efa5cbf69a,
-        type: 2}
-      propertyPath: m_FlipY
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
