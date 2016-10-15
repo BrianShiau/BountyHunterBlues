@@ -27,7 +27,7 @@ public class Door : MonoBehaviour, Interactable {
             Destroy(transform.GetChild(0).gameObject);
 
             // pictures arent cut right, offset for now
-            transform.Translate(0.0f, 0.5f, 0.0f);
+            transform.Translate(0.0f, 0.0f, 0.0f);
         }
     }
 }
