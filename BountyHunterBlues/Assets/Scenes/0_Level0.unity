@@ -21629,7 +21629,7 @@ Prefab:
     - target: {fileID: 212000013420748294, guid: 32f72e1a3d98c443fb347342ed529c84,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1000010769082142, guid: 32f72e1a3d98c443fb347342ed529c84, type: 2}
       propertyPath: m_Name
