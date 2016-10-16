@@ -88,6 +88,7 @@ public class DogEnemy : EnemyActor {
     public override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
+        SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
         SpriteRenderer bBase = GetComponentInChildren<BarrelBase>().GetComponent<SpriteRenderer>();
         SpriteRenderer barrel = GetComponentInChildren<BarrelRotation>().GetComponent<SpriteRenderer>();
         SpriteRenderer laser = GetComponentInChildren<Laser>().GetComponent<SpriteRenderer>();
