@@ -87,21 +87,16 @@ public class DogEnemy : EnemyActor {
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-        int oldSortingOrder = mySprite.sortingOrder;
         base.OnTriggerEnter2D(other);
         SpriteRenderer bBase = GetComponentInChildren<BarrelBase>().GetComponent<SpriteRenderer>();
         SpriteRenderer barrel = GetComponentInChildren<BarrelRotation>().GetComponent<SpriteRenderer>();
         SpriteRenderer laser = GetComponentInChildren<Laser>().GetComponent<SpriteRenderer>();
         SpriteRenderer reactionUI = transform.FindChild("Reactions").GetComponent<SpriteRenderer>();
-        if (oldSortingOrder < mySprite.sortingOrder)
-        {
-            
-            laser.sortingOrder = mySprite.sortingOrder + 1;
-            barrel.sortingOrder = laser.sortingOrder + 1;
-            bBase.sortingOrder = barrel.sortingOrder + 1;
-            reactionUI.sortingOrder = bBase.sortingOrder + 1;
-        }
+
+        laser.sortingOrder = mySprite.sortingOrder + 1;
+        barrel.sortingOrder = laser.sortingOrder + 1;
+        bBase.sortingOrder = barrel.sortingOrder + 1;
+        reactionUI.sortingOrder = bBase.sortingOrder + 1;
 
 
         
