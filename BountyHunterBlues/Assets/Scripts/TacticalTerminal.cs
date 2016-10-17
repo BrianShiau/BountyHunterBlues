@@ -9,8 +9,8 @@ public class TacticalTerminal : MonoBehaviour, Interactable {
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindObjectOfType<PlayerActor>();
-        playerCamera = GameObject.Find("Player").GetComponentInChildren<Camera>();
-        tacticalCamera = GameObject.Find("TacticalCamera").GetComponent<Camera>();
+        playerCamera = GameObject.Find("0_Player").GetComponentInChildren<Camera>();
+        tacticalCamera = GameObject.Find("0_TacticalCamera").GetComponent<Camera>();
 	}
 	
 	// Update is called once per frame
