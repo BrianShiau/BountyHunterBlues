@@ -108,11 +108,9 @@ public abstract class EnemyActor : GameActor {
         if(!shortest_path_calculated){
             path.initialize(from, to);
             path.calc_path();
-            Debug.Log(path.length());
             if(path.length() > path_threshold){
                 path.clear();
             }
-            Debug.Log(path.length());
             shortest_path_calculated = true;
         }
     }
