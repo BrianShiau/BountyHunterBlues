@@ -3665,38 +3665,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
         type: 2}
-      propertyPath: gunSlider
-      value: 
-      objectReference: {fileID: 2058217830}
-    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: gunImage
-      value: 
-      objectReference: {fileID: 2058217831}
-    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: gunSliderFill
-      value: 
-      objectReference: {fileID: 2058217829}
-    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: hasGun
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
       propertyPath: openingText
       value: 
       objectReference: {fileID: 699842822}
-    - target: {fileID: 95000010032085470, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: e9f31be1216aa1b428ebec0553a784ef, type: 2}
-    - target: {fileID: 4000013978322868, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -8575,24 +8546,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f152a1578a5a8ce4ab2869c291a3723c, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &2058217829 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000010067305250, guid: f152a1578a5a8ce4ab2869c291a3723c,
-    type: 2}
-  m_PrefabInternal: {fileID: 2058217828}
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
---- !u!114 &2058217830 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000010645419030, guid: f152a1578a5a8ce4ab2869c291a3723c,
-    type: 2}
-  m_PrefabInternal: {fileID: 2058217828}
-  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
---- !u!114 &2058217831 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000010650604722, guid: f152a1578a5a8ce4ab2869c291a3723c,
-    type: 2}
-  m_PrefabInternal: {fileID: 2058217828}
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &2058755664
 Prefab:
   m_ObjectHideFlags: 0
