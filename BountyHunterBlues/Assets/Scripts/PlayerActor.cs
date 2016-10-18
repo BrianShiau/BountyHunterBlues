@@ -34,6 +34,7 @@ public class PlayerActor : GameActor
 	private Slider gunSlider;
 	private GameObject gunSliderObject;
 	private Image gunSliderFill;
+	private Vector2 bulletStartPosition;
 
 	private Image hitFlash;
 
@@ -73,12 +74,14 @@ public class PlayerActor : GameActor
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
 		mGrid = GameObject.Find("GridOverlay").GetComponent<Grid>();
+		setBulletStartPosition();
 	}
 
 	public override void Update()
 	{
 		base.Update();
 
+		Debug.Log(currDirection);
 		knifeAttacked = false;
 		gun_fired = false;
 		enemyHit = false;
@@ -111,6 +114,21 @@ public class PlayerActor : GameActor
 		}
 		else{
 			lastShotTime = reloadTime;
+		}
+	}
+
+	public void setBulletStartPosition(){
+		if(currDirection == Direction.RIGHT){ 
+			bulletStartPosition = new Vector2(transform.position.x, transform.position.y - 1);
+		}
+		if(currDirection == Direction.LEFT){ 
+			bulletStartPosition = new Vector2(transform.position.x, transform.position.y + 1);
+		}
+		if(currDirection == Direction.UP){ 
+			bulletStartPosition = new Vector2(transform.position.x + 1, transform.position.y);
+		}
+		if(currDirection == Direction.DOWN){ 
+			bulletStartPosition = new Vector2(transform.position.x - 1, transform.position.y);
 		}
 	}
 
@@ -154,7 +172,9 @@ public class PlayerActor : GameActor
 				}
 				notifyEnemies();
 				gun_fired = true;
-				StartCoroutine(Utility.drawLine (transform.position, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.red, 1f));
+
+				setBulletStartPosition();
+				StartCoroutine(Utility.drawLine (bulletStartPosition, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.cyan, 1f));
 				if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
 				{
                     audioManager.Play("EnemyDeath");

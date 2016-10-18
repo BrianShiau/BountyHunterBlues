@@ -111,6 +111,7 @@ public class AlertDog: DogState {
 	}
 
 	public override void execute(){
+		Debug.Log(enemy.get_last_seen());
 		if(enemy.getClosestAttackable() != null){
 			enemy.set_alert(true);
 			Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
