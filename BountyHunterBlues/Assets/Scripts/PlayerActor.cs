@@ -38,6 +38,9 @@ public class PlayerActor : GameActor
 
 	private Image hitFlash;
 
+	private GameObject mainBackground;
+	private Vector3 startingPosition;
+
 	private Grid mGrid;
 
 	public override void Start()
@@ -73,6 +76,8 @@ public class PlayerActor : GameActor
 			gunSliderObject.SetActive (false);
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
+		mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
+		startingPosition = transform.position;
 		mGrid = GameObject.Find("GridOverlay").GetComponent<Grid>();
 		setBulletStartPosition();
 	}
@@ -101,6 +106,11 @@ public class PlayerActor : GameActor
 		}
 
 		reload_magazine();
+
+		mainBackground.transform.position = (transform.position - (transform.position - startingPosition)/10);
+		//Debug.Log (startingPosition);
+		//Debug.Log ((transform.position - startingPosition));
+		//Debug.Log ((transform.position - startingPosition)/100);
 	}
 
 	public void reload_magazine(){
@@ -362,11 +372,6 @@ public class PlayerActor : GameActor
         }
         return seenActors.ToArray();
     }
-
-	public override void move(Vector2 dir){
-		base.move (dir);
-		GameObject.FindGameObjectWithTag ();
-	}
 
 	public void EnableGun(){
 		hasGun = true;

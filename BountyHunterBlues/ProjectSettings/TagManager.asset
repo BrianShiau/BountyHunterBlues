@@ -15,6 +15,7 @@ TagManager:
   - GunImage
   - GunSlider
   - GunFill
+  - MainBackground
   layers:
   - Default
   - TransparentFX
