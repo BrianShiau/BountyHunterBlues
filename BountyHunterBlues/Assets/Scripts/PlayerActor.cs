@@ -383,6 +383,17 @@ public class PlayerActor : GameActor
         return seenActors.ToArray();
     }
 
+	public override void OnTriggerEnter2D(Collider2D other)
+	{
+		base.OnTriggerEnter2D(other);
+		SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+		SpriteRenderer healthBarRenderer = transform.FindChild("health bar_0").GetComponent<SpriteRenderer>();
+		SpriteRenderer hitSmokeRenderer = transform.FindChild("hit animation smoke").GetComponent<SpriteRenderer>();
+
+		healthBarRenderer.sortingOrder = mySprite.sortingOrder - 1;
+		hitSmokeRenderer.sortingOrder = mySprite.sortingOrder + 1;
+	}
+
 	public void EnableGun(){
 		hasGun = true;
 		gunImage.enabled = true;
