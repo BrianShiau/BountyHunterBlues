@@ -71,7 +71,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			//TV 1
 			strings = new string[] {
                 "...soaring cost of living. In spite of this, EvaCorp continues to buy up properties,",
-                "with plans to start three separate construction projects in the next year.",
+                "with plans to start three separate construction projects in the next year...",
 			};
 			break;
 		case 12: 
@@ -88,7 +88,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"Soon as I get home I run into my ex. Wonderful.",
 				"Let's just... move on.",
 				"Okay, the door out of the loading bay is probably locked.",
-				"I wonder if they’re still using those rolly things...",
+				"I wonder if they’re still using those rolly things to control the doors...",
 			};
 			break;
 		case 21: 
