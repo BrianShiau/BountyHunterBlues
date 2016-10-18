@@ -81,7 +81,6 @@ public class PlayerActor : GameActor
 	{
 		base.Update();
 
-		Debug.Log(currDirection);
 		knifeAttacked = false;
 		gun_fired = false;
 		enemyHit = false;
