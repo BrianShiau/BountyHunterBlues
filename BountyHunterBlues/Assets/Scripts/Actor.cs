@@ -76,7 +76,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
         die();
     }
 
-    public void move(Vector2 dir)
+    public virtual void move(Vector2 dir)
     {
         dir.Normalize();
         faceDir = dir;

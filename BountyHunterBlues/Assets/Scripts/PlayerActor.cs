@@ -346,6 +346,11 @@ public class PlayerActor : GameActor
         return seenActors.ToArray();
     }
 
+	public override void move(Vector2 dir){
+		base.move (dir);
+		GameObject.FindGameObjectWithTag ();
+	}
+
 	public void EnableGun(){
 		hasGun = true;
 		gunImage.enabled = true;
