@@ -23,7 +23,7 @@ GameObject:
   - 61: {fileID: 61000013813875670}
   - 114: {fileID: 114000011932605408}
   m_Layer: 0
-  m_Name: 0_CEO
+  m_Name: NPC
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
