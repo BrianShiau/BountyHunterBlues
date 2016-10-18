@@ -108,9 +108,6 @@ public class PlayerActor : GameActor
 		reload_magazine();
 
 		mainBackground.transform.position = (transform.position - (transform.position - startingPosition)/10);
-		//Debug.Log (startingPosition);
-		//Debug.Log ((transform.position - startingPosition));
-		//Debug.Log ((transform.position - startingPosition)/100);
 	}
 
 	public void reload_magazine(){
