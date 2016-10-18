@@ -49,11 +49,11 @@ public abstract class EnemyActor : GameActor {
 		if (transform.FindChild ("Reactions")) {
 			reactionAnim = transform.FindChild ("Reactions").GetComponent<Animator> ();
 			reactionAnim.speed = 10.0f;
-		}
-	}
+        }
+    }
 
-	public override void Update(){
-		hasAttacked = false;
+    public override void Update(){
+        hasAttacked = false;
         base.Update();
 	}
 
@@ -108,8 +108,11 @@ public abstract class EnemyActor : GameActor {
         if(!shortest_path_calculated){
             path.initialize(from, to);
             path.calc_path();
+            Debug.Log(path.length());
             if(path.length() > path_threshold){
                 path.clear();
+                alert = false;
+                audio_location = new Vector2(0, 0);
             }
             shortest_path_calculated = true;
         }
