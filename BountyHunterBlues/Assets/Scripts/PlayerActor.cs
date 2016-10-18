@@ -117,6 +117,22 @@ public class PlayerActor : GameActor
 	}
 
 	public void setBulletStartPosition(){
+		if (faceDir.y != 0 && Mathf.Abs(faceDir.y) >= Mathf.Abs(faceDir.x)){
+            if (faceDir.y > 0){
+                currDirection = Direction.UP;
+            }
+            else{
+                currDirection = Direction.DOWN;
+            }
+        }
+        else{
+            if (faceDir.x > 0){
+                currDirection = Direction.RIGHT;
+            }
+            else{
+                currDirection = Direction.LEFT;
+            }
+        }
 		if(currDirection == Direction.RIGHT){ 
 			bulletStartPosition = new Vector2(transform.position.x, transform.position.y - 1);
 		}
@@ -174,6 +190,7 @@ public class PlayerActor : GameActor
 				gun_fired = true;
 
 				setBulletStartPosition();
+				Debug.Log(currDirection);
 				StartCoroutine(Utility.drawLine (bulletStartPosition, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.cyan, 1f));
 				if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
 				{
