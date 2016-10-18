@@ -1,15 +1,13 @@
 fileFormatVersion: 2
-guid: af32f55e621571d419b20b9cb3802838
-timeCreated: 1476831096
+guid: 80029a726fa1b904d87e13a2b66bccf1
+timeCreated: 1476831248
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: bar sprites1_0
-    21300002: bar sprites1_1
-    21300004: bar sprites1_2
-    21300006: NPC_Bar_0
-    21300008: NPC_Bar_1
-    21300010: ???DoNotUse
+    21300000: NPC_Bar2_0
+    21300002: NPC_Bar2_1
+    21300004: ???DoNotUse1
+    21300006: NPC_Bar2_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,39 +57,52 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NPC_Bar_0
+      name: NPC_Bar2_0
       rect:
         serializedVersion: 2
-        x: 178
-        y: 27
-        width: 669
-        height: 2006
+        x: 132
+        y: 60
+        width: 1142
+        height: 1799
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: NPC_Bar_1
+      name: NPC_Bar2_1
       rect:
         serializedVersion: 2
-        x: 1329
-        y: 79
-        width: 1652
-        height: 1327
+        x: 1901
+        y: 56
+        width: 2116
+        height: 1503
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: ???DoNotUse
+      name: ???DoNotUse1
       rect:
         serializedVersion: 2
-        x: 3024
-        y: 927
-        width: 13
-        height: 11
+        x: 4065
+        y: 954
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NPC_Bar2_3
+      rect:
+        serializedVersion: 2
+        x: 4463
+        y: 107
+        width: 2811
+        height: 1477
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
