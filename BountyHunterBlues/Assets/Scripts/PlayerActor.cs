@@ -144,6 +144,7 @@ public class PlayerActor : GameActor
 				Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
 				Vector2 aimVector = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
 				aimVector.Normalize();
+				faceDir = aimVector;
 
 				Vector2 worldDir = transform.TransformDirection(aimVector);
 				RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldDir, sightDistance);
