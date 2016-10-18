@@ -37,6 +37,10 @@ public class PlayerActor : GameActor
 	private Vector2 bulletStartPosition;
 
 	private Image hitFlash;
+	Animator hitSmokeAnim;
+
+	private GameObject mainBackground;
+	private Vector3 startingPosition;
 
 	private Grid mGrid;
 
@@ -73,8 +77,14 @@ public class PlayerActor : GameActor
 			gunSliderObject.SetActive (false);
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
+		mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
+		startingPosition = transform.position;
 		mGrid = GameObject.Find("GridOverlay").GetComponent<Grid>();
 		setBulletStartPosition();
+
+		if (transform.FindChild ("hit animation smoke")) {
+			hitSmokeAnim = transform.FindChild ("hit animation smoke").GetComponent<Animator> ();
+		}
 	}
 
 	public override void Update()
@@ -101,6 +111,8 @@ public class PlayerActor : GameActor
 		}
 
 		reload_magazine();
+
+		mainBackground.transform.position = (transform.position - (transform.position - startingPosition)/10);
 	}
 
 	public void reload_magazine(){
@@ -279,6 +291,10 @@ public class PlayerActor : GameActor
 			if (GetComponentInChildren<HealthBar> ()) {
 				GetComponentInChildren<HealthBar> ().setHealth (health);
 			}
+			if (hitSmokeAnim) {
+				hitSmokeAnim.SetBool ("Hit", true);
+				Invoke ("resetHitSmokeAnim", 0.1f);
+			}
 			StartCoroutine (PlayHitFlash());
 		}
 	}
@@ -290,6 +306,10 @@ public class PlayerActor : GameActor
 			hitFlash.color = new Color (hitFlash.color.r, hitFlash.color.g, hitFlash.color.b, hitFlash.color.a - .1f);
 			yield return new WaitForSeconds (.1f);
 		}
+	}
+
+	private void resetHitSmokeAnim(){
+		hitSmokeAnim.SetBool ("Hit", false);
 	}
 
 	public override void die()
@@ -362,6 +382,17 @@ public class PlayerActor : GameActor
         }
         return seenActors.ToArray();
     }
+
+	public override void OnTriggerEnter2D(Collider2D other)
+	{
+		base.OnTriggerEnter2D(other);
+		SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+		SpriteRenderer healthBarRenderer = transform.FindChild("health bar_0").GetComponent<SpriteRenderer>();
+		SpriteRenderer hitSmokeRenderer = transform.FindChild("hit animation smoke").GetComponent<SpriteRenderer>();
+
+		healthBarRenderer.sortingOrder = mySprite.sortingOrder - 1;
+		hitSmokeRenderer.sortingOrder = mySprite.sortingOrder + 1;
+	}
 
 	public void EnableGun(){
 		hasGun = true;
