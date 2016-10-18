@@ -67,6 +67,21 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"What are you doing here? You shouldn’t have come back.",
 			};
 			break;
+		case 11: 
+			//TV 1
+			strings = new string[] {
+                "...soaring cost of living. In spite of this, EvaCorp continues to buy up properties,",
+                "with plans to start three separate construction projects in the next year.",
+			};
+			break;
+		case 12: 
+			//TV 2
+			strings = new string[] {
+                "…we at EvaCorp promise to revitalize YOUR community.",
+                "We pride ourselves on our commitment to you and making sure that YOU",
+                "can make the best of your future, with EvaCorp products and services...",
+            };
+			break;
 		case 20: 
 			//Opening Level 1
 			strings = new string[] {
