@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010227923588}
   - 212: {fileID: 212000013200014706}
   m_Layer: 0
-  m_Name: 0_T1Wall_H1
+  m_Name: 0_T1Wall_H0
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
