@@ -37,6 +37,7 @@ public class PlayerActor : GameActor
 	private Vector2 bulletStartPosition;
 
 	private Image hitFlash;
+	Animator hitSmokeAnim;
 
 	private GameObject mainBackground;
 	private Vector3 startingPosition;
@@ -80,6 +81,10 @@ public class PlayerActor : GameActor
 		startingPosition = transform.position;
 		mGrid = GameObject.Find("GridOverlay").GetComponent<Grid>();
 		setBulletStartPosition();
+
+		if (transform.FindChild ("hit animation smoke")) {
+			hitSmokeAnim = transform.FindChild ("hit animation smoke").GetComponent<Animator> ();
+		}
 	}
 
 	public override void Update()
@@ -286,6 +291,10 @@ public class PlayerActor : GameActor
 			if (GetComponentInChildren<HealthBar> ()) {
 				GetComponentInChildren<HealthBar> ().setHealth (health);
 			}
+			if (hitSmokeAnim) {
+				hitSmokeAnim.SetBool ("Hit", true);
+				Invoke ("resetHitSmokeAnim", 0.1f);
+			}
 			StartCoroutine (PlayHitFlash());
 		}
 	}
@@ -297,6 +306,10 @@ public class PlayerActor : GameActor
 			hitFlash.color = new Color (hitFlash.color.r, hitFlash.color.g, hitFlash.color.b, hitFlash.color.a - .1f);
 			yield return new WaitForSeconds (.1f);
 		}
+	}
+
+	private void resetHitSmokeAnim(){
+		hitSmokeAnim.SetBool ("Hit", false);
 	}
 
 	public override void die()
