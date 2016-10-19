@@ -37459,6 +37459,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: c1d7c757cef1b4ee78365fac40287b57,
         type: 3}
+    - target: {fileID: 114000011443674464, guid: d489cf8d52d504dec93e6db3d45b567b,
+        type: 2}
+      propertyPath: specialDoor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d489cf8d52d504dec93e6db3d45b567b, type: 2}
   m_IsPrefabParent: 0
