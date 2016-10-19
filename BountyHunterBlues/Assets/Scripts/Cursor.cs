@@ -9,12 +9,8 @@ public class Cursor : MonoBehaviour {
 
 	private GameObject midPointers;
 	private Camera screenCamera;
-	private GameObject midPointerReload;
-	private GameObject midPointerReload1;
-	private GameObject midPointerReload2;
-	private Animator midPointerReloadAnim;
-	private Animator midPointerReloadAnim1;
-	private Animator midPointerReloadAnim2;
+	private GameObject[] midPointerReloads;
+	private Animator[] midPointerReloadAnims;
 
 	private PlayerActor player;
 
@@ -22,12 +18,16 @@ public class Cursor : MonoBehaviour {
 	void Start () {
 		UnityEngine.Cursor.SetCursor(cursorTexture, new Vector2(cursorTexture.height/2, cursorTexture.width/2), cursorMode);
 		midPointers = transform.FindChild ("MidPointers").gameObject;
-		midPointerReload = midPointers.transform.FindChild ("PointerMidReload").gameObject;
-		midPointerReload1 = midPointers.transform.FindChild ("PointerMidReload (1)").gameObject;
-		midPointerReload2 = midPointers.transform.FindChild ("PointerMidReload (2)").gameObject;
-		midPointerReloadAnim = midPointerReload.GetComponent<Animator> ();
-		midPointerReloadAnim1 = midPointerReload1.GetComponent<Animator> ();
-		midPointerReloadAnim2 = midPointerReload2.GetComponent<Animator> ();
+		midPointerReloads = new GameObject[3];
+		midPointerReloads[0] = midPointers.transform.FindChild ("PointerMidReload").gameObject;
+		midPointerReloads[1] = midPointers.transform.FindChild ("PointerMidReload (1)").gameObject;
+		midPointerReloads[2] = midPointers.transform.FindChild ("PointerMidReload (2)").gameObject;
+		midPointerReloadAnims = new Animator[3];
+		midPointerReloadAnims[0] = midPointerReloads[0].GetComponent<Animator> ();
+		//midPointerReloadAnims[1] = midPointerReloads[1].GetComponent<Animator> ();
+		//midPointerReloadAnims[2] = midPointerReloads[2].GetComponent<Animator> ();
+		//midPointerReloadAnims[1].SetFloat ("ReloadTime", 2);
+		//midPointerReloadAnims[2].SetFloat ("ReloadTime", 2);
 		screenCamera = GetComponentInChildren<Camera> ();
 		player = GetComponent<PlayerActor> ();
 	}
@@ -47,8 +47,17 @@ public class Cursor : MonoBehaviour {
 			midPointers.SetActive (true);
 		}
 
-		midPointerReloadAnim.SetFloat ("ReloadTime", player.getLastShotTime());
-		//player.getMagazineSize ();
+		midPointerReloadAnims[0].SetFloat ("ReloadTime", player.getLastShotTime());
+
+		int start = Mathf.Min(player.getMagazineSize (), 2);
+		for (int i = 2; i > start; i--) {
+			midPointerReloads [i].SetActive (false);
+		}
+		for (int i = start; i >= 0; i--) {
+			midPointerReloads [i].SetActive (true);
+			midPointerReloads [i].transform.localPosition = new Vector3 (midPointerReloads [i].transform.localPosition.x, -5 + 5*(start-i), midPointerReloads [i].transform.localPosition.z);
+		}
+		Debug.Log (player.getMagazineSize ());
 			
 		int cursorIndex = (int)((GetComponentInParent<PlayerActor> ().getLastShotTime () / GetComponentInParent<PlayerActor> ().reloadTime) * cursorTextures.Length);
 		cursorIndex = Mathf.Min (cursorIndex, cursorTextures.Length-1);
