@@ -35,6 +35,7 @@ public class PlayerActor : GameActor
 	private GameObject gunSliderObject;
 	private Image gunSliderFill;
 	private Vector2 bulletStartPosition;
+	private bool cloaked;
 
 	private Image hitFlash;
 	Animator hitSmokeAnim;
@@ -47,6 +48,7 @@ public class PlayerActor : GameActor
 	public override void Start()
 	{
 		base.Start();
+		cloaked = false;
 		lastShotTime = reloadTime;
 		cloakTimer = 0;
 		gun_fired = false;
@@ -146,16 +148,16 @@ public class PlayerActor : GameActor
             }
         }
 		if(currDirection == Direction.RIGHT){ 
-			bulletStartPosition = new Vector2(transform.position.x, transform.position.y - 1);
-		}
-		if(currDirection == Direction.LEFT){ 
-			bulletStartPosition = new Vector2(transform.position.x, transform.position.y + 1);
-		}
-		if(currDirection == Direction.UP){ 
 			bulletStartPosition = new Vector2(transform.position.x + 1, transform.position.y);
 		}
-		if(currDirection == Direction.DOWN){ 
+		if(currDirection == Direction.LEFT){ 
 			bulletStartPosition = new Vector2(transform.position.x - 1, transform.position.y);
+		}
+		if(currDirection == Direction.UP){ 
+			bulletStartPosition = new Vector2(transform.position.x, transform.position.y + 1);
+		}
+		if(currDirection == Direction.DOWN){ 
+			bulletStartPosition = new Vector2(transform.position.x, transform.position.y - 1);
 		}
 	}
 
@@ -287,6 +289,7 @@ public class PlayerActor : GameActor
 		{
 			tookDamage = true;
 			visible = false;
+			cloaked = true;
 			cloakTimer = 0;
 			if (GetComponentInChildren<HealthBar> ()) {
 				GetComponentInChildren<HealthBar> ().setHealth (health);
