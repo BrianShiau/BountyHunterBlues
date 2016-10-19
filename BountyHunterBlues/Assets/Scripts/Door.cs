@@ -7,10 +7,14 @@ public class Door : MonoBehaviour, Interactable {
 	public Sprite openSprite;
 	public bool closed;
 	public bool specialDoor;
+    public Room nextRoom;
+
+    private PlayerActor player;
 
     void Start()
     {
         closed = true;
+        player = FindObjectOfType<PlayerActor>();
 
     }
 
@@ -26,8 +30,10 @@ public class Door : MonoBehaviour, Interactable {
             Destroy(GetComponent<BoxCollider2D>());
             Destroy(transform.GetChild(0).gameObject);
 
+            player.openDoorTo(nextRoom);
+
             // pictures arent cut right, offset for now
-            transform.Translate(0.0f, 0.0f, 0.0f);
+            // transform.Translate(0.0f, 0.0f, 0.0f);
         }
     }
 }

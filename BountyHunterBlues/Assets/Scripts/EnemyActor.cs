@@ -65,7 +65,7 @@ public abstract class EnemyActor : GameActor {
     public override void Update(){
         hasAttacked = false;
         base.Update();
-        Debug.Log(chasing);
+        //Debug.Log(chasing);
 	}
 
     public Vector2 get_last_seen(){

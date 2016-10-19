@@ -50,6 +50,7 @@ public class PlayerActor : GameActor
 	private Vector3 startingPosition;
 
 	private Grid mGrid;
+    private Room mRoom;
 
 	public override void Start()
 	{
@@ -93,6 +94,15 @@ public class PlayerActor : GameActor
 		if (transform.FindChild ("hit animation smoke")) {
 			hitSmokeAnim = transform.FindChild ("hit animation smoke").GetComponent<Animator> ();
 		}
+
+        // figure out what room I'm in and store a reference to that room
+        Room[] roomsInScene = FindObjectsOfType<Room>();
+        foreach(Room room in roomsInScene)
+            if(room.inRoom(this))
+            {
+                mRoom = room;
+                break;
+            }
 	}
 
 	public override void Update()
@@ -279,6 +289,26 @@ public class PlayerActor : GameActor
 	}
 
 	private void notifyEnemies(){
+
+        // room optimization
+        
+        if (mRoom != null)
+        {
+            foreach (GameActor gameActor in mRoom.gameActorsInRoom)
+            {
+                if (gameActor is EnemyActor)
+                {
+                    EnemyActor enemy = (EnemyActor)gameActor;
+                    enemy.set_audio_location(transform.position);
+                }
+            }
+        }
+
+
+
+
+        // old code
+        /*
 		EnemyActor[] enemies = FindObjectsOfType<EnemyActor>();
 		GridPoint gPoint = mGrid.worldToGrid(transform.position);
 		Node node = mGrid.nodes[gPoint.X, gPoint.Y];
@@ -308,6 +338,8 @@ public class PlayerActor : GameActor
 		foreach(Node n in toBeReset){
 			n.visited = false;
 		}
+        */
+        
 	}
 
 	public override void meleeAttack()
@@ -479,4 +511,9 @@ public class PlayerActor : GameActor
 	public void SetTacticalMode(bool mode){
 		inTacticalMode = mode;
 	}
+
+    public void openDoorTo(Room otherRoom)
+    {
+        mRoom.openDoorTo(otherRoom);
+    }
 }
