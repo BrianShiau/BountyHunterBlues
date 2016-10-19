@@ -30,6 +30,7 @@ public abstract class EnemyActor : GameActor {
 
 	// UI Reactions
 	Animator reactionAnim;
+	int reactionStack;
 
 	//prefab
 	public float audio_distance;
@@ -57,6 +58,7 @@ public abstract class EnemyActor : GameActor {
 		if (transform.FindChild ("Reactions")) {
 			reactionAnim = transform.FindChild ("Reactions").GetComponent<Animator> ();
 			reactionAnim.speed = 10.0f;
+			reactionStack = 0;
         }
     }
 
@@ -95,6 +97,7 @@ public abstract class EnemyActor : GameActor {
 			if (reactionAnim) {
 				reactionAnim.SetInteger ("State", 2);
 				Invoke ("resetReactionAnim", 2);
+				reactionStack++;
 			}
             return true;
         }
@@ -121,6 +124,7 @@ public abstract class EnemyActor : GameActor {
 			if (reactionAnim) {
 				reactionAnim.SetInteger ("State", 1);
 				Invoke ("resetReactionAnim", 2);
+				reactionStack++;
 			}
 
             return true;
@@ -129,7 +133,9 @@ public abstract class EnemyActor : GameActor {
     }
 
 	private void resetReactionAnim(){
-		reactionAnim.SetInteger ("State", 0);
+		//Debug.Log (reactionStack);
+		if(--reactionStack == 0)
+			reactionAnim.SetInteger ("State", 0);
 	}
 
     public void calc_shortest_path(Vector3 from, Vector3 to){
