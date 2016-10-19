@@ -48,8 +48,6 @@ public class Cursor : MonoBehaviour {
 		}
 
 		midPointerReloadAnim.SetFloat ("ReloadTime", player.getLastShotTime());
-		Debug.Log (player.getLastShotTime ());
-
 		//player.getMagazineSize ();
 			
 		int cursorIndex = (int)((GetComponentInParent<PlayerActor> ().getLastShotTime () / GetComponentInParent<PlayerActor> ().reloadTime) * cursorTextures.Length);
