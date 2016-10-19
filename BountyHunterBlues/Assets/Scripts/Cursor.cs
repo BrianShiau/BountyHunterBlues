@@ -7,9 +7,14 @@ public class Cursor : MonoBehaviour {
 	public CursorMode cursorMode = CursorMode.Auto;
 	public Texture2D[] cursorTextures;
 
+	private GameObject pointerMidReload;
+	private Camera camera;
+
 	// Use this for initialization
 	void Start () {
 		UnityEngine.Cursor.SetCursor(cursorTexture, new Vector2(cursorTexture.height/2, cursorTexture.width/2), cursorMode);
+		pointerMidReload = transform.FindChild ("PointerMidReload").gameObject;
+		camera = GetComponentInChildren<Camera> ();
 	}
 
 	// Update is called once per frame
@@ -33,11 +38,22 @@ public class Cursor : MonoBehaviour {
 		float distFromCenterX = Event.current.mousePosition.x - Screen.width / 2;
 		float distFromCenterY = Event.current.mousePosition.y - Screen.height / 2;
 		float angle = Mathf.Atan2 (distFromCenterY, distFromCenterX);
-		GUIUtility.RotateAroundPivot(90+angle*Mathf.Rad2Deg, pivot);
 
-		float x = (Event.current.mousePosition.x + Screen.width / 2) / 2 - (48 / 2);
-		float y = (Event.current.mousePosition.y + Screen.height / 2) / 2 - (48 / 2);
-		GUI.DrawTexture (new Rect (x, y, 48, 48), secondaryCursorTexture);		
+		pointerMidReload.transform.eulerAngles = new Vector3(
+			pointerMidReload.transform.eulerAngles.x,
+			pointerMidReload.transform.eulerAngles.y,
+			-90-angle*Mathf.Rad2Deg);
+
+		float x = (Event.current.mousePosition.x + Screen.width / 2) / 2;
+		float y = (Event.current.mousePosition.y + Screen.height / 2) / 2;
+
+		Vector3 worldSpace = camera.ScreenToWorldPoint(
+			new Vector3(x, Screen.height - y, camera.nearClipPlane));
+		pointerMidReload.transform.position = worldSpace;
+
+		//old texture
+		//GUIUtility.RotateAroundPivot(90+angle*Mathf.Rad2Deg, pivot);
+		//GUI.DrawTexture (new Rect (x, y, 48, 48), secondaryCursorTexture);
 	}
 
 
