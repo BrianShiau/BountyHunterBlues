@@ -36,6 +36,7 @@ public class Laser : MonoBehaviour {
         {
             if (hit.collider != null && hit.collider.gameObject != myDog.gameObject)
             {
+				//Debug.Log (gameObject.name);
                 distance = hit.distance;
                 break;
             }
