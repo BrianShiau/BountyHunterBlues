@@ -18,11 +18,13 @@ public abstract class EnemyActor : GameActor {
     private Vector2 last_neutral_position;
     private Vector2 initial_faceDir;
     private Vector2 audio_location;
-    
+    private GameObject player;
+    private PlayerActor playerActor;
+
     public PathFinding path;
     private bool shortest_path_calculated;
-    public float node_transition_threshold;
     private int path_index;
+    public float node_transition_threshold;
     public int path_threshold;
 
 	// UI Reactions
@@ -35,6 +37,8 @@ public abstract class EnemyActor : GameActor {
 
 	public override void Start(){
 		base.Start();
+        player = GameObject.Find("0_Player");
+        playerActor = (PlayerActor) player.GetComponent(typeof(PlayerActor));
 		hasAttacked = false;
         confused = false;
 		_stateManager = new StateManager(transition_time);
@@ -57,7 +61,6 @@ public abstract class EnemyActor : GameActor {
     public override void Update(){
         hasAttacked = false;
         base.Update();
-        Debug.Log(confused);
 	}
 
     public Vector2 get_last_seen(){
@@ -74,6 +77,13 @@ public abstract class EnemyActor : GameActor {
 
     public bool is_alert(){
         return alert;
+    }
+
+    public bool is_confused(){
+        if(playerActor.isCloaked() && alert){
+            return true;
+        }
+        return false;
     }
 
     public Vector2 get_audio_location(){
@@ -111,7 +121,6 @@ public abstract class EnemyActor : GameActor {
         if(!shortest_path_calculated){
             path.initialize(from, to);
             path.calc_path();
-            Debug.Log(path.length());
             if(path.length() > path_threshold){
                 path.clear();
                 alert = false;
@@ -124,11 +133,6 @@ public abstract class EnemyActor : GameActor {
     public void set_shortest_path_calculated(bool value){
         shortest_path_calculated = value;
     }
-
-    public void set_confused_state(bool conf){
-        confused = conf;
-    }
-
 
     public Vector2 get_initial_faceDir(){
         return initial_faceDir;

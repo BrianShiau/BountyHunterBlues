@@ -17,6 +17,7 @@ public class PlayerActor : GameActor
 	private bool enemyHit;
 	private bool inTacticalMode;
 	private bool tookDamage;
+	private bool cloaked;
 
 	private float lastShotTime;
 	private float cloakTimer;
@@ -54,6 +55,7 @@ public class PlayerActor : GameActor
 		knifeAttacked = false;
 		tookDamage = false;
 		visible = true;
+		cloaked = false;
 		magazine_size = magazine_cap;
 
 		// play opening text only once
@@ -98,8 +100,10 @@ public class PlayerActor : GameActor
 
 		if (!visible)
 			cloakTimer += Time.deltaTime;
-		if (cloakTimer >= cloakTime)
+		if (cloakTimer >= cloakTime){
 			visible = true;
+			cloaked = false;
+		}
 
 		gunSlider.value = lastShotTime;
 		if (lastShotTime >= 2) {
@@ -113,6 +117,10 @@ public class PlayerActor : GameActor
 		reload_magazine();
 
 		mainBackground.transform.position = (transform.position - (transform.position - startingPosition)/10);
+	}
+
+	public bool isCloaked(){
+		return cloaked;
 	}
 
 	public void reload_magazine(){
@@ -281,6 +289,7 @@ public class PlayerActor : GameActor
 		{
 			tookDamage = true;
 			visible = false;
+			cloaked = true;
 			cloakTimer = 0;
 			if (GetComponentInChildren<HealthBar> ()) {
 				GetComponentInChildren<HealthBar> ().setHealth (health);

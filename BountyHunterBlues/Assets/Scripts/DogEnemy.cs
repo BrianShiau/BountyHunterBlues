@@ -16,6 +16,8 @@ public class DogEnemy : EnemyActor {
 	public override void Update(){
 		base.Update();
 
+        is_confused();
+        Debug.Log(is_confused());
         _stateManager.update_state(closestAttackable, sound_heard(), is_alert());
         if(current_state.get_state() != _stateManager.get_state()){
             current_state.on_exit();

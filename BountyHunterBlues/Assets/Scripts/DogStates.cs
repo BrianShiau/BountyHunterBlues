@@ -103,7 +103,7 @@ public class AlertDog: DogState {
 	}
 
 	public override void on_exit(){
-		enemy.set_alert(false);
+		//enemy.set_alert(false);
 		enemy.set_last_seen(new Vector2(Int32.MaxValue, Int32.MaxValue));
 		enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
 		enemy.path.clear();
@@ -206,7 +206,7 @@ public class AggresiveDog: DogState {
 
 	public override void on_exit(){
 		enemy.set_shortest_path_calculated(false);
-	    enemy.set_confused_state(false);
+	    //enemy.set_confused_state(false);
 	}
 
 	public override void execute(){
@@ -221,7 +221,7 @@ public class AggresiveDog: DogState {
 
 	        shoot_timer += Time.deltaTime;
 	        if(shoot_timer > shoot_timer_threshold){
-	        	enemy.set_confused_state(true);
+	        	//enemy.set_confused_state(true);
 	        	rangedAttack.execute(enemy);
 	        	shoot_timer = 0;
 	        }
