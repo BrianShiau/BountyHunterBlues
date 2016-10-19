@@ -24,7 +24,11 @@ public class RestartGameTrigger : MonoBehaviour {
 
 	IEnumerator LoadNextLevel()
 	{
-		Time.timeScale = 0;
+
+        MusicPlayer mPlayer = FindObjectOfType<MusicPlayer>();
+        if (mPlayer != null)
+            mPlayer.loadNextSong();
+        Time.timeScale = 0;
 		Image blackFade = GameObject.FindGameObjectWithTag ("BlackFade").GetComponent<Image> ();
 		Color color = blackFade.color;
 		color.a = 0f;
@@ -37,6 +41,7 @@ public class RestartGameTrigger : MonoBehaviour {
 			yield return StartCoroutine(Utility.WaitForRealTime (.03f));
 		}
 		Time.timeScale = 1;
+        
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
 	}
 }
