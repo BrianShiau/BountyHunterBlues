@@ -7,14 +7,14 @@ public class Cursor : MonoBehaviour {
 	public CursorMode cursorMode = CursorMode.Auto;
 	public Texture2D[] cursorTextures;
 
-	private GameObject pointerMidReload;
-	private Camera camera;
+	private GameObject midPointers;
+	private Camera screenCamera;
 
 	// Use this for initialization
 	void Start () {
 		UnityEngine.Cursor.SetCursor(cursorTexture, new Vector2(cursorTexture.height/2, cursorTexture.width/2), cursorMode);
-		pointerMidReload = transform.FindChild ("PointerMidReload").gameObject;
-		camera = GetComponentInChildren<Camera> ();
+		midPointers = transform.FindChild ("MidPointers").gameObject;
+		screenCamera = GetComponentInChildren<Camera> ();
 	}
 
 	// Update is called once per frame
@@ -25,9 +25,11 @@ public class Cursor : MonoBehaviour {
 	void OnGUI(){
 		if (GetComponentInParent<PlayerActor> ().InTacticalMode()) {
 			UnityEngine.Cursor.visible = false;
+			midPointers.SetActive (false);
 			return;
 		} else {
 			UnityEngine.Cursor.visible = true;
+			midPointers.SetActive (true);
 		}
 			
 		int cursorIndex = (int)((GetComponentInParent<PlayerActor> ().getLastShotTime () / GetComponentInParent<PlayerActor> ().reloadTime) * cursorTextures.Length);
@@ -39,17 +41,17 @@ public class Cursor : MonoBehaviour {
 		float distFromCenterY = Event.current.mousePosition.y - Screen.height / 2;
 		float angle = Mathf.Atan2 (distFromCenterY, distFromCenterX);
 
-		pointerMidReload.transform.eulerAngles = new Vector3(
-			pointerMidReload.transform.eulerAngles.x,
-			pointerMidReload.transform.eulerAngles.y,
+		midPointers.transform.eulerAngles = new Vector3(
+			midPointers.transform.eulerAngles.x,
+			midPointers.transform.eulerAngles.y,
 			-90-angle*Mathf.Rad2Deg);
 
 		float x = (Event.current.mousePosition.x + Screen.width / 2) / 2;
 		float y = (Event.current.mousePosition.y + Screen.height / 2) / 2;
 
-		Vector3 worldSpace = camera.ScreenToWorldPoint(
-			new Vector3(x, Screen.height - y, camera.nearClipPlane));
-		pointerMidReload.transform.position = worldSpace;
+		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(
+			new Vector3(x, Screen.height - y, screenCamera.nearClipPlane));
+		midPointers.transform.position = worldSpace;
 
 		//old texture
 		//GUIUtility.RotateAroundPivot(90+angle*Mathf.Rad2Deg, pivot);
