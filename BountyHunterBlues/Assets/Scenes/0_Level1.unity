@@ -25054,28 +25054,6 @@ Prefab:
       propertyPath: openingText
       value: 
       objectReference: {fileID: 1053708849}
-    - target: {fileID: 95000013659129332, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95000010064107310, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000010378939440, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300060, guid: d06b6fc9a23ef4a53950e683f603b376,
-        type: 3}
-    - target: {fileID: 212000010524826886, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300060, guid: d06b6fc9a23ef4a53950e683f603b376,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
