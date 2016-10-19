@@ -8,13 +8,13 @@ public class Cursor : MonoBehaviour {
 	public Texture2D[] cursorTextures;
 
 	private GameObject pointerMidReload;
-	private Camera camera;
+	private Camera screenCamera;
 
 	// Use this for initialization
 	void Start () {
 		UnityEngine.Cursor.SetCursor(cursorTexture, new Vector2(cursorTexture.height/2, cursorTexture.width/2), cursorMode);
-		pointerMidReload = transform.FindChild ("PointerMidReload").gameObject;
-		camera = GetComponentInChildren<Camera> ();
+		pointerMidReload = transform.FindChild ("MidPointers").gameObject;
+		screenCamera = GetComponentInChildren<Camera> ();
 	}
 
 	// Update is called once per frame
@@ -25,9 +25,11 @@ public class Cursor : MonoBehaviour {
 	void OnGUI(){
 		if (GetComponentInParent<PlayerActor> ().InTacticalMode()) {
 			UnityEngine.Cursor.visible = false;
+			pointerMidReload.SetActive (false);
 			return;
 		} else {
 			UnityEngine.Cursor.visible = true;
+			pointerMidReload.SetActive (true);
 		}
 			
 		int cursorIndex = (int)((GetComponentInParent<PlayerActor> ().getLastShotTime () / GetComponentInParent<PlayerActor> ().reloadTime) * cursorTextures.Length);
@@ -47,8 +49,8 @@ public class Cursor : MonoBehaviour {
 		float x = (Event.current.mousePosition.x + Screen.width / 2) / 2;
 		float y = (Event.current.mousePosition.y + Screen.height / 2) / 2;
 
-		Vector3 worldSpace = camera.ScreenToWorldPoint(
-			new Vector3(x, Screen.height - y, camera.nearClipPlane));
+		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(
+			new Vector3(x, Screen.height - y, screenCamera.nearClipPlane));
 		pointerMidReload.transform.position = worldSpace;
 
 		//old texture
