@@ -378,7 +378,7 @@ MonoBehaviour:
   interactionDistance: 2
   hasGun: 0
   reloadTime: 2
-  cloakTime: 1
+  cloakTime: 2
   currentLevel: 2
   openingText: {fileID: 0}
   magazine_cap: 3

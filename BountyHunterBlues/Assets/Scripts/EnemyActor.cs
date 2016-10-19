@@ -126,6 +126,12 @@ public abstract class EnemyActor : GameActor {
     }
 
     public void set_confused_state(bool conf){
+		if (conf && !confused) {
+			if (reactionAnim) {
+				reactionAnim.SetInteger ("State", 2);
+				Invoke ("resetReactionAnim", 2);
+			}
+		}
         confused = conf;
     }
 
