@@ -35,7 +35,6 @@ public class PlayerActor : GameActor
 	private GameObject gunSliderObject;
 	private Image gunSliderFill;
 	private Vector2 bulletStartPosition;
-	private bool cloaked;
 
 	private Image hitFlash;
 	Animator hitSmokeAnim;
@@ -48,7 +47,6 @@ public class PlayerActor : GameActor
 	public override void Start()
 	{
 		base.Start();
-		cloaked = false;
 		lastShotTime = reloadTime;
 		cloakTimer = 0;
 		gun_fired = false;
@@ -221,8 +219,7 @@ public class PlayerActor : GameActor
 		}
 	}
 
-	private void notifyEnemies()
-	{
+	private void notifyEnemies(){
 		EnemyActor[] enemies = FindObjectsOfType<EnemyActor>();
 		GridPoint gPoint = mGrid.worldToGrid(transform.position);
 		Node node = mGrid.nodes[gPoint.X, gPoint.Y];
@@ -231,19 +228,16 @@ public class PlayerActor : GameActor
 		LinkedList<Node> toBeReset = new LinkedList<Node>();
 		queue.AddLast(node);
 
-		while (queue.Count > 0)
-		{
+		while (queue.Count > 0){
 			Node curr = queue.First.Value;
 			queue.RemoveFirst();
 			toBeReset.AddFirst(curr);
-			foreach(EnemyActor enemy in enemies)
-			{
+			foreach(EnemyActor enemy in enemies){
 				if (Vector2.Distance(enemy.transform.position, mGrid.gridToWorld(curr.point.X, curr.point.Y)) < mGrid.unitsize / 2.0f){
 					enemy.set_audio_location(transform.position);
 				}
 			}
-			foreach(NodeConnection connection in curr.connections)
-			{
+			foreach(NodeConnection connection in curr.connections){
 				if(!connection.destination.visited)
 				{
 					connection.destination.visited = true;
@@ -252,11 +246,9 @@ public class PlayerActor : GameActor
 			}
 		}
 
-		foreach(Node n in toBeReset)
-		{
+		foreach(Node n in toBeReset){
 			n.visited = false;
 		}
-
 	}
 
 	public override void meleeAttack()
@@ -289,7 +281,6 @@ public class PlayerActor : GameActor
 		{
 			tookDamage = true;
 			visible = false;
-			cloaked = true;
 			cloakTimer = 0;
 			if (GetComponentInChildren<HealthBar> ()) {
 				GetComponentInChildren<HealthBar> ().setHealth (health);

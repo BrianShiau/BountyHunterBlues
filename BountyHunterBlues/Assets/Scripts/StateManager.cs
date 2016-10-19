@@ -71,6 +71,9 @@ public class StateManager{
 				state_time_down = 0;
 			}
 		}
+		else{
+			state_time_down = 0;
+		}
 	}
 
 	public void update_state(GameActor target, bool sound_detected, bool is_alert){

@@ -12,6 +12,7 @@ public abstract class EnemyActor : GameActor {
 	protected AIState current_state;
     protected bool hasAttacked;
     private bool alert;
+    private bool confused;
     protected Vector2 last_seen;
 
     private Vector2 last_neutral_position;
@@ -35,6 +36,7 @@ public abstract class EnemyActor : GameActor {
 	public override void Start(){
 		base.Start();
 		hasAttacked = false;
+        confused = false;
 		_stateManager = new StateManager(transition_time);
 		current_state = new NeutralDog(null);
         last_neutral_position = transform.position;
@@ -55,6 +57,7 @@ public abstract class EnemyActor : GameActor {
     public override void Update(){
         hasAttacked = false;
         base.Update();
+        Debug.Log(confused);
 	}
 
     public Vector2 get_last_seen(){
@@ -120,6 +123,10 @@ public abstract class EnemyActor : GameActor {
 
     public void set_shortest_path_calculated(bool value){
         shortest_path_calculated = value;
+    }
+
+    public void set_confused_state(bool conf){
+        confused = conf;
     }
 
 
