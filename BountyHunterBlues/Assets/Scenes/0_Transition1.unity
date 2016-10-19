@@ -1168,9 +1168,10 @@ GameObject:
   - 4: {fileID: 102034637}
   - 212: {fileID: 102034636}
   - 114: {fileID: 102034638}
+  - 61: {fileID: 102034639}
   m_Layer: 0
   m_Name: TVs_0
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1242,6 +1243,20 @@ MonoBehaviour:
   NPCNumber: 11
   destroyAfterPlay: 0
   currentLine: 0
+--- !u!61 &102034639
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 102034635}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -4.3080244}
+  serializedVersion: 2
+  m_Size: {x: 19.79, y: 21.336054}
 --- !u!1001 &107652634
 Prefab:
   m_ObjectHideFlags: 0
@@ -3181,9 +3196,10 @@ GameObject:
   - 4: {fileID: 307590064}
   - 212: {fileID: 307590063}
   - 114: {fileID: 307590065}
+  - 61: {fileID: 307590066}
   m_Layer: 0
   m_Name: TVs_1
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3255,6 +3271,20 @@ MonoBehaviour:
   NPCNumber: 12
   destroyAfterPlay: 0
   currentLine: 0
+--- !u!61 &307590066
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 307590062}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -3.8368292}
+  serializedVersion: 2
+  m_Size: {x: 19.79, y: 20.39366}
 --- !u!4 &313219173 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010227923588, guid: b735836ac1551455dbc0c5d0b3a1f436,
