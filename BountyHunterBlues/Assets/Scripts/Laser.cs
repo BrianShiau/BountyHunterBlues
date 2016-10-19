@@ -34,7 +34,7 @@ public class Laser : MonoBehaviour {
         IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
         foreach (RaycastHit2D hit in sortedHits)
         {
-            if (hit.collider != null && hit.collider.gameObject != myDog.gameObject)
+			if (hit.collider != null && hit.collider.gameObject != myDog.gameObject && hit.collider.gameObject.name != "Feet_Collider")
             {
                 distance = hit.distance;
                 break;
