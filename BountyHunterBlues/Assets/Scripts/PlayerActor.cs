@@ -145,6 +145,8 @@ public class PlayerActor : GameActor
 			if(lastShotTime >= reloadTime){
 				magazine_size += 1;
 				lastShotTime = 0;
+				if(magazine_size >= magazine_cap)
+					lastShotTime = reloadTime;
 			}
 		}
 		else{
@@ -494,6 +496,10 @@ public class PlayerActor : GameActor
 
 	public float getLastShotTime(){
 		return lastShotTime;
+	}
+
+	public int getMagazineSize(){
+		return magazine_size;
 	}
 
 	public static int Deaths(){
