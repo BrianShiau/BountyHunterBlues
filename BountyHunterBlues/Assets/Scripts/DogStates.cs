@@ -108,11 +108,13 @@ public class AlertDog: DogState {
 		enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
 		enemy.path.clear();
 	    enemy.reset_path_index();
+	    enemy.set_chasing(false);
 	}
 
 	public override void execute(){
 		if(enemy.getClosestAttackable() != null){
 			enemy.set_alert(true);
+			enemy.set_chasing(false);
 			Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
 	        worldFaceDir.Normalize();
 
@@ -129,6 +131,7 @@ public class AlertDog: DogState {
 		}
 		else if(enemy.getClosestAttackable() == null && enemy.get_last_seen().x != Int32.MaxValue && enemy.get_last_seen().y != Int32.MaxValue){
 			enemy.set_alert(true);
+			enemy.set_chasing(true);
 			enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
         	enemy.calc_shortest_path(enemy.transform.position, enemy.get_last_seen());
         	if(enemy.get_path_index() < enemy.path_length()){
@@ -153,6 +156,7 @@ public class AlertDog: DogState {
 	        }
 		}
 		else if(enemy.getClosestAttackable() == null && enemy.get_audio_location().x != Int32.MaxValue && enemy.get_audio_location().y != Int32.MaxValue){
+			enemy.set_chasing(true);
 			enemy.set_last_seen(new Vector2(Int32.MaxValue, Int32.MaxValue));
 			if(Vector2.Distance(enemy.get_audio_location(), enemy.gameObject.transform.position) <= enemy.audio_distance){
 	        	if(enemy.get_path_index() < enemy.path_length()){

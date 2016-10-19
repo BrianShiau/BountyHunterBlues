@@ -12,6 +12,7 @@ public abstract class EnemyActor : GameActor {
 	protected AIState current_state;
     protected bool hasAttacked;
     private bool alert;
+    private bool chasing;
     private bool confused;
     protected Vector2 last_seen;
 
@@ -41,6 +42,7 @@ public abstract class EnemyActor : GameActor {
         playerActor = (PlayerActor) player.GetComponent(typeof(PlayerActor));
 		hasAttacked = false;
         confused = false;
+        chasing = false;
 		_stateManager = new StateManager(transition_time);
 		current_state = new NeutralDog(null);
         last_neutral_position = transform.position;
@@ -61,6 +63,7 @@ public abstract class EnemyActor : GameActor {
     public override void Update(){
         hasAttacked = false;
         base.Update();
+        Debug.Log(chasing);
 	}
 
     public Vector2 get_last_seen(){
@@ -79,8 +82,16 @@ public abstract class EnemyActor : GameActor {
         return alert;
     }
 
+    public void set_chasing(bool value){
+        chasing = value;
+    }
+
+    public bool is_chasing(){
+        return chasing;
+    }
+
     public bool is_confused(){
-        if(playerActor.isCloaked() && alert){
+        if(playerActor.isCloaked() && alert && !chasing){
             return true;
         }
         return false;
