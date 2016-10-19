@@ -57,7 +57,6 @@ public class Cursor : MonoBehaviour {
 			midPointerReloads [i].SetActive (true);
 			midPointerReloads [i].transform.localPosition = new Vector3 (midPointerReloads [i].transform.localPosition.x, -5 + 5*(start-i), midPointerReloads [i].transform.localPosition.z);
 		}
-		Debug.Log (player.getMagazineSize ());
 			
 		int cursorIndex = (int)((GetComponentInParent<PlayerActor> ().getLastShotTime () / GetComponentInParent<PlayerActor> ().reloadTime) * cursorTextures.Length);
 		cursorIndex = Mathf.Min (cursorIndex, cursorTextures.Length-1);
