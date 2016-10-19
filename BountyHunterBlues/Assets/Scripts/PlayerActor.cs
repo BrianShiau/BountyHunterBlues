@@ -23,6 +23,8 @@ public class PlayerActor : GameActor
 	private float cloakTimer;
 	private bool visible;
 	private Vector2 aimPoint;
+	private Vector2 aimPoint2;
+	private Vector2 aimPoint3;
 
 	public int currentLevel;
 	public NPC openingText;
@@ -36,6 +38,10 @@ public class PlayerActor : GameActor
 	private GameObject gunSliderObject;
 	private Image gunSliderFill;
 	private Vector2 bulletStartPosition;
+
+
+	private Vector2 secondRayPosition;
+	private Vector2 thirdRayPosition;
 
 	private Image hitFlash;
 	Animator hitSmokeAnim;
@@ -82,7 +88,7 @@ public class PlayerActor : GameActor
 		mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
 		startingPosition = transform.position;
 		mGrid = GameObject.Find("GridOverlay").GetComponent<Grid>();
-		setBulletStartPosition();
+		setBulletStartPosition(new Vector2(transform.position.x, transform.position.y));
 
 		if (transform.FindChild ("hit animation smoke")) {
 			hitSmokeAnim = transform.FindChild ("hit animation smoke").GetComponent<Animator> ();
@@ -136,7 +142,7 @@ public class PlayerActor : GameActor
 		}
 	}
 
-	public void setBulletStartPosition(){
+	public void setBulletStartPosition(Vector2 trans){
 		if (faceDir.y != 0 && Mathf.Abs(faceDir.y) >= Mathf.Abs(faceDir.x)){
             if (faceDir.y > 0){
                 currDirection = Direction.UP;
@@ -154,16 +160,16 @@ public class PlayerActor : GameActor
             }
         }
 		if(currDirection == Direction.RIGHT){ 
-			bulletStartPosition = new Vector2(transform.position.x + 1, transform.position.y);
+			bulletStartPosition = new Vector2(trans.x + 1, trans.y);
 		}
 		if(currDirection == Direction.LEFT){ 
-			bulletStartPosition = new Vector2(transform.position.x - 1, transform.position.y);
+			bulletStartPosition = new Vector2(trans.x - 1, trans.y);
 		}
 		if(currDirection == Direction.UP){ 
-			bulletStartPosition = new Vector2(transform.position.x, transform.position.y + 1);
+			bulletStartPosition = new Vector2(trans.x, trans.y + 1);
 		}
 		if(currDirection == Direction.DOWN){ 
-			bulletStartPosition = new Vector2(transform.position.x, transform.position.y - 1);
+			bulletStartPosition = new Vector2(trans.x, trans.y - 1);
 		}
 	}
 
@@ -182,9 +188,17 @@ public class PlayerActor : GameActor
 				aimVector.Normalize();
 				faceDir = aimVector;
 
+
 				Vector2 worldDir = transform.TransformDirection(aimVector);
+				secondRayPosition = new Vector2(transform.position.x - 0.05f, transform.position.y + 0.05f);
+				thirdRayPosition = new Vector2(transform.position.x + 0.05f, transform.position.y - 0.05f);
+
 				RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldDir, sightDistance);
+				RaycastHit2D[] hits2 = Physics2D.RaycastAll(secondRayPosition, worldDir, sightDistance);
+				RaycastHit2D[] hits3 = Physics2D.RaycastAll(thirdRayPosition, worldDir, sightDistance);
 				IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
+				IEnumerable<RaycastHit2D> sortedHits2 = hits2.OrderBy(hit2 => hit2.distance);
+				IEnumerable<RaycastHit2D> sortedHits3 = hits3.OrderBy(hit3 => hit3.distance);
 
 				GameActor aimTarget = null;
 				foreach (RaycastHit2D hitinfo in sortedHits) {
@@ -206,11 +220,48 @@ public class PlayerActor : GameActor
                     }
 					// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
 				}
+				foreach (RaycastHit2D hitinfo in sortedHits2) {
+                    if (hitinfo.collider.isTrigger)
+                    { // only deal with trigger colliders for finding attackable target
+                        GameObject obj = hitinfo.collider.gameObject;
+                        aimPoint2 = hitinfo.point;
+                        if (obj.tag != "GameActor")
+                        {
+                            // non-game actor in front, obstruction blocking aim
+                            break;
+                        }
+                        else if (hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
+                        {
+                            // visible GameActor in Ray that is unobstructed and not me
+                            aimTarget = hitinfo.collider.GetComponent<GameActor>();
+                            break;
+                        }
+                    }
+					// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
+				}
+				foreach (RaycastHit2D hitinfo in sortedHits3) {
+                    if (hitinfo.collider.isTrigger)
+                    { // only deal with trigger colliders for finding attackable target
+                        GameObject obj = hitinfo.collider.gameObject;
+                        aimPoint3 = hitinfo.point;
+                        if (obj.tag != "GameActor")
+                        {
+                            // non-game actor in front, obstruction blocking aim
+                            break;
+                        }
+                        else if (hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
+                        {
+                            // visible GameActor in Ray that is unobstructed and not me
+                            aimTarget = hitinfo.collider.GetComponent<GameActor>();
+                            break;
+                        }
+                    }
+					// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
+				}
 				notifyEnemies();
 				gun_fired = true;
 
-				setBulletStartPosition();
-				Debug.Log(currDirection);
+				setBulletStartPosition(new Vector2(transform.position.x, transform.position.y));
 				StartCoroutine(Utility.drawLine (bulletStartPosition, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.cyan, 1f));
 				if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
 				{
