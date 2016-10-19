@@ -92,6 +92,10 @@ public abstract class EnemyActor : GameActor {
 
     public bool is_confused(){
         if(playerActor.isCloaked() && alert && !chasing){
+			if (reactionAnim) {
+				reactionAnim.SetInteger ("State", 2);
+				Invoke ("resetReactionAnim", 2);
+			}
             return true;
         }
         return false;
