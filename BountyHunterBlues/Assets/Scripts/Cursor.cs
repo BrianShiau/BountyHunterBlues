@@ -9,12 +9,27 @@ public class Cursor : MonoBehaviour {
 
 	private GameObject midPointers;
 	private Camera screenCamera;
+	private GameObject midPointerReload;
+	private GameObject midPointerReload1;
+	private GameObject midPointerReload2;
+	private Animator midPointerReloadAnim;
+	private Animator midPointerReloadAnim1;
+	private Animator midPointerReloadAnim2;
+
+	private PlayerActor player;
 
 	// Use this for initialization
 	void Start () {
 		UnityEngine.Cursor.SetCursor(cursorTexture, new Vector2(cursorTexture.height/2, cursorTexture.width/2), cursorMode);
 		midPointers = transform.FindChild ("MidPointers").gameObject;
+		midPointerReload = midPointers.transform.FindChild ("PointerMidReload").gameObject;
+		midPointerReload1 = midPointers.transform.FindChild ("PointerMidReload (1)").gameObject;
+		midPointerReload2 = midPointers.transform.FindChild ("PointerMidReload (2)").gameObject;
+		midPointerReloadAnim = midPointerReload.GetComponent<Animator> ();
+		midPointerReloadAnim1 = midPointerReload1.GetComponent<Animator> ();
+		midPointerReloadAnim2 = midPointerReload2.GetComponent<Animator> ();
 		screenCamera = GetComponentInChildren<Camera> ();
+		player = GetComponent<PlayerActor> ();
 	}
 
 	// Update is called once per frame
@@ -31,6 +46,9 @@ public class Cursor : MonoBehaviour {
 			UnityEngine.Cursor.visible = true;
 			midPointers.SetActive (true);
 		}
+
+		midPointerReloadAnim.SetFloat ("ReloadTime", player.getLastShotTime());
+		Debug.Log (player.getLastShotTime ());
 			
 		int cursorIndex = (int)((GetComponentInParent<PlayerActor> ().getLastShotTime () / GetComponentInParent<PlayerActor> ().reloadTime) * cursorTextures.Length);
 		cursorIndex = Mathf.Min (cursorIndex, cursorTextures.Length-1);
