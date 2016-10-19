@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5cf9e70b836594cbea8aab44b16434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: 0.175
+  scaleFactor: 0.1
   myDog: {fileID: 0}
 --- !u!114 &114000013136183242
 MonoBehaviour:
