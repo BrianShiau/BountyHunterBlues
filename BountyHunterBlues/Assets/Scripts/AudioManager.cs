@@ -5,7 +5,7 @@ using System;
 
 public class DynamicAudioSource
 {
-    public const float DEFAULT_MIN_DISTANCE = 5.0f;
+    public const float DEFAULT_MIN_DISTANCE = 1.0f;
     public const float DEFAULT_MAX_DISTANCE = 20.0f;
     public AudioSource Source { get; private set; }
     public string Name { get; private set; }

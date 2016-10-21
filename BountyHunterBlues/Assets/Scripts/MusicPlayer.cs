@@ -8,20 +8,28 @@ public class MusicPlayer : MonoBehaviour {
     private AudioSource mainSource;
     private int currSongIndex;
     private float initialVolume;
+    private static bool created = false;
 
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        if (!created)
+        {
+            DontDestroyOnLoad(transform.gameObject);
+            created = true;
+        }
+        else
+            Destroy(this);
+        
     }
 
 	// Use this for initialization
 	void Start () {
-        currSongIndex = 0;
         mainSource = GetComponent<AudioSource>();
+        currSongIndex = 0;
         initialVolume = mainSource.volume;
         mainSource.clip = songs[currSongIndex];
         mainSource.Play();
-	}
+    }
 
     public void loadNextSong()
     {

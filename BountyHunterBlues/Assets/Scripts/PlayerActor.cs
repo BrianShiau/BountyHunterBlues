@@ -404,8 +404,6 @@ public class PlayerActor : GameActor
 	{
 		GameObject.FindGameObjectWithTag ("DeathFlash").GetComponent<Image>().enabled = true;
 		deaths++;
-
-		// reset the game here for now
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
