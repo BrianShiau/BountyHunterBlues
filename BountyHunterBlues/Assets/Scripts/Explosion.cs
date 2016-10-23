@@ -6,14 +6,12 @@ using System;
 
 public abstract class Explosion : MonoBehaviour {
 
-    public GameActor explosionCreator;
     public float explosionRadius;
-    public int explosionTimer;
 
     protected abstract bool isValidHit(GameActor hitActor);
     protected abstract void explosionHit(GameActor hitActor); 
 
-    public void Start()
+    public virtual void Start()
     {
         List<GameActor> hitByExplosion = getHitGameActors();
         if(hitByExplosion.Count > 0)
@@ -21,6 +19,12 @@ public abstract class Explosion : MonoBehaviour {
             foreach (GameActor actor in hitByExplosion)
                 explosionHit(actor);
         }
+    }
+
+    // callback made at end of explosion animation
+    public void OnExplosionEnd()
+    {
+        Destroy(gameObject);
     }
 
     private List<GameActor> getHitGameActors()

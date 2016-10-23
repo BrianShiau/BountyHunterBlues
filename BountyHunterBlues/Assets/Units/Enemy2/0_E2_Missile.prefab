@@ -132,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 1000013762370630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.08333339, y: 0.08333339, z: 0.6666666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012983268330}
@@ -243,7 +243,10 @@ MonoBehaviour:
   audio_distance: 8
   transition_time: 1
   rotation_speed: 2
-  timeBetweenEachMissile: 0.33
+  MissileObject: {fileID: 1000014178562904, guid: dd9739c77423ccf4199098dbe23409b3,
+    type: 2}
+  timeBetweenEachMissile: 0.2
+  numMissilesToFire: 3
 --- !u!114 &114000012212034474
 MonoBehaviour:
   m_ObjectHideFlags: 1
