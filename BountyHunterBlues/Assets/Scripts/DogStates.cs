@@ -31,10 +31,6 @@ public class NeutralDog: DogState {
         enemy.calc_shortest_path(enemy.transform.position, enemy.get_neutral_position());
 	}
 
-	public override void on_exit(){ 
-		enemy.set_shortest_path_calculated(false);
-	}
-
 	public override void execute(){
     	if(enemy.getClosestAttackable() != null){
 			Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
@@ -84,6 +80,11 @@ public class NeutralDog: DogState {
     	}
 	}
 
+
+	public override void on_exit(){ 
+		enemy.set_shortest_path_calculated(false);
+	}
+
 	public override string name(){
 		return "NEUTRAL";
 	}
@@ -100,15 +101,6 @@ public class AlertDog: DogState {
 	public override void on_enter(){ 
 	    enemy.reset_path_index();
 	    enemy.set_alert(true);
-	}
-
-	public override void on_exit(){
-		//enemy.set_alert(false);
-		enemy.set_last_seen(new Vector2(Int32.MaxValue, Int32.MaxValue));
-		enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
-		enemy.path.clear();
-	    enemy.reset_path_index();
-	    enemy.set_chasing(false);
 	}
 
 	public override void execute(){
@@ -132,7 +124,7 @@ public class AlertDog: DogState {
 		else if(enemy.getClosestAttackable() == null && enemy.get_last_seen().x != Int32.MaxValue && enemy.get_last_seen().y != Int32.MaxValue){
 			enemy.set_alert(true);
 			enemy.set_chasing(true);
-			enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
+			enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue), false);
         	enemy.calc_shortest_path(enemy.transform.position, enemy.get_last_seen());
         	if(enemy.get_path_index() < enemy.path_length()){
 	        	Node current_node = enemy.path.get_node(enemy.get_path_index());
@@ -177,7 +169,7 @@ public class AlertDog: DogState {
 		        	enemy.path.clear();
 	        		enemy.reset_path_index();
 		        	enemy.set_shortest_path_calculated(false); 
-		        	enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
+		        	enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue), false);
 		        }
 			}
 		}
@@ -185,6 +177,14 @@ public class AlertDog: DogState {
             stopMove.execute(enemy);
             enemy.set_alert(false);
 		}
+	}
+
+	public override void on_exit(){
+		enemy.set_last_seen(new Vector2(Int32.MaxValue, Int32.MaxValue));
+		enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue), false);
+		enemy.path.clear();
+	    enemy.reset_path_index();
+	    enemy.set_chasing(false);
 	}
 
 	public override string name(){
@@ -208,11 +208,6 @@ public class AggresiveDog: DogState {
 		stopMove.execute(enemy);
 	}
 
-	public override void on_exit(){
-		enemy.set_shortest_path_calculated(false);
-	    //enemy.set_confused_state(false);
-	}
-
 	public override void execute(){
 		if(enemy.getClosestAttackable() != null){
 			Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
@@ -225,12 +220,15 @@ public class AggresiveDog: DogState {
 
 	        shoot_timer += Time.deltaTime;
 	        if(shoot_timer > shoot_timer_threshold){
-	        	//enemy.set_confused_state(true);
 	        	rangedAttack.execute(enemy);
 	        	shoot_timer = 0;
 	        }
 	        enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
     	}
+	}
+
+	public override void on_exit(){
+		enemy.set_shortest_path_calculated(false);
 	}
 
 	public override string name(){

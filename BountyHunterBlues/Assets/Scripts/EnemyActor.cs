@@ -27,6 +27,7 @@ public abstract class EnemyActor : GameActor {
     private int path_index;
     public float node_transition_threshold;
     public int path_threshold;
+    private bool shot;
 
 	// UI Reactions
 	Animator reactionAnim;
@@ -41,18 +42,20 @@ public abstract class EnemyActor : GameActor {
 		base.Start();
         player = GameObject.Find("0_Player");
         playerActor = (PlayerActor) player.GetComponent(typeof(PlayerActor));
-		hasAttacked = false;
+        hasAttacked = false;
         confused = false;
         chasing = false;
-		_stateManager = new StateManager(transition_time);
-		current_state = new NeutralDog(null);
+        _stateManager = new StateManager(transition_time);
+        current_state = new NeutralDog(null);
         last_neutral_position = transform.position;
         path = gameObject.GetComponent<PathFinding>();
+        path.set_threshold(path_threshold);
         shortest_path_calculated = false;
         path_index = 0;
         initial_faceDir = faceDir;
         audio_location = new Vector2(Int32.MaxValue, Int32.MaxValue);
         alert = false;
+        shot = false;
         last_seen = new Vector2(Int32.MaxValue, Int32.MaxValue);
 
 		if (transform.FindChild ("Reactions")) {
@@ -65,7 +68,6 @@ public abstract class EnemyActor : GameActor {
     public override void Update(){
         hasAttacked = false;
         base.Update();
-        //Debug.Log(chasing);
 	}
 
     public Vector2 get_last_seen(){
@@ -108,12 +110,14 @@ public abstract class EnemyActor : GameActor {
         return audio_location;
     }
 
-    public void set_audio_location(Vector2 location){
+    public void set_audio_location(Vector2 location, bool shot){
+        this.shot = shot;
         audio_location = location;
     }
 
     public bool sound_heard(){
-        if(Vector2.Distance(transform.position, audio_location) <= audio_distance){
+        if(Vector2.Distance(transform.position, audio_location) <= audio_distance && shot){
+            shot = false;
             set_alert(true);
             set_shortest_path_calculated(false);
             calc_shortest_path(transform.position, get_audio_location());
@@ -132,12 +136,6 @@ public abstract class EnemyActor : GameActor {
         return false;
     }
 
-	private void resetReactionAnim(){
-		//Debug.Log (reactionStack);
-		if(--reactionStack == 0)
-			reactionAnim.SetInteger ("State", 0);
-	}
-
     public void calc_shortest_path(Vector3 from, Vector3 to){
         if(!shortest_path_calculated){
             path.initialize(from, to);
@@ -145,10 +143,15 @@ public abstract class EnemyActor : GameActor {
             if(path.length() > path_threshold){
                 path.clear();
                 alert = false;
-                audio_location = new Vector2(0, 0);
+                audio_location = new Vector2(Int32.MaxValue, Int32.MaxValue);
             }
             shortest_path_calculated = true;
         }
+    }
+
+    private void resetReactionAnim(){
+        if(--reactionStack == 0)
+            reactionAnim.SetInteger ("State", 0);
     }
 
     public void set_shortest_path_calculated(bool value){

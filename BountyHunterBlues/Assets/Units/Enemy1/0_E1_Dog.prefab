@@ -368,9 +368,9 @@ MonoBehaviour:
   sightDistance: 12
   interactionDistance: 2
   path: {fileID: 0}
-  node_transition_threshold: 0.8
+  node_transition_threshold: 0.01
   path_threshold: 10
-  audio_distance: 8
+  audio_distance: 30
   transition_time: 1
   rotation_speed: 2
 --- !u!114 &114000013898333720

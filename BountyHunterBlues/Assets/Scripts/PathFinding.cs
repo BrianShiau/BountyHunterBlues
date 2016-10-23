@@ -26,11 +26,17 @@ public class PathFinding : MonoBehaviour {
 	public Node start_node;
 	public Node end_node;
 	private List<Node> path = new List<Node>();
+	private List<Node> path_check = new List<Node>();
 	private List<PathData> open = new List<PathData>();
 	private List<PathData> closed = new List<PathData>();
+	private int path_threshold;
 
 	void Start () {
 		grid = GameObject.Find("GridOverlay").GetComponent<Grid>();
+	}
+
+	public void set_threshold(int threshold){
+		path_threshold = threshold;
 	}
 
 	public void initialize(Vector3 start_position, Vector3 end_position){
@@ -60,6 +66,12 @@ public class PathFinding : MonoBehaviour {
 				reconstruct_path(current);
 				break;
 			}
+
+			//Debug.Log(check_path_length(current));
+			//if(check_path_length(current)){
+			//	path.Clear();
+			//	break;
+			//}
 
 			open.Remove(current);
 			closed.Add(current);
@@ -121,13 +133,25 @@ public class PathFinding : MonoBehaviour {
 		return open[index];
 	}
 
+	public bool check_path_length(PathData current){
+		List<PathData> temp = new List<PathData>();
+		while(current.parent != null){
+			temp.Add(current);
+			current = current.parent;
+		}
+		Debug.Log("tmp: " + temp.Count);
+		if(temp.Count > path_threshold){
+			return true;
+		}
+		return false;
+	}
+
 	public void reconstruct_path(PathData current){
 		List<PathData> temp = new List<PathData>();
 		while(current.parent != null){
 			temp.Add(current);
 			current = current.parent;
 		}
-
 		for(int i = (temp.Count - 1); i >= 0; i--){
 			path.Add(temp[i].node);
 		}
