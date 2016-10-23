@@ -41,10 +41,11 @@ public class Cursor : MonoBehaviour {
 			return;
 		} else {
 			UnityEngine.Cursor.visible = true;
+			midPointers.SetActive (false);
 			if (player.hasGun) {
-				midPointers.SetActive (true);
-			} else {
-				midPointers.SetActive (false);
+				if(!player.InDialogueMode()){
+					midPointers.SetActive (true);
+				}
 			}
 		}
 
@@ -67,11 +68,26 @@ public class Cursor : MonoBehaviour {
 		UnityEngine.Cursor.SetCursor(cursorTextures[cursorIndex], new Vector2(cursorTexture.height/2, cursorTexture.width/2), cursorMode);
 
 		//ammo counter transformation
+		SpriteRenderer sr = midPointerReloads[0].GetComponent<SpriteRenderer>();
+		midPointers.transform.localScale = new Vector3(1,1,1);
+
+		float width = sr.sprite.bounds.size.x;
+		float height = sr.sprite.bounds.size.y;
+
+		float worldScreenHeight = Camera.main.orthographicSize * 2;
+		float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
+
+		Vector3 imgScale = new Vector3(1f, 1f, 1f);
+		Vector2 ratio = new Vector2(width / height, height / width);
+		imgScale.x = worldScreenWidth / width;
+		imgScale.y = imgScale.x * ratio.y; 
+		midPointers.transform.localScale = imgScale;
+
 		midPointers.transform.eulerAngles = new Vector3(
 			midPointers.transform.eulerAngles.x,
 			midPointers.transform.eulerAngles.y,
-			90);
-		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(new Vector3(0, 0, screenCamera.nearClipPlane));
+			-90);
+		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(new Vector3(-350+20*imgScale.x*width, -170+10*imgScale.y*height, screenCamera.nearClipPlane));
 		midPointers.transform.position = worldSpace;
 
 		//mid pointers which follow the cursor

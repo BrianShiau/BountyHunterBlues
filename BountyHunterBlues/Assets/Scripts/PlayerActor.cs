@@ -16,6 +16,7 @@ public class PlayerActor : GameActor
 	private bool knifeAttacked;
 	private bool enemyHit;
 	private bool inTacticalMode;
+	private bool inDialogueMode;
 	private bool tookDamage;
 	private bool cloaked;
 
@@ -64,6 +65,20 @@ public class PlayerActor : GameActor
 		visible = true;
 		cloaked = false;
 		magazine_size = magazine_cap;
+		inDialogueMode = false;
+		inTacticalMode = false;
+
+		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
+		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
+		//gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
+		//gunSliderObject = gunSlider.gameObject;
+		if (hasGun) {
+			EnableGunImage ();
+		}
+		else {
+			DisableGunImage ();
+			//gunSliderObject.SetActive (false);
+		}
 
 		// play opening text only once
 		if (deaths == 0) {
@@ -72,18 +87,6 @@ public class PlayerActor : GameActor
 				openingText.Start ();
 				openingText.runInteraction ();
 			}
-		}
-
-		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
-		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
-		//gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
-		//gunSliderObject = gunSlider.gameObject;
-		if (hasGun) {
-			EnableGun ();
-		}
-		else {
-			gunImage.enabled = false;
-			//gunSliderObject.SetActive (false);
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
 		mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
@@ -416,7 +419,7 @@ public class PlayerActor : GameActor
 	public override void runAnimation()
 	{
 		base.runAnimation();
-		if(inTacticalMode)
+		if(inTacticalMode || inDialogueMode)
 		{
 			gameActorAnimator.SetBool("isMoving", false);
 		}
@@ -491,6 +494,23 @@ public class PlayerActor : GameActor
 		//gunSliderFill.color = Color.green;
 	}
 
+	public void DisableGun(){
+		hasGun = false;
+		gunImage.enabled = false;
+	}
+
+	public void EnableGunImage(){
+		if(hasGun){
+			gunImage.enabled = true;
+			//gunSliderObject.SetActive (true);
+			//gunSliderFill.color = Color.green;
+		}
+	}
+
+	public void DisableGunImage(){
+		gunImage.enabled = false;
+	}
+
     public override bool isVisible()
 	{
 		return visible;
@@ -518,6 +538,14 @@ public class PlayerActor : GameActor
 
 	public void SetTacticalMode(bool mode){
 		inTacticalMode = mode;
+	}
+
+	public bool InDialogueMode(){
+		return inDialogueMode;
+	}
+
+	public void SetDialogueMode(bool mode){
+		inDialogueMode = mode;
 	}
 
     public void openDoorTo(Room otherRoom)

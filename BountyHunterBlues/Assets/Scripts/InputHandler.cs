@@ -42,7 +42,7 @@ public class InputHandler : MonoBehaviour {
     {
         LinkedList<Command> nextCommands = new LinkedList<Command>();
         bool movement = false;
-		if (!player.GetComponent<PlayerActor>().InTacticalMode())
+		if (!player.GetComponent<PlayerActor>().InTacticalMode() && !player.GetComponent<PlayerActor>().InDialogueMode())
         { 
             Vector2 movementVector = new Vector2(0, 0);
             // basing WASD on +x-axis, +y-axis, -x-axis, -y-axis respectively
