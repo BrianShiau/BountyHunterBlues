@@ -41,10 +41,11 @@ public class Cursor : MonoBehaviour {
 			return;
 		} else {
 			UnityEngine.Cursor.visible = true;
+			midPointers.SetActive (false);
 			if (player.hasGun) {
-				midPointers.SetActive (true);
-			} else {
-				midPointers.SetActive (false);
+				if(!player.InDialogueMode()){
+					midPointers.SetActive (true);
+				}
 			}
 		}
 

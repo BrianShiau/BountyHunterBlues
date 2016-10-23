@@ -68,6 +68,18 @@ public class PlayerActor : GameActor
 		inDialogueMode = false;
 		inTacticalMode = false;
 
+		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
+		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
+		//gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
+		//gunSliderObject = gunSlider.gameObject;
+		if (hasGun) {
+			EnableGunImage ();
+		}
+		else {
+			DisableGunImage ();
+			//gunSliderObject.SetActive (false);
+		}
+
 		// play opening text only once
 		if (deaths == 0) {
 			//play opening text
@@ -75,18 +87,6 @@ public class PlayerActor : GameActor
 				openingText.Start ();
 				openingText.runInteraction ();
 			}
-		}
-
-		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
-		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
-		//gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
-		//gunSliderObject = gunSlider.gameObject;
-		if (hasGun) {
-			EnableGun ();
-		}
-		else {
-			gunImage.enabled = false;
-			//gunSliderObject.SetActive (false);
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
 		mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
@@ -492,6 +492,23 @@ public class PlayerActor : GameActor
 		gunImage.enabled = true;
 		//gunSliderObject.SetActive (true);
 		//gunSliderFill.color = Color.green;
+	}
+
+	public void DisableGun(){
+		hasGun = false;
+		gunImage.enabled = false;
+	}
+
+	public void EnableGunImage(){
+		if(hasGun){
+			gunImage.enabled = true;
+			//gunSliderObject.SetActive (true);
+			//gunSliderFill.color = Color.green;
+		}
+	}
+
+	public void DisableGunImage(){
+		gunImage.enabled = false;
 	}
 
     public override bool isVisible()
