@@ -122,7 +122,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
 			chatImage.GetComponent<Image> ().enabled = true;
 			chatImage.GetComponent<Image> ().sprite = npcImage;
-			//player.SetTacticalMode(true);
+			player.SetDialogueMode(true);
 		}
 		if (currentLine < strings.Length) {
 			if (!typing) {
@@ -148,7 +148,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatPanel.GetComponent<Image> ().enabled = false;
 			chatPanel.GetComponentInChildren<Text> ().enabled = false;
 			chatImage.GetComponent<Image> ().enabled = false;
-			//player.SetTacticalMode(false);
+			player.SetDialogueMode(false);
 		}
 	}
 

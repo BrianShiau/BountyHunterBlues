@@ -16,6 +16,7 @@ public class PlayerActor : GameActor
 	private bool knifeAttacked;
 	private bool enemyHit;
 	private bool inTacticalMode;
+	private bool inDialogueMode;
 	private bool tookDamage;
 	private bool cloaked;
 
@@ -64,6 +65,8 @@ public class PlayerActor : GameActor
 		visible = true;
 		cloaked = false;
 		magazine_size = magazine_cap;
+		inDialogueMode = false;
+		inTacticalMode = false;
 
 		// play opening text only once
 		if (deaths == 0) {
@@ -416,7 +419,7 @@ public class PlayerActor : GameActor
 	public override void runAnimation()
 	{
 		base.runAnimation();
-		if(inTacticalMode)
+		if(inTacticalMode || inDialogueMode)
 		{
 			gameActorAnimator.SetBool("isMoving", false);
 		}
@@ -518,6 +521,14 @@ public class PlayerActor : GameActor
 
 	public void SetTacticalMode(bool mode){
 		inTacticalMode = mode;
+	}
+
+	public bool InDialogueMode(){
+		return inDialogueMode;
+	}
+
+	public void SetDialogueMode(bool mode){
+		inDialogueMode = mode;
 	}
 
     public void openDoorTo(Room otherRoom)
