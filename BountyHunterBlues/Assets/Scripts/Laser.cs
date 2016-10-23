@@ -6,25 +6,26 @@ using System.Linq;
 public class Laser : MonoBehaviour {
 
     public float scaleFactor;
-    public DogEnemy myDog;
+
+    private EnemyActor myEnemy;
 
 	// Use this for initialization
 	void Start () {
-        myDog = GetComponentInParent<DogEnemy>();
+        myEnemy = GetComponentInParent<EnemyActor>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        DogEnemy actor = GetComponentInParent<DogEnemy>();
+        EnemyActor actor = GetComponentInParent<EnemyActor>();
         AIState currState = actor.getCurrentState();
-        if (currState.name() == "NEUTRAL")
+        if (currState.get_state() == State.NEUTRAL)
             GetComponent<SpriteRenderer>().color = Color.green;
-        else if (currState.name() == "ALERT")
+        else if (currState.get_state() == State.ALERT)
             GetComponent<SpriteRenderer>().color = Color.yellow;
-        else if (currState.name() == "AGGRESIVE")
+        else if (currState.get_state() == State.AGGRESIVE)
             GetComponent<SpriteRenderer>().color = Color.red;
 		float angle = Mathf.Atan2(actor.faceDir.y, actor.faceDir.x) * Mathf.Rad2Deg
-			+ 180 + myDog.transform.localRotation.eulerAngles.z; // corrected for sprite angle
+			+ 180 + myEnemy.transform.localRotation.eulerAngles.z; // corrected for sprite angle
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
 
@@ -34,13 +35,13 @@ public class Laser : MonoBehaviour {
         IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
         foreach (RaycastHit2D hit in sortedHits)
         {
-			if (hit.collider != null && hit.collider.gameObject != myDog.gameObject && hit.collider.gameObject.name != "Feet_Collider")
+			if (hit.collider != null && hit.collider.gameObject != myEnemy.gameObject && hit.collider.gameObject.name != "Feet_Collider")
             {
                 distance = hit.distance;
                 break;
             }
         }
 
-        transform.localScale = new Vector3(scaleFactor * distance, 1, 1);
+        transform.localScale = new Vector3(scaleFactor * distance, transform.localScale.y, transform.localScale.z);
     }
 }

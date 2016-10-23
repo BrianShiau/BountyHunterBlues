@@ -73,6 +73,7 @@ public class DogEnemy : EnemyActor {
     public override void die()
     {
         //StartCoroutine(DeathCleanUp());
+        base.die();
         Destroy(gameObject);
         
     }

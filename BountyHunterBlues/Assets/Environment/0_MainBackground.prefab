@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 475462}
   m_Layer: 0
   m_Name: 0_MainBackground
-  m_TagString: Untagged
+  m_TagString: MainBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21,8 +21,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105704}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 24.9, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.1, y: 17.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -59,7 +59,7 @@ GameObject:
   - 212: {fileID: 212000014010670140}
   m_Layer: 0
   m_Name: 0_MainBackground (8)
-  m_TagString: MainBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - 212: {fileID: 212000013906029546}
   m_Layer: 0
   m_Name: 0_MainBackground
-  m_TagString: MainBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   - 212: {fileID: 212000014128679748}
   m_Layer: 0
   m_Name: 0_MainBackground (2)
-  m_TagString: MainBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - 212: {fileID: 212000011743810940}
   m_Layer: 0
   m_Name: 0_MainBackground (4)
-  m_TagString: MainBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,7 @@ GameObject:
   - 212: {fileID: 212000013845797712}
   m_Layer: 0
   m_Name: 0_MainBackground (1)
-  m_TagString: MainBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,7 +139,7 @@ GameObject:
   - 212: {fileID: 212000010801749580}
   m_Layer: 0
   m_Name: 0_MainBackground (5)
-  m_TagString: MainBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ GameObject:
   - 212: {fileID: 212000011364072012}
   m_Layer: 0
   m_Name: 0_MainBackground (7)
-  m_TagString: MainBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,7 @@ GameObject:
   - 212: {fileID: 212000012798779758}
   m_Layer: 0
   m_Name: 0_MainBackground (6)
-  m_TagString: MainBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,7 +187,7 @@ GameObject:
   - 212: {fileID: 212000012506426280}
   m_Layer: 0
   m_Name: 0_MainBackground (3)
-  m_TagString: MainBackground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

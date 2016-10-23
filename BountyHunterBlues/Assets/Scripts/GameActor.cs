@@ -102,7 +102,6 @@ public abstract class GameActor : Actor, Vision
         {
             SpriteRenderer otherSprite = other.gameObject.GetComponent<SpriteRenderer>();
             if (otherSprite != null) {
-				//Debug.Log (otherSprite.name + " " + otherSprite.sortingOrder);
                 if (GetComponentInChildren<Collider2D>().bounds.center.y < other.transform.position.y)
                     GetComponent<SpriteRenderer>().sortingOrder = otherSprite.sortingOrder + 10;
                 else
