@@ -24,10 +24,6 @@ public class Cursor : MonoBehaviour {
 		midPointerReloads[2] = midPointers.transform.FindChild ("PointerMidReload (2)").gameObject;
 		midPointerReloadAnims = new Animator[3];
 		midPointerReloadAnims[0] = midPointerReloads[0].GetComponent<Animator> ();
-		//midPointerReloadAnims[1] = midPointerReloads[1].GetComponent<Animator> ();
-		//midPointerReloadAnims[2] = midPointerReloads[2].GetComponent<Animator> ();
-		//midPointerReloadAnims[1].SetFloat ("ReloadTime", 2);
-		//midPointerReloadAnims[2].SetFloat ("ReloadTime", 2);
 		screenCamera = GetComponentInChildren<Camera> ();
 		player = GetComponent<PlayerActor> ();
 	}
@@ -38,17 +34,24 @@ public class Cursor : MonoBehaviour {
 	}
 
 	void OnGUI(){
+		//disable cursors in tactical mode
 		if (GetComponentInParent<PlayerActor> ().InTacticalMode()) {
 			UnityEngine.Cursor.visible = false;
 			midPointers.SetActive (false);
 			return;
 		} else {
 			UnityEngine.Cursor.visible = true;
-			midPointers.SetActive (true);
+			if (player.hasGun) {
+				midPointers.SetActive (true);
+			} else {
+				midPointers.SetActive (false);
+			}
 		}
 
+		//ammo counter animation
 		midPointerReloadAnims[0].SetFloat ("ReloadTime", player.getLastShotTime());
 
+		//ammo counter count
 		int start = Mathf.Min(player.getMagazineSize (), 2);
 		for (int i = 2; i > start; i--) {
 			midPointerReloads [i].SetActive (false);
@@ -57,12 +60,22 @@ public class Cursor : MonoBehaviour {
 			midPointerReloads [i].SetActive (true);
 			midPointerReloads [i].transform.localPosition = new Vector3 (midPointerReloads [i].transform.localPosition.x, -5 + 5*(start-i), midPointerReloads [i].transform.localPosition.z);
 		}
-			
+
+		//hardware cursors for main cursor
 		int cursorIndex = (int)((GetComponentInParent<PlayerActor> ().getLastShotTime () / GetComponentInParent<PlayerActor> ().reloadTime) * cursorTextures.Length);
 		cursorIndex = Mathf.Min (cursorIndex, cursorTextures.Length-1);
 		UnityEngine.Cursor.SetCursor(cursorTextures[cursorIndex], new Vector2(cursorTexture.height/2, cursorTexture.width/2), cursorMode);
 
-		Vector2 pivot = new Vector2(Screen.width/2, Screen.height/2);
+		//ammo counter transformation
+		midPointers.transform.eulerAngles = new Vector3(
+			midPointers.transform.eulerAngles.x,
+			midPointers.transform.eulerAngles.y,
+			90);
+		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(new Vector3(0, 0, screenCamera.nearClipPlane));
+		midPointers.transform.position = worldSpace;
+
+		//mid pointers which follow the cursor
+		/*Vector2 pivot = new Vector2(Screen.width/2, Screen.height/2);
 		float distFromCenterX = Event.current.mousePosition.x - Screen.width / 2;
 		float distFromCenterY = Event.current.mousePosition.y - Screen.height / 2;
 		float angle = Mathf.Atan2 (distFromCenterY, distFromCenterX);
@@ -77,7 +90,8 @@ public class Cursor : MonoBehaviour {
 
 		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(
 			new Vector3(x, Screen.height - y, screenCamera.nearClipPlane));
-		midPointers.transform.position = worldSpace;
+		midPointers.transform.position = worldSpace;*/
+
 
 		//old texture
 		//GUIUtility.RotateAroundPivot(90+angle*Mathf.Rad2Deg, pivot);

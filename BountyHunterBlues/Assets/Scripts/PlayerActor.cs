@@ -75,15 +75,15 @@ public class PlayerActor : GameActor
 		}
 
 		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
-		gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
-		gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
-		gunSliderObject = gunSlider.gameObject;
+		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
+		//gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
+		//gunSliderObject = gunSlider.gameObject;
 		if (hasGun) {
 			EnableGun ();
 		}
 		else {
 			gunImage.enabled = false;
-			gunSliderObject.SetActive (false);
+			//gunSliderObject.SetActive (false);
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
 		mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
@@ -121,18 +121,22 @@ public class PlayerActor : GameActor
 			cloaked = false;
 		}
 
-		gunSlider.value = lastShotTime;
+		/*gunSlider.value = lastShotTime;
 		if (lastShotTime >= 2) {
 			gunSliderFill.color = Color.green;
 		}else if(lastShotTime >= 1){
 			gunSliderFill.color = Color.yellow;
 		} else {
 			gunSliderFill.color = Color.red;
-		}
+		}*/
 
 		reload_magazine();
 
-		mainBackground.transform.position = (transform.position - (transform.position - startingPosition)/10);
+		if (mainBackground) {
+			mainBackground.transform.position = (transform.position - (transform.position - startingPosition) / 10);
+		} else {
+			mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
+		}
 	}
 
 	public bool isCloaked(){
@@ -483,8 +487,8 @@ public class PlayerActor : GameActor
 	public void EnableGun(){
 		hasGun = true;
 		gunImage.enabled = true;
-		gunSliderObject.SetActive (true);
-		gunSliderFill.color = Color.green;
+		//gunSliderObject.SetActive (true);
+		//gunSliderFill.color = Color.green;
 	}
 
     public override bool isVisible()
