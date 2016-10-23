@@ -308,7 +308,7 @@ public class PlayerActor : GameActor
                 if (gameActor is EnemyActor)
                 {
                     EnemyActor enemy = (EnemyActor)gameActor;
-                    enemy.set_audio_location(transform.position);
+                    enemy.set_audio_location(transform.position, true);
                 }
             }
         }
