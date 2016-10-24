@@ -496,8 +496,19 @@ Prefab:
     - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: NPCNumber
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: npcImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 773d2d58d6e5e24428fe79f13a846b65,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
@@ -8420,6 +8431,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: e3a229d9d3e1c3546bd48c3f88e606bd,
         type: 3}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: NPCNumber
+      value: 31
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
@@ -10231,6 +10247,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: c32d421d03c137c4bb39cce96e000174,
         type: 3}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: NPCNumber
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
@@ -17440,6 +17461,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 7039882d21dbba543bf8b3b7b0fca5f4,
         type: 3}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: NPCNumber
+      value: 33
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
@@ -17838,6 +17864,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 06fb8766dd4a9c14c87f841f8de2ba8e,
         type: 3}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: NPCNumber
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
