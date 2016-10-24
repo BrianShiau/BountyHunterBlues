@@ -120,7 +120,7 @@ public class AlertMissile : MissileState
     {
         //enemy.set_alert(false);
         enemy.set_last_seen(new Vector2(Int32.MaxValue, Int32.MaxValue));
-        enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
+        enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue), false);
         enemy.path.clear();
         enemy.reset_path_index();
         enemy.set_chasing(false);
@@ -150,7 +150,7 @@ public class AlertMissile : MissileState
         {
             enemy.set_alert(true);
             enemy.set_chasing(true);
-            enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
+            enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue), false);
             enemy.calc_shortest_path(enemy.transform.position, enemy.get_last_seen());
             if (enemy.get_path_index() < enemy.path_length())
             {
@@ -203,7 +203,7 @@ public class AlertMissile : MissileState
                     enemy.path.clear();
                     enemy.reset_path_index();
                     enemy.set_shortest_path_calculated(false);
-                    enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue));
+                    enemy.set_audio_location(new Vector2(Int32.MaxValue, Int32.MaxValue), false);
                 }
             }
         }
