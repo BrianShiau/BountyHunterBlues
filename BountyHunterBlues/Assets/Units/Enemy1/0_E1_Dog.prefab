@@ -335,7 +335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleFactor: 0.1
-  myDog: {fileID: 0}
 --- !u!114 &114000013136183242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,7 +370,7 @@ MonoBehaviour:
   node_transition_threshold: 0.01
   path_threshold: 10
   audio_distance: 30
-  transition_time: 1
+  transition_time: 0.75
   rotation_speed: 2
 --- !u!114 &114000013898333720
 MonoBehaviour:

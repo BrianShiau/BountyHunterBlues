@@ -241,7 +241,7 @@ MonoBehaviour:
   node_transition_threshold: 0.8
   path_threshold: 10
   audio_distance: 8
-  transition_time: 1
+  transition_time: 0.75
   rotation_speed: 2
   MissileObject: {fileID: 1000014178562904, guid: dd9739c77423ccf4199098dbe23409b3,
     type: 2}
