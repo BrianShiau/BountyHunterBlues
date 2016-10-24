@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour {
 
@@ -36,6 +37,7 @@ public class InputHandler : MonoBehaviour {
         look = new LookCommand();
 		menu = GameObject.FindGameObjectWithTag ("PauseMenu");
 		menu.gameObject.SetActive (false);
+		menu.transform.FindChild ("BlackFade").GetComponent<Image> ().enabled = true;
     }
 
     void FixedUpdate()
@@ -52,6 +54,7 @@ public class InputHandler : MonoBehaviour {
 			if (isPaused) {
 				Time.timeScale = 0f;
 				menu.gameObject.SetActive (true);
+
 			} else {
 				Time.timeScale = 1;
 				menu.gameObject.SetActive (false);
