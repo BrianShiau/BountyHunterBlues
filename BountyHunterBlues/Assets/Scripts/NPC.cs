@@ -101,11 +101,55 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			//Hit Mecahinc
 			strings = new string[] {
                 "When you get hit you lose a life.",
-                "But you will also go invisable for 2 seconds",
-                "This gives you a chance to hide from enemy site",
+                "But you will also go invisible for 2 seconds.",
+                "This gives you a chance to hide from enemy sight.",
             };
 			break;
-		default:
+        case 30:
+            //bartender
+            strings = new string[] {
+                "Looks like a certain cowgirl’s back. Maybe she shoulda stayed gone.",
+                "Lots of folks have been leaving, running off. Disappearing.",
+                "Even my buddy, used to work at EvaCorp, ran off.",
+                "Cushy job, but it’s not like he had a family depending on ‘im. Just up and left his house in town.",
+                "Can’t say I blame ‘em. We’re all old now, worn and ragged.",
+                "Some of us can’t leave, though, even if we wanted to. Roots dug in too deep.",
+                "This here saloon, it’s my life’s work. And my father’s, and his father’s before him.",
+                "Don’t got no kids to leave it to, and maybe that’s just as well.",
+
+            };
+                break;
+        case 31:
+            //dock worker
+            strings = new string[] {
+                "M’ brother disappeared two weeks ago. Vanished off the face of the station.",
+                "Police say he just ran off, but that’s not like him. He even left his dog.",
+                "He’d die before leaving that mutt behind.",
+
+            };
+                break;
+        case 32:
+            //waitress
+            strings = new string[] {
+                "Would you believe it? My landlord ran off last month and some big company bought the building.",
+                "They say they’re gonna tear it down in a few months. Wanna build some new high rises for the rich folks.",
+                "Was the only place I could afford, and now what?",
+                "Spend all my time working, working, working, barely make ends meet. Times ain’t friendly for folks like us,",
+
+            };
+                break;
+        case 33:
+            //hooker
+            strings = new string[] {
+                "See that gentleman passed out in the corner over there? Hear he’s divorcing his husband.",
+                "Yeah, their two girls disappeared, just poof, poor things. Oldest was just sixteen.",
+                "No one knows what happened to ‘em. Tough times lately.",
+                "...",
+                "Hey, you wanna have a good time, you let me know, alright?",
+
+            };
+                break;
+            default:
 			strings = new string[] { };
 			break;
 		}
