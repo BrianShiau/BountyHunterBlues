@@ -16,6 +16,7 @@ TagManager:
   - GunSlider
   - GunFill
   - MainBackground
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

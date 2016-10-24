@@ -18,6 +18,7 @@ public class InputHandler : MonoBehaviour {
     private float interactInputDelay;
 	private bool isPaused;
 	private float pauseInputDelay;
+	private GameObject menu;
 
     void Start()
     {
@@ -33,6 +34,8 @@ public class InputHandler : MonoBehaviour {
         rangedAttack = new RangedAttackCommand();
         meleeAttack = new MeleeAttackCommand();
         look = new LookCommand();
+		menu = GameObject.FindGameObjectWithTag ("PauseMenu");
+		menu.gameObject.SetActive (false);
     }
 
     void FixedUpdate()
@@ -44,11 +47,14 @@ public class InputHandler : MonoBehaviour {
 
 	void Update(){
 		if (Input.GetKey (KeyCode.Escape) && pauseInputDelay < 0){
+			StopCoroutine ("PauseInputDelay");
 			isPaused = !isPaused;
 			if (isPaused) {
 				Time.timeScale = 0f;
+				menu.gameObject.SetActive (true);
 			} else {
 				Time.timeScale = 1;
+				menu.gameObject.SetActive (false);
 			}
 			pauseInputDelay = 1;
 			StartCoroutine ("PauseInputDelay");
