@@ -65,7 +65,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
 
     public virtual void takeDamage(int damage = 1)
     {
-        health -= 1;
+        health -= damage;
         if (health <= 0)
             die();
     }
