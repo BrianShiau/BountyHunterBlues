@@ -26,6 +26,7 @@ public class Cursor : MonoBehaviour {
 		midPointerReloadAnims[0] = midPointerReloads[0].GetComponent<Animator> ();
 		screenCamera = GetComponentInChildren<Camera> ();
 		player = GetComponent<PlayerActor> ();
+		midPointerReloadAnims [0].speed = 2 / player.reloadTime;
 	}
 
 	// Update is called once per frame
@@ -41,16 +42,24 @@ public class Cursor : MonoBehaviour {
 			return;
 		} else {
 			UnityEngine.Cursor.visible = true;
-			midPointers.SetActive (false);
 			if (player.hasGun) {
-				if(!player.InDialogueMode()){
+				if (!player.InDialogueMode ()) {
 					midPointers.SetActive (true);
+				} else {
+					midPointers.SetActive (false);
 				}
+			} else {
+				midPointers.SetActive (false);
 			}
 		}
 
 		//ammo counter animation
-		midPointerReloadAnims[0].SetFloat ("ReloadTime", player.getLastShotTime());
+		float lastShotTime = player.getLastShotTime ();
+		if (lastShotTime > player.reloadTime-.1) {
+			midPointerReloadAnims [0].SetFloat ("ReloadTime", 2.0f);
+		}else if (lastShotTime < .1){
+			midPointerReloadAnims [0].SetFloat ("ReloadTime", 0.0f);
+		}
 
 		//ammo counter count
 		int start = Mathf.Min(player.getMagazineSize (), 2);
