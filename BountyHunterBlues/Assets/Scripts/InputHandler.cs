@@ -16,6 +16,8 @@ public class InputHandler : MonoBehaviour {
     private float attackInputDelay;
     private float meleeAttackInputDelay;
     private float interactInputDelay;
+	private bool isPaused;
+	private float pauseInputDelay;
 
     void Start()
     {
@@ -23,6 +25,8 @@ public class InputHandler : MonoBehaviour {
         attackInputDelay = 0;
         meleeAttackInputDelay = 0;
         interactInputDelay = 0;
+		pauseInputDelay = -1;
+		isPaused = false;
         move = new MoveCommand(new Vector2(0, 0));
         stopMove = new MoveStopCommand();
         interact = new InteractCommand();
@@ -37,6 +41,23 @@ public class InputHandler : MonoBehaviour {
         foreach(Command nextCommand in nextCommands)
             nextCommand.execute(player.GetComponent<PlayerActor>());
     }
+
+	void Update(){
+		if (Input.GetKey (KeyCode.Escape) && pauseInputDelay < 0){
+			isPaused = !isPaused;
+			if (isPaused) {
+				Time.timeScale = 0f;
+			} else {
+				Time.timeScale = 1;
+			}
+			pauseInputDelay = 1;
+			StartCoroutine ("PauseInputDelay");
+		}
+
+		if (Input.GetKeyUp (KeyCode.Escape)) {
+			pauseInputDelay = -1;
+		}
+	}
 
     private LinkedList<Command> handleInput()
     {
@@ -116,8 +137,6 @@ public class InputHandler : MonoBehaviour {
 			interactInputDelay = 0;
 		}
 
-        
-
         // Need to implement Q special ability
 
         // input delay timers
@@ -128,5 +147,8 @@ public class InputHandler : MonoBehaviour {
         return nextCommands;
     }
 
-	
+	private IEnumerator PauseInputDelay(){
+		yield return StartCoroutine(Utility.WaitForRealTime (1));
+		pauseInputDelay = -1;
+	}
 }
