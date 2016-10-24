@@ -361,7 +361,7 @@ public class PlayerActor : GameActor
 			{
                 audioManager.Play("EnemyDeath");
                 enemyHit = true;
-				closestAttackable.takeDamage();
+				closestAttackable.takeDamage(2);
 				if (!closestAttackable.isAlive())
 					closestAttackable = null;
 			}
@@ -374,9 +374,9 @@ public class PlayerActor : GameActor
 			interactionTarget.runInteraction();
 	}
 
-	public override void takeDamage()
+	public override void takeDamage(int damage = 1)
 	{
-		base.takeDamage();
+		base.takeDamage(damage);
 		if(isAlive())
 		{
 			tookDamage = true;

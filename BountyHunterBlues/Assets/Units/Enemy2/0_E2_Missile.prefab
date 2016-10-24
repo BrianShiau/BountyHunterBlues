@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceDir: {x: -1, y: 0}
   moveSpeed: 2
-  health: 1
+  health: 2
   is_cycle: 0
   patrolPoints: []
   sources: []
