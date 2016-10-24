@@ -44,11 +44,10 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 0: 
 			//Opening Tutorial
 			strings = new string[] {
-				"Of all the backwater space stations he could have sent me to, it had to be the one where I grew up…",
+				"Of all the backwater space stations I could've been sent to, it had to be the one where I grew up…",
 				"I haven’t been there in years and I can’t say I’ve missed the place.",
-				"I’ll try to make it quick; take out my target and get out as quick as possible.",
-				"Bounty better be worth it.",
-				"He could’ve given me more to go on, though. “CEO of Eva Corporation,” what am I supposed to do with that?",
+				"I’ll try to make it quick; take out my target and get out.",
+                "Who was it? CEO of EvaCorp? Bounty better be worth it ",
 				"Ah, are we docking? Better get out quick.",
 				"Thanks, you hunk of junk.",
 			};
@@ -146,6 +145,13 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "No one knows what happened to ‘em. Tough times lately.",
                 "...",
                 "Hey, you wanna have a good time, you let me know, alright?",
+
+            };
+                break;
+        case 34:
+            //passed out guy
+            strings = new string[] {
+                "He's out cold.",
 
             };
                 break;
