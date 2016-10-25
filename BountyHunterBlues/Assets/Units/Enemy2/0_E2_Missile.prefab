@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010573854614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.401033, y: 22.358444, z: 0.0078125}
+  m_LocalPosition: {x: 32.29, y: 23.39, z: 0.0078125}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -165,9 +165,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.017460823, y: 0.011640549}
+  m_Offset: {x: -0.06, y: 0.011640549}
   serializedVersion: 2
-  m_Size: {x: 0.94187486, y: 1.3260307}
+  m_Size: {x: 0.61, y: 1}
 --- !u!61 &61000012296518994
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -179,9 +179,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.04232025, y: -0.44436455}
+  m_Offset: {x: -0.01, y: -0.59}
   serializedVersion: 2
-  m_Size: {x: 0.644509, y: 0.53447485}
+  m_Size: {x: 0.49, y: 0.29}
 --- !u!95 &95000010092763390
 Animator:
   serializedVersion: 3
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c995b89b17d714c90fbb266b524872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceDir: {x: -1, y: 0}
+  faceDir: {x: 1, y: 0}
   moveSpeed: 2
   health: 2
   is_cycle: 0
@@ -316,7 +316,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9983dd5e17ae5244dbbde20e233ec8e3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

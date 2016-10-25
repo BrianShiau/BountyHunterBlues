@@ -16487,6 +16487,11 @@ Prefab:
       propertyPath: m_Name
       value: 0_E2_Missile (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
+        type: 2}
+      propertyPath: faceDir.x
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
   m_IsPrefabParent: 0
@@ -22826,6 +22831,11 @@ Prefab:
     - target: {fileID: 1000010573854614, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
       propertyPath: m_Name
       value: 0_E2_Missile (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
+        type: 2}
+      propertyPath: faceDir.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
@@ -83796,6 +83806,11 @@ Prefab:
     - target: {fileID: 1000010573854614, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
       propertyPath: m_Name
       value: 0_E2_Missile (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
+        type: 2}
+      propertyPath: faceDir.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
