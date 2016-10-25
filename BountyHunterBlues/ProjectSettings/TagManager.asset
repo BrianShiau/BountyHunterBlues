@@ -17,6 +17,7 @@ TagManager:
   - GunFill
   - MainBackground
   - PauseMenu
+  - FirstHitMenu
   layers:
   - Default
   - TransparentFX

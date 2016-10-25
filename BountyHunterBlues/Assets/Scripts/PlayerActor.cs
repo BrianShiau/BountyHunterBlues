@@ -377,6 +377,11 @@ public class PlayerActor : GameActor
 	public override void takeDamage(int damage = 1)
 	{
 		base.takeDamage(damage);
+		//show tutorial text on first hit
+		if (StatTracker.GetTimesHit () == 0) {
+			GetComponent<InputHandler> ().StartFirstHitMenu ();
+		}
+		StatTracker.Hit ();
 		if(isAlive())
 		{
 			tookDamage = true;

@@ -20,6 +20,7 @@ public class InputHandler : MonoBehaviour {
 	private bool isPaused;
 	private float pauseInputDelay;
 	private GameObject menu;
+	private bool inFirstHitMenu;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class InputHandler : MonoBehaviour {
 		menu = GameObject.FindGameObjectWithTag ("PauseMenu");
 		menu.gameObject.SetActive (false);
 		menu.transform.FindChild ("BlackFade").GetComponent<Image> ().enabled = true;
+		inFirstHitMenu = false;
     }
 
     void FixedUpdate()
@@ -49,23 +51,53 @@ public class InputHandler : MonoBehaviour {
 
 	void Update(){
 		if (Input.GetKey (KeyCode.Escape) && pauseInputDelay < 0){
-			StopCoroutine ("PauseInputDelay");
-			isPaused = !isPaused;
-			if (isPaused) {
-				Time.timeScale = 0f;
-				menu.gameObject.SetActive (true);
-
-			} else {
-				Time.timeScale = 1;
-				menu.gameObject.SetActive (false);
-			}
-			pauseInputDelay = 1;
-			StartCoroutine ("PauseInputDelay");
+			Pause ();
 		}
 
 		if (Input.GetKeyUp (KeyCode.Escape)) {
 			pauseInputDelay = -1;
 		}
+
+		if (inFirstHitMenu) {
+			if (Input.GetKey (KeyCode.Space) || Input.GetKey (KeyCode.E)) {
+				EndFirstHitMenu ();
+			}
+		}
+	}
+
+	public void Pause(){
+		StopCoroutine ("PauseInputDelay");
+		isPaused = !isPaused;
+		if (isPaused) {
+			Time.timeScale = 0f;
+			menu.gameObject.SetActive (true);
+
+		} else {
+			if (!inFirstHitMenu) {
+				Time.timeScale = 1;
+			}
+			menu.gameObject.SetActive (false);
+		}
+		pauseInputDelay = 1;
+		StartCoroutine ("PauseInputDelay");
+	}
+
+	public void StartFirstHitMenu(){
+		inFirstHitMenu = true;
+		Time.timeScale = 0f;
+		GameObject firstHitMenu = GameObject.FindGameObjectWithTag ("FirstHitMenu");
+		firstHitMenu.SetActive(true);
+		firstHitMenu.transform.FindChild ("BlackFade").GetComponent<Image> ().enabled = true;
+		firstHitMenu.transform.FindChild ("FirstHitText").GetComponent<Text> ().enabled = true;
+	}
+
+	public void EndFirstHitMenu(){
+		inFirstHitMenu = false;
+		Time.timeScale = 1f;
+		GameObject firstHitMenu = GameObject.FindGameObjectWithTag ("FirstHitMenu");
+		firstHitMenu.SetActive(false);
+		firstHitMenu.transform.FindChild ("BlackFade").GetComponent<Image> ().enabled = false;
+		firstHitMenu.transform.FindChild ("FirstHitText").GetComponent<Text> ().enabled = false;
 	}
 
     private LinkedList<Command> handleInput()
