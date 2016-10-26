@@ -12541,7 +12541,7 @@ Prefab:
     - target: {fileID: 212000013858830862, guid: 6887d8e58f757014e8d3dcf170d5809f,
         type: 2}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212000013858830862, guid: 6887d8e58f757014e8d3dcf170d5809f,
         type: 2}
@@ -17951,6 +17951,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000010854576234, guid: 6988c7b2ce908a14581a43b537fe8e66,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6988c7b2ce908a14581a43b537fe8e66, type: 2}
