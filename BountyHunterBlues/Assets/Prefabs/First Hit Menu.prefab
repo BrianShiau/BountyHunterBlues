@@ -133,7 +133,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -144,7 +144,17 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dont get hit you noob
+  m_Text: 'When you get hit, you lose health.
+
+    You will also go invisible for 2 seconds.
+
+
+
+
+
+    This gives you a chance to hide from enemies.
+
+    Press E/Space to continue'
 --- !u!114 &114000014161855254
 MonoBehaviour:
   m_ObjectHideFlags: 1
