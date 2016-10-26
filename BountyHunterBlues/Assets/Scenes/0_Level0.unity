@@ -35191,6 +35191,28 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010974294916, guid: 67ebd4af68ff7436189caa628bc80960,
     type: 2}
   m_PrefabInternal: {fileID: 1828834672}
+--- !u!1 &1231424831 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010124888744, guid: f6922b8db8ac6d04995dd361bea03565,
+    type: 2}
+  m_PrefabInternal: {fileID: 2063115717}
+--- !u!95 &1231424833
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1231424831}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0b61e931295114038be88a5ae249bcc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &1231503366 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010679912928, guid: f5d149e2464c9460aad5c9525c969f12,
@@ -58576,6 +58598,27 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PauseFromMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012478848196, guid: f6922b8db8ac6d04995dd361bea03565,
+        type: 2}
+      propertyPath: m_Transition
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013844467958, guid: f6922b8db8ac6d04995dd361bea03565,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b17ae7b8acaa4714ab51fc37edaa49a,
+        type: 3}
+    - target: {fileID: 114000013844467958, guid: f6922b8db8ac6d04995dd361bea03565,
+        type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014289745488, guid: f6922b8db8ac6d04995dd361bea03565,
+        type: 2}
+      propertyPath: m_Text
+      value: Resume
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6922b8db8ac6d04995dd361bea03565, type: 2}
