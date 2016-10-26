@@ -69,7 +69,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 11: 
 			//TV 1
 			strings = new string[] {
-                "...soaring cost of living. In spite of this, EvaCorp continues to buy up properties,",
+                "...CEO has come under fire for what some consider unscrupulous business practices.",
+                "In spite of this, EvaCorp continues to buy up properties,",
                 "with plans to start three separate construction projects in the next year...",
 			};
 			break;
@@ -77,8 +78,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			//TV 2
 			strings = new string[] {
                 "…we at EvaCorp promise to revitalize YOUR community.",
-                "We pride ourselves on our commitment to you and making sure that YOU",
-                "can make the best of your future, with EvaCorp products and services...",
+                "We pride ourselves on our commitment to you and making sure that YOU can make the best of your future,",
+                 "with EvaCorp products and services...",
             };
 			break;
 		case 20: 
@@ -133,7 +134,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "Would you believe it? My landlord ran off last month and some big company bought the building.",
                 "They say they’re gonna tear it down in a few months. Wanna build some new high rises for the rich folks.",
                 "Was the only place I could afford, and now what?",
-                "Spend all my time working, working, working, barely make ends meet. Times ain’t friendly for folks like us,",
+                "Spend all my time working, working, working, barely make ends meet. Times ain’t friendly for folks like us.",
 
             };
                 break;
