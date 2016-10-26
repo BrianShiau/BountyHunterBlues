@@ -361,7 +361,7 @@ public class PlayerActor : GameActor
 			{
                 audioManager.Play("EnemyDeath");
                 enemyHit = true;
-				closestAttackable.takeDamage();
+				closestAttackable.takeDamage(2);
 				if (!closestAttackable.isAlive())
 					closestAttackable = null;
 			}
@@ -374,9 +374,11 @@ public class PlayerActor : GameActor
 			interactionTarget.runInteraction();
 	}
 
-	public override void takeDamage()
+	public override void takeDamage(int damage = 1)
 	{
-		base.takeDamage();
+		base.takeDamage(damage);
+
+		StatTracker.Hit ();
 		if(isAlive())
 		{
 			tookDamage = true;
@@ -392,6 +394,15 @@ public class PlayerActor : GameActor
 			}
 			StartCoroutine (PlayHitFlash());
 		}
+
+		//show tutorial text on first hit
+		if (StatTracker.GetTimesHit () == 1) {
+			if (GetComponentInChildren<HealthBar> ()) {
+				GetComponentInChildren<HealthBar> ().setHealthBarArt (health);
+			}
+			GetComponent<InputHandler> ().StartFirstHitMenu ();
+		}
+
 	}
 
 	IEnumerator PlayHitFlash(){
