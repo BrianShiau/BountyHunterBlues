@@ -377,10 +377,7 @@ public class PlayerActor : GameActor
 	public override void takeDamage(int damage = 1)
 	{
 		base.takeDamage(damage);
-		//show tutorial text on first hit
-		if (StatTracker.GetTimesHit () == 0) {
-			GetComponent<InputHandler> ().StartFirstHitMenu ();
-		}
+
 		StatTracker.Hit ();
 		if(isAlive())
 		{
@@ -397,6 +394,15 @@ public class PlayerActor : GameActor
 			}
 			StartCoroutine (PlayHitFlash());
 		}
+
+		//show tutorial text on first hit
+		if (StatTracker.GetTimesHit () == 1) {
+			if (GetComponentInChildren<HealthBar> ()) {
+				GetComponentInChildren<HealthBar> ().setHealthBarArt (health);
+			}
+			GetComponent<InputHandler> ().StartFirstHitMenu ();
+		}
+
 	}
 
 	IEnumerator PlayHitFlash(){

@@ -36,4 +36,9 @@ public class HealthBar : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 		GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, .75f);
 	}
+
+	//just for first hit
+	public void setHealthBarArt(int hp){
+		GetComponent<SpriteRenderer> ().sprite = sprites [hp-1];
+	}
 }

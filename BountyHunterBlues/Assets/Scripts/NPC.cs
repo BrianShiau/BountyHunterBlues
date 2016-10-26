@@ -96,14 +96,14 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"Ending Level 1 Text",
 			};
 			break;
-		case 22: 
+		/*case 22: 
 			//Hit Mecahinc
 			strings = new string[] {
                 "When you get hit you lose a life.",
                 "But you will also go invisible for 2 seconds.",
                 "This gives you a chance to hide from enemy sight.",
             };
-			break;
+			break;*/
         case 30:
             //bartender
             strings = new string[] {
@@ -219,7 +219,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		{
 			chatPanel.GetComponentInChildren<Text> ().text += letter;
 			//play typing sound here if there is one
-			yield return new WaitForSeconds (.02f);
+			yield return new WaitForSeconds (.001f);
 		}
 		typing = false;
 		currentLine++;
