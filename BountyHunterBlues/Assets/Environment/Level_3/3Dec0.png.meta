@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 7599df084ba3ffc42b1c0e17178e2a01
-timeCreated: 1477455253
+guid: 06e758dac70aa45db830c033f30bde8b
+timeCreated: 1477450337
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: bar TVs_0
-    21300002: bar TVs_1
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -32,7 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -40,7 +38,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -53,33 +51,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: bar TVs_0
-      rect:
-        serializedVersion: 2
-        x: 228
-        y: 1381
-        width: 1700
-        height: 1036
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: bar TVs_1
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 226
-        width: 1670
-        height: 1048
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 

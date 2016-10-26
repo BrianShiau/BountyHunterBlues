@@ -1,9 +1,17 @@
 fileFormatVersion: 2
 guid: 61c26b5c6963cf84fb40623974f9bb9a
-timeCreated: 1477395534
+timeCreated: 1477455639
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: spilt drinks_0
+    21300002: spilt drinks_1
+    21300004: null3
+    21300006: spilt drinks_3
+    21300008: null0
+    21300010: null1
+    21300012: null2
+    21300014: null4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +38,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +46,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,7 +59,111 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: spilt drinks_0
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 2092
+        width: 1391
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spilt drinks_1
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 1206
+        width: 739
+        height: 553
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: null3
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 1524
+        width: 12
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spilt drinks_3
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 497
+        width: 1299
+        height: 531
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: null0
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 877
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: null1
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 840
+        width: 5
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: null2
+      rect:
+        serializedVersion: 2
+        x: 1466
+        y: 777
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: null4
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 490
+        width: 43
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
