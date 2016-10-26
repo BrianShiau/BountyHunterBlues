@@ -1,0 +1,563 @@
+fileFormatVersion: 2
+guid: a003a58f608bf4e0ca9e00438ddd5bb0
+timeCreated: 1477445854
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: start_pulse_sprite_v2_0
+    21300002: start_pulse_sprite_v2_1
+    21300004: start_pulse_sprite_v2_2
+    21300006: start_pulse_sprite_v2_3
+    21300008: start_pulse_sprite_v2_4
+    21300010: start_pulse_sprite_v2_5
+    21300012: start_pulse_sprite_v2_6
+    21300014: start_pulse_sprite_v2_7
+    21300016: start_pulse_sprite_v2_8
+    21300018: start_pulse_sprite_v2_9
+    21300020: start_pulse_sprite_v2_10
+    21300022: start_pulse_sprite_v2_11
+    21300024: start_pulse_sprite_v2_12
+    21300026: start_pulse_sprite_v2_13
+    21300028: start_pulse_sprite_v2_14
+    21300030: start_pulse_sprite_v2_15
+    21300032: start_pulse_sprite_v2_16
+    21300034: start_pulse_sprite_v2_17
+    21300036: start_pulse_sprite_v2_18
+    21300038: start_pulse_sprite_v2_19
+    21300040: start_pulse_sprite_v2_20
+    21300042: start_pulse_sprite_v2_21
+    21300044: start_pulse_sprite_v2_22
+    21300046: start_pulse_sprite_v2_23
+    21300048: start_pulse_sprite_v2_24
+    21300050: start_pulse_sprite_v2_25
+    21300052: start_pulse_sprite_v2_26
+    21300054: start_pulse_sprite_v2_27
+    21300056: start_pulse_sprite_v2_28
+    21300058: start_pulse_sprite_v2_29
+    21300060: start_pulse_sprite_v2_30
+    21300062: start_pulse_sprite_v2_31
+    21300064: start_pulse_sprite_v2_32
+    21300066: start_pulse_sprite_v2_33
+    21300068: start_pulse_sprite_v2_34
+    21300070: start_pulse_sprite_v2_35
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1520.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_1
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1520.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_2
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 1520.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_3
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1520.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_4
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 1520.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_5
+      rect:
+        serializedVersion: 2
+        x: 9600
+        y: 1520.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1216.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_7
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1216.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_8
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 1216.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_9
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1216.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_10
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 1216.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_11
+      rect:
+        serializedVersion: 2
+        x: 9600
+        y: 1216.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 912.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_13
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 912.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_14
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 912.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_15
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 912.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_16
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 912.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_17
+      rect:
+        serializedVersion: 2
+        x: 9600
+        y: 912.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 608.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_19
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 608.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_20
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 608.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_21
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 608.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_22
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 608.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_23
+      rect:
+        serializedVersion: 2
+        x: 9600
+        y: 608.8334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304.83334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_25
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 304.83334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_26
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 304.83334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_27
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 304.83334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_28
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 304.83334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_29
+      rect:
+        serializedVersion: 2
+        x: 9600
+        y: 304.83334
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.8333435
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_31
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0.8333435
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_32
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0.8333435
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_33
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 0.8333435
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_34
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 0.8333435
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: start_pulse_sprite_v2_35
+      rect:
+        serializedVersion: 2
+        x: 9600
+        y: 0.8333435
+        width: 1920
+        height: 304.16666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
