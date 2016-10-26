@@ -96,14 +96,14 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"Ending Level 1 Text",
 			};
 			break;
-		/*case 22: 
+		case 22: 
 			//Hit Mecahinc
 			strings = new string[] {
-                "When you get hit you lose a life.",
-                "But you will also go invisible for 2 seconds.",
-                "This gives you a chance to hide from enemy sight.",
+                "When you get hit you lose a health point.",
+                "But you will also go invisable for 2 seconds",
+                "This gives you a chance to hide from enemy site",
             };
-			break;*/
+			break;
         case 30:
             //bartender
             strings = new string[] {

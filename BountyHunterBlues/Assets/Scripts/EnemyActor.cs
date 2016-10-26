@@ -22,10 +22,8 @@ public abstract class EnemyActor : GameActor {
     private GameObject player;
     private PlayerActor playerActor;
 
-    public PathFinding path;
     private bool shortest_path_calculated;
     private int path_index;
-    public float node_transition_threshold;
     public int path_threshold;
     private bool shot;
 
