@@ -11,6 +11,7 @@ public class Cursor : MonoBehaviour {
 	private Camera screenCamera;
 	private GameObject[] midPointerReloads;
 	private Animator[] midPointerReloadAnims;
+	private GameObject directionPointer;
 
 	private PlayerActor player;
 
@@ -27,6 +28,7 @@ public class Cursor : MonoBehaviour {
 		screenCamera = GetComponentInChildren<Camera> ();
 		player = GetComponent<PlayerActor> ();
 		midPointerReloadAnims [0].speed = 2 / player.reloadTime;
+		directionPointer = transform.FindChild ("DirectionPointer").gameObject;
 	}
 
 	// Update is called once per frame
@@ -99,7 +101,30 @@ public class Cursor : MonoBehaviour {
 		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(new Vector3(-350+20*imgScale.x*width, -170+10*imgScale.y*height, screenCamera.nearClipPlane));
 		midPointers.transform.position = worldSpace;
 
-		//mid pointers which follow the cursor
+		//directional pointer
+		Vector2 pivot = new Vector2(Screen.width/2, Screen.height/2);
+		float distFromCenterX = Event.current.mousePosition.x - Screen.width / 2;
+		float distFromCenterY = Event.current.mousePosition.y - Screen.height / 2;
+		float angle = Mathf.Atan2 (distFromCenterY, distFromCenterX);
+
+		directionPointer.transform.eulerAngles = new Vector3(
+			midPointers.transform.eulerAngles.x,
+			midPointers.transform.eulerAngles.y,
+			-90-angle*Mathf.Rad2Deg);
+
+		float x = (Event.current.mousePosition.x + Screen.width / 2) / 2;
+		float y = (Event.current.mousePosition.y + Screen.height / 2) / 2;
+
+		Vector3 center = screenCamera.ScreenToWorldPoint(
+			new Vector3(Screen.width/2, Screen.height/2, screenCamera.nearClipPlane));
+		Vector3 worldSpace2 = screenCamera.ScreenToWorldPoint(
+			new Vector3(x, Screen.height - y, screenCamera.nearClipPlane));
+		Vector3 normalized = worldSpace2 - center;
+		normalized.Normalize ();
+		Vector3 offset = new Vector3 (0, -.7f, 0);
+		directionPointer.transform.position = center + normalized + offset;
+
+		//triple mid pointers which follow the cursor
 		/*Vector2 pivot = new Vector2(Screen.width/2, Screen.height/2);
 		float distFromCenterX = Event.current.mousePosition.x - Screen.width / 2;
 		float distFromCenterY = Event.current.mousePosition.y - Screen.height / 2;
