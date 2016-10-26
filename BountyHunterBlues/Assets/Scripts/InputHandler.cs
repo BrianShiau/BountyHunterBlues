@@ -82,6 +82,11 @@ public class InputHandler : MonoBehaviour {
 		StartCoroutine ("PauseInputDelay");
 	}
 
+	public void PauseFromMenu(){
+		Pause ();
+		pauseInputDelay = -1;
+	}
+
 	public void StartFirstHitMenu(){
 		inFirstHitMenu = true;
 		Time.timeScale = 0f;

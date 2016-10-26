@@ -33,6 +33,7 @@ public class PathFinding : MonoBehaviour {
 
 	void Start () {
 		grid = GameObject.Find("GridOverlay").GetComponent<Grid>();
+		path_threshold = 100;
 	}
 
 	public void set_threshold(int threshold){

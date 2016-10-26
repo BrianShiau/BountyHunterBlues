@@ -12,20 +12,9 @@ public class NPCActor : Actor{
 	// Update is called once per frame
 	public override void Update () {
 		base.Update();
-		if(patrolManager.get_patrol_length() > 0){
-			if (patrolManager.get_next_patrol_point ().x == Int32.MaxValue && patrolManager.get_next_patrol_point ().y == Int32.MaxValue) {
-				stopMove ();
-			} else {
-				Vector2 worldFace = patrolManager.get_next_patrol_point () - new Vector2 (transform.position.x, transform.position.y);
-				worldFace.Normalize ();
-				faceDir = transform.InverseTransformDirection (worldFace);
-				move (faceDir);
-			}
-		}
 	}
 
-	public override void die()
-	{
+	public override void die(){
 		Destroy (gameObject);
 	}
 }

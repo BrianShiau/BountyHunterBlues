@@ -12516,7 +12516,7 @@ Prefab:
     - target: {fileID: 212000013858830862, guid: 6887d8e58f757014e8d3dcf170d5809f,
         type: 2}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212000013858830862, guid: 6887d8e58f757014e8d3dcf170d5809f,
         type: 2}
@@ -17926,6 +17926,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000010854576234, guid: 6988c7b2ce908a14581a43b537fe8e66,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6988c7b2ce908a14581a43b537fe8e66, type: 2}
@@ -58562,6 +58567,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012478848196, guid: f6922b8db8ac6d04995dd361bea03565,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2089761362}
+    - target: {fileID: 114000012478848196, guid: f6922b8db8ac6d04995dd361bea03565,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseFromMenu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6922b8db8ac6d04995dd361bea03565, type: 2}
   m_IsPrefabParent: 0
@@ -59144,6 +59159,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2089761362 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013946030618, guid: b6c9e9d01e18677419d9c7060978aa2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 2089761361}
+  m_Script: {fileID: 11500000, guid: 7b074f3c543dbcd4dbd218399834df9c, type: 3}
 --- !u!1001 &2093026387
 Prefab:
   m_ObjectHideFlags: 0
