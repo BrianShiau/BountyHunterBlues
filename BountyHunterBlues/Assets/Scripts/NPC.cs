@@ -100,7 +100,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 22: 
 			//Hit Mecahinc
 			strings = new string[] {
-                "When you get hit you lose a life.",
+                "When you get hit you lose a health point.",
                 "But you will also go invisable for 2 seconds",
                 "This gives you a chance to hide from enemy site",
             };

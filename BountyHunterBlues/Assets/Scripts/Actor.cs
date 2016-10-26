@@ -20,6 +20,8 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
 
     protected AudioManager audioManager;
     public PatrolManager patrolManager;
+    public float node_transition_threshold;
+    public PathFinding path;
     protected Animator gameActorAnimator;
     protected Direction currDirection;
     protected bool isMoving;
