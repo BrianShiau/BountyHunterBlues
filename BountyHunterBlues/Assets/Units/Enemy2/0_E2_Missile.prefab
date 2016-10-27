@@ -233,15 +233,15 @@ MonoBehaviour:
   is_cycle: 0
   patrolPoints: []
   sources: []
+  node_transition_threshold: 1
+  path: {fileID: 0}
   fov: 140
   meleeDistance: 2
   sightDistance: 12
   interactionDistance: 2
-  path: {fileID: 0}
-  node_transition_threshold: 0.8
   path_threshold: 10
   audio_distance: 8
-  transition_time: 0.75
+  transition_time: 0
   rotation_speed: 2
   MissileObject: {fileID: 1000014178562904, guid: dd9739c77423ccf4199098dbe23409b3,
     type: 2}
