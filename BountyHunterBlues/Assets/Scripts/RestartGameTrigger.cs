@@ -9,7 +9,7 @@ public class RestartGameTrigger : MonoBehaviour {
     {
 		if (col.tag == "GameActor" && col.GetComponent<GameActor> () is PlayerActor) {
 			PlayerActor.SetDeaths(0);
-			StartCoroutine(LoadNextLevel ());
+			LoadNextLevel ();
 			//GameObject.FindGameObjectWithTag ("BlackFade").GetComponent<Image>().enabled = true;
 			//yield return new WaitForSeconds (1);
 			//SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
@@ -22,7 +22,11 @@ public class RestartGameTrigger : MonoBehaviour {
 		
     }
 
-	IEnumerator LoadNextLevel()
+	public void LoadNextLevel(){
+		StartCoroutine(LoadNextLevelHelper ());
+	}
+
+	IEnumerator LoadNextLevelHelper()
 	{
 
         MusicPlayer mPlayer = FindObjectOfType<MusicPlayer>();
@@ -34,6 +38,7 @@ public class RestartGameTrigger : MonoBehaviour {
 		color.a = 0f;
 		blackFade.color = color;
 		blackFade.enabled = true;
+
 		while (blackFade.color.a < 1) {
 			color = blackFade.color;
 			color.a += 0.1f;

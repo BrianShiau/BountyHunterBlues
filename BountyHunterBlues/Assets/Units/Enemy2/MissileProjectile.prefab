@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179f4e1ddfc571a4eb8331158e24a32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 12
   ExplosionObject: {fileID: 1000011870740572, guid: 57bd225bf6741244a84c1c0517cfffc2,
     type: 2}
 --- !u!212 &212000011393647130
