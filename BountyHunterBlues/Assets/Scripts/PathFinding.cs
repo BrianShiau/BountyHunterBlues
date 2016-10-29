@@ -30,14 +30,20 @@ public class PathFinding : MonoBehaviour {
 	private List<PathData> open = new List<PathData>();
 	private List<PathData> closed = new List<PathData>();
 	private int path_threshold;
+	private bool audio_detected;
 
 	void Start () {
 		grid = GameObject.Find("GridOverlay").GetComponent<Grid>();
 		path_threshold = 100;
+		audio_detected = false;
 	}
 
 	public void set_threshold(int threshold){
 		path_threshold = threshold;
+	}
+
+	public void set_audio_detected(bool value){
+		audio_detected = value;
 	}
 
 	public void initialize(Vector3 start_position, Vector3 end_position){
@@ -68,11 +74,10 @@ public class PathFinding : MonoBehaviour {
 				break;
 			}
 
-			//Debug.Log(check_path_length(current));
-			//if(check_path_length(current)){
-			//	path.Clear();
-			//	break;
-			//}
+			if(check_path_length(current) && audio_detected){
+				path.Clear();
+				break;
+			}
 
 			open.Remove(current);
 			closed.Add(current);
@@ -140,7 +145,6 @@ public class PathFinding : MonoBehaviour {
 			temp.Add(current);
 			current = current.parent;
 		}
-		Debug.Log("tmp: " + temp.Count);
 		if(temp.Count > path_threshold){
 			return true;
 		}

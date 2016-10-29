@@ -117,6 +117,7 @@ public abstract class EnemyActor : GameActor {
         if(Vector2.Distance(transform.position, audio_location) <= audio_distance && shot){
             shot = false;
             set_alert(true);
+            path.set_audio_detected(true);
             set_shortest_path_calculated(false);
             calc_shortest_path(transform.position, get_audio_location());
             if(path.length() == 0){
@@ -138,6 +139,7 @@ public abstract class EnemyActor : GameActor {
         if(!shortest_path_calculated){
             path.initialize(from, to);
             path.calc_path();
+            path.set_audio_detected(false);
             if(path.length() > path_threshold){
                 path.clear();
                 alert = false;
