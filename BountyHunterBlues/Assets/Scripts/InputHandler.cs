@@ -21,6 +21,7 @@ public class InputHandler : MonoBehaviour {
     private float interactInputDelay;
 	private bool isPaused;
     private bool isAiming;
+    private bool meleeStoppedAiming;
 	private float pauseInputDelay;
 	private GameObject menu;
 	private bool inFirstHitMenu;
@@ -34,6 +35,7 @@ public class InputHandler : MonoBehaviour {
 		pauseInputDelay = -1;
 		isPaused = false;
         isAiming = false;
+        meleeStoppedAiming = false;
         move = new MoveCommand(new Vector2(0, 0));
         stopMove = new MoveStopCommand();
         interact = new InteractCommand();
@@ -159,6 +161,13 @@ public class InputHandler : MonoBehaviour {
                 nextCommands.AddLast(look);
                 nextCommands.AddLast(meleeAttack);
                 meleeAttackInputDelay = 1;
+
+                if(player.NEW_GUN_MODE && isAiming)
+                {
+                    isAiming = false;
+                    nextCommands.AddLast(disableAim);
+                    meleeStoppedAiming = true;
+                }
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -168,21 +177,31 @@ public class InputHandler : MonoBehaviour {
 
             if (player.NEW_GUN_MODE)
             {
-                if (Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
+                if (meleeStoppedAiming)
                 {
-                    isAiming = true;
-                    Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-                    aim.updateCommandData(worldPoint);
-                    nextCommands.AddLast(aim);
+                    if (Input.GetMouseButtonUp(1))
+                        meleeStoppedAiming = false;
                     
                 }
-                else if (isAiming) // no longer pressing button, but was aiming last frame
+                else
                 {
-                    isAiming = false;
-                    nextCommands.AddLast(rangedAttack);
-                    nextCommands.AddLast(disableAim);
+                    if (Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
+                    {
+                        isAiming = true;
+                        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+                        aim.updateCommandData(worldPoint);
+                        nextCommands.AddLast(aim);
 
+                    }
+                    else if (isAiming) // no longer pressing button, but was aiming last frame
+                    {
+                        isAiming = false;
+                        nextCommands.AddLast(rangedAttack);
+                        nextCommands.AddLast(disableAim);
+
+                    }
                 }
+                
             }
 
             else
