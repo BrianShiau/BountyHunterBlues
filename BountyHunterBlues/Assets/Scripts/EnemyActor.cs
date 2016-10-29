@@ -46,7 +46,7 @@ public abstract class EnemyActor : GameActor {
         _stateManager = new StateManager(transition_time);
         current_state = new NeutralDog(null);
         last_neutral_position = transform.position;
-        path = gameObject.GetComponent<PathFinding>();
+        
         path.set_threshold(path_threshold);
         shortest_path_calculated = false;
         path_index = 0;

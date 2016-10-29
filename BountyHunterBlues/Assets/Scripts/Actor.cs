@@ -36,6 +36,7 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     // Use this for initialization
     public virtual void Start () {
         gameActorAnimator = GetComponent<Animator>();
+        path = gameObject.GetComponent<PathFinding>();
         audioManager = initAudioManager();
         patrolManager = new PatrolManager(this.gameObject, patrolPoints, is_cycle);
         isMoving = false;

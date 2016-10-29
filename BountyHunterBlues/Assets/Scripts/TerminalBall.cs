@@ -25,6 +25,8 @@ public class TerminalBall : NPCActor, Interactable {
         if(interacted == true){
         	performAction();
         }
+		//Debug.Log(moveTo);
+		//Debug.Log(moveTo.position);
 	}
 
 	public void patrol(){
@@ -55,6 +57,7 @@ public class TerminalBall : NPCActor, Interactable {
 	            inc_path_index();   
 	        }
 	        if(get_path_index() == path.length()){
+				gameActorAnimator.enabled = false;
 	        	audioManager.Play("Beep");
 				opensThisdoor.specialDoor = false;
 				opensThisdoor.runInteraction();
@@ -79,7 +82,11 @@ public class TerminalBall : NPCActor, Interactable {
 		if(interacted == false){
         	audioManager.Play("Beep");
 			interacted = true;
-			path.initialize(transform.position, moveTo.position);
+			Vector3 a = moveTo.position;
+			Vector3 me = transform.position;
+			Debug.Log(a);
+			Debug.Log(me);
+			path.initialize(me, a);
 	        path.calc_path();
 	        this.gameObject.transform.GetChild(0).gameObject.active = false;
 		}
