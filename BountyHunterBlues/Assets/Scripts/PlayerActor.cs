@@ -8,7 +8,14 @@ using UnityEngine.UI;
 
 public class PlayerActor : GameActor
 {
-	public bool hasGun;
+    // New gun mode variables
+    public bool NEW_GUN_MODE;
+    private Vector2 randomAimVector;
+    public float aimTimeCap;
+    private float aimTimer;
+    private bool isAiming;
+
+    public bool hasGun;
 	public float reloadTime;
 	public float cloakTime;
 
@@ -106,6 +113,9 @@ public class PlayerActor : GameActor
                 mRoom = room;
                 break;
             }
+
+        aimTimer = 0;
+        isAiming = false;
 	}
 
 	public override void Update()
@@ -140,6 +150,7 @@ public class PlayerActor : GameActor
 		} else {
 			mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
 		}
+
 	}
 
 	public bool isCloaked(){
@@ -192,7 +203,30 @@ public class PlayerActor : GameActor
 		}
 	}
 
-	public override void rangedAttack()
+    public override void aim(Vector2 worldPos)
+    {
+        isAiming = true;
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+        faceDir = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
+        faceDir.Normalize();
+        if (aimTimer < aimTimeCap)
+        {
+            float angle = Mathf.Lerp(fov, 0, aimTimer / aimTimeCap);
+            float angleOfRandomVec = UnityEngine.Random.Range(-angle / 2, angle / 2);
+            randomAimVector = Quaternion.Euler(0, 0, angleOfRandomVec) * faceDir;
+            aimTimer += Time.deltaTime;
+        }
+        else
+            randomAimVector = faceDir;
+    }
+
+    public override void disableAim()
+    {
+        isAiming = false;
+        aimTimer = 0;
+    }
+
+    public override void rangedAttack()
 	{
 		if (visible)
 		{
@@ -202,10 +236,21 @@ public class PlayerActor : GameActor
 					lastShotTime = 0;
 				}
 				magazine_size -= 1;
-				Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-				Vector2 aimVector = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
-				aimVector.Normalize();
-				faceDir = aimVector;
+
+                Vector2 aimVector;
+
+                if (NEW_GUN_MODE)
+                {
+                    aimVector = randomAimVector;
+                }
+                else
+                {
+                    Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+                    aimVector = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
+                    aimVector.Normalize();
+                    faceDir = aimVector;
+                }
+				
 
 
 				Vector2 worldDir = transform.TransformDirection(aimVector);
@@ -365,6 +410,9 @@ public class PlayerActor : GameActor
 				if (!closestAttackable.isAlive())
 					closestAttackable = null;
 			}
+
+            if (NEW_GUN_MODE)
+                disableAim();
 		}
 	}
 
