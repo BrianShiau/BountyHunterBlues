@@ -80,15 +80,13 @@ public class TerminalBall : NPCActor, Interactable {
 
 	public void runInteraction(){
 		if(interacted == false){
+	        this.gameObject.transform.GetChild(0).gameObject.active = false;
         	audioManager.Play("Beep");
 			interacted = true;
 			Vector3 a = moveTo.position;
 			Vector3 me = transform.position;
-			Debug.Log(a);
-			Debug.Log(me);
 			path.initialize(me, a);
 	        path.calc_path();
-	        this.gameObject.transform.GetChild(0).gameObject.active = false;
 		}
 	}
 }
