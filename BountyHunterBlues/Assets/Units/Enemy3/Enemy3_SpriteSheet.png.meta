@@ -1,0 +1,899 @@
+fileFormatVersion: 2
+guid: 9ecba75253b7b45d4a28f1611ae49bc5
+timeCreated: 1477867304
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Enemy3_SpriteSheet_0
+    21300002: Enemy3_SpriteSheet_1
+    21300004: Enemy3_SpriteSheet_2
+    21300006: Enemy3_SpriteSheet_3
+    21300008: Enemy3_SpriteSheet_4
+    21300010: Enemy3_SpriteSheet_5
+    21300012: Enemy3_SpriteSheet_6
+    21300014: Enemy3_SpriteSheet_7
+    21300016: Enemy3_SpriteSheet_8
+    21300018: Enemy3_SpriteSheet_9
+    21300020: Enemy3_SpriteSheet_10
+    21300022: Enemy3_SpriteSheet_11
+    21300024: Enemy3_SpriteSheet_12
+    21300026: Enemy3_SpriteSheet_13
+    21300028: Enemy3_SpriteSheet_14
+    21300030: Enemy3_SpriteSheet_15
+    21300032: Enemy3_SpriteSheet_16
+    21300034: Enemy3_SpriteSheet_17
+    21300036: Enemy3_SpriteSheet_18
+    21300038: Enemy3_SpriteSheet_19
+    21300040: Enemy3_SpriteSheet_20
+    21300042: Enemy3_SpriteSheet_21
+    21300044: Enemy3_SpriteSheet_22
+    21300046: Enemy3_SpriteSheet_23
+    21300048: Enemy3_SpriteSheet_24
+    21300050: Enemy3_SpriteSheet_25
+    21300052: Enemy3_SpriteSheet_26
+    21300054: Enemy3_SpriteSheet_27
+    21300056: Enemy3_SpriteSheet_28
+    21300058: Enemy3_SpriteSheet_29
+    21300060: Enemy3_SpriteSheet_30
+    21300062: Enemy3_SpriteSheet_31
+    21300064: Enemy3_SpriteSheet_32
+    21300066: Enemy3_SpriteSheet_33
+    21300068: Enemy3_SpriteSheet_34
+    21300070: Enemy3_SpriteSheet_35
+    21300072: Enemy3_SpriteSheet_36
+    21300074: Enemy3_SpriteSheet_37
+    21300076: Enemy3_SpriteSheet_38
+    21300078: Enemy3_SpriteSheet_39
+    21300080: Enemy3_SpriteSheet_40
+    21300082: Enemy3_SpriteSheet_41
+    21300084: Enemy3_SpriteSheet_42
+    21300086: Enemy3_SpriteSheet_43
+    21300088: Enemy3_SpriteSheet_44
+    21300090: Enemy3_SpriteSheet_45
+    21300092: Enemy3_SpriteSheet_46
+    21300094: Enemy3_SpriteSheet_47
+    21300096: Enemy3_SpriteSheet_48
+    21300098: Enemy3_SpriteSheet_49
+    21300100: Enemy3_SpriteSheet_50
+    21300102: Enemy3_SpriteSheet_51
+    21300104: Enemy3_SpriteSheet_52
+    21300106: Enemy3_SpriteSheet_53
+    21300108: Enemy3_SpriteSheet_54
+    21300110: Enemy3_SpriteSheet_55
+    21300112: Enemy3_SpriteSheet_56
+    21300114: Enemy3_SpriteSheet_57
+    21300116: Enemy3_SpriteSheet_58
+    21300118: Enemy3_SpriteSheet_59
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8694
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 8694
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 2484
+        y: 8694
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 3726
+        y: 8694
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 4968
+        y: 8694
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 6210
+        y: 8694
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 7452
+        y: 8694
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 8694
+        y: 8694
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7452
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 7452
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 2484
+        y: 7452
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 3726
+        y: 7452
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 4968
+        y: 7452
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 6210
+        y: 7452
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 7452
+        y: 7452
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 8694
+        y: 7452
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6210
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 6210
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 2484
+        y: 6210
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 3726
+        y: 6210
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 4968
+        y: 6210
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 6210
+        y: 6210
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 7452
+        y: 6210
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 8694
+        y: 6210
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4968
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 4968
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 2484
+        y: 4968
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 3726
+        y: 4968
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 4968
+        y: 4968
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 6210
+        y: 4968
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 7452
+        y: 4968
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 8694
+        y: 4968
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3726
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 3726
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 2484
+        y: 3726
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_35
+      rect:
+        serializedVersion: 2
+        x: 3726
+        y: 3726
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_36
+      rect:
+        serializedVersion: 2
+        x: 4968
+        y: 3726
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 6210
+        y: 3726
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_38
+      rect:
+        serializedVersion: 2
+        x: 7452
+        y: 3726
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_39
+      rect:
+        serializedVersion: 2
+        x: 8694
+        y: 3726
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2484
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_41
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 2484
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_42
+      rect:
+        serializedVersion: 2
+        x: 2484
+        y: 2484
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_43
+      rect:
+        serializedVersion: 2
+        x: 3726
+        y: 2484
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_44
+      rect:
+        serializedVersion: 2
+        x: 4968
+        y: 2484
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_45
+      rect:
+        serializedVersion: 2
+        x: 6210
+        y: 2484
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_46
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1242
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_47
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 1242
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_48
+      rect:
+        serializedVersion: 2
+        x: 2484
+        y: 1242
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_49
+      rect:
+        serializedVersion: 2
+        x: 3726
+        y: 1242
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_50
+      rect:
+        serializedVersion: 2
+        x: 4968
+        y: 1242
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_51
+      rect:
+        serializedVersion: 2
+        x: 6210
+        y: 1242
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_53
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 0
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_54
+      rect:
+        serializedVersion: 2
+        x: 2484
+        y: 0
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_55
+      rect:
+        serializedVersion: 2
+        x: 3726
+        y: 0
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_56
+      rect:
+        serializedVersion: 2
+        x: 4968
+        y: 0
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_57
+      rect:
+        serializedVersion: 2
+        x: 6210
+        y: 0
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_58
+      rect:
+        serializedVersion: 2
+        x: 7452
+        y: 0
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy3_SpriteSheet_59
+      rect:
+        serializedVersion: 2
+        x: 8694
+        y: 0
+        width: 1242
+        height: 1242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
