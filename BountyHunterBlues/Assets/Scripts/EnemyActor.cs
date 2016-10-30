@@ -228,4 +228,14 @@ public abstract class EnemyActor : GameActor {
     {
         return current_state;
     }
+
+    public override void disableAim()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void aim(Vector2 worldPos)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -81,3 +81,26 @@ public class LookCommand : Command
     }
 }
 
+public class AimCommand : Command
+{
+    Vector2 worldPos;
+
+    public override void updateCommandData(Vector2 data)
+    {
+        worldPos = data;
+    }
+
+    public override void execute(GameActor actor)
+    {
+        actor.aim(worldPos);
+    }
+}
+
+public class ReleaseAimCommand : Command
+{
+    public override void execute(GameActor actor)
+    {
+        actor.disableAim();
+    }
+}
+

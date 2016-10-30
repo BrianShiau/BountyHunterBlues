@@ -14,38 +14,37 @@ public class DogEnemy : EnemyActor {
 	}
 
 	public override void Update(){
-		base.Update();
+		if (health <= 0)
+			return;
+		
+		base.Update ();
 
-        is_confused();
-        _stateManager.update_state(closestAttackable, sound_heard(), is_alert());
-        if(current_state.get_state() != _stateManager.get_state()){
-            current_state.on_exit();
-            if(_stateManager.get_state() == State.NEUTRAL)
-                current_state = new NeutralDog(this);
-            if(_stateManager.get_state() == State.ALERT)
-                current_state = new AlertDog(this);
-            if(_stateManager.get_state() == State.AGGRESIVE)
-                current_state = new AggresiveDog(this);
+		is_confused ();
+		_stateManager.update_state (closestAttackable, sound_heard (), is_alert ());
+		if (current_state.get_state () != _stateManager.get_state ()) {
+			current_state.on_exit ();
+			if (_stateManager.get_state () == State.NEUTRAL)
+				current_state = new NeutralDog (this);
+			if (_stateManager.get_state () == State.ALERT)
+				current_state = new AlertDog (this);
+			if (_stateManager.get_state () == State.AGGRESIVE)
+				current_state = new AggresiveDog (this);
 
-            current_state.on_enter();
-        }
-		current_state.execute();
+			current_state.on_enter ();
+		}
+		current_state.execute ();
 
-        if(isMoving)
-        {
-            if (!audioManager.isPlaying("Feet"))
-            {
-                if (isPatrolling)
-                    audioManager.Play("Feet", "Patrol");
-                else
-                    audioManager.Play("Feet", "Chase");
-            }
+		if (isMoving) {
+			if (!audioManager.isPlaying ("Feet")) {
+				if (isPatrolling)
+					audioManager.Play ("Feet", "Patrol");
+				else
+					audioManager.Play ("Feet", "Chase");
+			}
 
-        }
-        else
-        {
-            audioManager.Stop("Feet");
-        }
+		} else {
+			audioManager.Stop ("Feet");
+		}
 	}
 
 	public override void rangedAttack(){
@@ -72,10 +71,11 @@ public class DogEnemy : EnemyActor {
 
     public override void die()
     {
-        //StartCoroutine(DeathCleanUp());
-        base.die();
-        Destroy(gameObject);
-        
+		gameActorAnimator.SetBool ("isHit", true);
+		transform.FindChild ("Base").gameObject.SetActive(false);
+		transform.FindChild ("Reactions").gameObject.SetActive(false);
+		transform.FindChild ("Feet_Collider").gameObject.SetActive(false);
+        StartCoroutine(DeathCleanUp());
     }
 
     public override void runAnimation()
@@ -91,25 +91,40 @@ public class DogEnemy : EnemyActor {
     {
         base.OnTriggerEnter2D(other);
         SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-        SpriteRenderer bBase = GetComponentInChildren<BarrelBase>().GetComponent<SpriteRenderer>();
-        SpriteRenderer barrel = GetComponentInChildren<BarrelRotation>().GetComponent<SpriteRenderer>();
-        SpriteRenderer laser = GetComponentInChildren<Laser>().GetComponent<SpriteRenderer>();
-        SpriteRenderer reactionUI = transform.FindChild("Reactions").GetComponent<SpriteRenderer>();
 
-        laser.sortingOrder = mySprite.sortingOrder + 1;
-        barrel.sortingOrder = laser.sortingOrder + 1;
-        bBase.sortingOrder = barrel.sortingOrder + 1;
-        reactionUI.sortingOrder = bBase.sortingOrder + 1;
+		BarrelBase bBaseObject = GetComponentInChildren<BarrelBase> ();
+		if (bBaseObject) {
+			SpriteRenderer bBase = bBaseObject.GetComponent<SpriteRenderer> ();
+			bBase.sortingOrder = mySprite.sortingOrder + 3;
+		}
 
+		BarrelRotation barrelObject = GetComponentInChildren<BarrelRotation> ();
+		if (barrelObject) {
+			SpriteRenderer barrel = barrelObject.GetComponent<SpriteRenderer>();
+			barrel.sortingOrder = mySprite.sortingOrder + 2;
+		}
 
-        
+		Laser laserObject = GetComponentInChildren<Laser> ();
+		if (laserObject) {
+			SpriteRenderer laser =laserObject.GetComponent<SpriteRenderer>();
+			laser.sortingOrder = mySprite.sortingOrder + 1;
+		}
+
+		Transform reactionsObject = transform.FindChild ("Reactions");
+		if (reactionsObject) {
+			SpriteRenderer reactionUI = reactionsObject.GetComponent<SpriteRenderer>();
+			reactionUI.sortingOrder = mySprite.sortingOrder + 4;
+		}
     }
-    /*
+    
     private IEnumerator DeathCleanUp()
     {
-        audioManager.Play("Death");
-        yield return new WaitForSeconds(3);
+        //audioManager.Play("Death");
+        yield return new WaitForSeconds(1);
+		gameActorAnimator.SetBool ("isDead", true);
+		yield return new WaitForSeconds(2);
+        base.die();
         Destroy(gameObject);
     }
-    */
+    
 }

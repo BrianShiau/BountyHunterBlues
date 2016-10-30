@@ -16,6 +16,8 @@ public abstract class GameActor : Actor, Vision
     protected GameActor closestAttackable; // closest attackable GameActor as acquired by runVisionDetection   
     protected Interactable interactionTarget; // null unless acquireInteractionTarget sets this to an Interactable
 
+    public abstract void aim(Vector2 worldPos);
+    public abstract void disableAim();
     public abstract void rangedAttack();
     public abstract void meleeAttack();
     public abstract void interact();
