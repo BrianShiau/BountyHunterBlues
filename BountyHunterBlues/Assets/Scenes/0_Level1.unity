@@ -25071,6 +25071,11 @@ Prefab:
       propertyPath: hasGun
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
+        type: 2}
+      propertyPath: openingText
+      value: 
+      objectReference: {fileID: 1775972485}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -64107,6 +64112,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4000011496355410, guid: 7f988df7c59b046d6a6dc62cb4198c2b,
     type: 2}
   m_PrefabInternal: {fileID: 1773010058}
+--- !u!114 &1775972485 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1856766279}
+  m_Script: {fileID: 11500000, guid: fd785fdada0a4fe47a30d87e86648000, type: 3}
 --- !u!1001 &1776833516
 Prefab:
   m_ObjectHideFlags: 0
