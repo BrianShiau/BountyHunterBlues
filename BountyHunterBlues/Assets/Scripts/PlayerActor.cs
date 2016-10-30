@@ -425,7 +425,7 @@ public class PlayerActor : GameActor
 			{
                 audioManager.Play("EnemyDeath");
                 enemyHit = true;
-				closestAttackable.takeDamage(2);
+				closestAttackable.takeDamage();
 				if (!closestAttackable.isAlive())
 					closestAttackable = null;
 			}
