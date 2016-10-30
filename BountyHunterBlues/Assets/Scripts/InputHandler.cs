@@ -117,7 +117,22 @@ public class InputHandler : MonoBehaviour {
     {
         LinkedList<Command> nextCommands = new LinkedList<Command>();
         bool movement = false;
-		if (!player.InTacticalMode() && !player.InDialogueMode())
+
+        if(player.InTacticalMode() || player.InDialogueMode())
+        {
+            if (interactInputDelay <= 0)
+            {
+                if (Input.anyKey)
+                {
+                    interactInputDelay = 1;
+                    nextCommands.AddLast(interact);
+                }    
+            }
+
+            if(!Input.anyKey)
+                interactInputDelay = 0;
+        }
+		else
         { 
             Vector2 movementVector = new Vector2(0, 0);
             // basing WASD on +x-axis, +y-axis, -x-axis, -y-axis respectively
@@ -217,19 +232,22 @@ public class InputHandler : MonoBehaviour {
                     attackInputDelay = 0;
             }
 
-            
+            if ((Input.GetKey(KeyCode.Space) && interactInputDelay < 0)
+                || (Input.GetKey(KeyCode.E) && interactInputDelay < 0))
+            {
+                interactInputDelay = 1;
+                nextCommands.AddLast(interact);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.E))
+            {
+                interactInputDelay = 0;
+            }
+
+
         }
          
-        if ((Input.GetKey(KeyCode.Space) && interactInputDelay < 0) 
-            ||  (Input.GetKey(KeyCode.E) && interactInputDelay < 0))
-        {
-			interactInputDelay = 1;
-            nextCommands.AddLast(interact);
-        }
-
-		if (Input.GetKeyUp (KeyCode.Space) || Input.GetKeyUp (KeyCode.E)) {
-			interactInputDelay = 0;
-		}
+        
 
         // Need to implement Q special ability
 
