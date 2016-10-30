@@ -122,7 +122,7 @@ public class InputHandler : MonoBehaviour {
         {
             if (interactInputDelay <= 0)
             {
-                if (Input.anyKey)
+                if (!Input.GetKey(KeyCode.Escape) && Input.anyKey)
                 {
                     interactInputDelay = 1;
                     nextCommands.AddLast(interact);
