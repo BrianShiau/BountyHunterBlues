@@ -13,7 +13,9 @@ public class PlayerActor : GameActor
     private Vector2 randomAimVector;
     public float aimTimeCap;
     private float aimTimer;
-    private bool isAiming;
+    public bool isAiming { get; private set; }
+    private PlayerLaser laser1;
+    private PlayerLaser laser2;
 
     public bool hasGun;
 	public float reloadTime;
@@ -114,8 +116,15 @@ public class PlayerActor : GameActor
                 break;
             }
 
-        aimTimer = 0;
-        isAiming = false;
+
+        if (NEW_GUN_MODE)
+        {
+            aimTimer = 0;
+            isAiming = false;
+            PlayerLaser[] lasers = GetComponentsInChildren<PlayerLaser>();
+            laser1 = lasers[0];
+            laser2 = lasers[1];
+        }
 	}
 
 	public override void Update()
@@ -209,15 +218,25 @@ public class PlayerActor : GameActor
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
         faceDir = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
         faceDir.Normalize();
+        setBulletStartPosition(transform.position);
         if (aimTimer < aimTimeCap)
         {
             float angle = Mathf.Lerp(fov, 0, aimTimer / aimTimeCap);
             float angleOfRandomVec = UnityEngine.Random.Range(-angle / 2, angle / 2);
             randomAimVector = Quaternion.Euler(0, 0, angleOfRandomVec) * faceDir;
             aimTimer += Time.deltaTime;
+            laser1.changeLaserDir(Quaternion.Euler(0, 0, angle / 2) * faceDir);
+            laser2.changeLaserDir(Quaternion.Euler(0, 0, -angle / 2) * faceDir);
         }
         else
+        {
             randomAimVector = faceDir;
+            laser1.changeLaserDir(faceDir);
+            laser2.changeLaserDir(faceDir);
+        }
+
+        laser1.updatePivot(bulletStartPosition);
+        laser2.updatePivot(bulletStartPosition);
     }
 
     public override void disableAim()
