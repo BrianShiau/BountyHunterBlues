@@ -24976,6 +24976,11 @@ Prefab:
       propertyPath: openingText
       value: 
       objectReference: {fileID: 1775972485}
+    - target: {fileID: 95000010032085470, guid: b6c9e9d01e18677419d9c7060978aa2f,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e9f31be1216aa1b428ebec0553a784ef, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
