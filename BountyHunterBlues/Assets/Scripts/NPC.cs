@@ -43,6 +43,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		typingRoutine = null;
 
 		switch (NPCNumber){
+		//Tutorial
 		case 0: 
 			//Opening Tutorial
 			strings = new string[] {
@@ -68,6 +69,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				""
 			};
 			break;
+
+		//Airlock Rest Area
 		case 10: 
 			//Rest Area Big Bad NPC
 			strings = new string[] {
@@ -92,6 +95,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
                  "with EvaCorp products and services...",
             };
 			break;
+
+		//Level 1
 		case 20: 
 			//Opening Level 1
 			strings = new string[] {
@@ -102,19 +107,19 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			};
 			break;
 		case 21: 
+			//Ending Door Text
+			strings = new string[] {
+				"There must be a way to get this door open...",
+			};
+			break;
+		case 22: 
 			//Ending Level 1
 			strings = new string[] {
 				"Ending Level 1 Text",
 			};
 			break;
-		/*case 22: 
-			//Hit Mecahinc
-			strings = new string[] {
-                "When you get hit you lose a health point.",
-                "But you will also go invisable for 2 seconds",
-                "This gives you a chance to hide from enemy site",
-            };
-			break;*/
+
+		//Bar Rest Area
         case 30:
             //bartender
             strings = new string[] {
@@ -169,6 +174,22 @@ public class NPC : NPCActor, Interactable, Dialogue {
             default:
 			strings = new string[] { };
 			break;
+
+		//Level 2
+
+		//Warehouse Rest Area
+
+		//Level 3
+
+		//Levelless
+		/*case 22: 
+		//Hit Mecahinc
+		strings = new string[] {
+            "When you get hit you lose a health point.",
+            "But you will also go invisable for 2 seconds",
+            "This gives you a chance to hide from enemy site",
+        };
+		break;*/
 		}
 	}
 

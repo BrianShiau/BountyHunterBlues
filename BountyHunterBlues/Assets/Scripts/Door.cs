@@ -10,18 +10,23 @@ public class Door : MonoBehaviour, Interactable {
     public Room nextRoom;
 
     private PlayerActor player;
+	private NPC npc;
 
     void Start()
     {
         closed = true;
         player = FindObjectOfType<PlayerActor>();
-
+		npc = GetComponent<NPC> ();
     }
 
     public void runInteraction()
     {
-		if (specialDoor)
+		if (specialDoor) {
+			if (npc) {
+				npc.runInteraction ();
+			}
 			return;
+		}
         if (closed)
         {
             closed = false;

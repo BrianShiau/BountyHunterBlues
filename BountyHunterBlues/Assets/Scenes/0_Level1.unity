@@ -24998,7 +24998,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 118c3a4717b1245919b10a0f43de432e, type: 2}
+      objectReference: {fileID: 9100000, guid: e9f31be1216aa1b428ebec0553a784ef, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -37576,6 +37576,35 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013684197154, guid: d489cf8d52d504dec93e6db3d45b567b,
     type: 2}
   m_PrefabInternal: {fileID: 1099407150}
+--- !u!1 &1099407152 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013429468374, guid: d489cf8d52d504dec93e6db3d45b567b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099407150}
+--- !u!114 &1099407153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1099407152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd785fdada0a4fe47a30d87e86648000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faceDir: {x: 0, y: 0}
+  moveSpeed: 0
+  health: 0
+  is_cycle: 0
+  patrolPoints: []
+  sources: []
+  node_transition_threshold: 0
+  path: {fileID: 0}
+  npcImage: {fileID: 21300000, guid: 773d2d58d6e5e24428fe79f13a846b65, type: 3}
+  NPCNumber: 21
+  destroyAfterPlay: 0
+  currentLine: 0
+  pauseTime: 1
 --- !u!1001 &1099849643
 Prefab:
   m_ObjectHideFlags: 0
