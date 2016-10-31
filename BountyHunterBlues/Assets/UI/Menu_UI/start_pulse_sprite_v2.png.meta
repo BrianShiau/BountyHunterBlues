@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a003a58f608bf4e0ca9e00438ddd5bb0
-timeCreated: 1477445854
+timeCreated: 1477877899
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -65,7 +65,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -84,7 +84,12 @@ TextureImporter:
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -2
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -92,10 +97,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1520.8334
-        width: 1920
-        height: 304.16666
+        x: 51
+        y: 1504
+        width: 1670
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -105,10 +110,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_1
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1520.8334
-        width: 1920
-        height: 304.16666
+        x: 1969
+        y: 1504
+        width: 1670
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,10 +123,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_2
       rect:
         serializedVersion: 2
-        x: 3840
-        y: 1520.8334
-        width: 1920
-        height: 304.16666
+        x: 3887
+        y: 1504
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +136,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_3
       rect:
         serializedVersion: 2
-        x: 5760
-        y: 1520.8334
-        width: 1920
-        height: 304.16666
+        x: 5811
+        y: 1504
+        width: 1670
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,10 +149,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_4
       rect:
         serializedVersion: 2
-        x: 7680
-        y: 1520.8334
-        width: 1920
-        height: 304.16666
+        x: 7729
+        y: 1504
+        width: 1670
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +162,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_5
       rect:
         serializedVersion: 2
-        x: 9600
-        y: 1520.8334
-        width: 1920
-        height: 304.16666
+        x: 9647
+        y: 1504
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,10 +175,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1216.8334
-        width: 1920
-        height: 304.16666
+        x: 45
+        y: 1143
+        width: 1676
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +188,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_7
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1216.8334
-        width: 1920
-        height: 304.16666
+        x: 1969
+        y: 1143
+        width: 1670
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +201,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_8
       rect:
         serializedVersion: 2
-        x: 3840
-        y: 1216.8334
-        width: 1920
-        height: 304.16666
+        x: 3887
+        y: 1143
+        width: 1676
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,10 +214,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_9
       rect:
         serializedVersion: 2
-        x: 5760
-        y: 1216.8334
-        width: 1920
-        height: 304.16666
+        x: 5805
+        y: 1143
+        width: 1676
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,10 +227,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_10
       rect:
         serializedVersion: 2
-        x: 7680
-        y: 1216.8334
-        width: 1920
-        height: 304.16666
+        x: 7729
+        y: 1143
+        width: 1670
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,10 +240,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_11
       rect:
         serializedVersion: 2
-        x: 9600
-        y: 1216.8334
-        width: 1920
-        height: 304.16666
+        x: 9647
+        y: 1143
+        width: 1676
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,10 +253,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 912.8334
-        width: 1920
-        height: 304.16666
+        x: 45
+        y: 777
+        width: 1676
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,10 +266,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_13
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 912.8334
-        width: 1920
-        height: 304.16666
+        x: 1969
+        y: 777
+        width: 1670
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,10 +279,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_14
       rect:
         serializedVersion: 2
-        x: 3840
-        y: 912.8334
-        width: 1920
-        height: 304.16666
+        x: 3887
+        y: 777
+        width: 1676
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,10 +292,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_15
       rect:
         serializedVersion: 2
-        x: 5760
-        y: 912.8334
-        width: 1920
-        height: 304.16666
+        x: 5805
+        y: 777
+        width: 1676
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,10 +305,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_16
       rect:
         serializedVersion: 2
-        x: 7680
-        y: 912.8334
-        width: 1920
-        height: 304.16666
+        x: 7729
+        y: 777
+        width: 1670
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -313,10 +318,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_17
       rect:
         serializedVersion: 2
-        x: 9600
-        y: 912.8334
-        width: 1920
-        height: 304.16666
+        x: 9647
+        y: 777
+        width: 1676
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,10 +331,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 608.8334
-        width: 1920
-        height: 304.16666
+        x: 45
+        y: 411
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,10 +344,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_19
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 608.8334
-        width: 1920
-        height: 304.16666
+        x: 1969
+        y: 411
+        width: 1670
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,10 +357,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_20
       rect:
         serializedVersion: 2
-        x: 3840
-        y: 608.8334
-        width: 1920
-        height: 304.16666
+        x: 3887
+        y: 411
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,10 +370,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_21
       rect:
         serializedVersion: 2
-        x: 5760
-        y: 608.8334
-        width: 1920
-        height: 304.16666
+        x: 5805
+        y: 411
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -378,10 +383,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_22
       rect:
         serializedVersion: 2
-        x: 7680
-        y: 608.8334
-        width: 1920
-        height: 304.16666
+        x: 7729
+        y: 411
+        width: 1670
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,10 +396,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_23
       rect:
         serializedVersion: 2
-        x: 9600
-        y: 608.8334
-        width: 1920
-        height: 304.16666
+        x: 9647
+        y: 411
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,10 +409,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 304.83334
-        width: 1920
-        height: 304.16666
+        x: 45
+        y: 45
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -417,10 +422,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_25
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 304.83334
-        width: 1920
-        height: 304.16666
+        x: 1969
+        y: 45
+        width: 1670
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -430,10 +435,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_26
       rect:
         serializedVersion: 2
-        x: 3840
-        y: 304.83334
-        width: 1920
-        height: 304.16666
+        x: 3887
+        y: 45
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -443,10 +448,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_27
       rect:
         serializedVersion: 2
-        x: 5760
-        y: 304.83334
-        width: 1920
-        height: 304.16666
+        x: 5805
+        y: 45
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -456,10 +461,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_28
       rect:
         serializedVersion: 2
-        x: 7680
-        y: 304.83334
-        width: 1920
-        height: 304.16666
+        x: 7729
+        y: 45
+        width: 1670
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -469,88 +474,10 @@ TextureImporter:
       name: start_pulse_sprite_v2_29
       rect:
         serializedVersion: 2
-        x: 9600
-        y: 304.83334
-        width: 1920
-        height: 304.16666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: start_pulse_sprite_v2_30
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0.8333435
-        width: 1920
-        height: 304.16666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: start_pulse_sprite_v2_31
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 0.8333435
-        width: 1920
-        height: 304.16666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: start_pulse_sprite_v2_32
-      rect:
-        serializedVersion: 2
-        x: 3840
-        y: 0.8333435
-        width: 1920
-        height: 304.16666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: start_pulse_sprite_v2_33
-      rect:
-        serializedVersion: 2
-        x: 5760
-        y: 0.8333435
-        width: 1920
-        height: 304.16666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: start_pulse_sprite_v2_34
-      rect:
-        serializedVersion: 2
-        x: 7680
-        y: 0.8333435
-        width: 1920
-        height: 304.16666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: start_pulse_sprite_v2_35
-      rect:
-        serializedVersion: 2
-        x: 9600
-        y: 0.8333435
-        width: 1920
-        height: 304.16666
+        x: 9647
+        y: 45
+        width: 1676
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
