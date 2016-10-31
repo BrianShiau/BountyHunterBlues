@@ -19,6 +19,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	private bool typing;
 	Coroutine typingRoutine;
 
+	public bool pauseTime;
+
 	//have to call start twice for some reason. dont do it the second time.
 	private bool startedAlready = false;
 
@@ -191,6 +193,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatImage.GetComponent<Image> ().sprite = npcImage;
 			player.SetDialogueMode(true);
 			player.DisableGunImage ();
+			if (pauseTime)
+				Time.timeScale = 0;
 		}
 		if (currentLine < strings.Length) {
 			if (!typing) {
@@ -218,6 +222,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatImage.GetComponent<Image> ().enabled = false;
 			player.SetDialogueMode(false);
 			player.EnableGunImage ();
+			if (pauseTime)
+				Time.timeScale = 1;
 		}
 	}
 
@@ -228,7 +234,10 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		{
 			chatPanel.GetComponentInChildren<Text> ().text += letter;
 			//play typing sound here if there is one
-			yield return new WaitForSeconds (.001f);
+			if(pauseTime)
+				yield return Utility.WaitForRealTime(.001f);
+			else
+				yield return new WaitForSeconds(.001f);
 		}
 		typing = false;
 		currentLine++;

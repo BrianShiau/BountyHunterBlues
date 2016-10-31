@@ -66,6 +66,23 @@ public class InputHandler : MonoBehaviour {
 			pauseInputDelay = -1;
 		}
 
+		//if paused by non input handler
+		if (Time.timeScale == 0 && !isPaused) {
+			if (player.InTacticalMode () || player.InDialogueMode ()) {
+				if (interactInputDelay <= 0) {
+					if (!Input.GetKey (KeyCode.Escape) && Input.anyKey) {
+						interactInputDelay = 1;
+						interact.execute (player);
+					}
+				}
+
+				if (!Input.anyKey)
+					interactInputDelay = 0;
+
+				interactInputDelay -= Time.unscaledDeltaTime;
+			}
+		}
+
 		if (inFirstHitMenu) {
 			if (Input.GetKey (KeyCode.Space) || Input.GetKey (KeyCode.E)) {
 				EndFirstHitMenu ();
