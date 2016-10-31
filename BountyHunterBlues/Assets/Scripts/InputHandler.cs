@@ -5,36 +5,44 @@ using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour {
 
-    public GameObject player;
+    public PlayerActor player;
     // Here lists all the controls available
     private Command move;
     private Command stopMove;
     private Command interact;
     private Command rangedAttack;
     private Command meleeAttack;
+    private Command aim;
+    private Command disableAim;
     private Command look;
 
     private float attackInputDelay;
     private float meleeAttackInputDelay;
     private float interactInputDelay;
 	private bool isPaused;
+    private bool isAiming;
+    private bool meleeStoppedAiming;
 	private float pauseInputDelay;
 	private GameObject menu;
 	private bool inFirstHitMenu;
 
     void Start()
     {
-        player = GameObject.FindObjectOfType<PlayerActor>().gameObject;
+        player = GameObject.FindObjectOfType<PlayerActor>();
         attackInputDelay = 0;
         meleeAttackInputDelay = 0;
         interactInputDelay = 0;
 		pauseInputDelay = -1;
 		isPaused = false;
+        isAiming = false;
+        meleeStoppedAiming = false;
         move = new MoveCommand(new Vector2(0, 0));
         stopMove = new MoveStopCommand();
         interact = new InteractCommand();
         rangedAttack = new RangedAttackCommand();
         meleeAttack = new MeleeAttackCommand();
+        aim = new AimCommand();
+        disableAim = new ReleaseAimCommand();
         look = new LookCommand();
 		menu = GameObject.FindGameObjectWithTag ("PauseMenu");
 		menu.gameObject.SetActive (false);
@@ -46,7 +54,7 @@ public class InputHandler : MonoBehaviour {
     {
         LinkedList<Command> nextCommands = handleInput();
         foreach(Command nextCommand in nextCommands)
-            nextCommand.execute(player.GetComponent<PlayerActor>());
+            nextCommand.execute(player);
     }
 
 	void Update(){
@@ -109,7 +117,22 @@ public class InputHandler : MonoBehaviour {
     {
         LinkedList<Command> nextCommands = new LinkedList<Command>();
         bool movement = false;
-		if (!player.GetComponent<PlayerActor>().InTacticalMode() && !player.GetComponent<PlayerActor>().InDialogueMode())
+
+        if(player.InTacticalMode() || player.InDialogueMode())
+        {
+            if (interactInputDelay <= 0)
+            {
+                if (!Input.GetKey(KeyCode.Escape) && Input.anyKey)
+                {
+                    interactInputDelay = 1;
+                    nextCommands.AddLast(interact);
+                }    
+            }
+
+            if(!Input.anyKey)
+                interactInputDelay = 0;
+        }
+		else
         { 
             Vector2 movementVector = new Vector2(0, 0);
             // basing WASD on +x-axis, +y-axis, -x-axis, -y-axis respectively
@@ -153,6 +176,13 @@ public class InputHandler : MonoBehaviour {
                 nextCommands.AddLast(look);
                 nextCommands.AddLast(meleeAttack);
                 meleeAttackInputDelay = 1;
+
+                if(player.NEW_GUN_MODE && isAiming)
+                {
+                    isAiming = false;
+                    nextCommands.AddLast(disableAim);
+                    meleeStoppedAiming = true;
+                }
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -160,28 +190,64 @@ public class InputHandler : MonoBehaviour {
                 meleeAttackInputDelay = 0;
             }
 
-            if (Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
+            if (player.NEW_GUN_MODE)
             {
-                nextCommands.AddLast(rangedAttack);
-                attackInputDelay = 1;
+                if (meleeStoppedAiming)
+                {
+                    if (Input.GetMouseButtonUp(1))
+                        meleeStoppedAiming = false;
+                    
+                }
+                else
+                {
+                    if (Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
+                    {
+                        isAiming = true;
+                        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+                        aim.updateCommandData(worldPoint);
+                        nextCommands.AddLast(aim);
+
+                    }
+                    else if (isAiming) // no longer pressing button, but was aiming last frame
+                    {
+                        isAiming = false;
+                        nextCommands.AddLast(rangedAttack);
+                        nextCommands.AddLast(disableAim);
+
+                    }
+                }
+                
             }
 
-            if (Input.GetMouseButtonUp(1))
-                attackInputDelay = 0;
+            else
+            {
 
-            
+                if (Input.GetMouseButton(1) && attackInputDelay < 0) // pressing down right mouse button
+                {
+                    nextCommands.AddLast(rangedAttack);
+                    attackInputDelay = 1;
+                }
+
+                if (Input.GetMouseButtonUp(1))
+                    attackInputDelay = 0;
+            }
+
+            if ((Input.GetKey(KeyCode.Space) && interactInputDelay < 0)
+                || (Input.GetKey(KeyCode.E) && interactInputDelay < 0))
+            {
+                interactInputDelay = 1;
+                nextCommands.AddLast(interact);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.E))
+            {
+                interactInputDelay = 0;
+            }
+
+
         }
          
-        if ((Input.GetKey(KeyCode.Space) && interactInputDelay < 0) 
-            ||  (Input.GetKey(KeyCode.E) && interactInputDelay < 0))
-        {
-			interactInputDelay = 1;
-            nextCommands.AddLast(interact);
-        }
-
-		if (Input.GetKeyUp (KeyCode.Space) || Input.GetKeyUp (KeyCode.E)) {
-			interactInputDelay = 0;
-		}
+        
 
         // Need to implement Q special ability
 

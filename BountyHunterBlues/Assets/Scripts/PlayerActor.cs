@@ -8,7 +8,16 @@ using UnityEngine.UI;
 
 public class PlayerActor : GameActor
 {
-	public bool hasGun;
+    // New gun mode variables
+    public bool NEW_GUN_MODE;
+    private Vector2 randomAimVector;
+    public float aimTimeCap;
+    private float aimTimer;
+    public bool isAiming { get; private set; }
+    private PlayerLaser laser1;
+    private PlayerLaser laser2;
+
+    public bool hasGun;
 	public float reloadTime;
 	public float cloakTime;
 
@@ -106,6 +115,16 @@ public class PlayerActor : GameActor
                 mRoom = room;
                 break;
             }
+
+
+        if (NEW_GUN_MODE)
+        {
+            aimTimer = 0;
+            isAiming = false;
+            PlayerLaser[] lasers = GetComponentsInChildren<PlayerLaser>();
+            laser1 = lasers[0];
+            laser2 = lasers[1];
+        }
 	}
 
 	public override void Update()
@@ -140,6 +159,7 @@ public class PlayerActor : GameActor
 		} else {
 			mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
 		}
+
 	}
 
 	public bool isCloaked(){
@@ -192,7 +212,40 @@ public class PlayerActor : GameActor
 		}
 	}
 
-	public override void rangedAttack()
+    public override void aim(Vector2 worldPos)
+    {
+        isAiming = true;
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+        faceDir = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
+        faceDir.Normalize();
+        setBulletStartPosition(transform.position);
+        if (aimTimer < aimTimeCap)
+        {
+            float angle = Mathf.Lerp(fov, 0, aimTimer / aimTimeCap);
+            float angleOfRandomVec = UnityEngine.Random.Range(-angle / 2, angle / 2);
+            randomAimVector = Quaternion.Euler(0, 0, angleOfRandomVec) * faceDir;
+            aimTimer += Time.deltaTime;
+            laser1.changeLaserDir(Quaternion.Euler(0, 0, angle / 2) * faceDir);
+            laser2.changeLaserDir(Quaternion.Euler(0, 0, -angle / 2) * faceDir);
+        }
+        else
+        {
+            randomAimVector = faceDir;
+            laser1.changeLaserDir(faceDir);
+            laser2.changeLaserDir(faceDir);
+        }
+
+        laser1.updatePivot(bulletStartPosition);
+        laser2.updatePivot(bulletStartPosition);
+    }
+
+    public override void disableAim()
+    {
+        isAiming = false;
+        aimTimer = 0;
+    }
+
+    public override void rangedAttack()
 	{
 		if (visible)
 		{
@@ -202,10 +255,21 @@ public class PlayerActor : GameActor
 					lastShotTime = 0;
 				}
 				magazine_size -= 1;
-				Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-				Vector2 aimVector = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
-				aimVector.Normalize();
-				faceDir = aimVector;
+
+                Vector2 aimVector;
+
+                if (NEW_GUN_MODE)
+                {
+                    aimVector = randomAimVector;
+                }
+                else
+                {
+                    Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+                    aimVector = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
+                    aimVector.Normalize();
+                    faceDir = aimVector;
+                }
+				
 
 
 				Vector2 worldDir = transform.TransformDirection(aimVector);
@@ -361,10 +425,13 @@ public class PlayerActor : GameActor
 			{
                 audioManager.Play("EnemyDeath");
                 enemyHit = true;
-				closestAttackable.takeDamage(2);
+				closestAttackable.takeDamage();
 				if (!closestAttackable.isAlive())
 					closestAttackable = null;
 			}
+
+            if (NEW_GUN_MODE)
+                disableAim();
 		}
 	}
 

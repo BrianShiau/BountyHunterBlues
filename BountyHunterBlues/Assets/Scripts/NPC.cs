@@ -53,6 +53,14 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			};
 			break;
 		case 1: 
+			//Pickup Gun
+			strings = new string[] {
+				"You picked up a gun. bang bang.",
+				"Right click to shoot, you idiot.",
+				"It's loud af when you shoot.",
+			};
+			break;
+		case 2: 
 			//Ending Tutorial
 			strings = new string[] {
 				""
@@ -97,14 +105,14 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"Ending Level 1 Text",
 			};
 			break;
-		case 22: 
+		/*case 22: 
 			//Hit Mecahinc
 			strings = new string[] {
                 "When you get hit you lose a health point.",
                 "But you will also go invisable for 2 seconds",
                 "This gives you a chance to hide from enemy site",
             };
-			break;
+			break;*/
         case 30:
             //bartender
             strings = new string[] {
@@ -200,8 +208,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				if (tutorialText) {
 					tutorialText.text = "Use WASD to move";
 				}
-				//Destroy (this.gameObject);
-				this.tag = "Untagged";
+				Destroy (this.gameObject);
+				//this.tag = "Untagged";
 			} else {
 				currentLine = 0;
 			}
