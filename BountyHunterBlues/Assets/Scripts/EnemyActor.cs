@@ -74,7 +74,7 @@ public abstract class EnemyActor : GameActor {
     public override void Update(){
         hasAttacked = false;
         base.Update();
-        Debug.Log(confused_look_time);
+        Debug.Log(confused);
     }
 
     public Vector2 get_last_seen(){
@@ -152,16 +152,15 @@ public abstract class EnemyActor : GameActor {
         return confused;
     }
 
-    public bool is_confused(){
+    public void is_confused(){
         if(playerActor.isCloaked() && alert && !chasing){
+            set_confused(true);
 			if (reactionAnim) {
 				reactionAnim.SetInteger ("State", 2);
 				Invoke ("resetReactionAnim", 2);
 				reactionStack++;
 			}
-            return true;
         }
-        return false;
     }
 
     public Vector2 get_audio_location(){
