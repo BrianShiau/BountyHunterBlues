@@ -48,7 +48,7 @@ public abstract class EnemyActor : GameActor {
         hasAttacked = false;
         confused = false;
         chasing = false;
-        confused_look_time = 0;
+        confused_look_time = 1;
         confused_look_threshold = 1;
         facedir_inc = 0.5f;
         _stateManager = new StateManager(transition_time, confused_transition_time);
@@ -139,7 +139,7 @@ public abstract class EnemyActor : GameActor {
     }
 
     public void reset_confused_time(){
-        confused_look_time = 0;
+        confused_look_time = 1;
         move_facedir = faceDir;
     }
 
