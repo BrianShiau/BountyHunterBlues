@@ -748,7 +748,7 @@ Prefab:
     - target: {fileID: 224000012333636600, guid: f152a1578a5a8ce4ab2869c291a3723c,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224000011446832624, guid: f152a1578a5a8ce4ab2869c291a3723c,
         type: 2}
@@ -884,7 +884,7 @@ RectTransform:
   m_Father: {fileID: 1916982793}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 400, y: 207.02658}
-  m_SizeDelta: {x: 800, y: 414.05313}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
