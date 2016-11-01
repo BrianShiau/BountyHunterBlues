@@ -121,6 +121,10 @@ public class AlertDog: DogState {
 	        enemy.reset_path_index();
 			enemy.set_shortest_path_calculated(false);
 		}
+		else if(enemy.get_confused()){
+            stopMove.execute(enemy);
+            enemy.set_alert(false);
+		}
 		else if(enemy.getClosestAttackable() == null && enemy.get_last_seen().x != Int32.MaxValue && enemy.get_last_seen().y != Int32.MaxValue){
 			enemy.set_alert(true);
 			enemy.set_chasing(true);
@@ -174,7 +178,7 @@ public class AlertDog: DogState {
 			}
 		}
 		else{
-            stopMove.execute(enemy);
+			stopMove.execute(enemy);
             enemy.set_alert(false);
 		}
 	}
@@ -185,6 +189,7 @@ public class AlertDog: DogState {
 		enemy.path.clear();
 	    enemy.reset_path_index();
 	    enemy.set_chasing(false);
+		enemy.set_confused(false);
 	}
 
 	public override string name(){
@@ -206,29 +211,43 @@ public class AggresiveDog: DogState {
 
 	public override void on_enter(){
 		stopMove.execute(enemy);
+		enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
 	}
 
 	public override void execute(){
 		if(enemy.getClosestAttackable() != null){
-			Vector2 worldFaceDir = enemy.getClosestAttackable().gameObject.transform.position - enemy.gameObject.transform.position;
+			enemy.reset_confused_time();
+			enemy.set_confused(false);
+
+			Vector2 worldFaceDir = enemy.get_last_seen() - new Vector2(enemy.gameObject.transform.position.x, enemy.gameObject.transform.position.y);
+	        worldFaceDir.Normalize();
+	        Vector2 localFaceDir = enemy.transform.InverseTransformDirection(worldFaceDir);
+
+	        shoot_timer += Time.deltaTime;
+	        if(shoot_timer > shoot_timer_threshold && enemy.faceDir == localFaceDir){
+	        	rangedAttack.execute(enemy);
+	        	enemy.set_confused(true);
+	        	shoot_timer = 0;
+	        }
+	        enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
+    	}
+    	if(enemy.get_confused()){
+    		enemy.perform_confusion();
+    	}
+    	else{
+    		Vector2 worldFaceDir = enemy.get_last_seen() - new Vector2(enemy.gameObject.transform.position.x, enemy.gameObject.transform.position.y);
 	        worldFaceDir.Normalize();
 
 	        Vector2 localFaceDir = enemy.transform.InverseTransformDirection(worldFaceDir);
 	        Vector2 dir = Vector2.MoveTowards(enemy.faceDir, localFaceDir, enemy.rotation_speed * Time.deltaTime);
 	        dir.Normalize();
 	        enemy.faceDir = dir;
-
-	        shoot_timer += Time.deltaTime;
-	        if(shoot_timer > shoot_timer_threshold){
-	        	rangedAttack.execute(enemy);
-	        	shoot_timer = 0;
-	        }
-	        enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
     	}
 	}
 
 	public override void on_exit(){
 		enemy.set_shortest_path_calculated(false);
+		enemy.reset_confused_time();
 	}
 
 	public override string name(){

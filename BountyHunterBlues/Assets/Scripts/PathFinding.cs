@@ -52,9 +52,6 @@ public class PathFinding : MonoBehaviour {
 		closed.Clear();
 		start_node = null;
 		end_node = null;
-		Debug.Log("end_posasddddddddddddddddddddddition");
-		//Debug.Log(end_position);
-		Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		set_start_node(start_position);
 		set_end_node(end_position);
 	}

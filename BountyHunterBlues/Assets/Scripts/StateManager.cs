@@ -8,17 +8,21 @@ public enum State{
 public class StateManager{
 
 	private float state_time_threshold;
+	private float confused_time_threshold;
 	private float state_time_up;
 	private float state_time_down;
+	private float confused_time_down;
 	private State state;
 	private EnemyActor enemy;
 	private Vector2 last_known_position;
 
-	public StateManager(float state_time_threshold){
+	public StateManager(float state_time_threshold, float confused_time_threshold){
 		this.state_time_threshold = state_time_threshold;
+		this.confused_time_threshold = confused_time_threshold;
 		this.enemy = enemy;
 		state_time_up = 0;
 		state_time_down = 0;
+		confused_time_down = 0;
 	}
 
 	private void set_state(State state){
@@ -65,14 +69,14 @@ public class StateManager{
 
 	private void aggresive_state(GameActor target){
 		if(target == null){
-			state_time_down += Time.deltaTime;
-			if(state_time_down >= state_time_threshold){
+			confused_time_down += Time.deltaTime;
+			if(confused_time_down >= confused_time_threshold){
 				set_state(State.ALERT);
-				state_time_down = 0;
+				confused_time_down = 0;
 			}
 		}
 		else{
-			state_time_down = 0;
+			confused_time_down = 0;
 		}
 	}
 

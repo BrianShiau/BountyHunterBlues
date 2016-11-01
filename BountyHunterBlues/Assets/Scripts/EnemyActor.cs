@@ -21,6 +21,10 @@ public abstract class EnemyActor : GameActor {
     private Vector2 audio_location;
     private GameObject player;
     private PlayerActor playerActor;
+    private float confused_look_time;
+    private float confused_look_threshold;
+    private float facedir_inc;
+    private Vector2 move_facedir;
 
     private bool shortest_path_calculated;
     private int path_index;
@@ -34,6 +38,7 @@ public abstract class EnemyActor : GameActor {
 	//prefab
 	public float audio_distance;
     public float transition_time;
+    public float confused_transition_time;
     public float rotation_speed;
 
 	public override void Start(){
@@ -43,7 +48,10 @@ public abstract class EnemyActor : GameActor {
         hasAttacked = false;
         confused = false;
         chasing = false;
-        _stateManager = new StateManager(transition_time);
+        confused_look_time = 0;
+        confused_look_threshold = 1;
+        facedir_inc = 0.5f;
+        _stateManager = new StateManager(transition_time, confused_transition_time);
         current_state = new NeutralDog(null);
         last_neutral_position = transform.position;
         
@@ -56,17 +64,18 @@ public abstract class EnemyActor : GameActor {
         shot = false;
         last_seen = new Vector2(Int32.MaxValue, Int32.MaxValue);
 
-		if (transform.FindChild ("Reactions")) {
-			reactionAnim = transform.FindChild ("Reactions").GetComponent<Animator> ();
-			reactionAnim.speed = 10.0f;
-			reactionStack = 0;
+        if (transform.FindChild ("Reactions")) {
+            reactionAnim = transform.FindChild ("Reactions").GetComponent<Animator> ();
+            reactionAnim.speed = 10.0f;
+            reactionStack = 0;
         }
     }
 
     public override void Update(){
         hasAttacked = false;
         base.Update();
-	}
+        Debug.Log(confused_look_time);
+    }
 
     public Vector2 get_last_seen(){
         return last_seen;
@@ -90,6 +99,57 @@ public abstract class EnemyActor : GameActor {
 
     public bool is_chasing(){
         return chasing;
+    }
+
+    public void perform_confusion(){
+        if(Math.Abs(faceDir.y) >= 1 && Math.Abs(faceDir.x) >= 1){
+            confused_look_time += Time.deltaTime;
+            if(confused_look_time > confused_look_threshold){
+                move_facedir = new Vector2(faceDir.y + facedir_inc, faceDir.x + facedir_inc);
+                facedir_inc = -facedir_inc;
+                confused_look_time = 0;
+            }
+        }
+        if(Math.Abs(faceDir.y) < 1 && Math.Abs(faceDir.x) < 1){
+            confused_look_time += Time.deltaTime;
+            if(confused_look_time > confused_look_threshold){
+                move_facedir = new Vector2(faceDir.y + facedir_inc, faceDir.x);
+                facedir_inc = -facedir_inc;
+                confused_look_time = 0;
+            }
+        }
+        if(Math.Abs(faceDir.y) >= 1 && Math.Abs(faceDir.x) < 1){
+            confused_look_time += Time.deltaTime;
+            if(confused_look_time > confused_look_threshold){
+                move_facedir = new Vector2(faceDir.y, faceDir.x + facedir_inc);
+                facedir_inc = -facedir_inc;
+                confused_look_time = 0;
+            }
+        }
+        if(Math.Abs(faceDir.y) < 1 && Math.Abs(faceDir.x) >= 1){
+            confused_look_time += Time.deltaTime;
+            if(confused_look_time > confused_look_threshold){
+                move_facedir = new Vector2(faceDir.y + facedir_inc, faceDir.x);
+                facedir_inc = -facedir_inc;
+                confused_look_time = 0;
+            }
+        }
+        Vector2 temp = Vector2.MoveTowards(faceDir, move_facedir, rotation_speed * Time.deltaTime);
+        temp.Normalize();
+        faceDir = temp;
+    }
+
+    public void reset_confused_time(){
+        confused_look_time = 0;
+        move_facedir = faceDir;
+    }
+
+    public void set_confused(bool value){
+        confused = value;
+    }
+
+    public bool get_confused(){
+        return confused;
     }
 
     public bool is_confused(){
