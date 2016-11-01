@@ -75,6 +75,7 @@ public class DogEnemy : EnemyActor {
 		transform.FindChild ("Base").gameObject.SetActive(false);
 		transform.FindChild ("Reactions").gameObject.SetActive(false);
 		transform.FindChild ("Feet_Collider").gameObject.SetActive(false);
+		isMoving = false;
         StartCoroutine(DeathCleanUp());
     }
 

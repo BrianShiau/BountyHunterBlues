@@ -19,6 +19,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	private bool typing;
 	Coroutine typingRoutine;
 
+	public bool pauseTime;
+
 	//have to call start twice for some reason. dont do it the second time.
 	private bool startedAlready = false;
 
@@ -41,6 +43,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		typingRoutine = null;
 
 		switch (NPCNumber){
+		//Tutorial
 		case 0: 
 			//Opening Tutorial
 			strings = new string[] {
@@ -53,11 +56,21 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			};
 			break;
 		case 1: 
+			//Pickup Gun
+			strings = new string[] {
+				"You picked up a gun. bang bang.",
+				"Right click to shoot, you idiot.",
+				"It's loud af when you shoot.",
+			};
+			break;
+		case 2: 
 			//Ending Tutorial
 			strings = new string[] {
 				""
 			};
 			break;
+
+		//Airlock Rest Area
 		case 10: 
 			//Rest Area Big Bad NPC
 			strings = new string[] {
@@ -82,6 +95,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
                  "with EvaCorp products and services...",
             };
 			break;
+
+		//Level 1
 		case 20: 
 			//Opening Level 1
 			strings = new string[] {
@@ -92,19 +107,19 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			};
 			break;
 		case 21: 
+			//Ending Door Text
+			strings = new string[] {
+				"There must be a way to get this door open...",
+			};
+			break;
+		case 22: 
 			//Ending Level 1
 			strings = new string[] {
 				"Ending Level 1 Text",
 			};
 			break;
-		case 22: 
-			//Hit Mecahinc
-			strings = new string[] {
-                "When you get hit you lose a health point.",
-                "But you will also go invisable for 2 seconds",
-                "This gives you a chance to hide from enemy site",
-            };
-			break;
+
+		//Bar Rest Area
         case 30:
             //bartender
             strings = new string[] {
@@ -159,6 +174,22 @@ public class NPC : NPCActor, Interactable, Dialogue {
             default:
 			strings = new string[] { };
 			break;
+
+		//Level 2
+
+		//Warehouse Rest Area
+
+		//Level 3
+
+		//Levelless
+		/*case 22: 
+		//Hit Mecahinc
+		strings = new string[] {
+            "When you get hit you lose a health point.",
+            "But you will also go invisable for 2 seconds",
+            "This gives you a chance to hide from enemy site",
+        };
+		break;*/
 		}
 	}
 
@@ -183,6 +214,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatImage.GetComponent<Image> ().sprite = npcImage;
 			player.SetDialogueMode(true);
 			player.DisableGunImage ();
+			if (pauseTime)
+				Time.timeScale = 0;
 		}
 		if (currentLine < strings.Length) {
 			if (!typing) {
@@ -200,8 +233,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				if (tutorialText) {
 					tutorialText.text = "Use WASD to move";
 				}
-				//Destroy (this.gameObject);
-				this.tag = "Untagged";
+				Destroy (this.gameObject);
+				//this.tag = "Untagged";
 			} else {
 				currentLine = 0;
 			}
@@ -210,6 +243,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatImage.GetComponent<Image> ().enabled = false;
 			player.SetDialogueMode(false);
 			player.EnableGunImage ();
+			if (pauseTime)
+				Time.timeScale = 1;
 		}
 	}
 
@@ -220,7 +255,10 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		{
 			chatPanel.GetComponentInChildren<Text> ().text += letter;
 			//play typing sound here if there is one
-			yield return new WaitForSeconds (.001f);
+			if(pauseTime)
+				yield return Utility.WaitForRealTime(.001f);
+			else
+				yield return new WaitForSeconds(.001f);
 		}
 		typing = false;
 		currentLine++;
