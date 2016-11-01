@@ -121,9 +121,9 @@ public class DogEnemy : EnemyActor {
     private IEnumerator DeathCleanUp()
     {
         //audioManager.Play("Death");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.1f);
 		gameActorAnimator.SetBool ("isDead", true);
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(1);
         base.die();
         Destroy(gameObject);
     }
