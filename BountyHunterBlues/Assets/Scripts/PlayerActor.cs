@@ -48,7 +48,7 @@ public class PlayerActor : GameActor
 	private GameObject gunSliderObject;
 	private Image gunSliderFill;
 	private Vector2 bulletStartPosition;
-
+	private Image gunHUDImage;
 
 	private Vector2 secondRayPosition;
 	private Vector2 thirdRayPosition;
@@ -78,6 +78,7 @@ public class PlayerActor : GameActor
 		inTacticalMode = false;
 
 		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
+		gunHUDImage = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild("GunHUDImage").GetComponent<Image>();
 		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
 		//gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
 		//gunSliderObject = gunSlider.gameObject;
@@ -567,19 +568,18 @@ public class PlayerActor : GameActor
 
 	public void EnableGun(){
 		hasGun = true;
-		gunImage.enabled = true;
-		//gunSliderObject.SetActive (true);
-		//gunSliderFill.color = Color.green;
+		EnableGunImage ();
 	}
 
 	public void DisableGun(){
 		hasGun = false;
-		gunImage.enabled = false;
+		DisableGunImage ();
 	}
 
 	public void EnableGunImage(){
 		if(hasGun){
 			gunImage.enabled = true;
+			gunHUDImage.enabled = true;
 			//gunSliderObject.SetActive (true);
 			//gunSliderFill.color = Color.green;
 		}
@@ -587,6 +587,7 @@ public class PlayerActor : GameActor
 
 	public void DisableGunImage(){
 		gunImage.enabled = false;
+		gunHUDImage.enabled = false;
 	}
 
     public override bool isVisible()

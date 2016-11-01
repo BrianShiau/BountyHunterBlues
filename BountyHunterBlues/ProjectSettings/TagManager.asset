@@ -18,6 +18,7 @@ TagManager:
   - MainBackground
   - PauseMenu
   - FirstHitMenu
+  - HUD
   layers:
   - Default
   - TransparentFX
