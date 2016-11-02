@@ -232,7 +232,11 @@ MonoBehaviour:
   health: 1
   is_cycle: 0
   patrolPoints: []
-  sources: []
+  sources:
+  - sourceName: Alert
+    Clips:
+    - name: Alert
+      clip: {fileID: 8300000, guid: 87cea8f10594f474b8bd8999f175e7e3, type: 3}
   node_transition_threshold: 1
   path: {fileID: 0}
   fov: 140
@@ -244,6 +248,8 @@ MonoBehaviour:
   transition_time: 0.3
   confused_transition_time: 0
   rotation_speed: 4
+  fence: {fileID: 0}
+  fenceCollider: {fileID: 0}
   MissileObject: {fileID: 1000014178562904, guid: dd9739c77423ccf4199098dbe23409b3,
     type: 2}
   timeBetweenEachMissile: 0.2
