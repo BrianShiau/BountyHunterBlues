@@ -98,7 +98,10 @@ public class Cursor : MonoBehaviour {
 			midPointers.transform.eulerAngles.x,
 			midPointers.transform.eulerAngles.y,
 			-90);
-		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(new Vector3(-350+20*imgScale.x*width, -170+10*imgScale.y*height, screenCamera.nearClipPlane));
+		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(
+			new Vector3(Screen.width/1167f*6*imgScale.x*width,
+				Screen.height/635f*(2.5f*imgScale.y*height) + player.AmmoOffset(),
+				screenCamera.nearClipPlane));
 		midPointers.transform.position = worldSpace;
 
 		//directional pointer

@@ -48,7 +48,9 @@ public class PlayerActor : GameActor
 	private GameObject gunSliderObject;
 	private Image gunSliderFill;
 	private Vector2 bulletStartPosition;
-
+	private Image gunHUDImage;
+	private float ammoOffset;
+	private Vector3 origGunImagePosition;
 
 	private Vector2 secondRayPosition;
 	private Vector2 thirdRayPosition;
@@ -78,9 +80,11 @@ public class PlayerActor : GameActor
 		inTacticalMode = false;
 
 		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
+		gunHUDImage = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild("GunHUDImage").GetComponent<Image>();
 		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
 		//gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
 		//gunSliderObject = gunSlider.gameObject;
+		origGunImagePosition = gunImage.rectTransform.position;
 		if (hasGun) {
 			EnableGunImage ();
 		}
@@ -567,26 +571,57 @@ public class PlayerActor : GameActor
 
 	public void EnableGun(){
 		hasGun = true;
-		gunImage.enabled = true;
-		//gunSliderObject.SetActive (true);
-		//gunSliderFill.color = Color.green;
+		EnableGunImage ();
 	}
 
 	public void DisableGun(){
 		hasGun = false;
-		gunImage.enabled = false;
+		DisableGunImage ();
 	}
 
 	public void EnableGunImage(){
 		if(hasGun){
 			gunImage.enabled = true;
+			gunHUDImage.enabled = true;
 			//gunSliderObject.SetActive (true);
 			//gunSliderFill.color = Color.green;
+
+			ammoOffset = 0;
+			gunImage.rectTransform.position = origGunImagePosition;
+			gunHUDImage.rectTransform.position = new Vector3 (0, 0, gunHUDImage.rectTransform.position.z);
+			StartCoroutine (DisplayGunHUD());
 		}
 	}
 
 	public void DisableGunImage(){
 		gunImage.enabled = false;
+		gunHUDImage.enabled = false;
+
+		ammoOffset = 0;
+		gunImage.rectTransform.position = origGunImagePosition;
+		gunHUDImage.rectTransform.position = new Vector3 (0, 0, gunHUDImage.rectTransform.position.z);
+		StopCoroutine ("DisplayGunHUD");
+	}
+
+	IEnumerator DisplayGunHUD(){
+		ammoOffset = -50;
+		gunImage.rectTransform.position = new Vector3(gunImage.rectTransform.position.x, gunImage.rectTransform.position.y - 50, gunImage.rectTransform.position.z);
+		gunHUDImage.rectTransform.position = new Vector3(gunHUDImage.rectTransform.position.x, gunHUDImage.rectTransform.position.y - 50, gunHUDImage.rectTransform.position.z);
+		gunImage.color = new Color (gunHUDImage.color.r, gunHUDImage.color.g, gunHUDImage.color.b, 0f);
+		gunHUDImage.color = new Color (gunHUDImage.color.r, gunHUDImage.color.g, gunHUDImage.color.b, 0f);
+		while(gunHUDImage.color.a < .7f){
+			gunImage.color = new Color (gunImage.color.r, gunImage.color.g, gunImage.color.b, gunImage.color.a + .1f);
+			gunHUDImage.color = new Color (gunHUDImage.color.r, gunHUDImage.color.g, gunHUDImage.color.b, gunHUDImage.color.a + .07f);
+			gunImage.rectTransform.position = new Vector3(gunImage.rectTransform.position.x, gunImage.rectTransform.position.y + 5, gunImage.rectTransform.position.z);
+			gunHUDImage.rectTransform.position = new Vector3(gunHUDImage.rectTransform.position.x, gunHUDImage.rectTransform.position.y + 5, gunHUDImage.rectTransform.position.z);
+			ammoOffset += 5;
+			yield return new WaitForSeconds (0f + (.05f * gunImage.color.a));
+		}
+
+	}
+
+	public float AmmoOffset(){
+		return ammoOffset;
 	}
 
     public override bool isVisible()
