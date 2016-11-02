@@ -47,20 +47,18 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 0: 
 			//Opening Tutorial
 			strings = new string[] {
-				"Of all the backwater space stations I could've been sent to, it had to be the one where I grew up…",
-				"I haven’t been there in years and I can’t say I’ve missed the place.",
-				"I’ll try to make it quick; take out my target and get out.",
-                "Who was it? CEO of EvaCorp? Bounty better be worth it ",
-				"Ah, are we docking? Better get out quick.",
-				"Thanks, you hunk of junk.",
+				"Of all the backwater space stations I could be sent to, it had to be the one where I grew up…",
+				" I haven’t missed this place.",
+				"I’ll try to make this quick. Take out this “CEO of Eva Corp” or whatever and get the hell out of here.",
+				"Ah, are we docking? Guess I better get going.",
 			};
 			break;
 		case 1: 
 			//Pickup Gun
 			strings = new string[] {
-				"You picked up a gun. bang bang.",
-				"Right click to shoot, you idiot.",
-				"It's loud af when you shoot.",
+				"Oh cool, a gun. This’ll be useful.",
+				"Looks like I have to hold the trigger down to make it more accurate.",
+				"And once I let go it’ll fire… might attract some unwanted attention.",
 			};
 			break;
 		case 2: 
@@ -74,9 +72,10 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 10: 
 			//Rest Area Big Bad NPC
 			strings = new string[] {
-				"My God! Is that you? I never thought I’d see you again!",
-				"Considering how we broke up, I would’ve been fine with that.",
-				"What are you doing here? You shouldn’t have come back.",
+				"My God, is that you? What are you doing here?",
+				"I never thought I’d see you again.",
+				"I would’ve been fine with that, you know… considering how we broke up.",
+				"Looks like my shuttle is here.",
 			};
 			break;
 		case 11: 
@@ -84,7 +83,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			strings = new string[] {
                 "...CEO has come under fire for what some consider unscrupulous business practices.",
                 "In spite of this, EvaCorp continues to buy up properties,",
-                "with plans to start three separate construction projects in the next year...",
+                "with plans to start three separate luxury construction projects in the next year...",
 			};
 			break;
 		case 12: 
@@ -101,9 +100,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			//Opening Level 1
 			strings = new string[] {
 				"Soon as I get home I run into my ex. Wonderful.",
-				"Let's just... move on.",
-				"Okay, the door out of the loading bay is probably locked.",
-				"I wonder if they’re still using those rolly things to control the doors...",
+				"...",
+				"The door out of the loading bay is probably locked.",
+				"I wonder if they’re still using those rolly-robot things to control the doors...",
 			};
 			break;
 		case 21: 
@@ -123,23 +122,25 @@ public class NPC : NPCActor, Interactable, Dialogue {
         case 30:
             //bartender
             strings = new string[] {
-                "Looks like a certain cowgirl’s back. Maybe she shoulda stayed gone.",
+                "Looks like a certain cowgirl’s back.",
+				"This ain’t the same place it used to be.",
+				"Things ain’t been so good for us.",
                 "Lots of folks have been leaving, running off. Disappearing.",
-                "Even my buddy, used to work at EvaCorp, ran off.",
-                "Cushy job, but it’s not like he had a family depending on ‘im. Just up and left his house in town.",
                 "Can’t say I blame ‘em. We’re all old now, worn and ragged.",
-                "Some of us can’t leave, though, even if we wanted to. Roots dug in too deep.",
-                "This here saloon, it’s my life’s work. And my father’s, and his father’s before him.",
-                "Don’t got no kids to leave it to, and maybe that’s just as well.",
+				"Some of us can’t leave though, even if we wanted to.",
+				"Roots go deep, and pockets...not deep enough.",
+				"No hope in a place like this.",
+				"But I stay, serving drinks to the soon to be ghosts like me.",
+				"I s'pose it ain’t so bad.",
 
             };
                 break;
         case 31:
             //dock worker
             strings = new string[] {
-                "M’ brother disappeared two weeks ago. Vanished off the face of the station.",
-                "Police say he just ran off, but that’s not like him. He even left his dog.",
-                "He’d die before leaving that mutt behind.",
+				"My brother disappeared two weeks ago.",
+				"Vanished off the face of the station.",
+				"Police say he just up and ran off...but that’s not like him.",
 
             };
                 break;
@@ -149,16 +150,15 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "Would you believe it? My landlord ran off last month and some big company bought the building.",
                 "They say they’re gonna tear it down in a few months. Wanna build some new high rises for the rich folks.",
                 "Was the only place I could afford, and now what?",
-                "Spend all my time working, working, working, barely make ends meet. Times ain’t friendly for folks like us.",
 
             };
                 break;
         case 33:
             //hooker
             strings = new string[] {
-                "See that gentleman passed out in the corner over there? Hear he’s divorcing his husband.",
-                "Yeah, their two girls disappeared, just poof, poor things. Oldest was just sixteen.",
-                "No one knows what happened to ‘em. Tough times lately.",
+				"See that gentleman passed out in the corner over there? Hear he’s getting divorced.",
+                "Yeah, their two girls disappeared, just poof...poor things.",
+				"His partner’s not taking it well, and neither is he as you might be able to tell",
                 "...",
                 "Hey, you wanna have a good time, you let me know, alright?",
 
