@@ -11746,18 +11746,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013562804118, guid: 6007b0ac960a6ee48bb8129b10bbb4a2,
-        type: 2}
-      propertyPath: m_Text
-      value: "\n\n\n\n\n\nDamn, just got hit.\nIt activated my cloaking device, now
-        they can\u2019t see me.\nI can get out of their sight, but I don\u2019t have
-        much time.\nA couple more hits like that and I\u2019ll have a problem."
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013562804118, guid: 6007b0ac960a6ee48bb8129b10bbb4a2,
-        type: 2}
-      propertyPath: m_FontData.m_FontSize
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6007b0ac960a6ee48bb8129b10bbb4a2, type: 2}
   m_IsPrefabParent: 0
@@ -58128,11 +58116,6 @@ Prefab:
       propertyPath: openingText
       value: 
       objectReference: {fileID: 1596874253}
-    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: hasGun
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
