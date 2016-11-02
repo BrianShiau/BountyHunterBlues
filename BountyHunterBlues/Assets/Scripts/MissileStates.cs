@@ -229,8 +229,8 @@ public class AggresiveMissile : MissileState
 {
     public AggresiveMissile(MissileEnemy enemy) : base(enemy) { }
 
-    private float shoot_timer = 0;
-    private float shoot_timer_threshold = 0;
+    private float shoot_timer = 1;
+    private float shoot_timer_threshold = 1;
 
     public override void on_enter()
     {
