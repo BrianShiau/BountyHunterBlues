@@ -22,7 +22,7 @@ GameObject:
   - 61: {fileID: 61000011815036536}
   m_Layer: 0
   m_Name: Fence Physics Collider
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

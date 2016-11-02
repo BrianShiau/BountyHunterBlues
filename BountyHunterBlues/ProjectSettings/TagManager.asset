@@ -19,6 +19,7 @@ TagManager:
   - PauseMenu
   - FirstHitMenu
   - HUD
+  - Fence
   layers:
   - Default
   - TransparentFX

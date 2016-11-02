@@ -19325,7 +19325,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012490220154, guid: 9fd5348d0b6f5ae4f9ae0a522bce6acf, type: 2}
       propertyPath: m_Name
-      value: Fence 1 Horizontal Physics Collider
+      value: Fence Horizontal Physics Collider
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012490220154, guid: 9fd5348d0b6f5ae4f9ae0a522bce6acf, type: 2}
+      propertyPath: m_TagString
+      value: Fence
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9fd5348d0b6f5ae4f9ae0a522bce6acf, type: 2}
@@ -31124,7 +31128,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012490220154, guid: 9fd5348d0b6f5ae4f9ae0a522bce6acf, type: 2}
       propertyPath: m_Name
-      value: Fence 1 Horizontal Physics Collider (1)
+      value: Fence Horizontal Physics Collider (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012490220154, guid: 9fd5348d0b6f5ae4f9ae0a522bce6acf, type: 2}
+      propertyPath: m_TagString
+      value: Fence
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9fd5348d0b6f5ae4f9ae0a522bce6acf, type: 2}
