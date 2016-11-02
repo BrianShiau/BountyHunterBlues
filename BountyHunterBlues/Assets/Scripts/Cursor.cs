@@ -100,7 +100,7 @@ public class Cursor : MonoBehaviour {
 			-90);
 		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(
 			new Vector3(Screen.width/1167f*6*imgScale.x*width,
-				Screen.height/635f*2.5f*imgScale.y*height,
+				Screen.height/635f*(2.5f*imgScale.y*height + player.AmmoOffset()),
 				screenCamera.nearClipPlane));
 		midPointers.transform.position = worldSpace;
 
