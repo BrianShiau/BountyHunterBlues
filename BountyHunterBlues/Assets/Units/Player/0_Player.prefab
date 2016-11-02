@@ -601,7 +601,7 @@ MonoBehaviour:
   NEW_GUN_MODE: 1
   aimTimeCap: 0.5
   hasGun: 0
-  reloadTime: 2
+  reloadTime: 4
   cloakTime: 2
   currentLevel: 2
   openingText: {fileID: 0}
