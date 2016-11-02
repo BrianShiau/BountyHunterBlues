@@ -45,6 +45,11 @@ public class MissileProjectile : Projectile {
 
             }
         }
+        else if (col.tag == "Wall")
+        {
+            MissileExplosion.Create(ExplosionObject, transform.position);
+            Destroy(gameObject);
+        }
     }
 
     public void setInitialDir(Vector2 dir)
