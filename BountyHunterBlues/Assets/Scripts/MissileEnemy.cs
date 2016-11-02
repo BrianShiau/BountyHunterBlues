@@ -31,7 +31,10 @@ public class MissileEnemy : EnemyActor {
             if (_stateManager.get_state() == State.ALERT)
                 current_state = new AlertMissile(this);
             if (_stateManager.get_state() == State.AGGRESIVE)
+            {
                 current_state = new AggresiveMissile(this);
+                audioManager.Play("Alert");
+            }
 
             current_state.on_enter();
         }
