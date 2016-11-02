@@ -372,7 +372,7 @@ MonoBehaviour:
   audio_distance: 10
   transition_time: 0.5
   confused_transition_time: 4
-  rotation_speed: 2
+  rotation_speed: 4
 --- !u!114 &114000013898333720
 MonoBehaviour:
   m_ObjectHideFlags: 1
