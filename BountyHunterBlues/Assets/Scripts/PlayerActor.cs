@@ -50,6 +50,7 @@ public class PlayerActor : GameActor
 	private Vector2 bulletStartPosition;
 	private Image gunHUDImage;
 	private float ammoOffset;
+	private Vector3 origGunImagePosition;
 
 	private Vector2 secondRayPosition;
 	private Vector2 thirdRayPosition;
@@ -83,6 +84,7 @@ public class PlayerActor : GameActor
 		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
 		//gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
 		//gunSliderObject = gunSlider.gameObject;
+		origGunImagePosition = gunImage.rectTransform.position;
 		if (hasGun) {
 			EnableGunImage ();
 		}
@@ -584,6 +586,9 @@ public class PlayerActor : GameActor
 			//gunSliderObject.SetActive (true);
 			//gunSliderFill.color = Color.green;
 
+			ammoOffset = 0;
+			gunImage.rectTransform.position = origGunImagePosition;
+			gunHUDImage.rectTransform.position = new Vector3 (0, 0, gunHUDImage.rectTransform.position.z);
 			StartCoroutine (DisplayGunHUD());
 		}
 	}
@@ -593,6 +598,8 @@ public class PlayerActor : GameActor
 		gunHUDImage.enabled = false;
 
 		ammoOffset = 0;
+		gunImage.rectTransform.position = origGunImagePosition;
+		gunHUDImage.rectTransform.position = new Vector3 (0, 0, gunHUDImage.rectTransform.position.z);
 		StopCoroutine ("DisplayGunHUD");
 	}
 
