@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011496355410}
   - 212: {fileID: 212000010922852590}
   m_Layer: 0
-  m_Name: 0_T3Wall
+  m_Name: Fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

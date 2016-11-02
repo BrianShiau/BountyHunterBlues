@@ -71,6 +71,7 @@ public class DogEnemy : EnemyActor {
 
     public override void die()
     {
+		base.die ();
 		gameActorAnimator.SetBool ("isHit", true);
 		transform.FindChild ("Base").gameObject.SetActive(false);
 		transform.FindChild ("Reactions").gameObject.SetActive(false);
