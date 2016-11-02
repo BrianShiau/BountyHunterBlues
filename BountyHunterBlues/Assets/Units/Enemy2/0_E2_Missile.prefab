@@ -241,8 +241,9 @@ MonoBehaviour:
   interactionDistance: 2
   path_threshold: 10
   audio_distance: 8
-  transition_time: 0
-  rotation_speed: 2
+  transition_time: 0.3
+  confused_transition_time: 0
+  rotation_speed: 4
   MissileObject: {fileID: 1000014178562904, guid: dd9739c77423ccf4199098dbe23409b3,
     type: 2}
   timeBetweenEachMissile: 0.2
