@@ -185,6 +185,7 @@ public abstract class EnemyActor : GameActor {
                 return false;
             }
 
+			RemoveFence ();
 			if (reactionAnim) {
 				reactionAnim.SetInteger ("State", 1);
 				Invoke ("resetReactionAnim", 2);
@@ -292,6 +293,10 @@ public abstract class EnemyActor : GameActor {
 
 	public override void die(){
 		base.die ();
+		RemoveFence ();
+	}
+
+	public void RemoveFence(){
 		if (fence) {
 			Destroy (fence);
 		}
