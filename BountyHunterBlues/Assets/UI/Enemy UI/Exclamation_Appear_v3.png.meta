@@ -1,39 +1,39 @@
 fileFormatVersion: 2
-guid: ef692beebe1b543ddb6a02e77cf6415f
-timeCreated: 1475557087
+guid: 1bfa22fd571aa488082181bfe4e8bee7
+timeCreated: 1478315983
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Question_Sprite_v1_0
-    21300002: Question_Sprite_v1_1
-    21300004: Question_Sprite_v1_2
-    21300006: Question_Sprite_v1_3
-    21300008: Question_Sprite_v1_4
-    21300010: Question_Sprite_v1_5
-    21300012: Question_Sprite_v1_6
-    21300014: Question_Sprite_v1_7
-    21300016: Question_Sprite_v1_8
-    21300018: Question_Sprite_v1_9
-    21300020: Question_Sprite_v1_10
-    21300022: Question_Sprite_v1_11
-    21300024: Question_Sprite_v1_12
-    21300026: Question_Sprite_v1_13
-    21300028: Question_Sprite_v1_14
-    21300030: Question_Sprite_v1_15
-    21300032: Question_Sprite_v1_16
-    21300034: Question_Sprite_v1_17
-    21300036: Question_Sprite_v1_18
-    21300038: Question_Sprite_v1_19
-    21300040: Question_Sprite_v1_20
-    21300042: Question_Sprite_v1_21
-    21300044: Question_Sprite_v1_22
-    21300046: Question_Sprite_v1_23
-    21300048: Question_Sprite_v1_24
-    21300050: Question_Sprite_v1_25
-    21300052: Question_Sprite_v1_26
-    21300054: Question_Sprite_v1_27
-    21300056: Question_Sprite_v1_28
-    21300058: Question_Sprite_v1_29
+    21300000: Exclamation_Appear_v3_0
+    21300002: Exclamation_Appear_v3_1
+    21300004: Exclamation_Appear_v3_2
+    21300006: Exclamation_Appear_v3_3
+    21300008: Exclamation_Appear_v3_4
+    21300010: Exclamation_Appear_v3_5
+    21300012: Exclamation_Appear_v3_6
+    21300014: Exclamation_Appear_v3_7
+    21300016: Exclamation_Appear_v3_8
+    21300018: Exclamation_Appear_v3_9
+    21300020: Exclamation_Appear_v3_10
+    21300022: Exclamation_Appear_v3_11
+    21300024: Exclamation_Appear_v3_12
+    21300026: Exclamation_Appear_v3_13
+    21300028: Exclamation_Appear_v3_14
+    21300030: Exclamation_Appear_v3_15
+    21300032: Exclamation_Appear_v3_16
+    21300034: Exclamation_Appear_v3_17
+    21300036: Exclamation_Appear_v3_18
+    21300038: Exclamation_Appear_v3_19
+    21300040: Exclamation_Appear_v3_20
+    21300042: Exclamation_Appear_v3_21
+    21300044: Exclamation_Appear_v3_22
+    21300046: Exclamation_Appear_v3_23
+    21300048: Exclamation_Appear_v3_24
+    21300050: Exclamation_Appear_v3_25
+    21300052: Exclamation_Appear_v3_26
+    21300054: Exclamation_Appear_v3_27
+    21300056: Exclamation_Appear_v3_28
+    21300058: Exclamation_Appear_v3_29
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -83,72 +83,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Question_Sprite_v1_0
-      rect:
-        serializedVersion: 2
-        x: 850
-        y: 4250
-        width: 850
-        height: 850
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Question_Sprite_v1_1
-      rect:
-        serializedVersion: 2
-        x: 1700
-        y: 4250
-        width: 850
-        height: 850
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Question_Sprite_v1_2
-      rect:
-        serializedVersion: 2
-        x: 2550
-        y: 4250
-        width: 850
-        height: 850
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Question_Sprite_v1_3
-      rect:
-        serializedVersion: 2
-        x: 3400
-        y: 4250
-        width: 850
-        height: 850
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Question_Sprite_v1_4
-      rect:
-        serializedVersion: 2
-        x: 4250
-        y: 4250
-        width: 850
-        height: 850
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Question_Sprite_v1_5
+      name: Exclamation_Appear_v3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -161,7 +96,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_6
+      name: Exclamation_Appear_v3_1
       rect:
         serializedVersion: 2
         x: 850
@@ -174,7 +109,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_7
+      name: Exclamation_Appear_v3_2
       rect:
         serializedVersion: 2
         x: 1700
@@ -187,7 +122,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_8
+      name: Exclamation_Appear_v3_3
       rect:
         serializedVersion: 2
         x: 2550
@@ -200,7 +135,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_9
+      name: Exclamation_Appear_v3_4
       rect:
         serializedVersion: 2
         x: 3400
@@ -213,7 +148,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_10
+      name: Exclamation_Appear_v3_5
       rect:
         serializedVersion: 2
         x: 4250
@@ -226,7 +161,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_11
+      name: Exclamation_Appear_v3_6
       rect:
         serializedVersion: 2
         x: 0
@@ -239,7 +174,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_12
+      name: Exclamation_Appear_v3_7
       rect:
         serializedVersion: 2
         x: 850
@@ -252,7 +187,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_13
+      name: Exclamation_Appear_v3_8
       rect:
         serializedVersion: 2
         x: 1700
@@ -265,7 +200,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_14
+      name: Exclamation_Appear_v3_9
       rect:
         serializedVersion: 2
         x: 2550
@@ -278,7 +213,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_15
+      name: Exclamation_Appear_v3_10
       rect:
         serializedVersion: 2
         x: 3400
@@ -291,7 +226,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_16
+      name: Exclamation_Appear_v3_11
       rect:
         serializedVersion: 2
         x: 4250
@@ -304,7 +239,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_17
+      name: Exclamation_Appear_v3_12
       rect:
         serializedVersion: 2
         x: 0
@@ -317,7 +252,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_18
+      name: Exclamation_Appear_v3_13
       rect:
         serializedVersion: 2
         x: 850
@@ -330,7 +265,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_19
+      name: Exclamation_Appear_v3_14
       rect:
         serializedVersion: 2
         x: 1700
@@ -343,7 +278,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_20
+      name: Exclamation_Appear_v3_15
       rect:
         serializedVersion: 2
         x: 2550
@@ -356,7 +291,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_21
+      name: Exclamation_Appear_v3_16
       rect:
         serializedVersion: 2
         x: 3400
@@ -369,7 +304,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_22
+      name: Exclamation_Appear_v3_17
       rect:
         serializedVersion: 2
         x: 4250
@@ -382,7 +317,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_23
+      name: Exclamation_Appear_v3_18
       rect:
         serializedVersion: 2
         x: 0
@@ -395,7 +330,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_24
+      name: Exclamation_Appear_v3_19
       rect:
         serializedVersion: 2
         x: 850
@@ -408,7 +343,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_25
+      name: Exclamation_Appear_v3_20
       rect:
         serializedVersion: 2
         x: 1700
@@ -421,7 +356,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_26
+      name: Exclamation_Appear_v3_21
       rect:
         serializedVersion: 2
         x: 2550
@@ -434,7 +369,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_27
+      name: Exclamation_Appear_v3_22
       rect:
         serializedVersion: 2
         x: 3400
@@ -447,7 +382,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_28
+      name: Exclamation_Appear_v3_23
       rect:
         serializedVersion: 2
         x: 4250
@@ -460,10 +395,75 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Question_Sprite_v1_29
+      name: Exclamation_Appear_v3_24
       rect:
         serializedVersion: 2
         x: 0
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_v3_25
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_v3_26
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_v3_27
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_v3_28
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_v3_29
+      rect:
+        serializedVersion: 2
+        x: 4250
         y: 0
         width: 850
         height: 850
