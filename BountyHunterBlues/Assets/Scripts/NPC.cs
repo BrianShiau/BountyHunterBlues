@@ -123,7 +123,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
             //bartender
             strings = new string[] {
                 "Looks like a certain cowgirl’s back.",
-				"This ain’t the same place it used to be.",
+				"I think you'll find this ain’t the same place it used to be.",
 				"Things ain’t been so good for us.",
                 "Lots of folks have been leaving, running off. Disappearing.",
                 "Can’t say I blame ‘em. We’re all old now, worn and ragged.",
@@ -140,8 +140,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
             strings = new string[] {
 				"My brother disappeared two weeks ago.",
 				"Vanished off the face of the station.",
-				"Police say he just up and ran off...but that’s not like him.",
 
+				"Police say he just up and ran off...but that’s not like him.", // put in second dialogue with dog
+				"He even left his dog. He'd die before he'd leave that mutt behind.",
             };
                 break;
         case 32:
