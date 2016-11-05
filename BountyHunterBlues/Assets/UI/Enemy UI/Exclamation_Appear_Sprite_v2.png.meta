@@ -1,0 +1,479 @@
+fileFormatVersion: 2
+guid: 650b0b186643042f18b0be5863b2b397
+timeCreated: 1478314540
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Exclamation_Appear_Sprite_v2_0
+    21300002: Exclamation_Appear_Sprite_v2_1
+    21300004: Exclamation_Appear_Sprite_v2_2
+    21300006: Exclamation_Appear_Sprite_v2_3
+    21300008: Exclamation_Appear_Sprite_v2_4
+    21300010: Exclamation_Appear_Sprite_v2_5
+    21300012: Exclamation_Appear_Sprite_v2_6
+    21300014: Exclamation_Appear_Sprite_v2_7
+    21300016: Exclamation_Appear_Sprite_v2_8
+    21300018: Exclamation_Appear_Sprite_v2_9
+    21300020: Exclamation_Appear_Sprite_v2_10
+    21300022: Exclamation_Appear_Sprite_v2_11
+    21300024: Exclamation_Appear_Sprite_v2_12
+    21300026: Exclamation_Appear_Sprite_v2_13
+    21300028: Exclamation_Appear_Sprite_v2_14
+    21300030: Exclamation_Appear_Sprite_v2_15
+    21300032: Exclamation_Appear_Sprite_v2_16
+    21300034: Exclamation_Appear_Sprite_v2_17
+    21300036: Exclamation_Appear_Sprite_v2_18
+    21300038: Exclamation_Appear_Sprite_v2_19
+    21300040: Exclamation_Appear_Sprite_v2_20
+    21300042: Exclamation_Appear_Sprite_v2_21
+    21300044: Exclamation_Appear_Sprite_v2_22
+    21300046: Exclamation_Appear_Sprite_v2_23
+    21300048: Exclamation_Appear_Sprite_v2_24
+    21300050: Exclamation_Appear_Sprite_v2_25
+    21300052: Exclamation_Appear_Sprite_v2_26
+    21300054: Exclamation_Appear_Sprite_v2_27
+    21300056: Exclamation_Appear_Sprite_v2_28
+    21300058: Exclamation_Appear_Sprite_v2_29
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3400
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_1
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 3400
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_2
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 3400
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_3
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 3400
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_4
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 3400
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_5
+      rect:
+        serializedVersion: 2
+        x: 4250
+        y: 3400
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2550
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_7
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 2550
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_8
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 2550
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_9
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 2550
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_10
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 2550
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_11
+      rect:
+        serializedVersion: 2
+        x: 4250
+        y: 2550
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1700
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_13
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1700
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_14
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 1700
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_15
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 1700
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_16
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 1700
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_17
+      rect:
+        serializedVersion: 2
+        x: 4250
+        y: 1700
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 850
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_19
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 850
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_20
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 850
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_21
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 850
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_22
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 850
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_23
+      rect:
+        serializedVersion: 2
+        x: 4250
+        y: 850
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_25
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_26
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_27
+      rect:
+        serializedVersion: 2
+        x: 2550
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_28
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Exclamation_Appear_Sprite_v2_29
+      rect:
+        serializedVersion: 2
+        x: 4250
+        y: 0
+        width: 850
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
