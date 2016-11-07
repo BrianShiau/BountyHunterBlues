@@ -474,12 +474,12 @@ public class PlayerActor : GameActor
 		}
 
 		//show tutorial text on first hit
-		if (StatTracker.GetTimesHit () == 1) {
+		/*if (StatTracker.GetTimesHit () == 1) {
 			if (GetComponentInChildren<HealthBar> ()) {
 				GetComponentInChildren<HealthBar> ().setHealthBarArt (health);
 			}
 			GetComponent<InputHandler> ().StartFirstHitMenu ();
-		}
+		}*/
 
 	}
 
