@@ -254,119 +254,117 @@ public class PlayerActor : GameActor
 
     public override void rangedAttack()
 	{
-		if (visible)
+		if (hasGun && magazine_size > 0)
 		{
-			if (hasGun && magazine_size > 0)
-			{
-				if(magazine_size == magazine_cap){
-					lastShotTime = 0;
-				}
-				magazine_size -= 1;
-
-                Vector2 aimVector;
-
-                if (NEW_GUN_MODE)
-                {
-                    aimVector = randomAimVector;
-                }
-                else
-                {
-                    Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-                    aimVector = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
-                    aimVector.Normalize();
-                    faceDir = aimVector;
-                }
-				
-
-
-				Vector2 worldDir = transform.TransformDirection(aimVector);
-				secondRayPosition = new Vector2(transform.position.x - 0.05f, transform.position.y + 0.05f);
-				thirdRayPosition = new Vector2(transform.position.x + 0.05f, transform.position.y - 0.05f);
-
-				RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldDir, sightDistance);
-				RaycastHit2D[] hits2 = Physics2D.RaycastAll(secondRayPosition, worldDir, sightDistance);
-				RaycastHit2D[] hits3 = Physics2D.RaycastAll(thirdRayPosition, worldDir, sightDistance);
-				IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
-				IEnumerable<RaycastHit2D> sortedHits2 = hits2.OrderBy(hit2 => hit2.distance);
-				IEnumerable<RaycastHit2D> sortedHits3 = hits3.OrderBy(hit3 => hit3.distance);
-
-				GameActor aimTarget = null;
-				foreach (RaycastHit2D hitinfo in sortedHits) {
-                    if (hitinfo.collider.isTrigger)
-                    { // only deal with trigger colliders for finding attackable target
-                        GameObject obj = hitinfo.collider.gameObject;
-                        aimPoint = hitinfo.point;
-                        if (obj.tag != "GameActor")
-                        {
-                            // non-game actor in front, obstruction blocking aim
-                            break;
-                        }
-                        else if (hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
-                        {
-                            // visible GameActor in Ray that is unobstructed and not me
-                            aimTarget = hitinfo.collider.GetComponent<GameActor>();
-                            break;
-                        }
-                    }
-					// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
-				}
-				foreach (RaycastHit2D hitinfo in sortedHits2) {
-                    if (hitinfo.collider.isTrigger)
-                    { // only deal with trigger colliders for finding attackable target
-                        GameObject obj = hitinfo.collider.gameObject;
-                        aimPoint2 = hitinfo.point;
-                        if (obj.tag != "GameActor")
-                        {
-                            // non-game actor in front, obstruction blocking aim
-                            break;
-                        }
-                        else if (hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
-                        {
-                            // visible GameActor in Ray that is unobstructed and not me
-                            aimTarget = hitinfo.collider.GetComponent<GameActor>();
-                            break;
-                        }
-                    }
-					// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
-				}
-				foreach (RaycastHit2D hitinfo in sortedHits3) {
-                    if (hitinfo.collider.isTrigger)
-                    { // only deal with trigger colliders for finding attackable target
-                        GameObject obj = hitinfo.collider.gameObject;
-                        aimPoint3 = hitinfo.point;
-                        if (obj.tag != "GameActor")
-                        {
-                            // non-game actor in front, obstruction blocking aim
-                            break;
-                        }
-                        else if (hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
-                        {
-                            // visible GameActor in Ray that is unobstructed and not me
-                            aimTarget = hitinfo.collider.GetComponent<GameActor>();
-                            break;
-                        }
-                    }
-					// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
-				}
-				notifyEnemies();
-				gun_fired = true;
-
-				setBulletStartPosition(new Vector2(transform.position.x, transform.position.y));
-				StartCoroutine(Utility.drawLine (bulletStartPosition, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.cyan, 1f));
-				if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
-				{
-					if (aimTarget.isAlive())
-                    	audioManager.Play("EnemyDeath");
-					enemyHit = true;
-					aimTarget.takeDamage();
-					if (!aimTarget.isAlive())
-						aimTarget = null;
-				}
-                if (audioManager.isPlaying("Gun"))
-                    audioManager.Stop("Gun");
-                audioManager.Play("Gun");
+			if(magazine_size == magazine_cap){
+				lastShotTime = 0;
 			}
+			magazine_size -= 1;
+
+            Vector2 aimVector;
+
+            if (NEW_GUN_MODE)
+            {
+                aimVector = randomAimVector;
+            }
+            else
+            {
+                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+                aimVector = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
+                aimVector.Normalize();
+                faceDir = aimVector;
+            }
+			
+
+
+			Vector2 worldDir = transform.TransformDirection(aimVector);
+			secondRayPosition = new Vector2(transform.position.x - 0.05f, transform.position.y + 0.05f);
+			thirdRayPosition = new Vector2(transform.position.x + 0.05f, transform.position.y - 0.05f);
+
+			RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, worldDir, sightDistance);
+			RaycastHit2D[] hits2 = Physics2D.RaycastAll(secondRayPosition, worldDir, sightDistance);
+			RaycastHit2D[] hits3 = Physics2D.RaycastAll(thirdRayPosition, worldDir, sightDistance);
+			IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
+			IEnumerable<RaycastHit2D> sortedHits2 = hits2.OrderBy(hit2 => hit2.distance);
+			IEnumerable<RaycastHit2D> sortedHits3 = hits3.OrderBy(hit3 => hit3.distance);
+
+			GameActor aimTarget = null;
+			foreach (RaycastHit2D hitinfo in sortedHits) {
+                if (hitinfo.collider.isTrigger)
+                { // only deal with trigger colliders for finding attackable target
+                    GameObject obj = hitinfo.collider.gameObject;
+                    aimPoint = hitinfo.point;
+                    if (obj.tag != "GameActor")
+                    {
+                        // non-game actor in front, obstruction blocking aim
+                        break;
+                    }
+                    else if (hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
+                    {
+                        // visible GameActor in Ray that is unobstructed and not me
+                        aimTarget = hitinfo.collider.GetComponent<GameActor>();
+                        break;
+                    }
+                }
+				// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
+			}
+			foreach (RaycastHit2D hitinfo in sortedHits2) {
+                if (hitinfo.collider.isTrigger)
+                { // only deal with trigger colliders for finding attackable target
+                    GameObject obj = hitinfo.collider.gameObject;
+                    aimPoint2 = hitinfo.point;
+                    if (obj.tag != "GameActor")
+                    {
+                        // non-game actor in front, obstruction blocking aim
+                        break;
+                    }
+                    else if (hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
+                    {
+                        // visible GameActor in Ray that is unobstructed and not me
+                        aimTarget = hitinfo.collider.GetComponent<GameActor>();
+                        break;
+                    }
+                }
+				// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
+			}
+			foreach (RaycastHit2D hitinfo in sortedHits3) {
+                if (hitinfo.collider.isTrigger)
+                { // only deal with trigger colliders for finding attackable target
+                    GameObject obj = hitinfo.collider.gameObject;
+                    aimPoint3 = hitinfo.point;
+                    if (obj.tag != "GameActor")
+                    {
+                        // non-game actor in front, obstruction blocking aim
+                        break;
+                    }
+                    else if (hitinfo.collider.GetComponent<GameActor>().isVisible() && hitinfo.collider.gameObject != gameObject)
+                    {
+                        // visible GameActor in Ray that is unobstructed and not me
+                        aimTarget = hitinfo.collider.GetComponent<GameActor>();
+                        break;
+                    }
+                }
+				// else, GameActor is either me (which i should ignore) or invisible (which i should also ignore), continue down the ray
+			}
+			notifyEnemies();
+			gun_fired = true;
+
+			setBulletStartPosition(new Vector2(transform.position.x, transform.position.y));
+			StartCoroutine(Utility.drawLine (bulletStartPosition, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.cyan, 1f));
+			if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
+			{
+				if (aimTarget.isAlive())
+                	audioManager.Play("EnemyDeath");
+				enemyHit = true;
+				aimTarget.takeDamage();
+				if (!aimTarget.isAlive())
+					aimTarget = null;
+			}
+            if (audioManager.isPlaying("Gun"))
+                audioManager.Stop("Gun");
+            audioManager.Play("Gun");
 		}
+		
 	}
 
 	private void notifyEnemies(){
@@ -425,23 +423,21 @@ public class PlayerActor : GameActor
 
 	public override void meleeAttack()
 	{
-		if (visible)
+	
+        acquireClosestAttackable();
+		knifeAttacked = true;
+		if (closestAttackable != null && Vector2.Distance(closestAttackable.transform.position, transform.position) <= meleeDistance)
 		{
-            acquireClosestAttackable();
-			knifeAttacked = true;
-			if (closestAttackable != null && Vector2.Distance(closestAttackable.transform.position, transform.position) <= meleeDistance)
-			{
-				if (closestAttackable.isAlive())
-                	audioManager.Play("EnemyDeath");
-                enemyHit = true;
-				closestAttackable.takeDamage();
-				if (!closestAttackable.isAlive())
-					closestAttackable = null;
-			}
-
-            if (NEW_GUN_MODE)
-                disableAim();
+			if (closestAttackable.isAlive())
+            	audioManager.Play("EnemyDeath");
+            enemyHit = true;
+			closestAttackable.takeDamage();
+			if (!closestAttackable.isAlive())
+				closestAttackable = null;
 		}
+
+        if (NEW_GUN_MODE)
+            disableAim();
 	}
 
 	public override void interact()
