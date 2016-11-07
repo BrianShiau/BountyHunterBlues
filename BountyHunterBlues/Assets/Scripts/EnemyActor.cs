@@ -81,6 +81,12 @@ public abstract class EnemyActor : GameActor {
         hasAttacked = false;
         base.Update();
 
+		if (closestAttackable is PlayerActor) {
+			directionPointer.GetComponent<SpriteRenderer> ().enabled = false;
+		} else {
+			directionPointer.GetComponent<SpriteRenderer> ().enabled = true;
+		}
+
 		float angle = Mathf.Atan2 (faceDir.y, faceDir.x);
 
 		directionPointer.transform.eulerAngles = new Vector3(
