@@ -603,7 +603,7 @@ MonoBehaviour:
   aimTimeCap: 0.5
   hasGun: 1
   reloadTime: 4
-  cloakTime: 2
+  cloakTime: 1
   currentLevel: 2
   openingText: {fileID: 0}
   magazine_cap: 3

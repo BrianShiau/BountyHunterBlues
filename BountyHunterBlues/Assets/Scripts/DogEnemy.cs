@@ -27,8 +27,7 @@ public class DogEnemy : EnemyActor {
 				current_state = new NeutralDog (this);
 			if (_stateManager.get_state () == State.ALERT)
 				current_state = new AlertDog (this);
-            if (_stateManager.get_state() == State.AGGRESIVE)
-            {
+            if (_stateManager.get_state() == State.AGGRESIVE){
                 current_state = new AggresiveDog(this);
                 audioManager.Play("Alert");
             }
@@ -45,7 +44,8 @@ public class DogEnemy : EnemyActor {
 					audioManager.Play ("Feet", "Chase");
 			}
 
-		} else {
+		} 
+		else {
 			audioManager.Stop ("Feet");
 		}
 	}
