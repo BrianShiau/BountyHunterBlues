@@ -52,6 +52,10 @@ public class MissileEnemy : EnemyActor {
         throw new NotImplementedException();
     }
 
+	public override void EndInteract(){
+		throw new NotImplementedException();
+	}
+
     public override void meleeAttack()
     {
         throw new NotImplementedException();

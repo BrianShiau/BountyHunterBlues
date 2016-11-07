@@ -66,6 +66,15 @@ public class InteractCommand : Command
     }
 }
 
+
+public class EndInteractCommand : Command
+{
+	public override void execute(GameActor actor)
+	{
+		actor.EndInteract ();
+	}
+}
+
 public class LookCommand : Command
 {
 

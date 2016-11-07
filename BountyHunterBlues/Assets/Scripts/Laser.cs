@@ -18,12 +18,19 @@ public class Laser : MonoBehaviour {
 	void Update () {
         EnemyActor actor = GetComponentInParent<EnemyActor>();
         AIState currState = actor.getCurrentState();
-        if (currState.get_state() == State.NEUTRAL)
-            GetComponent<SpriteRenderer>().color = Color.green;
-        else if (currState.get_state() == State.ALERT)
-            GetComponent<SpriteRenderer>().color = Color.yellow;
-        else if (currState.get_state() == State.AGGRESIVE)
-            GetComponent<SpriteRenderer>().color = Color.red;
+		if (currState.get_state () == State.NEUTRAL) {
+			GetComponent<SpriteRenderer> ().color = Color.green;
+			if (myEnemy.getClosestAttackable() is PlayerActor) {
+				GetComponent<SpriteRenderer> ().enabled = true;
+			} else {
+				GetComponent<SpriteRenderer> ().enabled = false;
+			}
+		} else if (currState.get_state () == State.ALERT) {
+			GetComponent<SpriteRenderer> ().color = Color.yellow;
+			GetComponent<SpriteRenderer> ().enabled = true;
+		} else if (currState.get_state () == State.AGGRESIVE) {
+			GetComponent<SpriteRenderer> ().color = Color.red;
+		}
 		float angle = Mathf.Atan2(actor.faceDir.y, actor.faceDir.x) * Mathf.Rad2Deg
 			+ 180 + myEnemy.transform.localRotation.eulerAngles.z; // corrected for sprite angle
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

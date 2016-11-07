@@ -102,12 +102,16 @@ public class PlayerActor : GameActor
 			//gunSliderObject.SetActive (false);
 		}
 
+		Text pressE = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("PressE").GetComponent<Text>();
+		pressE.enabled = false;
 		// play opening text only once
 		if (deaths == 0) {
 			//play opening text
 			if (openingText) {
 				openingText.Start ();
 				openingText.runInteraction ();
+				if (openingText.NPCNumber == 0)
+					pressE.enabled = true;
 			}
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
@@ -351,7 +355,8 @@ public class PlayerActor : GameActor
 				StartCoroutine(Utility.drawLine (bulletStartPosition, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.cyan, 1f));
 				if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
 				{
-                    audioManager.Play("EnemyDeath");
+					if (aimTarget.isAlive())
+                    	audioManager.Play("EnemyDeath");
 					enemyHit = true;
 					aimTarget.takeDamage();
 					if (!aimTarget.isAlive())
@@ -426,7 +431,8 @@ public class PlayerActor : GameActor
 			knifeAttacked = true;
 			if (closestAttackable != null && Vector2.Distance(closestAttackable.transform.position, transform.position) <= meleeDistance)
 			{
-                audioManager.Play("EnemyDeath");
+				if (closestAttackable.isAlive())
+                	audioManager.Play("EnemyDeath");
                 enemyHit = true;
 				closestAttackable.takeDamage();
 				if (!closestAttackable.isAlive())
@@ -442,6 +448,12 @@ public class PlayerActor : GameActor
 	{
 		if(interactionTarget != null)
 			interactionTarget.runInteraction();
+	}
+
+	public override void EndInteract()
+	{
+		if(interactionTarget != null)
+			interactionTarget.EndInteraction();
 	}
 
 	public override void takeDamage(int damage = 1)
@@ -466,12 +478,12 @@ public class PlayerActor : GameActor
 		}
 
 		//show tutorial text on first hit
-		if (StatTracker.GetTimesHit () == 1) {
+		/*if (StatTracker.GetTimesHit () == 1) {
 			if (GetComponentInChildren<HealthBar> ()) {
 				GetComponentInChildren<HealthBar> ().setHealthBarArt (health);
 			}
 			GetComponent<InputHandler> ().StartFirstHitMenu ();
-		}
+		}*/
 
 	}
 

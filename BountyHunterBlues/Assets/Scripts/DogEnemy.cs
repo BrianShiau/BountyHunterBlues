@@ -72,6 +72,10 @@ public class DogEnemy : EnemyActor {
         throw new NotImplementedException();
     }
 
+	public override void EndInteract(){
+		throw new NotImplementedException();
+	}
+
     public override void die()
     {
 		base.die ();

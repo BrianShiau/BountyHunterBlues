@@ -41,4 +41,7 @@ public class Door : MonoBehaviour, Interactable {
             // transform.Translate(0.0f, 0.0f, 0.0f);
         }
     }
+
+	public void EndInteraction(){
+	}
 }

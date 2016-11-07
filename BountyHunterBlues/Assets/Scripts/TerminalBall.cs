@@ -89,4 +89,7 @@ public class TerminalBall : NPCActor, Interactable {
 	        path.calc_path();
 		}
 	}
+
+	public void EndInteraction(){
+	}
 }
