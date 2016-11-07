@@ -10,6 +10,7 @@ public class InputHandler : MonoBehaviour {
     private Command move;
     private Command stopMove;
     private Command interact;
+	private Command endInteract;
     private Command rangedAttack;
     private Command meleeAttack;
     private Command aim;
@@ -39,6 +40,7 @@ public class InputHandler : MonoBehaviour {
         move = new MoveCommand(new Vector2(0, 0));
         stopMove = new MoveStopCommand();
         interact = new InteractCommand();
+		endInteract = new EndInteractCommand ();
         rangedAttack = new RangedAttackCommand();
         meleeAttack = new MeleeAttackCommand();
         aim = new AimCommand();
@@ -58,7 +60,7 @@ public class InputHandler : MonoBehaviour {
     }
 
 	void Update(){
-		if (Input.GetKey (KeyCode.Escape) && pauseInputDelay < 0){
+		if (!player.InDialogueMode() && !player.InTacticalMode() && Input.GetKey (KeyCode.Escape) && pauseInputDelay < 0){
 			Pause ();
 		}
 
@@ -148,6 +150,11 @@ public class InputHandler : MonoBehaviour {
 
             if(!Input.anyKey)
                 interactInputDelay = 0;
+
+			if (Input.GetKey (KeyCode.Escape)) {
+				nextCommands.AddLast(endInteract);
+				pauseInputDelay = 1;
+			}
         }
 		else
         { 
@@ -260,8 +267,6 @@ public class InputHandler : MonoBehaviour {
             {
                 interactInputDelay = 0;
             }
-
-
         }
          
         

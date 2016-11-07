@@ -35,6 +35,8 @@ public abstract class EnemyActor : GameActor {
 	Animator reactionAnim;
 	int reactionStack;
 
+	private GameObject directionPointer;
+
 	//prefab
 	public float audio_distance;
     public float transition_time;
@@ -72,11 +74,37 @@ public abstract class EnemyActor : GameActor {
             reactionAnim.speed = 10.0f;
             reactionStack = 0;
         }
+		directionPointer = transform.FindChild ("DirectionPointer").gameObject;
     }
 
     public override void Update(){
         hasAttacked = false;
         base.Update();
+
+		if (alert || closestAttackable is PlayerActor) {
+			directionPointer.GetComponent<SpriteRenderer> ().enabled = false;
+		} else {
+			directionPointer.GetComponent<SpriteRenderer> ().enabled = true;
+		}
+
+		float angle = Mathf.Atan2 (faceDir.y, faceDir.x);
+
+		directionPointer.transform.eulerAngles = new Vector3(
+			directionPointer.transform.eulerAngles.x,
+			directionPointer.transform.eulerAngles.y,
+			-90+angle*Mathf.Rad2Deg);
+
+		Vector3 offset = new Vector3 (0, .25f, 0);
+		float distanceScale = 1.5f;
+		directionPointer.transform.position = new Vector3(
+			transform.position.x + faceDir.x * distanceScale, 
+			transform.position.y + faceDir.y * distanceScale,
+			transform.position.z)
+			+ offset;
+    }
+
+    public PlayerActor get_player_actor(){
+        return playerActor;
     }
 
     public Vector2 get_last_seen(){

@@ -22,7 +22,7 @@ public class MissileEnemy : EnemyActor {
         base.Update();
 
         is_confused();
-        _stateManager.update_state(closestAttackable, sound_heard(), is_alert());
+        _stateManager.update_state(this.get_player_actor(), closestAttackable, sound_heard(), is_alert());
         if (current_state.get_state() != _stateManager.get_state())
         {
             current_state.on_exit();
@@ -51,6 +51,10 @@ public class MissileEnemy : EnemyActor {
     {
         throw new NotImplementedException();
     }
+
+	public override void EndInteract(){
+		throw new NotImplementedException();
+	}
 
     public override void meleeAttack()
     {

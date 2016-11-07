@@ -21,6 +21,7 @@ public abstract class GameActor : Actor, Vision
     public abstract void rangedAttack();
     public abstract void meleeAttack();
     public abstract void interact();
+	public abstract void EndInteract();
     public abstract GameActor[] runVisionDetection(float fov, float sightDistance);
 
     public override void Start()
