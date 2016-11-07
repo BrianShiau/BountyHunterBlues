@@ -12,6 +12,7 @@ public class StateManager{
 	private float state_time_up;
 	private float state_time_down;
 	private float confused_time_down;
+	private bool confused;
 	private State state;
 	private EnemyActor enemy;
 	private Vector2 last_known_position;
@@ -23,6 +24,7 @@ public class StateManager{
 		state_time_up = 0;
 		state_time_down = 0;
 		confused_time_down = 0;
+		confused = false;
 	}
 
 	private void set_state(State state){
@@ -68,22 +70,43 @@ public class StateManager{
 	}
 
 	private void aggresive_state(GameActor target){
-		if(target == null){
-			confused_time_down += Time.deltaTime;
-			if(confused_time_down >= confused_time_threshold){
-				set_state(State.ALERT);
+		if(confused){
+			Debug.Log("here1");
+			if(target == null){
+				state_time_up = 0;
+				confused_time_down += Time.deltaTime;
+				if(confused_time_down >= confused_time_threshold){
+					set_state(State.ALERT);
+					confused_time_down = 0;
+					confused = false;
+				}
+			}
+			else{
 				confused_time_down = 0;
 			}
 		}
 		else{
-			confused_time_down = 0;
+			Debug.Log(state_time_down);
+			if(target == null){
+				state_time_up = 0;
+				state_time_down += Time.deltaTime;
+				if(state_time_down >= state_time_threshold){
+					set_state(State.ALERT);
+					state_time_down = 0;
+				}
+			}
+			else{
+				state_time_down = 0;
+			}
 		}
+
 	}
 
-	public void update_state(GameActor target, bool sound_detected, bool is_alert){
+	public void update_state(PlayerActor player, GameActor target, bool sound_detected, bool is_alert){
 		if(state == State.NEUTRAL) 	 neutral_state(target, sound_detected);
 		if(state == State.ALERT) 	 alert_state(target, sound_detected, is_alert);
 		if(state == State.AGGRESIVE) aggresive_state(target);
+		if(player.isCloaked())		 confused = true;
 	}
 
 	public State get_state(){

@@ -103,6 +103,10 @@ public abstract class EnemyActor : GameActor {
 			+ offset;
     }
 
+    public PlayerActor get_player_actor(){
+        return playerActor;
+    }
+
     public Vector2 get_last_seen(){
         return last_seen;
     }

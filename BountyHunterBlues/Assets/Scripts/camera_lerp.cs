@@ -24,7 +24,6 @@ public class camera_lerp : MonoBehaviour {
 	void Update () {
 		update_camera_position();
 		lerp();
-		Debug.Log(can_lerp);
 	}
 
 	public void update_camera_position(){
