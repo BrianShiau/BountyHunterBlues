@@ -24,7 +24,7 @@ public class camera_lerp : MonoBehaviour {
 	void Update () {
 		update_camera_position();
 		lerp();
-		
+		Debug.Log(can_lerp);
 	}
 
 	public void update_camera_position(){
@@ -67,7 +67,7 @@ public class camera_lerp : MonoBehaviour {
 				transform.position = new Vector3(temp.x, temp.y, transform.position.z);
 				GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, original_lerp_distance, Time.deltaTime * lerp_speed);
 			}
-			if(transform.localPosition.x <= 0.01 && transform.localPosition.y < 0.01){
+			if(0.01 > Vector2.Distance(new Vector2(transform.localPosition.x, transform.localPosition.y), new Vector2(0, 0))){
 				set_lerp(false);
 			}
 		}
