@@ -29,4 +29,8 @@ public class TacticalTerminal : MonoBehaviour, Interactable {
 			player.EnableGun ();
 		}
     }
+
+	public void EndInteraction(){
+		runInteraction ();
+	}
 }

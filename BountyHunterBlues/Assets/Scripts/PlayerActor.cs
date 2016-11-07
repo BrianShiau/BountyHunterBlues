@@ -444,6 +444,12 @@ public class PlayerActor : GameActor
 			interactionTarget.runInteraction();
 	}
 
+	public override void EndInteract()
+	{
+		if(interactionTarget != null)
+			interactionTarget.EndInteraction();
+	}
+
 	public override void takeDamage(int damage = 1)
 	{
 		base.takeDamage(damage);

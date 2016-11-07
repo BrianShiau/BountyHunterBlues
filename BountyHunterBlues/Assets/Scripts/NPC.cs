@@ -232,24 +232,28 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				currentLine++;
 			}
 		} else {
-			if (destroyAfterPlay && this.gameObject) {
-				Text tutorialText = GetComponentInChildren<Text> ();
-				if (tutorialText) {
-					tutorialText.text = "Use WASD to move";
-				}
-				Destroy (this.gameObject);
-				//this.tag = "Untagged";
-			} else {
-				currentLine = 0;
-			}
-			chatPanel.GetComponent<Image> ().enabled = false;
-			chatPanel.GetComponentInChildren<Text> ().enabled = false;
-			chatImage.GetComponent<Image> ().enabled = false;
-			player.SetDialogueMode(false);
-			player.EnableGunImage ();
-			if (pauseTime)
-				Time.timeScale = 1;
+			EndInteraction ();
 		}
+	}
+
+	public void EndInteraction(){
+		if (destroyAfterPlay && this.gameObject) {
+			Text tutorialText = GetComponentInChildren<Text> ();
+			if (tutorialText) {
+				tutorialText.text = "Use WASD to move";
+			}
+			Destroy (this.gameObject);
+			//this.tag = "Untagged";
+		} else {
+			currentLine = 0;
+		}
+		chatPanel.GetComponent<Image> ().enabled = false;
+		chatPanel.GetComponentInChildren<Text> ().enabled = false;
+		chatImage.GetComponent<Image> ().enabled = false;
+		player.SetDialogueMode(false);
+		player.EnableGunImage ();
+		if (pauseTime)
+			Time.timeScale = 1;
 	}
 
 	IEnumerator TypeText (string message) 
