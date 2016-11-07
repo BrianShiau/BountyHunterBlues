@@ -71,7 +71,6 @@ public class StateManager{
 
 	private void aggresive_state(GameActor target){
 		if(confused){
-			Debug.Log("here1");
 			if(target == null){
 				state_time_up = 0;
 				confused_time_down += Time.deltaTime;
@@ -86,7 +85,6 @@ public class StateManager{
 			}
 		}
 		else{
-			Debug.Log(state_time_down);
 			if(target == null){
 				state_time_up = 0;
 				state_time_down += Time.deltaTime;
