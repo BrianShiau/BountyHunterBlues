@@ -80,6 +80,21 @@ public abstract class EnemyActor : GameActor {
     public override void Update(){
         hasAttacked = false;
         base.Update();
+
+		float angle = Mathf.Atan2 (faceDir.y, faceDir.x);
+
+		directionPointer.transform.eulerAngles = new Vector3(
+			directionPointer.transform.eulerAngles.x,
+			directionPointer.transform.eulerAngles.y,
+			-90+angle*Mathf.Rad2Deg);
+
+		Vector3 offset = new Vector3 (0, .25f, 0);
+		float distanceScale = 1.5f;
+		directionPointer.transform.position = new Vector3(
+			transform.position.x + faceDir.x * distanceScale, 
+			transform.position.y + faceDir.y * distanceScale,
+			transform.position.z)
+			+ offset;
     }
 
     public Vector2 get_last_seen(){
