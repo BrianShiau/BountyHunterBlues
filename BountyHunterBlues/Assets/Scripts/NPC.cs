@@ -241,9 +241,10 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			Text tutorialText = GetComponentInChildren<Text> ();
 			if (tutorialText) {
 				tutorialText.text = "Use WASD to move";
+				this.tag = "Untagged";
+			} else {
+				Destroy (this.gameObject);
 			}
-			Destroy (this.gameObject);
-			//this.tag = "Untagged";
 		} else {
 			currentLine = 0;
 		}
