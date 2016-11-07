@@ -81,7 +81,7 @@ public abstract class EnemyActor : GameActor {
         hasAttacked = false;
         base.Update();
 
-		if (closestAttackable is PlayerActor) {
+		if (alert || closestAttackable is PlayerActor) {
 			directionPointer.GetComponent<SpriteRenderer> ().enabled = false;
 		} else {
 			directionPointer.GetComponent<SpriteRenderer> ().enabled = true;
