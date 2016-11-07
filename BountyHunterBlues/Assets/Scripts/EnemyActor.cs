@@ -35,6 +35,8 @@ public abstract class EnemyActor : GameActor {
 	Animator reactionAnim;
 	int reactionStack;
 
+	private GameObject directionPointer;
+
 	//prefab
 	public float audio_distance;
     public float transition_time;
@@ -72,6 +74,7 @@ public abstract class EnemyActor : GameActor {
             reactionAnim.speed = 10.0f;
             reactionStack = 0;
         }
+		directionPointer = transform.FindChild ("DirectionPointer").gameObject;
     }
 
     public override void Update(){
