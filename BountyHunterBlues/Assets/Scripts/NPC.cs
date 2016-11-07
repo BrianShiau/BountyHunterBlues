@@ -255,6 +255,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		player.EnableGunImage ();
 		if (pauseTime)
 			Time.timeScale = 1;
+		if (NPCNumber == 0) {
+			GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("PressE").GetComponent<Text>().enabled = false;
+		}
 	}
 
 	IEnumerator TypeText (string message) 

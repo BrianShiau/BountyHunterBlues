@@ -102,12 +102,16 @@ public class PlayerActor : GameActor
 			//gunSliderObject.SetActive (false);
 		}
 
+		Text pressE = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("PressE").GetComponent<Text>();
+		pressE.enabled = false;
 		// play opening text only once
 		if (deaths == 0) {
 			//play opening text
 			if (openingText) {
 				openingText.Start ();
 				openingText.runInteraction ();
+				if (openingText.NPCNumber == 0)
+					pressE.enabled = true;
 			}
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
