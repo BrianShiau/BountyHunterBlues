@@ -4,24 +4,21 @@ using System.Collections;
 public class TacticalTerminal : MonoBehaviour, Interactable {
 
     private PlayerActor player;
-    private Camera playerCamera;
-    private Camera tacticalCamera;
+    private camera_lerp lerpCamera;
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindObjectOfType<PlayerActor>();
-        playerCamera = GameObject.Find("0_Player").GetComponentInChildren<Camera>();
-        tacticalCamera = GameObject.Find("0_TacticalCamera").GetComponent<Camera>();
+        lerpCamera = GameObject.Find("0_Player").GetComponentInChildren<camera_lerp>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
     public void runInteraction()
     {
-        tacticalCamera.enabled = !tacticalCamera.enabled;
-        playerCamera.enabled = !playerCamera.enabled;
+        lerpCamera.set_lerp(true);
+        lerpCamera.toggle_tactical_mode();
 		player.SetTacticalMode(!player.InTacticalMode());
 		if (player.InTacticalMode ()) {
 			player.DisableGun ();

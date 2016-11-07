@@ -79,6 +79,15 @@ public class PlayerActor : GameActor
 		inDialogueMode = false;
 		inTacticalMode = false;
 
+		if (NEW_GUN_MODE)
+		{
+			aimTimer = 0;
+			isAiming = false;
+			PlayerLaser[] lasers = GetComponentsInChildren<PlayerLaser>();
+			laser1 = lasers[0];
+			laser2 = lasers[1];
+		}
+
 		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
 		gunHUDImage = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild("GunHUDImage").GetComponent<Image>();
 		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
@@ -119,16 +128,6 @@ public class PlayerActor : GameActor
                 mRoom = room;
                 break;
             }
-
-
-        if (NEW_GUN_MODE)
-        {
-            aimTimer = 0;
-            isAiming = false;
-            PlayerLaser[] lasers = GetComponentsInChildren<PlayerLaser>();
-            laser1 = lasers[0];
-            laser2 = lasers[1];
-        }
 	}
 
 	public override void Update()
@@ -585,6 +584,8 @@ public class PlayerActor : GameActor
 			gunHUDImage.enabled = true;
 			//gunSliderObject.SetActive (true);
 			//gunSliderFill.color = Color.green;
+			laser1.GetComponent<SpriteRenderer>().enabled = true;
+			laser2.GetComponent<SpriteRenderer>().enabled = true;
 
 			ammoOffset = 0;
 			gunImage.rectTransform.position = origGunImagePosition;
@@ -596,6 +597,9 @@ public class PlayerActor : GameActor
 	public void DisableGunImage(){
 		gunImage.enabled = false;
 		gunHUDImage.enabled = false;
+
+		laser1.GetComponent<SpriteRenderer>().enabled = false;
+		laser2.GetComponent<SpriteRenderer>().enabled = false;
 
 		ammoOffset = 0;
 		gunImage.rectTransform.position = origGunImagePosition;

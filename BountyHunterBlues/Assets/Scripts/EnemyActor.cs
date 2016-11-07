@@ -41,6 +41,9 @@ public abstract class EnemyActor : GameActor {
     public float confused_transition_time;
     public float rotation_speed;
 
+	public GameObject fence;
+	public GameObject fenceCollider;
+
 	public override void Start(){
 		base.Start();
         player = GameObject.Find("0_Player");
@@ -182,6 +185,7 @@ public abstract class EnemyActor : GameActor {
                 return false;
             }
 
+			RemoveFence ();
 			if (reactionAnim) {
 				reactionAnim.SetInteger ("State", 1);
 				Invoke ("resetReactionAnim", 2);
@@ -286,6 +290,20 @@ public abstract class EnemyActor : GameActor {
     {
         return current_state;
     }
+
+	public override void die(){
+		base.die ();
+		RemoveFence ();
+	}
+
+	public void RemoveFence(){
+		if (fence) {
+			Destroy (fence);
+		}
+		if (fenceCollider) {
+			Destroy (fenceCollider);
+		}
+	}
 
     public override void disableAim()
     {

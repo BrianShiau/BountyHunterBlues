@@ -27,8 +27,11 @@ public class DogEnemy : EnemyActor {
 				current_state = new NeutralDog (this);
 			if (_stateManager.get_state () == State.ALERT)
 				current_state = new AlertDog (this);
-			if (_stateManager.get_state () == State.AGGRESIVE)
-				current_state = new AggresiveDog (this);
+            if (_stateManager.get_state() == State.AGGRESIVE)
+            {
+                current_state = new AggresiveDog(this);
+                audioManager.Play("Alert");
+            }
 
 			current_state.on_enter ();
 		}
@@ -71,6 +74,7 @@ public class DogEnemy : EnemyActor {
 
     public override void die()
     {
+		base.die ();
 		gameActorAnimator.SetBool ("isHit", true);
 		transform.FindChild ("Base").gameObject.SetActive(false);
 		transform.FindChild ("Reactions").gameObject.SetActive(false);

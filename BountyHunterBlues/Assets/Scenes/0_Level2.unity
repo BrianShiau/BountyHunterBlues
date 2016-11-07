@@ -16502,6 +16502,11 @@ Prefab:
       propertyPath: faceDir.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
+        type: 2}
+      propertyPath: faceDir.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
   m_IsPrefabParent: 0
@@ -22846,6 +22851,11 @@ Prefab:
         type: 2}
       propertyPath: faceDir.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
+        type: 2}
+      propertyPath: faceDir.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
@@ -34607,6 +34617,11 @@ Prefab:
       propertyPath: openingText
       value: 
       objectReference: {fileID: 699842822}
+    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
+        type: 2}
+      propertyPath: hasGun
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -83917,6 +83932,11 @@ Prefab:
         type: 2}
       propertyPath: faceDir.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
+        type: 2}
+      propertyPath: faceDir.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
