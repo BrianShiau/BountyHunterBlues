@@ -7,6 +7,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	private PlayerActor player;
 	private GameObject chatPanel;
 	private GameObject chatImage;
+	private Image spotlight;
 
 	public Sprite npcImage;
 
@@ -38,6 +39,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		player = GameObject.FindObjectOfType<PlayerActor>();
 		chatPanel = GameObject.FindGameObjectWithTag ("ChatPanel");
 		chatImage = GameObject.FindGameObjectWithTag ("ChatImage");
+		spotlight = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild("Spotlight").GetComponent<Image>();
 
 		typing = false;
 		typingRoutine = null;
@@ -216,6 +218,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
 			chatImage.GetComponent<Image> ().enabled = true;
 			chatImage.GetComponent<Image> ().sprite = npcImage;
+			spotlight.enabled = true;
 			player.SetDialogueMode(true);
 			player.DisableGunImage ();
 			if (pauseTime)
@@ -251,6 +254,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		chatPanel.GetComponent<Image> ().enabled = false;
 		chatPanel.GetComponentInChildren<Text> ().enabled = false;
 		chatImage.GetComponent<Image> ().enabled = false;
+		spotlight.enabled = false;
 		player.SetDialogueMode(false);
 		player.EnableGunImage ();
 		if (pauseTime)
