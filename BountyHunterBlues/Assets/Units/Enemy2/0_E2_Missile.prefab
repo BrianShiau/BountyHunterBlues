@@ -271,7 +271,7 @@ MonoBehaviour:
   path: {fileID: 0}
   fov: 140
   meleeDistance: 2
-  sightDistance: 7
+  sightDistance: 9
   interactionDistance: 2
   path_threshold: 10
   audio_distance: 8
