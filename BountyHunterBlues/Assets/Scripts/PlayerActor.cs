@@ -454,25 +454,26 @@ public class PlayerActor : GameActor
 
 	public override void takeDamage(int damage = 1)
 	{
-		base.takeDamage(damage);
+		if(!isCloaked()){
+			base.takeDamage(damage);
 
-		StatTracker.Hit ();
-		if(isAlive())
-		{
-			tookDamage = true;
-			visible = false;
-			cloaked = true;
-			cloakTimer = 0;
-			if (GetComponentInChildren<HealthBar> ()) {
-				GetComponentInChildren<HealthBar> ().setHealth (health);
+			StatTracker.Hit ();
+			if(isAlive())
+			{
+				tookDamage = true;
+				visible = false;
+				cloaked = true;
+				cloakTimer = 0;
+				if (GetComponentInChildren<HealthBar> ()) {
+					GetComponentInChildren<HealthBar> ().setHealth (health);
+				}
+				if (hitSmokeAnim) {
+					hitSmokeAnim.SetBool ("Hit", true);
+					Invoke ("resetHitSmokeAnim", 0.1f);
+				}
+				StartCoroutine (PlayHitFlash());
 			}
-			if (hitSmokeAnim) {
-				hitSmokeAnim.SetBool ("Hit", true);
-				Invoke ("resetHitSmokeAnim", 0.1f);
-			}
-			StartCoroutine (PlayHitFlash());
 		}
-
 		//show tutorial text on first hit
 		/*if (StatTracker.GetTimesHit () == 1) {
 			if (GetComponentInChildren<HealthBar> ()) {
