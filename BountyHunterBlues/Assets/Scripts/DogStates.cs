@@ -215,7 +215,7 @@ public class AggresiveDog: DogState {
 	}
 
 	public override void execute(){
-		if(enemy.getClosestAttackable() != null){
+		if(enemy.getClosestAttackable() != null && !enemy.get_confused()){
 			enemy.reset_confused_time();
 			enemy.set_confused(false);
 

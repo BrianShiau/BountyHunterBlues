@@ -301,7 +301,8 @@ public abstract class EnemyActor : GameActor {
                     if (hitObj.tag != "GameActor")
                         // obstruction in front, ignore the rest of the ray
                         break;
-                    else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible())
+                    //else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible())
+                    else if (hitObj.GetComponent<GameActor>() is PlayerActor)
                     {
                         // PlayerActor
                         GameActors.Add(hitObj.GetComponent<GameActor>());

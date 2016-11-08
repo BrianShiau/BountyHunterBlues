@@ -71,33 +71,26 @@ public class StateManager{
 
 	private void aggresive_state(GameActor target){
 		if(confused){
-			if(target == null){
-				state_time_up = 0;
-				confused_time_down += Time.deltaTime;
-				if(confused_time_down >= confused_time_threshold){
-					set_state(State.ALERT);
-					confused_time_down = 0;
-					confused = false;
-				}
-			}
-			else{
+			state_time_up = 0;
+			confused_time_down += Time.deltaTime;
+			if(confused_time_down >= confused_time_threshold){
+				set_state(State.ALERT);
 				confused_time_down = 0;
+				confused = false;
 			}
 		}
-		else{
-			if(target == null){
-				state_time_up = 0;
-				state_time_down += Time.deltaTime;
-				if(state_time_down >= state_time_threshold){
-					set_state(State.ALERT);
-					state_time_down = 0;
-				}
-			}
-			else{
+		else if(target == null){
+			state_time_up = 0;
+			state_time_down += Time.deltaTime;
+			if(state_time_down >= state_time_threshold){
+				set_state(State.ALERT);
 				state_time_down = 0;
 			}
+			
 		}
-
+		else{
+			state_time_down = 0;
+		}
 	}
 
 	public void update_state(bool cloaked, GameActor target, bool sound_detected, bool is_alert){
