@@ -380,11 +380,7 @@ MonoBehaviour:
   moveSpeed: 2
   health: 1
   is_cycle: 0
-  patrolPoints:
-  - point: {fileID: 0}
-    wait_time: 0
-  - point: {fileID: 0}
-    wait_time: 0
+  patrolPoints: []
   sources:
   - sourceName: Gun
     Clips:
