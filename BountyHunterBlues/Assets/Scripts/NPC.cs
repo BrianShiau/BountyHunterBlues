@@ -34,7 +34,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			return;
 		startedAlready = true;
 
-		if(destroyAfterPlay && PlayerActor.Deaths()!=0){
+		if(destroyAfterPlay && PlayerActor.Deaths()!=0 && NPCNumber != 1){
 			Destroy(this.gameObject);
 		}
 
