@@ -100,11 +100,11 @@ public class StateManager{
 
 	}
 
-	public void update_state(PlayerActor player, GameActor target, bool sound_detected, bool is_alert){
+	public void update_state(bool cloaked, GameActor target, bool sound_detected, bool is_alert){
 		if(state == State.NEUTRAL) 	 neutral_state(target, sound_detected);
 		if(state == State.ALERT) 	 alert_state(target, sound_detected, is_alert);
 		if(state == State.AGGRESIVE) aggresive_state(target);
-		if(player.isCloaked())		 confused = true;
+		if(cloaked)		 confused = true;
 	}
 
 	public State get_state(){

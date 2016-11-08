@@ -182,6 +182,10 @@ public abstract class EnemyActor : GameActor {
         return confused;
     }
 
+    public bool player_is_cloaked(){
+        return playerActor.isCloaked();
+    }
+
     public void is_confused(){
         if(playerActor.isCloaked() && alert && !chasing){
             set_confused(true);

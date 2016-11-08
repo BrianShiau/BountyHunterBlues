@@ -131,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010573854614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.26, y: 26.45, z: 0.0078125}
+  m_LocalPosition: {x: 20.19, y: 5.88, z: 0.0078125}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c995b89b17d714c90fbb266b524872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceDir: {x: 0, y: -1}
+  faceDir: {x: 0, y: 1}
   moveSpeed: 2
   health: 1
   is_cycle: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   path: {fileID: 0}
   fov: 140
   meleeDistance: 2
-  sightDistance: 12
+  sightDistance: 7
   interactionDistance: 2
   path_threshold: 10
   audio_distance: 8
