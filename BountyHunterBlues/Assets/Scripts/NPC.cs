@@ -10,6 +10,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	private Image spotlight;
 	private Vector3 origSpotlightPos;
 	public bool selfSpotlight;
+	public Vector3 spotlightOffset;
 
 	public Sprite npcImage;
 
@@ -226,8 +227,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				spotlight.rectTransform.position = origSpotlightPos;
 			} else {
 				spotlight.rectTransform.position = new Vector3 (
-					origSpotlightPos.x + (gameObject.transform.position.x - player.transform.position.x) * 50,
-					origSpotlightPos.y + (gameObject.transform.position.y - player.transform.position.y) * 50,
+					origSpotlightPos.x + (gameObject.transform.position.x - player.transform.position.x + spotlightOffset.x) * 50,
+					origSpotlightPos.y + (gameObject.transform.position.y - player.transform.position.y + spotlightOffset.y) * 50,
 					origSpotlightPos.z);
 			}
 			player.SetDialogueMode(true);
