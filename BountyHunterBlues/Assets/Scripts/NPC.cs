@@ -182,15 +182,15 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
             };
                 break;
-		//Level 2
+            //Level 2
 
-		//Warehouse Rest Area
-        case 50
-            //CEO, from an intercom or something idk
-            strings = new string[] {
-                "Hello again. You seem to be everywhere now."
+            //Warehouse Rest Area
+            case 50:
+                //CEO, from intercom or wherever
+                strings = new string[] {
+                "Hello again. You seem to be everywhere now.",
                 "What do you think? I’m doing them a kindness, aren’t I?",
-                "I see how hard they work, how hard life is for them. They toil and struggle and die. Isn’t it a waste?",
+                "I see how hard they work, how hard life is for them.They toil and struggle and die. Isn’t it a waste?",
                 "I can give them better. I can make them immortal.",
                 "Like this, they don’t have to suffer. They don’t have to die.",
                 "I know people are scared, but they’ll see. It’s better this way.",
@@ -200,26 +200,29 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "You know, that’s too bad. I did miss you.",
                 "I thought I’d be angry when I saw you again, but I wasn’t. I thought…",
                 "Well, I suppose that doesn’t matter.",
-                "I can’t be out here like a sitting duck.",
-                "I know how much you love a game.",
+                "I can’t be out here like a sitting duck.  I know how much you love a game.",
                 "Let me try to make it harder for you, shall I?",
-};
 
-		//Level 3
-		//Room 1
-        case 60
-            //hunter
-            strings = new string[] {
+            };
+                break;
+
+            //Level 3
+            //Room 1 
+            case 60:
+                //hunter
+                strings = new string[] {
                 "I see she's been busy since I've been gone.",
                 "Damn it. This was supposed to be a quick job, not some... damn conspiracy.",
-                "I should've known better than to take a job at home.",
-                "No, I'm already here. Just... keep pushing forward. Nothing else I can do now.",
-};
+                "I should've known better than to take a job here.",
+                "I just... need to keep pushing forward. Nothing else I can do now.",
 
-		//Room 2
+            };
+                break;
 
-		//Room 3
-		case 80:
+            //Room 2
+
+            //Room 3
+            case 80:
 			//CEO
 			strings = new string[] {
 				"You’ve got me. Took you some time.",
