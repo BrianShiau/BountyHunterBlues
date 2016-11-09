@@ -70,7 +70,7 @@ public class Cursor : MonoBehaviour {
 		}
 		for (int i = start; i >= 0; i--) {
 			midPointerReloads [i].SetActive (true);
-			midPointerReloads [i].transform.localPosition = new Vector3 (midPointerReloads [i].transform.localPosition.x, -5 + 5*(start-i), midPointerReloads [i].transform.localPosition.z);
+			midPointerReloads [i].transform.localPosition = new Vector3 (midPointerReloads [i].transform.localPosition.x, -1.5f + 1.5f*(start-i), midPointerReloads [i].transform.localPosition.z);
 		}
 
 		//hardware cursors for main cursor
@@ -92,6 +92,9 @@ public class Cursor : MonoBehaviour {
 		Vector2 ratio = new Vector2(width / height, height / width);
 		imgScale.x = worldScreenWidth / width;
 		imgScale.y = imgScale.x * ratio.y; 
+		float swap = imgScale.x;
+		imgScale.x = imgScale.y;
+		imgScale.y = swap * 1.2f;
 		midPointers.transform.localScale = imgScale;
 
 		midPointers.transform.eulerAngles = new Vector3(
@@ -99,8 +102,8 @@ public class Cursor : MonoBehaviour {
 			midPointers.transform.eulerAngles.y,
 			-90);
 		Vector3 worldSpace = screenCamera.ScreenToWorldPoint(
-			new Vector3(Screen.width/1167f*6*imgScale.x*width,
-				Screen.height/635f*(2.5f*imgScale.y*height) + player.AmmoOffset(),
+			new Vector3(Screen.width/1167f*5*imgScale.y*width,
+				Screen.height/635f*(1.8f*imgScale.x*height) + player.AmmoOffset(),
 				screenCamera.nearClipPlane));
 		midPointers.transform.position = worldSpace;
 
