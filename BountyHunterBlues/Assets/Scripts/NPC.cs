@@ -109,7 +109,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"Soon as I get home I run into my ex. Wonderful.",
 				"...",
 				"The door out of the loading bay is probably locked.",
-				"I wonder if they’re still using those rolly-robot things to control the doors...",
+				"I wonder if they’re still using those rolly things to control the doors...",
 			};
 			break;
 		case 21: 
