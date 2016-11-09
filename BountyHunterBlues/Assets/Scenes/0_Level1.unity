@@ -37597,6 +37597,7 @@ MonoBehaviour:
   node_transition_threshold: 0
   path: {fileID: 0}
   selfSpotlight: 0
+  spotlightOffset: {x: 0, y: 0, z: 0}
   npcImage: {fileID: 21300000, guid: 773d2d58d6e5e24428fe79f13a846b65, type: 3}
   NPCNumber: 21
   destroyAfterPlay: 0
@@ -55295,11 +55296,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114000013136183242, guid: a8ad19ad4780f4dd6885997e94fd6c3d,
-        type: 2}
-      propertyPath: patrolPoints.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4000013927614464, guid: a8ad19ad4780f4dd6885997e94fd6c3d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.2662172
@@ -55335,20 +55331,6 @@ Prefab:
     - target: {fileID: 1000012039855302, guid: a8ad19ad4780f4dd6885997e94fd6c3d, type: 2}
       propertyPath: m_Name
       value: 0_E1_Dog (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013136183242, guid: a8ad19ad4780f4dd6885997e94fd6c3d,
-        type: 2}
-      propertyPath: faceDir.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013136183242, guid: a8ad19ad4780f4dd6885997e94fd6c3d,
-        type: 2}
-      propertyPath: faceDir.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012039855302, guid: a8ad19ad4780f4dd6885997e94fd6c3d, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8ad19ad4780f4dd6885997e94fd6c3d, type: 2}

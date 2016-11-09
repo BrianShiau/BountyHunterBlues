@@ -50339,16 +50339,6 @@ Prefab:
       propertyPath: m_Name
       value: 0_E2_Missile (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
-        type: 2}
-      propertyPath: faceDir.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
-        type: 2}
-      propertyPath: faceDir.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
   m_IsPrefabParent: 0
