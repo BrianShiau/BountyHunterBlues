@@ -8,6 +8,10 @@ public class MissileEnemy : EnemyActor {
     public float timeBetweenEachMissile;
     public int numMissilesToFire;
 
+    private float shoot_timer = 1;
+    private float shoot_timer_threshold = 1;
+    public bool readyToFire { get; private set; }
+    private bool readyToTime = true;
     // Use this for initialization
     public override void Start()
     {
@@ -39,6 +43,12 @@ public class MissileEnemy : EnemyActor {
             current_state.on_enter();
         }
         current_state.execute();
+
+        if (readyToTime && shoot_timer < shoot_timer_threshold)
+            shoot_timer += Time.deltaTime;
+
+        if (shoot_timer >= shoot_timer_threshold)
+            readyToFire = true; 
     }
 
     public override void die()
@@ -69,6 +79,9 @@ public class MissileEnemy : EnemyActor {
 
     private IEnumerator FireMissiles()
     {
+        readyToFire = false;
+        readyToTime = false;
+        shoot_timer = 0;
         for (int i = 0; i < numMissilesToFire; ++i)
         {
             MissileProjectile missile = MissileProjectile.Create(MissileObject, transform.position, GetComponentInChildren<Laser>().transform.eulerAngles);
@@ -76,7 +89,10 @@ public class MissileEnemy : EnemyActor {
             missile.setOwner(this);
             yield return new WaitForSeconds(timeBetweenEachMissile);
         }
+
         
+        readyToTime = true;
+
     }
  
 }

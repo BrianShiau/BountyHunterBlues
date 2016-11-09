@@ -229,8 +229,7 @@ public class AggresiveMissile : MissileState
 {
     public AggresiveMissile(MissileEnemy enemy) : base(enemy) { }
 
-    private float shoot_timer = 1;
-    private float shoot_timer_threshold = 1;
+    
 
     public override void on_enter()
     {
@@ -255,12 +254,10 @@ public class AggresiveMissile : MissileState
             dir.Normalize();
             enemy.faceDir = dir;
 
-            shoot_timer += Time.deltaTime;
-            if (shoot_timer > shoot_timer_threshold)
+            if (enemy.readyToFire)
             {
                 //enemy.set_confused_state(true);
                 rangedAttack.execute(enemy);
-                shoot_timer = 0;
             }
             enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
         }

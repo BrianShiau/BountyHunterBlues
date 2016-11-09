@@ -40,7 +40,7 @@ public abstract class Explosion : MonoBehaviour {
                 IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
                 foreach (RaycastHit2D hit in hits)
                 {
-                    if(hit.collider.isTrigger)
+                    if(hit.collider.isTrigger && isValidHit(actor))
                     {
                         GameObject hitObj = hit.collider.gameObject;
                         if (hitObj.tag != "GameActor")
