@@ -38,6 +38,7 @@ public class MeleeEnemy : EnemyActor {
 	private float spin_time;
 	public float spin_time_threshold; 
 	public GameObject MissileObject;
+	public float dash_speed;
 
 
 	public override void Start(){
@@ -93,29 +94,26 @@ public class MeleeEnemy : EnemyActor {
 		return spin_cr_running;
 	}
 
-    public override void rangedAttack()
-    {
+    public override void rangedAttack(){
     	if (closestAttackable is PlayerActor){
         	StartCoroutine(DashAttack());
         }
     }
 
-
     private IEnumerator DashAttack(){
     	dash_cr_running = true;
+    	gameActorAnimator.SetBool("isAttack", true);
         while(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()) > 0.01f){
-        	Vector2 temp = Vector2.Lerp(new Vector2(transform.position.x, transform.position.y), get_last_seen(), 0.5f * Time.deltaTime);
-        	transform.position = temp;
+        	Vector2 temp = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), get_last_seen(), dash_speed * Time.deltaTime);
+        	transform.position = new Vector3(temp.x, temp.y, transform.position.z);
         	//perform dash animation
-        	gameActorAnimator.SetBool("isAttack", dash_cr_running);
+
         	if(Vector2.Distance(get_player_object().transform.position, transform.position) < 2f){
         		get_player_actor().takeDamage();
         	}
         	yield return null;
         }
     	dash_cr_running = false;
-    	Debug.Log("OK");
-        gameActorAnimator.SetBool("isAttack", false);
 
         spin_cr_running = true;
 
@@ -128,6 +126,7 @@ public class MeleeEnemy : EnemyActor {
 
         spin_time = 0;
         spin_cr_running = false;
+        gameActorAnimator.SetBool("isAttack", false);
     }
 
     public override void meleeAttack(){
@@ -142,8 +141,7 @@ public class MeleeEnemy : EnemyActor {
 		throw new NotImplementedException();
 	}
 
-    public override void die()
-    {
+    public override void die(){
         base.die();
         Destroy(gameObject);
     }

@@ -63750,6 +63750,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011455028586, guid: 17658205e75e81d4d92d33e676ea42f7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17658205e75e81d4d92d33e676ea42f7, type: 2}
   m_IsPrefabParent: 0
@@ -64501,7 +64505,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010188436186, guid: 17658205e75e81d4d92d33e676ea42f7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.5477471
+      value: -5.7
       objectReference: {fileID: 0}
     - target: {fileID: 4000010188436186, guid: 17658205e75e81d4d92d33e676ea42f7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -64531,18 +64535,18 @@ Prefab:
       propertyPath: m_Name
       value: 0_E3_Elite (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011455028586, guid: 17658205e75e81d4d92d33e676ea42f7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114000010893468112, guid: 17658205e75e81d4d92d33e676ea42f7,
         type: 2}
-      propertyPath: spin_time_threshold
-      value: 30
+      propertyPath: faceDir.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 114000010893468112, guid: 17658205e75e81d4d92d33e676ea42f7,
         type: 2}
       propertyPath: faceDir.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011455028586, guid: 17658205e75e81d4d92d33e676ea42f7, type: 2}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

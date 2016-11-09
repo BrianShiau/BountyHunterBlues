@@ -81,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011676209088
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011455028586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.68, y: 0.54257774, z: 0}
+  m_LocalPosition: {x: 7.654812, y: -2.5477471, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -309,6 +309,7 @@ MonoBehaviour:
   spin_time_threshold: 3
   MissileObject: {fileID: 1000012480192904, guid: 378ea2c3974fe944ead7f855541ddf95,
     type: 2}
+  dash_speed: 0.5
 --- !u!114 &114000011858639588
 MonoBehaviour:
   m_ObjectHideFlags: 1
