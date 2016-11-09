@@ -100,19 +100,21 @@ public class MeleeEnemy : EnemyActor {
         }
     }
 
+
     private IEnumerator DashAttack(){
     	dash_cr_running = true;
         while(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()) > 0.01f){
         	Vector2 temp = Vector2.Lerp(new Vector2(transform.position.x, transform.position.y), get_last_seen(), 0.5f * Time.deltaTime);
         	transform.position = temp;
         	//perform dash animation
-        	//Debug.Log(Vector2.Distance(get_player_object().transform.position, transform.position));
+        	gameActorAnimator.SetBool("isAttack", dash_cr_running);
         	if(Vector2.Distance(get_player_object().transform.position, transform.position) < 2f){
         		get_player_actor().takeDamage();
         	}
         	yield return null;
         }
     	dash_cr_running = false;
+        gameActorAnimator.SetBool("isAttack", dash_cr_running);
 
 
         spin_cr_running = true;
