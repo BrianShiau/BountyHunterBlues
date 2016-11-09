@@ -60,8 +60,6 @@ public class DogEnemy : EnemyActor {
                 audioManager.Stop("Gun");
             audioManager.Play("Gun");
         }
-        //else
-        //    Debug.Log("AI can't attack other AI");
     }
 
     public override void meleeAttack(){

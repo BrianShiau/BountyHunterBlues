@@ -6,11 +6,16 @@ using System.Linq;
 
 public class MeleeEnemy : EnemyActor {
 
+	private bool dash_cr_running;
+	private bool spin_cr_running;
+
 
 	public override void Start(){
 		base.Start();
         current_state = new NeutralMelee(this);
-        audioManager.setLoop("Feet", true);
+        dash_cr_running = false;
+        spin_cr_running = false;
+        //audioManager.setLoop("Feet", true);
 	}
 
 	public override void Update(){
@@ -29,39 +34,60 @@ public class MeleeEnemy : EnemyActor {
 				current_state = new AlertMelee (this);
             if (_stateManager.get_state() == State.AGGRESIVE){
                 current_state = new AggresiveMelee(this);
-                audioManager.Play("Alert");
+                //audioManager.Play("Alert");
             }
 
 			current_state.on_enter ();
 		}
 		current_state.execute ();
 
-		if (isMoving) {
-			if (!audioManager.isPlaying ("Feet")) {
-				if (isPatrolling)
-					audioManager.Play ("Feet", "Patrol");
-				else
-					audioManager.Play ("Feet", "Chase");
-			}
-
-		} 
-		else {
-			audioManager.Stop ("Feet");
-		}
+		//if (isMoving) {
+		//	if (!audioManager.isPlaying ("Feet")) {
+		//		if (isPatrolling)
+		//			audioManager.Play ("Feet", "Patrol");
+		//		else
+		//			audioManager.Play ("Feet", "Chase");
+		//	}
+//
+		//} 
+		//else {
+		//	audioManager.Stop ("Feet");
+		//}
 	}
 
-	public override void rangedAttack(){
-        if (closestAttackable is PlayerActor){
-            hasAttacked = true;
-            closestAttackable.takeDamage();
-            if (!closestAttackable.isAlive())
-                closestAttackable = null;
-            if (audioManager.isPlaying("Gun"))
-                audioManager.Stop("Gun");
-            audioManager.Play("Gun");
+	public bool is_dashing(){
+		return dash_cr_running;
+	}
+
+	public bool is_spinning(){
+		return spin_cr_running;
+	}
+
+    public override void rangedAttack()
+    {
+    	if (closestAttackable is PlayerActor){
+        	StartCoroutine(DashAttack());
         }
-        //else
-        //    Debug.Log("AI can't attack other AI");
+    }
+
+    private IEnumerator DashAttack(){
+    	dash_cr_running = true;
+        while(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()) > 0.01f){
+        	Vector2 temp = Vector2.Lerp(new Vector2(transform.position.x, transform.position.y), get_last_seen(), 0.5f * Time.deltaTime);
+        	transform.position = temp;
+
+        	yield return null;
+        }
+    	dash_cr_running = false;
+
+        yield return new WaitForSeconds(1f);
+
+        spin_cr_running = true;
+
+        
+
+        spin_cr_running = false;
+        //print("melee attack"); 
     }
 
     public override void meleeAttack(){
@@ -78,60 +104,6 @@ public class MeleeEnemy : EnemyActor {
 
     public override void die()
     {
-		base.die ();
-		gameActorAnimator.SetBool ("isHit", true);
-		transform.FindChild ("Base").gameObject.SetActive(false);
-		transform.FindChild ("Reactions").gameObject.SetActive(false);
-		transform.FindChild ("Feet_Collider").gameObject.SetActive(false);
-		isMoving = false;
-        StartCoroutine(DeathCleanUp());
-    }
-
-    public override void runAnimation()
-    {
-        base.runAnimation();
-        BarrelBase bBase = GetComponentInChildren<BarrelBase>();
-        bBase.facing = currDirection;
-        Animator EnemyBarrelAnimator = bBase.GetComponentInChildren<Animator>();
-        EnemyBarrelAnimator.SetInteger("Direction", (int)currDirection);
-    }
-
-    public override void OnTriggerEnter2D(Collider2D other)
-    {
-        base.OnTriggerEnter2D(other);
-        SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-
-		BarrelBase bBaseObject = GetComponentInChildren<BarrelBase> ();
-		if (bBaseObject) {
-			SpriteRenderer bBase = bBaseObject.GetComponent<SpriteRenderer> ();
-			bBase.sortingOrder = mySprite.sortingOrder + 3;
-		}
-
-		BarrelRotation barrelObject = GetComponentInChildren<BarrelRotation> ();
-		if (barrelObject) {
-			SpriteRenderer barrel = barrelObject.GetComponent<SpriteRenderer>();
-			barrel.sortingOrder = mySprite.sortingOrder + 2;
-		}
-
-		Laser laserObject = GetComponentInChildren<Laser> ();
-		if (laserObject) {
-			SpriteRenderer laser =laserObject.GetComponent<SpriteRenderer>();
-			laser.sortingOrder = mySprite.sortingOrder + 1;
-		}
-
-		Transform reactionsObject = transform.FindChild ("Reactions");
-		if (reactionsObject) {
-			SpriteRenderer reactionUI = reactionsObject.GetComponent<SpriteRenderer>();
-			reactionUI.sortingOrder = mySprite.sortingOrder + 4;
-		}
-    }
-    
-    private IEnumerator DeathCleanUp()
-    {
-        //audioManager.Play("Death");
-        yield return new WaitForSeconds(.1f);
-		gameActorAnimator.SetBool ("isDead", true);
-		yield return new WaitForSeconds(1);
         base.die();
         Destroy(gameObject);
     }
