@@ -181,15 +181,25 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
             };
                 break;
-            default:
-			strings = new string[] { };
-			break;
-
 		//Level 2
 
 		//Warehouse Rest Area
 
 		//Level 3
+		//Room 1
+
+		//Room 2
+
+		//Room 3
+		case 80:
+			//CEO
+			strings = new string[] {
+				"You’ve got me. Took you some time.",
+				"What are you going to do now? Nothing’s getting through this glass.",
+				"I don’t blame you for being angry. But I really am trying to do good in the world. I wish...",
+				"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
+			};
+			break;
 
 		//Levelless
 		/*case 22: 
@@ -200,6 +210,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
             "This gives you a chance to hide from enemy site",
         };
 		break;*/
+		default:
+			strings = new string[] { };
+			break;
 		}
 	}
 
