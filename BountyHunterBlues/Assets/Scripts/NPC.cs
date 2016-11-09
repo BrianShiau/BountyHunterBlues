@@ -182,13 +182,13 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
             };
                 break;
-		//Level 2
+            //Level 2
 
-		//Warehouse Rest Area
-        case 50
-            //CEO, from an intercom or something idk
+            //Warehouse Rest Area
+        case 50:
+                //CEO, from an intercom or something idk
             strings = new string[] {
-                "Hello again. You seem to be everywhere now."
+                "Hello again. You seem to be everywhere now.",
                 "What do you think? I’m doing them a kindness, aren’t I?",
                 "I see how hard they work, how hard life is for them. They toil and struggle and die. Isn’t it a waste?",
                 "I can give them better. I can make them immortal.",
@@ -203,18 +203,20 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "I can’t be out here like a sitting duck.",
                 "I know how much you love a game.",
                 "Let me try to make it harder for you, shall I?",
-};
+            };
+                break;
 
-		//Level 3
-		//Room 1
-        case 60
+        //Level 3
+        //Room 1
+        case 60:
             //hunter
             strings = new string[] {
                 "I see she's been busy since I've been gone.",
                 "Damn it. This was supposed to be a quick job, not some... damn conspiracy.",
                 "I should've known better than to take a job at home.",
                 "No, I'm already here. Just... keep pushing forward. Nothing else I can do now.",
-};
+            };
+                break;
 
 		//Room 2
 
