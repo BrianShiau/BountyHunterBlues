@@ -8,44 +8,58 @@ public class Laser : MonoBehaviour {
     public float scaleFactor;
 
     private EnemyActor myEnemy;
+    private SpriteRenderer laserSprite;
+    private float defaultDist;
 
 	// Use this for initialization
 	void Start () {
         myEnemy = GetComponentInParent<EnemyActor>();
-	}
+        laserSprite = GetComponent<SpriteRenderer>();
+        defaultDist = myEnemy.sightDistance;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        EnemyActor actor = GetComponentInParent<EnemyActor>();
-        AIState currState = actor.getCurrentState();
+        AIState currState = myEnemy.getCurrentState();
 		if (currState.get_state () == State.NEUTRAL) {
-			GetComponent<SpriteRenderer> ().color = Color.green;
+            laserSprite.color = Color.green;
 			if (myEnemy.getClosestAttackable() is PlayerActor) {
-				GetComponent<SpriteRenderer> ().enabled = true;
+                laserSprite.enabled = true;
 			} else {
-				GetComponent<SpriteRenderer> ().enabled = false;
+                laserSprite.enabled = false;
 			}
 		} else if (currState.get_state () == State.ALERT) {
-			GetComponent<SpriteRenderer> ().color = Color.yellow;
-			GetComponent<SpriteRenderer> ().enabled = true;
+            laserSprite.color = Color.yellow;
+            laserSprite.enabled = true;
 		} else if (currState.get_state () == State.AGGRESIVE) {
-			GetComponent<SpriteRenderer> ().color = Color.red;
+            laserSprite.color = Color.red;
 		}
-		float angle = Mathf.Atan2(actor.faceDir.y, actor.faceDir.x) * Mathf.Rad2Deg
+		float angle = Mathf.Atan2(myEnemy.faceDir.y, myEnemy.faceDir.x) * Mathf.Rad2Deg
 			+ 180 + myEnemy.transform.localRotation.eulerAngles.z; // corrected for sprite angle
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
 
-        float distance = actor.sightDistance;
+        float distance = defaultDist;
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, actor.transform.TransformDirection(actor.faceDir), actor.sightDistance);
-        IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
-        foreach (RaycastHit2D hit in sortedHits)
+        if (myEnemy.getClosestAttackable() is PlayerActor)
         {
-			if (hit.collider != null && hit.collider.gameObject != myEnemy.gameObject && hit.collider.gameObject.name != "Feet_Collider" && hit.collider.tag != "Fence")
+            float distToTarget = Vector2.Distance(transform.position, myEnemy.getClosestAttackable().transform.position);
+            if (distToTarget < distance)
+                distance = distToTarget;
+        }
+
+        else
+        {
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, myEnemy.transform.TransformDirection(myEnemy.faceDir), myEnemy.sightDistance);
+            IEnumerable<RaycastHit2D> sortedHits = hits.OrderBy(hit => hit.distance);
+            foreach (RaycastHit2D hit in sortedHits)
             {
-                distance = hit.distance;
-                break;
+                if (hit.collider != null && hit.collider.gameObject != myEnemy.gameObject && hit.collider.gameObject.name != "Feet_Collider" && hit.collider.tag != "Fence" && !hit.collider.isTrigger)
+                {
+                    distance = hit.distance;
+                    break;
+                }
             }
         }
 
