@@ -77,10 +77,7 @@ public class DogEnemy : EnemyActor {
     public override void die()
     {
 		base.die ();
-		gameActorAnimator.SetBool ("isHit", true);
 		transform.FindChild ("Base").gameObject.SetActive(false);
-		transform.FindChild ("Reactions").gameObject.SetActive(false);
-		transform.FindChild ("Feet_Collider").gameObject.SetActive(false);
 		isMoving = false;
         StartCoroutine(DeathCleanUp());
     }
@@ -130,7 +127,6 @@ public class DogEnemy : EnemyActor {
         yield return new WaitForSeconds(.1f);
 		gameActorAnimator.SetBool ("isDead", true);
 		yield return new WaitForSeconds(1);
-        base.die();
         Destroy(gameObject);
     }
     

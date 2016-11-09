@@ -117,6 +117,10 @@ public abstract class EnemyActor : GameActor {
         return playerActor;
     }
 
+    public GameObject get_player_object(){
+        return player;
+    }
+
     public Vector2 get_last_seen(){
         return last_seen;
     }
@@ -341,6 +345,11 @@ public abstract class EnemyActor : GameActor {
 	public override void die(){
 		base.die ();
 		RemoveFence ();
+		gameActorAnimator.SetBool ("isHit", true);
+		transform.FindChild ("Reactions").gameObject.SetActive(false);
+		transform.FindChild ("Feet_Collider").gameObject.SetActive(false);
+		transform.FindChild ("DirectionPointer").gameObject.SetActive(false);
+		GetComponent<BoxCollider2D> ().enabled = false;
 	}
 
 	public void RemoveFence(){
