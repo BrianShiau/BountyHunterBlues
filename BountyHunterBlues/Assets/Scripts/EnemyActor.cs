@@ -31,6 +31,7 @@ public abstract class EnemyActor : GameActor {
     public int path_threshold;
     private bool shot;
 
+    private Transform raySource;
 	// UI Reactions
 	Animator reactionAnim;
 	int reactionStack;
@@ -76,6 +77,7 @@ public abstract class EnemyActor : GameActor {
             reactionStack = 0;
         }
 		directionPointer = transform.FindChild ("DirectionPointer").gameObject;
+        raySource = transform.Find("RaySource");
 		marker = transform.FindChild ("Marker").gameObject.GetComponent<SpriteRenderer> ();
     }
 
@@ -295,8 +297,12 @@ public abstract class EnemyActor : GameActor {
     public override GameActor[] runVisionDetection(float fov, float sightDistance){
         PlayerActor actorObject = GameObject.FindObjectOfType<PlayerActor>();
         List<GameActor> GameActors = new List<GameActor>();
-
-        Vector2 worldVector = actorObject.transform.position - transform.position;
+        Vector3 rayOrigin;
+        if (raySource == null)
+            rayOrigin = transform.position;
+        else
+            rayOrigin = raySource.position;
+        Vector2 worldVector = actorObject.transform.position - rayOrigin;
         worldVector.Normalize();
         Vector2 toTargetDir = transform.InverseTransformDirection(worldVector);
         if (Mathf.Abs(Vector2.Angle(faceDir, toTargetDir)) < fov / 2){
@@ -335,6 +341,11 @@ public abstract class EnemyActor : GameActor {
 	public override void die(){
 		base.die ();
 		RemoveFence ();
+		gameActorAnimator.SetBool ("isHit", true);
+		transform.FindChild ("Reactions").gameObject.SetActive(false);
+		transform.FindChild ("Feet_Collider").gameObject.SetActive(false);
+		transform.FindChild ("DirectionPointer").gameObject.SetActive(false);
+		GetComponent<BoxCollider2D> ().enabled = false;
 	}
 
 	public void RemoveFence(){

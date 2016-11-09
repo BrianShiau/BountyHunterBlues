@@ -19,6 +19,9 @@ public class MissileEnemy : EnemyActor {
     // Update is called once per frame
     public override void Update()
     {
+		if (health <= 0)
+			return;
+
         base.Update();
 
         is_confused();
@@ -44,7 +47,9 @@ public class MissileEnemy : EnemyActor {
     public override void die()
     {
         base.die();
-        Destroy(gameObject);
+		//isMoving = false;
+		transform.FindChild ("Laser").gameObject.SetActive(false);
+		StartCoroutine(DeathCleanUp());
     }
 
     public override void interact()
@@ -71,12 +76,22 @@ public class MissileEnemy : EnemyActor {
     {
         for (int i = 0; i < numMissilesToFire; ++i)
         {
-            MissileProjectile missile = MissileProjectile.Create(MissileObject, transform.position, GetComponentInChildren<Laser>().transform.eulerAngles);
-            missile.setInitialDir(transform.TransformDirection(faceDir));
-            missile.setOwner(this);
+			if (health > 0) {
+				MissileProjectile missile = MissileProjectile.Create (MissileObject, transform.position, GetComponentInChildren<Laser> ().transform.eulerAngles);
+				missile.setInitialDir (transform.TransformDirection (faceDir));
+				missile.setOwner (this);
+			}
             yield return new WaitForSeconds(timeBetweenEachMissile);
         }
         
     }
  
+	private IEnumerator DeathCleanUp()
+	{
+		//audioManager.Play("Death");
+		yield return new WaitForSeconds(.1f);
+		gameActorAnimator.SetBool ("isDead", true);
+		yield return new WaitForSeconds(1);
+		Destroy(gameObject);
+	}
 }
