@@ -8,6 +8,8 @@ public class MeleeEnemy : EnemyActor {
 
 	private bool dash_cr_running;
 	private bool spin_cr_running;
+	private float spin_time;
+	public float spin_time_threshold; 
 
 
 	public override void Start(){
@@ -75,6 +77,7 @@ public class MeleeEnemy : EnemyActor {
         while(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()) > 0.01f){
         	Vector2 temp = Vector2.Lerp(new Vector2(transform.position.x, transform.position.y), get_last_seen(), 0.5f * Time.deltaTime);
         	transform.position = temp;
+        	//perform dash animation
 
         	yield return null;
         }
@@ -84,7 +87,11 @@ public class MeleeEnemy : EnemyActor {
 
         spin_cr_running = true;
 
-        
+        while(spin_time < spin_time_threshold){
+        	spin_time += Time.deltaTime;
+        	//perform spin animation
+        	meleeAttack();
+        }
 
         spin_cr_running = false;
         //print("melee attack"); 
