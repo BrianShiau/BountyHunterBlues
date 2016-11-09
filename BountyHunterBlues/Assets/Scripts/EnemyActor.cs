@@ -335,6 +335,10 @@ public abstract class EnemyActor : GameActor {
 	public override void die(){
 		base.die ();
 		RemoveFence ();
+		gameActorAnimator.SetBool ("isHit", true);
+		transform.FindChild ("Reactions").gameObject.SetActive(false);
+		transform.FindChild ("Feet_Collider").gameObject.SetActive(false);
+		transform.FindChild ("DirectionPointer").gameObject.SetActive(false);
 	}
 
 	public void RemoveFence(){
