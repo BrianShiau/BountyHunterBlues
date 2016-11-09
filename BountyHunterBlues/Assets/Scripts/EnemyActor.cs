@@ -345,6 +345,7 @@ public abstract class EnemyActor : GameActor {
 		transform.FindChild ("Reactions").gameObject.SetActive(false);
 		transform.FindChild ("Feet_Collider").gameObject.SetActive(false);
 		transform.FindChild ("DirectionPointer").gameObject.SetActive(false);
+		GetComponent<BoxCollider2D> ().enabled = false;
 	}
 
 	public void RemoveFence(){
