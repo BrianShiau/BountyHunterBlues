@@ -37,6 +37,7 @@ public abstract class EnemyActor : GameActor {
 	int reactionStack;
 
 	private GameObject directionPointer;
+	private SpriteRenderer marker;
 
 	//prefab
 	public float audio_distance;
@@ -76,9 +77,8 @@ public abstract class EnemyActor : GameActor {
             reactionStack = 0;
         }
 		directionPointer = transform.FindChild ("DirectionPointer").gameObject;
-
         raySource = transform.Find("RaySource");
-        
+		marker = transform.FindChild ("Marker").gameObject.GetComponent<SpriteRenderer> ();
     }
 
     public override void Update(){
@@ -105,6 +105,12 @@ public abstract class EnemyActor : GameActor {
 			transform.position.y + faceDir.y * distanceScale,
 			transform.position.z)
 			+ offset;
+
+		if (playerActor.InTacticalMode ()) {
+			marker.enabled = true;
+		} else {
+			marker.enabled = false;
+		}
     }
 
     public PlayerActor get_player_actor(){

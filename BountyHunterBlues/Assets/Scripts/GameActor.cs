@@ -49,6 +49,10 @@ public abstract class GameActor : Actor, Vision
         return closestAttackable;
     }
 
+    public void nullClosestAttackable(){
+        closestAttackable = null;
+    }
+
     protected void acquireInteractionTarget()
     {
         // see what interactables are near me and unobstructed and pick closest as interactionTarget
