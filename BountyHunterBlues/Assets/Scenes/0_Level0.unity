@@ -27625,6 +27625,7 @@ MonoBehaviour:
   node_transition_threshold: 0
   path: {fileID: 0}
   selfSpotlight: 0
+  spotlightOffset: {x: 0, y: 0, z: 0}
   npcImage: {fileID: 21300000, guid: 773d2d58d6e5e24428fe79f13a846b65, type: 3}
   NPCNumber: 1
   destroyAfterPlay: 1
