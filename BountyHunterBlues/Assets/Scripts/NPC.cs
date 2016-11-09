@@ -55,7 +55,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			strings = new string[] {
 				"Of all the backwater space stations I could be sent to, it had to be the one where I grew up…",
 				" I haven’t missed this place.",
-				"I’ll try to make this quick. Take out this “CEO of Eva Corp” or whatever and get the hell out of here.",
+				"I’ll try to make this quick. Take out the CEO of EvaCorp and get the hell out of here.",
 				"Ah, are we docking? Guess I better get going.",
 			};
 			break;
@@ -87,7 +87,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 11: 
 			//TV 1
 			strings = new string[] {
-                "...CEO has come under fire for what some consider unscrupulous business practices.",
+                "...sudden increase in missing persons. The Chief of Police has only stated that they are doing their utmost to ensure people's safety.",
+                "In other news, the CEO of Eva Corporation has come under fire for what some consider unscrupulous business practices.",
                 "In spite of this, EvaCorp continues to buy up properties,",
                 "with plans to start three separate luxury construction projects in the next year...",
 			};
@@ -184,9 +185,36 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		//Level 2
 
 		//Warehouse Rest Area
+        case 50
+            //CEO, from an intercom or something idk
+            strings = new string[] {
+                "Hello again. You seem to be everywhere now."
+                "What do you think? I’m doing them a kindness, aren’t I?",
+                "I see how hard they work, how hard life is for them. They toil and struggle and die. Isn’t it a waste?",
+                "I can give them better. I can make them immortal.",
+                "Like this, they don’t have to suffer. They don’t have to die.",
+                "I know people are scared, but they’ll see. It’s better this way.",
+                "...",
+                "I know what line of work you’ve gone into since you’ve left. Are you after me, too?",
+                "Since I’m the CEO of Eva Corporation.",
+                "You know, that’s too bad. I did miss you.",
+                "I thought I’d be angry when I saw you again, but I wasn’t. I thought…",
+                "Well, I suppose that doesn’t matter.",
+                "I can’t be out here like a sitting duck.",
+                "I know how much you love a game.",
+                "Let me try to make it harder for you, shall I?",
+}
 
 		//Level 3
 		//Room 1
+        case 60
+            //hunter
+            strings = new string[] {
+                "I see she's been busy since I've been gone.",
+                "Damn it. This was supposed to be a quick job, not some... damn conspiracy.",
+                "I should've known better than to take a job at home.",
+                "No, I'm already here. Just... keep pushing forward. Nothing else I can do now.",
+}
 
 		//Room 2
 
