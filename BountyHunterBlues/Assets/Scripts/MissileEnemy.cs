@@ -83,7 +83,6 @@ public class MissileEnemy : EnemyActor {
 			}
             yield return new WaitForSeconds(timeBetweenEachMissile);
         }
-        
     }
  
 	private IEnumerator DeathCleanUp()

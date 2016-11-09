@@ -4,12 +4,40 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+
+
+public class SpinExplosion : Explosion {
+
+    public override void Start()
+    {
+        base.Start();
+        OnExplosionEnd();
+    }
+
+    public static SpinExplosion Create(GameObject prefab, Vector3 position)
+    {
+        GameObject explosionObj = Instantiate(prefab, position, Quaternion.identity) as GameObject;
+        return explosionObj.GetComponent<SpinExplosion>();
+    }
+
+    protected override bool isValidHit(GameActor hitActor)
+    {
+        return hitActor is PlayerActor;
+    }
+
+    protected override void explosionHit(GameActor hitActor)
+    {
+        hitActor.takeDamage();
+    }
+}
+
 public class MeleeEnemy : EnemyActor {
 
 	private bool dash_cr_running;
 	private bool spin_cr_running;
 	private float spin_time;
 	public float spin_time_threshold; 
+	public GameObject MissileObject;
 
 
 	public override void Start(){
@@ -78,12 +106,14 @@ public class MeleeEnemy : EnemyActor {
         	Vector2 temp = Vector2.Lerp(new Vector2(transform.position.x, transform.position.y), get_last_seen(), 0.5f * Time.deltaTime);
         	transform.position = temp;
         	//perform dash animation
-
+        	//Debug.Log(Vector2.Distance(get_player_object().transform.position, transform.position));
+        	if(Vector2.Distance(get_player_object().transform.position, transform.position) < 2f){
+        		get_player_actor().takeDamage();
+        	}
         	yield return null;
         }
     	dash_cr_running = false;
 
-        yield return new WaitForSeconds(1f);
 
         spin_cr_running = true;
 
@@ -91,14 +121,15 @@ public class MeleeEnemy : EnemyActor {
         	spin_time += Time.deltaTime;
         	//perform spin animation
         	meleeAttack();
+        	yield return null;
         }
 
+        spin_time = 0;
         spin_cr_running = false;
-        //print("melee attack");
     }
 
     public override void meleeAttack(){
-        throw new NotImplementedException();
+        SpinExplosion obj = SpinExplosion.Create(MissileObject, transform.position);
     }
 
     public override void interact(){
@@ -114,5 +145,4 @@ public class MeleeEnemy : EnemyActor {
         base.die();
         Destroy(gameObject);
     }
-    
 }

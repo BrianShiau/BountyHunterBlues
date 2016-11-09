@@ -4,7 +4,6 @@ using System;
 
 public class MissileExplosion : Explosion {
 
-
     public override void Start()
     {
         base.Start();

@@ -28,8 +28,6 @@ public class MissileProjectile : Projectile {
         // move in straight line
         Vector2 newPos = speed * dir * Time.deltaTime;
         transform.Translate(newPos);
-
-
     }
 
     public void OnTriggerEnter2D(Collider2D col)

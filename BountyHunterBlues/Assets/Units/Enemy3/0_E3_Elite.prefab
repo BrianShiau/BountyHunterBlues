@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d4f767bba420d41893fcf55c901bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceDir: {x: 0, y: 1}
+  faceDir: {x: 0, y: -1}
   moveSpeed: 2
   health: 1
   is_cycle: 0
@@ -306,7 +306,9 @@ MonoBehaviour:
   rotation_speed: 4
   fence: {fileID: 0}
   fenceCollider: {fileID: 0}
-  spin_time_threshold: 0
+  spin_time_threshold: 3
+  MissileObject: {fileID: 1000012480192904, guid: 378ea2c3974fe944ead7f855541ddf95,
+    type: 2}
 --- !u!114 &114000011858639588
 MonoBehaviour:
   m_ObjectHideFlags: 1
