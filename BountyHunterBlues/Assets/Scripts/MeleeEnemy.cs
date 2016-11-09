@@ -114,8 +114,8 @@ public class MeleeEnemy : EnemyActor {
         	yield return null;
         }
     	dash_cr_running = false;
-        gameActorAnimator.SetBool("isAttack", dash_cr_running);
-
+    	Debug.Log("OK");
+        gameActorAnimator.SetBool("isAttack", false);
 
         spin_cr_running = true;
 
