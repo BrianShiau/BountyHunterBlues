@@ -203,7 +203,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "I can’t be out here like a sitting duck.",
                 "I know how much you love a game.",
                 "Let me try to make it harder for you, shall I?",
-}
+};
 
 		//Level 3
 		//Room 1
@@ -214,7 +214,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "Damn it. This was supposed to be a quick job, not some... damn conspiracy.",
                 "I should've known better than to take a job at home.",
                 "No, I'm already here. Just... keep pushing forward. Nothing else I can do now.",
-}
+};
 
 		//Room 2
 
