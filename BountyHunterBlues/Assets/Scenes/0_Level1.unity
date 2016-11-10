@@ -25028,7 +25028,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: e9f31be1216aa1b428ebec0553a784ef, type: 2}
+      objectReference: {fileID: 9100000, guid: 8c01851f273bb69499e63e2067f64b79, type: 2}
     - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
         type: 2}
       propertyPath: openingText
@@ -37597,6 +37597,7 @@ MonoBehaviour:
   node_transition_threshold: 0
   path: {fileID: 0}
   selfSpotlight: 0
+  spotlightOffset: {x: 0, y: 0, z: 0}
   npcImage: {fileID: 21300000, guid: 773d2d58d6e5e24428fe79f13a846b65, type: 3}
   NPCNumber: 21
   destroyAfterPlay: 0
