@@ -25039,6 +25039,11 @@ Prefab:
       propertyPath: lerp_to
       value: 
       objectReference: {fileID: 1370523852}
+    - target: {fileID: 114000010620488046, guid: b6c9e9d01e18677419d9c7060978aa2f,
+        type: 2}
+      propertyPath: lerp_distance
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
