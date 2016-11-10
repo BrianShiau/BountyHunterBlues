@@ -4,7 +4,6 @@ using System;
 
 public class MissileExplosion : Explosion {
 
-
     public override void Start()
     {
         base.Start();
@@ -23,6 +22,7 @@ public class MissileExplosion : Explosion {
 
     protected override void explosionHit(GameActor hitActor)
     {
-        hitActor.takeDamage();
+        if (hitActor is PlayerActor)
+            hitActor.takeDamage();
     }
 }

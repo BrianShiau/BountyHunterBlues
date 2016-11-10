@@ -221,29 +221,32 @@ public class PlayerActor : GameActor
 
     public override void aim(Vector2 worldPos)
     {
-        isAiming = true;
-        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
-        faceDir = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
-        faceDir.Normalize();
-        setBulletStartPosition(transform.position);
-        if (aimTimer < aimTimeCap)
+        if (hasGun && magazine_size > 0)
         {
-            float angle = Mathf.Lerp(fov, 0, aimTimer / aimTimeCap);
-            float angleOfRandomVec = UnityEngine.Random.Range(-angle / 2, angle / 2);
-            randomAimVector = Quaternion.Euler(0, 0, angleOfRandomVec) * faceDir;
-            aimTimer += Time.deltaTime;
-            laser1.changeLaserDir(Quaternion.Euler(0, 0, angle / 2) * faceDir);
-            laser2.changeLaserDir(Quaternion.Euler(0, 0, -angle / 2) * faceDir);
-        }
-        else
-        {
-            randomAimVector = faceDir;
-            laser1.changeLaserDir(faceDir);
-            laser2.changeLaserDir(faceDir);
-        }
+            isAiming = true;
+            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get mouse point in world space
+            faceDir = transform.InverseTransformPoint(worldPoint); // implied "minus player position wrt its coordinate frame" (which is zero)
+            faceDir.Normalize();
+            setBulletStartPosition(transform.position);
+            if (aimTimer < aimTimeCap)
+            {
+                float angle = Mathf.Lerp(fov, 0, aimTimer / aimTimeCap);
+                float angleOfRandomVec = UnityEngine.Random.Range(-angle / 2, angle / 2);
+                randomAimVector = Quaternion.Euler(0, 0, angleOfRandomVec) * faceDir;
+                aimTimer += Time.deltaTime;
+                laser1.changeLaserDir(Quaternion.Euler(0, 0, angle / 2) * faceDir);
+                laser2.changeLaserDir(Quaternion.Euler(0, 0, -angle / 2) * faceDir);
+            }
+            else
+            {
+                randomAimVector = faceDir;
+                laser1.changeLaserDir(faceDir);
+                laser2.changeLaserDir(faceDir);
+            }
 
-        laser1.updatePivot(bulletStartPosition);
-        laser2.updatePivot(bulletStartPosition);
+            laser1.updatePivot(bulletStartPosition);
+            laser2.updatePivot(bulletStartPosition);
+        }
     }
 
     public override void disableAim()

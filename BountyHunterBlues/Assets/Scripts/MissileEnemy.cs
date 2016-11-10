@@ -8,6 +8,10 @@ public class MissileEnemy : EnemyActor {
     public float timeBetweenEachMissile;
     public int numMissilesToFire;
 
+    private float shoot_timer = 1;
+    private float shoot_timer_threshold = 1;
+    public bool readyToFire { get; private set; }
+    private bool readyToTime = true;
     // Use this for initialization
     public override void Start()
     {
@@ -19,6 +23,9 @@ public class MissileEnemy : EnemyActor {
     // Update is called once per frame
     public override void Update()
     {
+		if (health <= 0)
+			return;
+
         base.Update();
 
         is_confused();
@@ -39,12 +46,20 @@ public class MissileEnemy : EnemyActor {
             current_state.on_enter();
         }
         current_state.execute();
+
+        if (readyToTime && shoot_timer < shoot_timer_threshold)
+            shoot_timer += Time.deltaTime;
+
+        if (shoot_timer >= shoot_timer_threshold)
+            readyToFire = true; 
     }
 
     public override void die()
     {
         base.die();
-        Destroy(gameObject);
+		//isMoving = false;
+		transform.FindChild ("Laser").gameObject.SetActive(false);
+		StartCoroutine(DeathCleanUp());
     }
 
     public override void interact()
@@ -69,15 +84,28 @@ public class MissileEnemy : EnemyActor {
 
     private IEnumerator FireMissiles()
     {
+        readyToFire = false;
+        readyToTime = false;
+        shoot_timer = 0;
         for (int i = 0; i < numMissilesToFire; ++i)
         {
-            MissileProjectile missile = MissileProjectile.Create(MissileObject, transform.position, GetComponentInChildren<Laser>().transform.eulerAngles);
-            missile.setInitialDir(transform.TransformDirection(faceDir));
-            missile.setOwner(this);
+			if (health > 0) {
+				MissileProjectile missile = MissileProjectile.Create (MissileObject, transform.position, GetComponentInChildren<Laser> ().transform.eulerAngles);
+				missile.setInitialDir (transform.TransformDirection (faceDir));
+				missile.setOwner (this);
+			}
             yield return new WaitForSeconds(timeBetweenEachMissile);
         }
-        
-    }
+        readyToTime = true;
 
-    
+    }
+ 
+	private IEnumerator DeathCleanUp()
+	{
+		//audioManager.Play("Death");
+		yield return new WaitForSeconds(.1f);
+		gameActorAnimator.SetBool ("isDead", true);
+		yield return new WaitForSeconds(1);
+		Destroy(gameObject);
+	}
 }

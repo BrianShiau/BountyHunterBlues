@@ -57,6 +57,7 @@ public class TerminalBall : NPCActor, Interactable {
 	            inc_path_index();   
 	        }
 	        if(get_path_index() == path.length()){
+				transform.FindChild("PhysicsCollider").GetComponent<BoxCollider2D> ().enabled  = false;
 				gameActorAnimator.enabled = false;
 	        	audioManager.Play("Beep");
 				opensThisdoor.specialDoor = false;
