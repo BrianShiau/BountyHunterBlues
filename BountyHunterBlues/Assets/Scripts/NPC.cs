@@ -182,7 +182,24 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
             };
                 break;
+        case 35:
+            //wallet on stage
+            strings = new string[] {
+                "Oh, look, a hundred bucks.",
+                "...",
+                "No one will miss this...",
+
+            };
+                break;
             //Level 2
+            case 40:
+                //corporate magazine
+                strings = new string[] {
+                "It's a corporate magazine.",
+                " 'EvaCorp CEO...' But no face.",
+
+            };
+                break;
 
             //Warehouse Rest Area
             case 50:
