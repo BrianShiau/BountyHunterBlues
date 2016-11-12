@@ -87,7 +87,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 11: 
 			//TV 1
 			strings = new string[] {
-                "...sudden increase in missing persons. The Chief of Police has only stated that they are doing their utmost to ensure people's safety.",
+                "...sudden increase in reports of missing persons. The Chief of Police has only stated that they are doing their utmost to ensure people's safety.",
                 "In other news, the CEO of Eva Corporation has come under fire for what some consider unscrupulous business practices.",
                 "In spite of this, EvaCorp continues to buy up properties,",
                 "with plans to start three separate luxury construction projects in the next year...",
@@ -206,19 +206,20 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 //CEO, from intercom or wherever
                 strings = new string[] {
                 "Hello again. You seem to be everywhere now.",
-                "What do you think? I’m doing them a kindness, aren’t I?",
-                "I see how hard they work, how hard life is for them.They toil and struggle and die. Isn’t it a waste?",
-                "I can give them better. I can make them immortal.",
-                "Like this, they don’t have to suffer. They don’t have to die.",
-                "I know people are scared, but they’ll see. It’s better this way.",
-                "...",
-                "I know what line of work you’ve gone into since you’ve left. Are you after me, too?",
-                "Since I’m the CEO of Eva Corporation.",
+                "What do you think?",
+				"I bet they'd thank me if they could.",
+                "I see how hard they work, how hard life is for them.",
+				"They toil and struggle and die... Isn’t it a waste?",
+
+                "I can give them better... I can make them immortal.",
+                "This way they don’t have to suffer. They don’t have to die.",
+                "Yes, people are scared, but they’ll see. It’s better like this.",
+			
+                "I know what line of work you’ve gone into since you’ve left.",
+				"Are you after me too?",
                 "You know, that’s too bad. I did miss you.",
-                "I thought I’d be angry when I saw you again, but I wasn’t. I thought…",
                 "Well, I suppose that doesn’t matter.",
-                "I can’t be out here like a sitting duck.  I know how much you love a game.",
-                "Let me try to make it harder for you, shall I?",
+                "I can't just make this easy for you.",
 
             };
                 break;
@@ -228,8 +229,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
             case 60:
                 //hunter
                 strings = new string[] {
-                "I see she's been busy since I've been gone.",
-                "Damn it. This was supposed to be a quick job, not some... damn conspiracy.",
+                "Damn it.",
+				"This was supposed to be a quick job, not some... damn conspiracy.",
+				"How many of those things did I know?",
                 "I should've known better than to take a job here.",
                 "I just... need to keep pushing forward. Nothing else I can do now.",
 
@@ -244,7 +246,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			strings = new string[] {
 				"You’ve got me. Took you some time.",
 				"What are you going to do now? Nothing’s getting through this glass.",
-				"I don’t blame you for being angry. But I really am trying to do good in the world. I wish...",
+				"You'll have to take down the whole building.",
+				"I don’t blame you for being angry. But I really am trying to do good in the world. I\t wish...",
 				"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
 			};
 			break;
