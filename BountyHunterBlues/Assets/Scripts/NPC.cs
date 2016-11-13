@@ -191,6 +191,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
             };
                 break;
+
             //Level 2
             case 40:
                 //corporate magazine
