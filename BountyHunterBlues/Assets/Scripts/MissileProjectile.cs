@@ -35,7 +35,7 @@ public class MissileProjectile : Projectile {
         if (col.isTrigger && col.gameObject != owner.gameObject)
         {
             GameObject hitObj = col.gameObject;
-            if (hitObj.GetComponent<EnemyActor>() == null) // ignore enemy colliders
+            if (hitObj.GetComponent<EnemyActor>() == null && hitObj.GetComponentInChildren<BoxCollider2D>().tag != "Wall") // ignore enemy colliders and wall visual colliders
             {
                 
                 MissileExplosion.Create(ExplosionObject, transform.position);

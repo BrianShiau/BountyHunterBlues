@@ -31,7 +31,7 @@ public abstract class EnemyActor : GameActor {
     public int path_threshold;
     private bool shot;
 
-    private Transform raySource;
+    protected Transform raySource;
 	// UI Reactions
 	Animator reactionAnim;
 	int reactionStack;

@@ -8,6 +8,7 @@ public class Door : MonoBehaviour, Interactable {
 	public bool closed;
 	public bool specialDoor;
     public Room nextRoom;
+    public Room anotherRoom; 
 
     private PlayerActor player;
 	private NPC npc;
@@ -36,6 +37,8 @@ public class Door : MonoBehaviour, Interactable {
             Destroy(transform.GetChild(0).gameObject);
 
             player.openDoorTo(nextRoom);
+            if (anotherRoom != null)
+                player.openDoorTo(anotherRoom);
 
             // pictures arent cut right, offset for now
             // transform.Translate(0.0f, 0.0f, 0.0f);

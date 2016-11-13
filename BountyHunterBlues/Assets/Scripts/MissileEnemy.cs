@@ -90,7 +90,10 @@ public class MissileEnemy : EnemyActor {
         for (int i = 0; i < numMissilesToFire; ++i)
         {
 			if (health > 0) {
-				MissileProjectile missile = MissileProjectile.Create (MissileObject, transform.position, GetComponentInChildren<Laser> ().transform.eulerAngles);
+                Vector3 source = transform.position;
+                if (raySource != null)
+                    source = raySource.position;
+				MissileProjectile missile = MissileProjectile.Create (MissileObject, source, GetComponentInChildren<Laser> ().transform.eulerAngles);
 				missile.setInitialDir (transform.TransformDirection (faceDir));
 				missile.setOwner (this);
 			}
