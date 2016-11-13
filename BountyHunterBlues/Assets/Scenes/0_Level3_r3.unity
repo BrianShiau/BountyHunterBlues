@@ -2441,11 +2441,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-<<<<<<< HEAD
       objectReference: {fileID: 9100000, guid: 8c01851f273bb69499e63e2067f64b79, type: 2}
-=======
-      objectReference: {fileID: 9100000, guid: fc79f827069bf45d89108ac48b4b3e86, type: 2}
->>>>>>> 7f38dab9158258da7800a3a5d1870c6d8561c7de
     - target: {fileID: 4000013978322868, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
       propertyPath: m_LocalScale.x
       value: 0.094873905
