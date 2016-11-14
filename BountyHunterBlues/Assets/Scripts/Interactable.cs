@@ -5,4 +5,5 @@ public interface Interactable {
 
     void runInteraction();
 	void EndInteraction();
+	bool ForceInteraction();
 }

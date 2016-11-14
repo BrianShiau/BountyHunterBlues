@@ -26,6 +26,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	Coroutine typingRoutine;
 
 	public bool pauseTime;
+	public bool forceInteraction;
 
 	//have to call start twice for some reason. dont do it the second time.
 	private bool startedAlready = false;
@@ -387,5 +388,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		}
 		typing = false;
 		currentLine++;
+	}
+
+	public bool ForceInteraction(){
+		return forceInteraction;
 	}
 }

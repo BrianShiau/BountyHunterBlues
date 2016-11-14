@@ -47,4 +47,8 @@ public class Door : MonoBehaviour, Interactable {
 
 	public void EndInteraction(){
 	}
+
+	public bool ForceInteraction(){
+		return false;
+	}
 }

@@ -93,4 +93,8 @@ public class TerminalBall : NPCActor, Interactable {
 
 	public void EndInteraction(){
 	}
+
+	public bool ForceInteraction(){
+		return false;
+	}
 }
