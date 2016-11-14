@@ -13,8 +13,10 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	public Vector3 spotlightOffset;
 
 	public Sprite npcImage;
+	public Sprite[] alternateExpressions;
 
 	private string[] strings;
+	private int[] expressions;
 
 	public int NPCNumber;
 	public bool destroyAfterPlay;
@@ -47,6 +49,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
 		typing = false;
 		typingRoutine = null;
+
+		expressions = new int[]{ };
 
 		switch (NPCNumber){
 		//Tutorial
@@ -107,12 +111,13 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			//Opening Level 1
 			strings = new string[] {
 				"Soon as I get home I run into my ex. Wonderful.",
-                //pained
+				//pained
 				"...",
-                //neutral
+				//neutral
 				"The door out of the loading bay is probably locked.",
 				"I wonder if they’re still using those rolly things to control the doors...",
 			};
+			expressions = new int[]{0, -1, -1, -1};
 			break;
 		case 21: 
 			//Ending Door Text
@@ -143,7 +148,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"I s'pose it ain’t so bad.",
 
             };
-                break;
+            break;
         case 31:
             //dock worker
             strings = new string[] {
@@ -153,7 +158,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"Police say he just up and ran off...but that’s not like him.", // put in second dialogue with dog
 				"He even left his dog. He'd die before he'd leave that mutt behind.",
             };
-                break;
+            break;
         case 32:
             //waitress
             strings = new string[] {
@@ -173,7 +178,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "Hey, you wanna have a good time, you let me know, alright?",
 
             };
-                break;
+            break;
         case 34:
             //passed out guy
             strings = new string[] {
@@ -183,7 +188,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"I hope you and Mike get through this, John...",
 
             };
-                break;
+            break;
         case 35:
             //wallet on stage
             strings = new string[] {
@@ -192,7 +197,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "No one will miss this...",
 
             };
-                break;
+            break;
 
             //Level 2
             case 40:
@@ -202,7 +207,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 " 'EvaCorp CEO...' But no face.",
 
             };
-                break;
+            break;
 
             //Warehouse Rest Area
             case 50:
@@ -230,7 +235,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "I can't just make this easy for you.",
 
             };
-                break;
+            break;
 
             //Level 3
             //Room 1 
@@ -244,9 +249,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 //neutral
                 "I should've known better than to take a job here.",
                 "I just... need to keep pushing forward. Nothing else I can do now.",
-
             };
-                break;
+			expressions = new int[]{-1, -1, 0, -1, -1};
+            break;
 
             //Room 2
 
@@ -296,7 +301,6 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatPanel.GetComponent<Image> ().enabled = true;
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
 			chatImage.GetComponent<Image> ().enabled = true;
-			chatImage.GetComponent<Image> ().sprite = npcImage;
 			spotlight.enabled = true;
 			if (selfSpotlight) {
 				spotlight.rectTransform.position = origSpotlightPos;
@@ -312,6 +316,11 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				Time.timeScale = 0;
 		}
 		if (currentLine < strings.Length) {
+			if (expressions.Length > 0 && expressions [currentLine] >= 0) {
+				chatImage.GetComponent<Image> ().sprite = alternateExpressions [expressions [currentLine]];
+			} else {
+				chatImage.GetComponent<Image> ().sprite = npcImage;
+			}
 			if (!typing) {
 				typing = true;
 				typingRoutine = StartCoroutine (TypeText (strings [currentLine]));

@@ -25034,6 +25034,11 @@ Prefab:
       propertyPath: openingText
       value: 
       objectReference: {fileID: 1775972485}
+    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
+        type: 2}
+      propertyPath: hasGun
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -37594,6 +37599,7 @@ MonoBehaviour:
   selfSpotlight: 0
   spotlightOffset: {x: 0, y: 0, z: 0}
   npcImage: {fileID: 21300000, guid: 773d2d58d6e5e24428fe79f13a846b65, type: 3}
+  alternateExpressions: []
   NPCNumber: 21
   destroyAfterPlay: 0
   currentLine: 0
@@ -66626,6 +66632,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: alternateExpressions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013051926680, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
       propertyPath: m_LocalPosition.x
       value: -12.473783
@@ -66700,6 +66711,12 @@ Prefab:
       propertyPath: selfSpotlight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: alternateExpressions.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: e566711072989794c8847c9755119ad4,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
