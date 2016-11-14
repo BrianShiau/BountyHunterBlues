@@ -27,6 +27,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
 	public bool pauseTime;
 	public bool forceInteraction;
+	public int spotlightType;
 
 	//have to call start twice for some reason. dont do it the second time.
 	private bool startedAlready = false;
@@ -315,7 +316,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatPanel.GetComponent<Image> ().enabled = true;
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
 			chatImage.GetComponent<Image> ().enabled = true;
-			spotlight.enabled = true;
+			if (spotlightType == 0) {
+				spotlight.enabled = true;
+			}
 			if (selfSpotlight) {
 				spotlight.rectTransform.position = origSpotlightPos;
 			} else {

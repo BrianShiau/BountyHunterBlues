@@ -12863,7 +12863,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c02fc1a6ea69b4e389ca82d03ca9d1d5, type: 2}
+      objectReference: {fileID: 9100000, guid: e9f31be1216aa1b428ebec0553a784ef, type: 2}
     - target: {fileID: 4000013978322868, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
@@ -14550,6 +14550,11 @@ Prefab:
     - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
         type: 2}
       propertyPath: forceInteraction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: spotlightType
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -16684,6 +16689,11 @@ Prefab:
     - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
         type: 2}
       propertyPath: forceInteraction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: spotlightType
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -36233,6 +36243,11 @@ Prefab:
       propertyPath: selfSpotlight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: spotlightType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
@@ -40588,6 +40603,11 @@ Prefab:
     - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
         type: 2}
       propertyPath: forceInteraction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: spotlightType
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
