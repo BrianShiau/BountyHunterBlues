@@ -206,21 +206,26 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
             //Warehouse Rest Area
             case 50:
-                //CEO, from intercom or wherever
+                //CEO, from catwalk
                 strings = new string[] {
+                //neutral
                 "Hello again. You seem to be everywhere now.",
                 "What do you think?",
 				"I bet they'd thank me if they could.",
+                //pained
                 "I see how hard they work, how hard life is for them.",
 				"They toil and struggle and die... Isn’t it a waste?",
 
+                //blank
                 "I can give them better... I can make them immortal.",
                 "This way they don’t have to suffer. They don’t have to die.",
                 "Yes, people are scared, but they’ll see. It’s better like this.",
-			
+
+                //blank
                 "I know what line of work you’ve gone into since you’ve left.",
 				"Are you after me too?",
                 "You know, that’s too bad. I did miss you.",
+                //neutral
                 "Well, I suppose that doesn’t matter.",
                 "I can't just make this easy for you.",
 
@@ -249,6 +254,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
             case 80:
 			//CEO
 			strings = new string[] {
+                //neutral
 				"You’ve got me. Took you some time.",
 				"What are you going to do now? Nothing’s getting through this glass.",
 				"You'll have to take down the whole building.",
