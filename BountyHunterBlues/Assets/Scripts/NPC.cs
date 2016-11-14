@@ -54,7 +54,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			//Opening Tutorial
 			strings = new string[] {
 				"Of all the backwater space stations I could be sent to, it had to be the one where I grew up…",
-				" I haven’t missed this place.",
+				"I haven’t missed this place.",
 				"I’ll try to make this quick. Take out the CEO of EvaCorp and get the hell out of here.",
 				"Ah, are we docking? Guess I better get going.",
 			};
@@ -107,7 +107,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			//Opening Level 1
 			strings = new string[] {
 				"Soon as I get home I run into my ex. Wonderful.",
+                //pained
 				"...",
+                //neutral
 				"The door out of the loading bay is probably locked.",
 				"I wonder if they’re still using those rolly things to control the doors...",
 			};
@@ -232,7 +234,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 strings = new string[] {
                 "Damn it.",
 				"This was supposed to be a quick job, not some... damn conspiracy.",
+                //pained
 				"How many of those things did I know?",
+                //neutral
                 "I should've known better than to take a job here.",
                 "I just... need to keep pushing forward. Nothing else I can do now.",
 
