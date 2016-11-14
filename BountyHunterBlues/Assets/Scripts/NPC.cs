@@ -167,7 +167,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "Was the only place I could afford, and now what?",
 
             };
-                break;
+            break;
         case 33:
             //hooker
             strings = new string[] {
@@ -201,8 +201,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
             //Level 2
             case 40:
-                //corporate magazine
-                strings = new string[] {
+            //corporate magazine
+            strings = new string[] {
                 "It's a corporate magazine.",
                 " 'EvaCorp CEO...' But no face.",
 
@@ -210,61 +210,74 @@ public class NPC : NPCActor, Interactable, Dialogue {
             break;
 
             //Warehouse Rest Area
-            case 50:
-                //CEO, from catwalk
-                strings = new string[] {
-                //neutral
-                "Hello again. You seem to be everywhere now.",
-                "What do you think?",
+        case 50:
+            //CEO, from catwalk
+            strings = new string[] {
+	            //neutral
+	            "Hello again. You seem to be everywhere now.",
+        	};
+        	break;
+		case 51:
+			//CEO, from catwalk
+			strings = new string[] {
+				//neutral
+				"What do you think?",
 				"I bet they'd thank me if they could.",
-                //pained
-                "I see how hard they work, how hard life is for them.",
+				//pained
+				"I see how hard they work, how hard life is for them.",
 				"They toil and struggle and die... Isn’t it a waste?",
-
-                //blank
-                "I can give them better... I can make them immortal.",
-                "This way they don’t have to suffer. They don’t have to die.",
-                "Yes, people are scared, but they’ll see. It’s better like this.",
-
-                //blank
-                "I know what line of work you’ve gone into since you’ve left.",
+			};
+			break;
+		case 52:
+			//CEO, from catwalk
+			strings = new string[] {
+				//blank
+				"I can give them better... I can make them immortal.",
+				"This way they don’t have to suffer. They don’t have to die.",
+				"Yes, people are scared, but they’ll see. It’s better like this.",
+			};
+			break;
+		case 53:
+			//CEO, from catwalk
+			strings = new string[] {
+				//blank
+				"I know what line of work you’ve gone into since you’ve left.",
 				"Are you after me too?",
-                "You know, that’s too bad. I did miss you.",
-                //neutral
-                "Well, I suppose that doesn’t matter.",
-                "I can't just make this easy for you.",
+				"You know, that’s too bad. I did miss you.",
+				//neutral
+				"Well, I suppose that doesn’t matter.",
+				"I can't just make this easy for you.",
+			};
+			break;
 
-            };
-            break;
-
-            //Level 3
-            //Room 1 
-            case 60:
-                //hunter
-                strings = new string[] {
-                "Damn it.",
-				"This was supposed to be a quick job, not some... damn conspiracy.",
-                //pained
-				"How many of those things did I know?",
-                //neutral
-                "I should've known better than to take a job here.",
-                "I just... need to keep pushing forward. Nothing else I can do now.",
+        //Level 3
+        //Room 1 
+        case 60:
+            //hunter
+            strings = new string[] {
+            "Damn it.",
+			"This was supposed to be a quick job, not some... damn conspiracy.",
+            //pained
+			"How many of those things did I know?",
+            //neutral
+            "I should've known better than to take a job here.",
+            "I just... need to keep pushing forward. Nothing else I can do now.",
             };
 			expressions = new int[]{-1, -1, 0, -1, -1};
             break;
 
-            //Room 2
+        //Room 2
 
-            //Room 3
-            case 80:
-			//CEO
-			strings = new string[] {
-                //neutral
-				"You’ve got me. Took you some time.",
-				"What are you going to do now? Nothing’s getting through this glass.",
-				"You'll have to take down the whole building.",
-				"I don’t blame you for being angry. But I really am trying to do good in the world. I\t wish...",
-				"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
+        //Room 3
+        case 80:
+		//CEO
+		strings = new string[] {
+            //neutral
+			"You’ve got me. Took you some time.",
+			"What are you going to do now? Nothing’s getting through this glass.",
+			"You'll have to take down the whole building.",
+			"I don’t blame you for being angry. But I really am trying to do good in the world. I\t wish...",
+			"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
 			};
 			break;
 
