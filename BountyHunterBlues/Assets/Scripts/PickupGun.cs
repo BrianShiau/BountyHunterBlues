@@ -31,6 +31,7 @@ public class PickupGun : MonoBehaviour {
 			startedInteraction = true;
             PlayerActor pActor = (PlayerActor)col.GetComponent<GameActor>();
 			pActor.EnableGun();
+			GetComponent<AudioSource>().Play();
 			GetComponent<NPC> ().runInteraction ();
         }
     }
