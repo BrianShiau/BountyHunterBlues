@@ -2763,7 +2763,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 79b8213a9a7424f4a97592099372c189, type: 2}
+      objectReference: {fileID: 9100000, guid: fc79f827069bf45d89108ac48b4b3e86, type: 2}
     - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
         type: 2}
       propertyPath: hasGun
@@ -27635,13 +27635,10 @@ MonoBehaviour:
   selfSpotlight: 0
   spotlightOffset: {x: 0, y: 0, z: 0}
   npcImage: {fileID: 21300000, guid: 773d2d58d6e5e24428fe79f13a846b65, type: 3}
-  alternateExpressions: []
   NPCNumber: 21
   destroyAfterPlay: 0
   currentLine: 0
   pauseTime: 1
-  forceInteraction: 0
-  spotlightType: 0
 --- !u!1001 &1767500182
 Prefab:
   m_ObjectHideFlags: 0
