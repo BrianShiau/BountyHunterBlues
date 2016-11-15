@@ -13,8 +13,10 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	public Vector3 spotlightOffset;
 
 	public Sprite npcImage;
+	public Sprite[] alternateExpressions;
 
 	private string[] strings;
+	private int[] expressions;
 
 	public int NPCNumber;
 	public bool destroyAfterPlay;
@@ -24,6 +26,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	Coroutine typingRoutine;
 
 	public bool pauseTime;
+	public bool forceInteraction;
+	public int spotlightType;
 
 	//have to call start twice for some reason. dont do it the second time.
 	private bool startedAlready = false;
@@ -48,13 +52,15 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		typing = false;
 		typingRoutine = null;
 
+		expressions = new int[]{ };
+
 		switch (NPCNumber){
 		//Tutorial
 		case 0: 
 			//Opening Tutorial
 			strings = new string[] {
 				"Of all the backwater space stations I could be sent to, it had to be the one where I grew up…",
-				" I haven’t missed this place.",
+				"I haven’t missed this place.",
 				"I’ll try to make this quick. Take out the CEO of EvaCorp and get the hell out of here.",
 				"Ah, are we docking? Guess I better get going.",
 			};
@@ -87,7 +93,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		case 11: 
 			//TV 1
 			strings = new string[] {
-                "...sudden increase in missing persons. The Chief of Police has only stated that they are doing their utmost to ensure people's safety.",
+                "...sudden increase in reports of missing persons. The Chief of Police has only stated that they are doing their utmost to ensure people's safety.",
                 "In other news, the CEO of Eva Corporation has come under fire for what some consider unscrupulous business practices.",
                 "In spite of this, EvaCorp continues to buy up properties,",
                 "with plans to start three separate luxury construction projects in the next year...",
@@ -107,10 +113,13 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			//Opening Level 1
 			strings = new string[] {
 				"Soon as I get home I run into my ex. Wonderful.",
+				//pained
 				"...",
+				//neutral
 				"The door out of the loading bay is probably locked.",
-				"I wonder if they’re still using those rolly-robot things to control the doors...",
+				"I wonder if they’re still using those rolly things to control the doors...",
 			};
+			expressions = new int[]{0, -1, -1, -1};
 			break;
 		case 21: 
 			//Ending Door Text
@@ -141,7 +150,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"I s'pose it ain’t so bad.",
 
             };
-                break;
+            break;
         case 31:
             //dock worker
             strings = new string[] {
@@ -151,7 +160,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"Police say he just up and ran off...but that’s not like him.", // put in second dialogue with dog
 				"He even left his dog. He'd die before he'd leave that mutt behind.",
             };
-                break;
+            break;
         case 32:
             //waitress
             strings = new string[] {
@@ -160,7 +169,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "Was the only place I could afford, and now what?",
 
             };
-                break;
+            break;
         case 33:
             //hooker
             strings = new string[] {
@@ -171,7 +180,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
                 "Hey, you wanna have a good time, you let me know, alright?",
 
             };
-                break;
+            break;
         case 34:
             //passed out guy
             strings = new string[] {
@@ -181,54 +190,96 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				"I hope you and Mike get through this, John...",
 
             };
-                break;
+            break;
+        case 35:
+            //wallet on stage
+            strings = new string[] {
+                "Oh, look, a hundred bucks.",
+                "...",
+                "No one will miss this...",
+
+            };
+            break;
+
             //Level 2
+            case 40:
+            //corporate magazine
+            strings = new string[] {
+                "It's a corporate magazine.",
+                " 'EvaCorp CEO...' But no face.",
+
+            };
+            break;
 
             //Warehouse Rest Area
-            case 50:
-                //CEO, from intercom or wherever
-                strings = new string[] {
-                "Hello again. You seem to be everywhere now.",
-                "What do you think? I’m doing them a kindness, aren’t I?",
-                "I see how hard they work, how hard life is for them.They toil and struggle and die. Isn’t it a waste?",
-                "I can give them better. I can make them immortal.",
-                "Like this, they don’t have to suffer. They don’t have to die.",
-                "I know people are scared, but they’ll see. It’s better this way.",
-                "...",
-                "I know what line of work you’ve gone into since you’ve left. Are you after me, too?",
-                "Since I’m the CEO of Eva Corporation.",
-                "You know, that’s too bad. I did miss you.",
-                "I thought I’d be angry when I saw you again, but I wasn’t. I thought…",
-                "Well, I suppose that doesn’t matter.",
-                "I can’t be out here like a sitting duck.  I know how much you love a game.",
-                "Let me try to make it harder for you, shall I?",
-
-            };
-                break;
-
-            //Level 3
-            //Room 1 
-            case 60:
-                //hunter
-                strings = new string[] {
-                "I see she's been busy since I've been gone.",
-                "Damn it. This was supposed to be a quick job, not some... damn conspiracy.",
-                "I should've known better than to take a job here.",
-                "I just... need to keep pushing forward. Nothing else I can do now.",
-
-            };
-                break;
-
-            //Room 2
-
-            //Room 3
-            case 80:
-			//CEO
+        case 50:
+            //CEO, from catwalk
+            strings = new string[] {
+	            //neutral
+	            "Hello again. You seem to be everywhere now.",
+        	};
+        	break;
+		case 51:
+			//CEO, from catwalk
 			strings = new string[] {
-				"You’ve got me. Took you some time.",
-				"What are you going to do now? Nothing’s getting through this glass.",
-				"I don’t blame you for being angry. But I really am trying to do good in the world. I wish...",
-				"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
+				//neutral
+				"What do you think?",
+				"I bet they'd thank me if they could.",
+				//pained
+				"I see how hard they work, how hard life is for them.",
+				"They toil and struggle and die... Isn’t it a waste?",
+			};
+			break;
+		case 52:
+			//CEO, from catwalk
+			strings = new string[] {
+				//blank
+				"I can give them better... I can make them immortal.",
+				"This way they don’t have to suffer. They don’t have to die.",
+				"Yes, people are scared, but they’ll see. It’s better like this.",
+			};
+			break;
+		case 53:
+			//CEO, from catwalk
+			strings = new string[] {
+				//blank
+				"I know what line of work you’ve gone into since you’ve left.",
+				"Are you after me too?",
+				"You know, that’s too bad. I did miss you.",
+				//neutral
+				"Well, I suppose that doesn’t matter.",
+				"I can't just make this easy for you.",
+			};
+			break;
+
+        //Level 3
+        //Room 1 
+        case 60:
+            //hunter
+            strings = new string[] {
+            "Damn it.",
+			"This was supposed to be a quick job, not some... damn conspiracy.",
+            //pained
+			"How many of those things did I know?",
+            //neutral
+            "I should've known better than to take a job here.",
+            "I just... need to keep pushing forward. Nothing else I can do now.",
+            };
+			expressions = new int[]{-1, -1, 0, -1, -1};
+            break;
+
+        //Room 2
+
+        //Room 3
+        case 80:
+		//CEO
+		strings = new string[] {
+            //neutral
+			"You’ve got me. Took you some time.",
+			"What are you going to do now? Nothing’s getting through this glass.",
+			"You'll have to take down the whole building.",
+			"I don’t blame you for being angry. But I really am trying to do good in the world. I\t wish...",
+			"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
 			};
 			break;
 
@@ -265,8 +316,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			chatPanel.GetComponent<Image> ().enabled = true;
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
 			chatImage.GetComponent<Image> ().enabled = true;
-			chatImage.GetComponent<Image> ().sprite = npcImage;
-			spotlight.enabled = true;
+			if (spotlightType == 0) {
+				spotlight.enabled = true;
+			}
 			if (selfSpotlight) {
 				spotlight.rectTransform.position = origSpotlightPos;
 			} else {
@@ -281,6 +333,11 @@ public class NPC : NPCActor, Interactable, Dialogue {
 				Time.timeScale = 0;
 		}
 		if (currentLine < strings.Length) {
+			if (expressions.Length > 0 && expressions [currentLine] >= 0) {
+				chatImage.GetComponent<Image> ().sprite = alternateExpressions [expressions [currentLine]];
+			} else {
+				chatImage.GetComponent<Image> ().sprite = npcImage;
+			}
 			if (!typing) {
 				typing = true;
 				typingRoutine = StartCoroutine (TypeText (strings [currentLine]));
@@ -334,5 +391,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		}
 		typing = false;
 		currentLine++;
+	}
+
+	public bool ForceInteraction(){
+		return forceInteraction;
 	}
 }

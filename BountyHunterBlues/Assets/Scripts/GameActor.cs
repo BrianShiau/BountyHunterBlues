@@ -24,11 +24,16 @@ public abstract class GameActor : Actor, Vision
 	public abstract void EndInteract();
     public abstract GameActor[] runVisionDetection(float fov, float sightDistance);
 
+	private bool alreadyForcedInteraction;
+	protected Interactable previousInteractionTarget;
+
     public override void Start()
     {
         base.Start();
         closestAttackable = null;
         interactionTarget = null;
+		alreadyForcedInteraction = false;
+		previousInteractionTarget = null;
     }
 
     public override void Update()
@@ -84,6 +89,18 @@ public abstract class GameActor : Actor, Vision
                 }
             }
         }
+		if (interactionTarget != null) {
+			if(previousInteractionTarget != interactionTarget){
+				alreadyForcedInteraction = false;
+			}
+			if (interactionTarget.ForceInteraction ()) {
+				if (!alreadyForcedInteraction) {
+					interactionTarget.runInteraction ();
+					alreadyForcedInteraction = true;
+				}
+			}
+		}
+		previousInteractionTarget = interactionTarget;
     }
 
     protected void acquireClosestAttackable()

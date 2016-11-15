@@ -54,9 +54,9 @@ public class MeleeEnemy : EnemyActor {
 			return;
 		
 		base.Update ();
-
+        //Debug.Log(is_attacking());
 		is_confused();
-		_stateManager.update_state (player_is_cloaked(), closestAttackable, sound_heard (), is_alert ());
+		_stateManager.update_state (is_attacking(), player_is_cloaked(), closestAttackable, sound_heard (), is_alert ());
 		if (current_state.get_state () != _stateManager.get_state ()) {
 			current_state.on_exit ();
 			if (_stateManager.get_state () == State.NEUTRAL)
@@ -95,38 +95,38 @@ public class MeleeEnemy : EnemyActor {
 	}
 
     public override void rangedAttack(){
-    	if (closestAttackable is PlayerActor){
-        	StartCoroutine(DashAttack());
-        }
+        StartCoroutine(DashAttack());  
     }
 
     private IEnumerator DashAttack(){
-    	dash_cr_running = true;
-    	gameActorAnimator.SetBool("isAttack", true);
+        set_attacking(true);
+        dash_cr_running = true;
+        gameActorAnimator.SetBool("isAttack", true);
         while(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()) > 0.01f){
-        	Vector2 temp = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), get_last_seen(), dash_speed * Time.deltaTime);
-        	transform.position = new Vector3(temp.x, temp.y, transform.position.z);
-        	//perform dash animation
+            Vector2 temp = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), get_last_seen(), dash_speed * Time.deltaTime);
+            transform.position = new Vector3(temp.x, temp.y, transform.position.z);
 
-        	if(Vector2.Distance(get_player_object().transform.position, transform.position) < 2f){
-        		get_player_actor().takeDamage();
-        	}
-        	yield return null;
+            if(Vector2.Distance(get_player_object().transform.position, transform.position) < 2f){
+                get_player_actor().takeDamage();
+            }
+            yield return null;
         }
-    	dash_cr_running = false;
+        dash_cr_running = false;
 
         spin_cr_running = true;
-
+        
+        spin_time += Time.deltaTime;    
         while(spin_time < spin_time_threshold){
-        	spin_time += Time.deltaTime;
-        	//perform spin animation
-        	meleeAttack();
-        	yield return null;
+            meleeAttack();
+            yield return null;
+        }
+        if(spin_time >= spin_time_threshold){
+            spin_time = 0;
         }
 
-        spin_time = 0;
         spin_cr_running = false;
         gameActorAnimator.SetBool("isAttack", false);
+        set_attacking(false);
     }
 
     public override void meleeAttack(){

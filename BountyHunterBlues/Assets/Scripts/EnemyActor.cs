@@ -14,6 +14,7 @@ public abstract class EnemyActor : GameActor {
     private bool alert;
     private bool chasing;
     private bool confused;
+    private bool attacking;
     protected Vector2 last_seen;
 
     private Vector2 last_neutral_position;
@@ -31,7 +32,7 @@ public abstract class EnemyActor : GameActor {
     public int path_threshold;
     private bool shot;
 
-    private Transform raySource;
+    protected Transform raySource;
 	// UI Reactions
 	Animator reactionAnim;
 	int reactionStack;
@@ -50,6 +51,7 @@ public abstract class EnemyActor : GameActor {
 
 	public override void Start(){
 		base.Start();
+        attacking = false;
         player = GameObject.Find("0_Player");
         playerActor = (PlayerActor) player.GetComponent(typeof(PlayerActor));
         hasAttacked = false;
@@ -320,7 +322,7 @@ public abstract class EnemyActor : GameActor {
                         // obstruction in front, ignore the rest of the ray
                         break;
                     //else if (hitObj.GetComponent<GameActor>() is PlayerActor && hitObj.GetComponent<GameActor>().isVisible())
-                    else if (hitObj.GetComponent<GameActor>() is PlayerActor)
+                    else if (hitObj.GetComponent<GameActor>() is PlayerActor && !is_attacking())
                     {
                         // PlayerActor
                         GameActors.Add(hitObj.GetComponent<GameActor>());
@@ -335,6 +337,14 @@ public abstract class EnemyActor : GameActor {
     public bool attackedThisFrame()
     {
         return hasAttacked;
+    }
+
+    public bool is_attacking(){
+        return attacking;
+    }
+
+    public void set_attacking(bool value){
+        attacking = value;
     }
 
     public AIState getCurrentState()

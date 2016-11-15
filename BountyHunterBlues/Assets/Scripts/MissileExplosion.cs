@@ -22,6 +22,7 @@ public class MissileExplosion : Explosion {
 
     protected override void explosionHit(GameActor hitActor)
     {
-        hitActor.takeDamage();
+        if (hitActor is PlayerActor)
+            hitActor.takeDamage();
     }
 }

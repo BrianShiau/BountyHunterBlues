@@ -64549,6 +64549,11 @@ Prefab:
       propertyPath: faceDir.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010893468112, guid: 17658205e75e81d4d92d33e676ea42f7,
+        type: 2}
+      propertyPath: dash_speed
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17658205e75e81d4d92d33e676ea42f7, type: 2}
   m_IsPrefabParent: 0

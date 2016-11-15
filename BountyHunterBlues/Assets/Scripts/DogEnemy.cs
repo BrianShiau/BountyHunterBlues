@@ -20,7 +20,7 @@ public class DogEnemy : EnemyActor {
 		base.Update ();
 
 		is_confused();
-		_stateManager.update_state (player_is_cloaked(), closestAttackable, sound_heard (), is_alert ());
+		_stateManager.update_state (is_attacking(), player_is_cloaked(), closestAttackable, sound_heard (), is_alert ());
 		if (current_state.get_state () != _stateManager.get_state ()) {
 			current_state.on_exit ();
 			if (_stateManager.get_state () == State.NEUTRAL)

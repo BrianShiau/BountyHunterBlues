@@ -81,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011676209088
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ Transform:
   m_GameObject: {fileID: 1000011455028586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.654812, y: -2.5477471, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011070040132}
@@ -227,7 +227,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0.09867287, y: -0.7893753}
   serializedVersion: 2
-  m_Size: {x: 6.8019037, y: 8.10437}
+  m_Size: {x: 3.16, y: 6.61}
 --- !u!61 &61000012173771666
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -297,7 +297,7 @@ MonoBehaviour:
   path: {fileID: 0}
   fov: 140
   meleeDistance: 2
-  sightDistance: 6
+  sightDistance: 8
   interactionDistance: 2
   path_threshold: 4
   audio_distance: 10
@@ -307,8 +307,7 @@ MonoBehaviour:
   fence: {fileID: 0}
   fenceCollider: {fileID: 0}
   spin_time_threshold: 3
-  MissileObject: {fileID: 1000012480192904, guid: 378ea2c3974fe944ead7f855541ddf95,
-    type: 2}
+  MissileObject: {fileID: 0, guid: 378ea2c3974fe944ead7f855541ddf95, type: 2}
   dash_speed: 0.5
 --- !u!114 &114000011858639588
 MonoBehaviour:
@@ -478,7 +477,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9983dd5e17ae5244dbbde20e233ec8e3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

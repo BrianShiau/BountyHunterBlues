@@ -203,8 +203,8 @@ public class AlertMelee: MeleeState {
 
 public class AggresiveMelee: MeleeState {
 
-	private static float shoot_timer_threshold = 1;
-	private float shoot_timer = shoot_timer_threshold;
+	private static float shoot_timer_threshold = 0.5f;
+	private float shoot_timer = 0;
 
     public AggresiveMelee(MeleeEnemy enemy) : base(enemy) { 
     }
@@ -232,34 +232,9 @@ public class AggresiveMelee: MeleeState {
 	        enemy.faceDir = dir;
 			enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
 	    }
-		//if(enemy.getClosestAttackable() != null && !enemy.get_confused()){
-		//	enemy.reset_confused_time();
-		//	enemy.set_confused(false);
-//
-		//	Vector2 worldFaceDir = enemy.get_last_seen() - new Vector2(enemy.gameObject.transform.position.x, enemy.gameObject.transform.position.y);
-	    //    worldFaceDir.Normalize();
-	    //    Vector2 localFaceDir = enemy.transform.InverseTransformDirection(worldFaceDir);
-//
-	    //    shoot_timer += Time.deltaTime;
-	    //    if(shoot_timer > shoot_timer_threshold && enemy.faceDir == localFaceDir){
-	    //    	shoot_timer = 0;
-	    //    	rangedAttack.execute(enemy);
-	    //    }
-	    //    enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
-    	//}
-    	//if(enemy.get_confused()){
-    	//	shoot_timer = 0;
-    	//	enemy.perform_confusion();
-    	//}
-    	//else{
-    	//	Vector2 worldFaceDir = enemy.get_last_seen() - new Vector2(enemy.gameObject.transform.position.x, enemy.gameObject.transform.position.y);
-	    //    worldFaceDir.Normalize();
-//
-	    //    Vector2 localFaceDir = enemy.transform.InverseTransformDirection(worldFaceDir);
-	    //    Vector2 dir = Vector2.MoveTowards(enemy.faceDir, localFaceDir, enemy.rotation_speed * Time.deltaTime);
-	    //    dir.Normalize();
-	    //    enemy.faceDir = dir;
-    	//}
+	    if(!enemy.is_dashing() && !enemy.is_spinning() && enemy.getClosestAttackable() == null){
+			shoot_timer = 0;
+	    }
 	}
 
 	public override void on_exit(){

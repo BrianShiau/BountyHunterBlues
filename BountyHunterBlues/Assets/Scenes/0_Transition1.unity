@@ -3352,10 +3352,13 @@ MonoBehaviour:
   selfSpotlight: 0
   spotlightOffset: {x: 0.5, y: 0.5, z: 0}
   npcImage: {fileID: 21300000, guid: 1fb9d25d2d6393d419476e3fe8a278bc, type: 3}
+  alternateExpressions: []
   NPCNumber: 12
   destroyAfterPlay: 0
   currentLine: 0
   pauseTime: 0
+  forceInteraction: 0
+  spotlightType: 0
 --- !u!61 &307590066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12465,10 +12468,13 @@ MonoBehaviour:
   selfSpotlight: 0
   spotlightOffset: {x: -1, y: 4, z: 0}
   npcImage: {fileID: 21300000, guid: d8cf29444e86a104882f77f530f930dd, type: 3}
+  alternateExpressions: []
   NPCNumber: 11
   destroyAfterPlay: 0
   currentLine: 0
   pauseTime: 0
+  forceInteraction: 0
+  spotlightType: 0
 --- !u!212 &1510121911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17546,38 +17552,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: gunImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: gunSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: gunSliderFill
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: hasGun
+    - target: {fileID: 1000010480634366, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 95000010032085470, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 79b8213a9a7424f4a97592099372c189, type: 2}
-    - target: {fileID: 4000013978322868, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.0948739
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013978322868, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.09487411
+    - target: {fileID: 1000010160602982, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}

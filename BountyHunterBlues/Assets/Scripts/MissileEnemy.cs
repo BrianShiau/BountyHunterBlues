@@ -29,7 +29,7 @@ public class MissileEnemy : EnemyActor {
         base.Update();
 
         is_confused();
-        _stateManager.update_state(player_is_cloaked(), closestAttackable, sound_heard(), is_alert());
+        _stateManager.update_state(is_attacking(), player_is_cloaked(), closestAttackable, sound_heard(), is_alert());
         if (current_state.get_state() != _stateManager.get_state())
         {
             current_state.on_exit();
@@ -90,7 +90,10 @@ public class MissileEnemy : EnemyActor {
         for (int i = 0; i < numMissilesToFire; ++i)
         {
 			if (health > 0) {
-				MissileProjectile missile = MissileProjectile.Create (MissileObject, transform.position, GetComponentInChildren<Laser> ().transform.eulerAngles);
+                Vector3 source = transform.position;
+                if (raySource != null)
+                    source = raySource.position;
+				MissileProjectile missile = MissileProjectile.Create (MissileObject, source, GetComponentInChildren<Laser> ().transform.eulerAngles);
 				missile.setInitialDir (transform.TransformDirection (faceDir));
 				missile.setOwner (this);
 			}

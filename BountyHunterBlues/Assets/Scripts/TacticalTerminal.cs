@@ -30,4 +30,8 @@ public class TacticalTerminal : MonoBehaviour, Interactable {
 	public void EndInteraction(){
 		runInteraction ();
 	}
+
+	public bool ForceInteraction(){
+		return false;
+	}
 }
