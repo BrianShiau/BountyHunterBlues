@@ -1544,9 +1544,17 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c02fc1a6ea69b4e389ca82d03ca9d1d5, type: 2}
+      objectReference: {fileID: 9100000, guid: e9f31be1216aa1b428ebec0553a784ef, type: 2}
     - target: {fileID: 4000013978322868, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010480634366, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010160602982, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -21323,10 +21331,13 @@ MonoBehaviour:
   selfSpotlight: 0
   spotlightOffset: {x: 0, y: 0, z: 0}
   npcImage: {fileID: 21300000, guid: 6319cd7e1632d5b4ab8da291e5a7bd6e, type: 3}
+  alternateExpressions: []
   NPCNumber: 35
   destroyAfterPlay: 0
   currentLine: 0
   pauseTime: 0
+  forceInteraction: 0
+  spotlightType: 0
 --- !u!61 &2095400825
 BoxCollider2D:
   m_ObjectHideFlags: 0

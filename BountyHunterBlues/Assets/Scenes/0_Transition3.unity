@@ -12873,6 +12873,14 @@ Prefab:
       propertyPath: openingText
       value: 
       objectReference: {fileID: 263751421}
+    - target: {fileID: 1000010480634366, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010160602982, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
