@@ -232,7 +232,7 @@ public class AggresiveMelee: MeleeState {
 	        enemy.faceDir = dir;
 			enemy.set_last_seen(new Vector2(enemy.getClosestAttackable().gameObject.transform.position.x, enemy.getClosestAttackable().gameObject.transform.position.y));
 	    }
-	    if(!enemy.is_dashing() && !enemy.is_spinning() && enemy.getClosestAttackable() == null){
+	    if(!enemy.is_attacking() && !enemy.is_dashing() && !enemy.is_spinning() && enemy.getClosestAttackable() == null){
 			shoot_timer = 0;
 	    }
 	}
