@@ -103,7 +103,6 @@ public class StateManager{
 		if(state == State.AGGRESIVE) aggresive_state(target);
 		if(cloaked)		 confused = true;
 		is_attacking = attacking;
-		//Debug.Log(is_attacking);
 	}
 
 	public State get_state(){

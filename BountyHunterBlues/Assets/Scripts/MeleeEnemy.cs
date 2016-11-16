@@ -54,7 +54,6 @@ public class MeleeEnemy : EnemyActor {
 			return;
 		
 		base.Update ();
-        //Debug.Log(is_attacking());
 		is_confused();
 		_stateManager.update_state (is_attacking(), player_is_cloaked(), closestAttackable, sound_heard (), is_alert ());
 		if (current_state.get_state () != _stateManager.get_state ()) {
@@ -71,7 +70,7 @@ public class MeleeEnemy : EnemyActor {
 			current_state.on_enter ();
 		}
 		current_state.execute ();
-
+        //Debug.Log(is_attacking());
 		//if (isMoving) {
 		//	if (!audioManager.isPlaying ("Feet")) {
 		//		if (isPatrolling)
@@ -98,11 +97,14 @@ public class MeleeEnemy : EnemyActor {
         StartCoroutine(DashAttack());  
     }
 
+    public void reset_spin_timer(){
+        spin_time = 0;
+    }
+
     private IEnumerator DashAttack(){
         set_attacking(true);
         dash_cr_running = true;
         gameActorAnimator.SetBool("isAttack", true);
-        Debug.Log(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()));
         while(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()) > 0.3f){
             Vector2 temp = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), get_last_seen(), dash_speed * Time.deltaTime);
             transform.position = new Vector3(temp.x, temp.y, transform.position.z);
@@ -121,13 +123,10 @@ public class MeleeEnemy : EnemyActor {
             meleeAttack();
             yield return null;
         }
-        if(spin_time >= spin_time_threshold){
-            spin_time = 0;
-        }
-        Debug.Log("here");
-        spin_cr_running = false;
         gameActorAnimator.SetBool("isAttack", false);
         set_attacking(false);
+        spin_cr_running = false;
+        spin_time = 0;
     }
 
     public override void meleeAttack(){
