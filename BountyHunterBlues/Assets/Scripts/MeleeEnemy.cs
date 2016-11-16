@@ -145,4 +145,23 @@ public class MeleeEnemy : EnemyActor {
         base.die();
         Destroy(gameObject);
     }
+
+    public override void takeDamage(int damage = 1){
+        if((int)currDirection == 2 && get_player_actor().get_current_direction() == 0){
+            
+        }
+        else if((int)currDirection == 0 && get_player_actor().get_current_direction() == 2){
+            
+        }
+        else if((int)currDirection == 3 && get_player_actor().get_current_direction() == 1){
+            
+        }
+        else if((int)currDirection == 1 && get_player_actor().get_current_direction() == 3){
+            
+        }
+        else{
+            base.takeDamage(damage);
+        }
+
+    }
 }

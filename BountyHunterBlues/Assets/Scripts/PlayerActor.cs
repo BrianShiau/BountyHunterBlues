@@ -137,7 +137,7 @@ public class PlayerActor : GameActor
 	public override void Update()
 	{
 		base.Update();
-
+		//Debug.Log("player: " + (int)currDirection);
 		knifeAttacked = false;
 		gun_fired = false;
 		enemyHit = false;

@@ -334,8 +334,7 @@ public abstract class EnemyActor : GameActor {
         return GameActors.ToArray();
     }
 
-    public bool attackedThisFrame()
-    {
+    public bool attackedThisFrame(){
         return hasAttacked;
     }
 
@@ -347,8 +346,7 @@ public abstract class EnemyActor : GameActor {
         attacking = value;
     }
 
-    public AIState getCurrentState()
-    {
+    public AIState getCurrentState(){
         return current_state;
     }
 
@@ -371,13 +369,11 @@ public abstract class EnemyActor : GameActor {
 		}
 	}
 
-    public override void disableAim()
-    {
+    public override void disableAim(){
         throw new NotImplementedException();
     }
 
-    public override void aim(Vector2 worldPos)
-    {
+    public override void aim(Vector2 worldPos){
         throw new NotImplementedException();
     }
 }

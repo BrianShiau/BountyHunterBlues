@@ -149,6 +149,8 @@ public abstract class Actor : MonoBehaviour, Animatable, IEquatable<Actor> {
     {
         isPatrolling = patrol;
     }
-
     
+    public int get_current_direction(){
+        return (int)currDirection;
+    }
 }
