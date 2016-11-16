@@ -90,6 +90,7 @@ GameObject:
   - 224: {fileID: 224000014208103884}
   - 222: {fileID: 222000014051069882}
   - 114: {fileID: 114000010804907808}
+  - 95: {fileID: 95000010521657146}
   m_Layer: 5
   m_Name: BulletImage
   m_TagString: Untagged
@@ -141,6 +142,7 @@ GameObject:
   - 224: {fileID: 224000010539659642}
   - 222: {fileID: 222000010357727862}
   - 114: {fileID: 114000013163071582}
+  - 95: {fileID: 95000010774513450}
   m_Layer: 5
   m_Name: BulletImage (2)
   m_TagString: Untagged
@@ -299,6 +301,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &95000010521657146
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011262625368}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: af0ceef2f5d5a71469c5aa4b9c750ad0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95000010774513450
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011613091732}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1c0c1007fa29d44db916b25815bcc53, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010067305250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1179,7 +1215,7 @@ RectTransform:
   m_GameObject: {fileID: 1000011262625368}
   m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
   m_Children: []
   m_Father: {fileID: 224000014247809466}
