@@ -102,7 +102,8 @@ public class MeleeEnemy : EnemyActor {
         set_attacking(true);
         dash_cr_running = true;
         gameActorAnimator.SetBool("isAttack", true);
-        while(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()) > 0.01f){
+        Debug.Log(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()));
+        while(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), get_last_seen()) > 0.3f){
             Vector2 temp = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), get_last_seen(), dash_speed * Time.deltaTime);
             transform.position = new Vector3(temp.x, temp.y, transform.position.z);
 
@@ -123,7 +124,7 @@ public class MeleeEnemy : EnemyActor {
         if(spin_time >= spin_time_threshold){
             spin_time = 0;
         }
-
+        Debug.Log("here");
         spin_cr_running = false;
         gameActorAnimator.SetBool("isAttack", false);
         set_attacking(false);
