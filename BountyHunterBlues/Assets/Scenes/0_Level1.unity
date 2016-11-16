@@ -25039,6 +25039,10 @@ Prefab:
       propertyPath: hasGun
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011018034386, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -37604,6 +37608,8 @@ MonoBehaviour:
   destroyAfterPlay: 0
   currentLine: 0
   pauseTime: 1
+  forceInteraction: 0
+  spotlightType: 0
 --- !u!1001 &1099849643
 Prefab:
   m_ObjectHideFlags: 0
