@@ -60,9 +60,25 @@ GameObject:
   - 114: {fileID: 114000013946030618}
   - 114: {fileID: 114000012935824980}
   - 81: {fileID: 81000011524607102}
+  - 114: {fileID: 114000013265667548}
   m_Layer: 0
   m_Name: 0_Player
   m_TagString: GameActor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000010848374814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010941718820}
+  m_Layer: 0
+  m_Name: SpriteLayerPoint
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,6 +278,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000013978322868}
   m_RootOrder: 5
+--- !u!4 &4000010941718820
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010848374814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.67, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013978322868}
+  m_RootOrder: 8
 --- !u!4 &4000011100768018
 Transform:
   m_ObjectHideFlags: 1
@@ -388,6 +417,7 @@ Transform:
   - {fileID: 4000010940769640}
   - {fileID: 4000010832591306}
   - {fileID: 4000013449488972}
+  - {fileID: 4000010941718820}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!20 &20000010485373920
@@ -606,6 +636,7 @@ MonoBehaviour:
   NEW_GUN_MODE: 1
   aimTimeCap: 0.5
   hasGun: 0
+  hasKnife: 1
   reloadTime: 4
   cloakTime: 1
   currentLevel: 2
@@ -739,6 +770,17 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 6ee5dbac3980844c6855b0f0e4041fcb, type: 3}
   - {fileID: 2800000, guid: 34bde2d54a5914104999593f0f45a1bc, type: 3}
   - {fileID: 2800000, guid: 5d3eaf39b2af94348b5136c5ef29c8a7, type: 3}
+--- !u!114 &114000013265667548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010692404168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e6ececd963f8e4ea833c7c4008d1c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013415370380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -797,7 +839,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -712405835
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 64ef3dec69acd477abc564ccd25590b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.7490196}

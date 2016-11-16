@@ -9,11 +9,12 @@ public class HealthBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GetComponent<SpriteRenderer> ().sprite = sprites [health-1];
-	}
+        //GetComponent<SpriteRenderer>().sortingOrder = GetComponentInParent<SpriteRenderer>().sortingOrder - 1;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
+        
 	}
 
 	public void setHealth(int hp){

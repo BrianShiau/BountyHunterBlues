@@ -122,6 +122,7 @@ public abstract class GameActor : Actor, Vision
     // inherited from MonoBehaviour
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
+        /*
 		if(other.isTrigger && other.name != "Opening Text")
         {
             SpriteRenderer otherSprite = other.gameObject.GetComponent<SpriteRenderer>();
@@ -133,5 +134,6 @@ public abstract class GameActor : Actor, Vision
             }
 
         }
+        */
     }
 }

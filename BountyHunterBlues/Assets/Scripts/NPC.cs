@@ -6,7 +6,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	//we should really put this disable in player
 	private PlayerActor player;
 	private GameObject chatPanel;
-	private GameObject chatImage;
+	private Image chatImage;
 	private Image spotlight;
 	private Vector3 origSpotlightPos;
 	public bool selfSpotlight;
@@ -28,6 +28,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	public bool pauseTime;
 	public bool forceInteraction;
 	public int spotlightType;
+	public bool leftImage;
 
 	//have to call start twice for some reason. dont do it the second time.
 	private bool startedAlready = false;
@@ -45,7 +46,11 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
 		player = GameObject.FindObjectOfType<PlayerActor>();
 		chatPanel = GameObject.FindGameObjectWithTag ("ChatPanel");
-		chatImage = GameObject.FindGameObjectWithTag ("ChatImage");
+		if (leftImage) {
+			chatImage = GameObject.FindGameObjectWithTag ("ChatImage").GetComponent<Image> ();
+		} else {
+			chatImage = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("RightChatImage").GetComponent<Image> ();
+		}
 		spotlight = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild("Spotlight").GetComponent<Image>();
 		origSpotlightPos = spotlight.rectTransform.position;
 
@@ -184,11 +189,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
         case 34:
             //passed out guy
             strings = new string[] {
-                "It's John...",
-				"God, it's been so long...",
-				"I wish he was awake so I could...",
-				"I hope you and Mike get through this, John...",
-
+                "He's out cold.",
             };
             break;
         case 35:
@@ -278,7 +279,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			"You’ve got me. Took you some time.",
 			"What are you going to do now? Nothing’s getting through this glass.",
 			"You'll have to take down the whole building.",
-			"I don’t blame you for being angry. But I really am trying to do good in the world. I\t wish...",
+			"I don’t blame you for being angry. But I really am trying to do good in the world. I wish...",
 			"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
 			};
 			break;
@@ -315,7 +316,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		if (currentLine == 0) {
 			chatPanel.GetComponent<Image> ().enabled = true;
 			chatPanel.GetComponentInChildren<Text> ().enabled = true;
-			chatImage.GetComponent<Image> ().enabled = true;
+			chatImage.enabled = true;
 			if (spotlightType == 0) {
 				spotlight.enabled = true;
 			}
@@ -329,14 +330,16 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			}
 			player.SetDialogueMode(true);
 			player.DisableGunImage ();
+			player.DisableKnifeImage ();
 			if (pauseTime)
 				Time.timeScale = 0;
 		}
 		if (currentLine < strings.Length) {
 			if (expressions.Length > 0 && expressions [currentLine] >= 0) {
-				chatImage.GetComponent<Image> ().sprite = alternateExpressions [expressions [currentLine]];
+				
+				chatImage.sprite = alternateExpressions [expressions [currentLine]];
 			} else {
-				chatImage.GetComponent<Image> ().sprite = npcImage;
+				chatImage.sprite = npcImage;
 			}
 			if (!typing) {
 				typing = true;
@@ -366,10 +369,11 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		}
 		chatPanel.GetComponent<Image> ().enabled = false;
 		chatPanel.GetComponentInChildren<Text> ().enabled = false;
-		chatImage.GetComponent<Image> ().enabled = false;
+		chatImage.enabled = false;
 		spotlight.enabled = false;
 		player.SetDialogueMode(false);
 		player.EnableGunImage ();
+		player.EnableKnifeImage ();
 		if (pauseTime)
 			Time.timeScale = 1;
 		if (NPCNumber == 0) {

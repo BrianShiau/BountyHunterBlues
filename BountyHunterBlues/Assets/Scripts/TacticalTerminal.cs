@@ -22,8 +22,10 @@ public class TacticalTerminal : MonoBehaviour, Interactable {
 		player.SetTacticalMode(!player.InTacticalMode());
 		if (player.InTacticalMode ()) {
 			player.DisableGun ();
+			player.DisableKnifeImage ();
 		} else {
 			player.EnableGun ();
+			player.EnableKnifeImage ();
 		}
     }
 

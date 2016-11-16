@@ -38,6 +38,7 @@ GameObject:
   - 212: {fileID: 212000010925132988}
   - 114: {fileID: 114000011443674464}
   - 61: {fileID: 61000011505374912}
+  - 114: {fileID: 114000010866155192}
   m_Layer: 0
   m_Name: 0_Door_H
   m_TagString: Interactable
@@ -100,6 +101,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 10.23, y: 10.23}
+--- !u!114 &114000010866155192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013429468374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5f61bfd86b097468b53c7b5e56e63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTopOf: {fileID: 0}
 --- !u!114 &114000011443674464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,6 +127,8 @@ MonoBehaviour:
   openSprite: {fileID: 21300000, guid: 3aaecc079cccc470a95eaa8c973b13c7, type: 3}
   closed: 0
   specialDoor: 0
+  nextRoom: {fileID: 0}
+  anotherRoom: {fileID: 0}
 --- !u!212 &212000010925132988
 SpriteRenderer:
   m_ObjectHideFlags: 1
