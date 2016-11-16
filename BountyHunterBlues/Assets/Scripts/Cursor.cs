@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour {
 	public Texture2D cursorTexture;
@@ -12,6 +13,8 @@ public class Cursor : MonoBehaviour {
 	private GameObject[] midPointerReloads;
 	private Animator[] midPointerReloadAnims;
 	private GameObject directionPointer;
+	private Transform[] bulletTransforms;
+	private Image[] bulletImages;
 
 	private PlayerActor player;
 
@@ -29,6 +32,16 @@ public class Cursor : MonoBehaviour {
 		player = GetComponent<PlayerActor> ();
 		midPointerReloadAnims [0].speed = 2 / player.reloadTime;
 		directionPointer = transform.FindChild ("DirectionPointer").gameObject;
+
+		bulletImages = new Image[3];
+		bulletTransforms = new Transform[3];
+		Transform gunHudImage = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("GunHUDImage");
+		bulletImages[0] = gunHudImage.FindChild ("BulletImage").GetComponent<Image>();
+		bulletImages[1] = gunHudImage.FindChild ("BulletImage (1)").GetComponent<Image>();
+		bulletImages[2] = gunHudImage.FindChild ("BulletImage (2)").GetComponent<Image>();
+		bulletTransforms [0] = gunHudImage.FindChild ("BulletImage");
+		bulletTransforms [1] = gunHudImage.FindChild ("BulletImage (1)");
+		bulletTransforms [2] = gunHudImage.FindChild ("BulletImage (2)");
 	}
 
 	// Update is called once per frame
@@ -41,17 +54,30 @@ public class Cursor : MonoBehaviour {
 		if (GetComponentInParent<PlayerActor> ().InTacticalMode()) {
 			UnityEngine.Cursor.visible = false;
 			midPointers.SetActive (false);
+			for (int i = 0; i < 3; i++) {
+				bulletImages [i].enabled = false;
+			}
 			return;
 		} else {
 			UnityEngine.Cursor.visible = true;
 			if (player.hasGun) {
 				if (!player.InDialogueMode ()) {
 					midPointers.SetActive (true);
+					for (int i = 0; i < 3; i++) {
+						bulletImages [i].enabled = true;
+					}
+
 				} else {
 					midPointers.SetActive (false);
+					for (int i = 0; i < 3; i++) {
+						bulletImages [i].enabled = false;
+					}
 				}
 			} else {
 				midPointers.SetActive (false);
+				for (int i = 0; i < 3; i++) {
+					bulletImages [i].enabled = false;
+				}
 			}
 		}
 
