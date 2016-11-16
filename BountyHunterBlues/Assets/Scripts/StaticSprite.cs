@@ -11,7 +11,7 @@ public class StaticSprite : MonoBehaviour {
         if (onTopOf != null)
             GetComponent<SpriteRenderer>().sortingOrder = onTopOf.GetComponent<SpriteRenderer>().sortingOrder + 1;
         else
-            GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(-1 * transform.position.y * 2);
+            GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(-1 * transform.position.y * 20);
 	}
 	
 	// Update is called once per frame

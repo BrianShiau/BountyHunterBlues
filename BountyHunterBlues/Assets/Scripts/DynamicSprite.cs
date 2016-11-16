@@ -12,6 +12,6 @@ public class DynamicSprite : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        mySprite.sortingOrder = Mathf.RoundToInt(-1 * transform.position.y * 2);
+        mySprite.sortingOrder = Mathf.RoundToInt(-1 * transform.position.y * 20);
     }
 }
