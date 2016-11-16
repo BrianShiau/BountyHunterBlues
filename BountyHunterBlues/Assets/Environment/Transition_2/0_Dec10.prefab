@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010794266282}
   - 212: {fileID: 212000014279126776}
-  - 114: {fileID: 114000012873745612}
   m_Layer: 0
   m_Name: 0_Dec10
   m_TagString: Untagged
@@ -41,18 +40,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000012873745612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012634566186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5f61bfd86b097468b53c7b5e56e63a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onTopOf: {fileID: 0}
 --- !u!212 &212000014279126776
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -80,7 +67,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -712405835
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: 70ed47d9cdca9e142b833b913069d72a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
