@@ -39,7 +39,7 @@ public class MeleeEnemy : EnemyActor {
 	public float spin_time_threshold; 
 	public GameObject MissileObject;
 	public float dash_speed;
-
+    public Animator shield_animation;
 
 	public override void Start(){
 		base.Start();
@@ -47,14 +47,17 @@ public class MeleeEnemy : EnemyActor {
         dash_cr_running = false;
         spin_cr_running = false;
         //audioManager.setLoop("Feet", true);
+        foreach(Animator anim in GetComponentsInChildren(typeof(Animator))){
+            if(anim.name == "ShieldHit"){
+                shield_animation = anim;
+            }
+        }
 	}
 
 	public override void Update(){
 		if (health <= 0)
 			return;
 		
-        //Debug.Log("enemy: " + faceDir);
-        //Debug.Log(closestAttackable);
 		base.Update ();
 		is_confused();
 		_stateManager.update_state (is_attacking(), player_is_cloaked(), closestAttackable, sound_heard (), is_alert ());
@@ -150,19 +153,24 @@ public class MeleeEnemy : EnemyActor {
 
     public override void takeDamage(int damage = 1){
         if((int)currDirection == 2 && get_player_actor().get_current_direction() == 0){
-            //animation here
+            //shield_animation.SetBool("Hit", true);
+            //blocksound here
         }
         else if((int)currDirection == 0 && get_player_actor().get_current_direction() == 2){
-            //animation here
+            //shield_animation.SetBool("Hit", true);
+            //blocksound here
         }
         else if((int)currDirection == 3 && get_player_actor().get_current_direction() == 1){
-            //animation here
+            //shield_animation.SetBool("Hit", true);
+            //blocksound here
         }
         else if((int)currDirection == 1 && get_player_actor().get_current_direction() == 3){
-            //animation here
+            //shield_animation.SetBool("Hit", true);
+            //blocksound here
         }
         else if(closestAttackable != null){
-            //animation here
+            //shield_animation.SetBool("Hit", true);
+            //blocksound here
         }
         else{
             base.takeDamage(damage);
