@@ -373,10 +373,10 @@ public class PlayerActor : GameActor
 			StartCoroutine(Utility.drawLine (bulletStartPosition, new Vector3(aimPoint.x, aimPoint.y, 0.0f), Color.cyan, 1f));
 			if (aimTarget != null && Vector2.Distance(aimTarget.transform.position, transform.position) <= sightDistance)
 			{
-				if (aimTarget.isAlive())
+				aimTarget.takeDamage();
+				if (!aimTarget.isAlive())
                 	audioManager.Play("EnemyDeath");
 				enemyHit = true;
-				aimTarget.takeDamage();
 				if (!aimTarget.isAlive())
 					aimTarget = null;
 			}
@@ -448,10 +448,10 @@ public class PlayerActor : GameActor
 		knifeAttacked = true;
 		if (closestAttackable != null && Vector2.Distance(closestAttackable.transform.position, transform.position) <= meleeDistance)
 		{
-			if (closestAttackable.isAlive())
+			closestAttackable.takeDamage();
+			if (!closestAttackable.isAlive())
             	audioManager.Play("EnemyDeath");
             enemyHit = true;
-			closestAttackable.takeDamage();
 			if (!closestAttackable.isAlive())
 				closestAttackable = null;
 		}
