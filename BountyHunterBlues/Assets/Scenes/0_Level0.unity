@@ -27639,6 +27639,7 @@ MonoBehaviour:
   pauseTime: 1
   forceInteraction: 0
   spotlightType: 0
+  leftImage: 1
 --- !u!82 &955535530
 AudioSource:
   m_ObjectHideFlags: 0
@@ -49145,6 +49146,11 @@ Prefab:
     - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
         type: 2}
       propertyPath: selfSpotlight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: leftImage
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

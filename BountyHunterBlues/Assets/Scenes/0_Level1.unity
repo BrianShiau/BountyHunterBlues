@@ -37625,6 +37625,7 @@ MonoBehaviour:
   pauseTime: 1
   forceInteraction: 0
   spotlightType: 0
+  leftImage: 1
 --- !u!1001 &1099849643
 Prefab:
   m_ObjectHideFlags: 0
@@ -66718,6 +66719,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: e566711072989794c8847c9755119ad4,
         type: 3}
+    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
+        type: 2}
+      propertyPath: leftImage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
