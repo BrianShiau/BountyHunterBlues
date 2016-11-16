@@ -70,30 +70,17 @@ public class Cursor : MonoBehaviour {
 		if (GetComponentInParent<PlayerActor> ().InTacticalMode()) {
 			UnityEngine.Cursor.visible = false;
 			midPointers.SetActive (false);
-			for (int i = 0; i < 3; i++) {
-				bulletImages [i].gameObject.SetActive(false);
-			}
 			return;
 		} else {
 			UnityEngine.Cursor.visible = true;
 			if (player.hasGun) {
 				if (!player.InDialogueMode ()) {
 					midPointers.SetActive (true);
-					for (int i = 0; i < 3; i++) {
-						bulletImages [i].gameObject.SetActive(true);
-					}
-
 				} else {
 					midPointers.SetActive (false);
-					for (int i = 0; i < 3; i++) {
-						bulletImages [i].gameObject.SetActive(false);
-					}
 				}
 			} else {
 				midPointers.SetActive (false);
-				for (int i = 0; i < 3; i++) {
-					bulletImages [i].gameObject.SetActive(false);
-				}
 			}
 		}
 		//disable old ammo for now

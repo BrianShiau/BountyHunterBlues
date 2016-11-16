@@ -56,6 +56,7 @@ public class PlayerActor : GameActor
 	private Image knifeHUDImage;
 	private Vector3 origKnifeImagePosition;
 	private float knifeOffset;
+	private GameObject[] bullets;
 
 	private Vector2 secondRayPosition;
 	private Vector2 thirdRayPosition;
@@ -102,6 +103,10 @@ public class PlayerActor : GameActor
 		//gunSliderObject = gunSlider.gameObject;
 		origGunImagePosition = gunImage.rectTransform.position;
 		origKnifeImagePosition = knifeImage.rectTransform.position;
+		bullets = new GameObject[3];
+		bullets[0] = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("GunHUDImage").FindChild ("BulletImage").gameObject;
+		bullets[1] = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("GunHUDImage").FindChild ("BulletImage (1)").gameObject;
+		bullets[2] = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("GunHUDImage").FindChild ("BulletImage (2)").gameObject;
 		if (hasGun) {
 			EnableGunImage ();
 		} else {
@@ -611,6 +616,10 @@ public class PlayerActor : GameActor
 			laser1.GetComponent<SpriteRenderer>().enabled = true;
 			laser2.GetComponent<SpriteRenderer>().enabled = true;
 
+			for (int i = 0; i < 3; i++) {
+				bullets [i].SetActive(true);
+			}
+
 			ammoOffset = 0;
 			gunImage.rectTransform.position = origGunImagePosition;
 			gunHUDImage.rectTransform.position = new Vector3 (0, 0, gunHUDImage.rectTransform.position.z);
@@ -624,6 +633,10 @@ public class PlayerActor : GameActor
 
 		laser1.GetComponent<SpriteRenderer>().enabled = false;
 		laser2.GetComponent<SpriteRenderer>().enabled = false;
+
+		for (int i = 0; i < 3; i++) {
+			bullets [i].SetActive(false);
+		}
 
 		ammoOffset = 0;
 		gunImage.rectTransform.position = origGunImagePosition;
