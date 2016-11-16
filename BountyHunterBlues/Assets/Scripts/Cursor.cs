@@ -55,7 +55,7 @@ public class Cursor : MonoBehaviour {
 			UnityEngine.Cursor.visible = false;
 			midPointers.SetActive (false);
 			for (int i = 0; i < 3; i++) {
-				bulletImages [i].enabled = false;
+				bulletImages [i].gameObject.SetActive(false);
 			}
 			return;
 		} else {
@@ -64,22 +64,24 @@ public class Cursor : MonoBehaviour {
 				if (!player.InDialogueMode ()) {
 					midPointers.SetActive (true);
 					for (int i = 0; i < 3; i++) {
-						bulletImages [i].enabled = true;
+						bulletImages [i].gameObject.SetActive(true);
 					}
 
 				} else {
 					midPointers.SetActive (false);
 					for (int i = 0; i < 3; i++) {
-						bulletImages [i].enabled = false;
+						bulletImages [i].gameObject.SetActive(false);
 					}
 				}
 			} else {
 				midPointers.SetActive (false);
 				for (int i = 0; i < 3; i++) {
-					bulletImages [i].enabled = false;
+					bulletImages [i].gameObject.SetActive(false);
 				}
 			}
 		}
+		//disable old ammo for now
+		midPointers.SetActive (false);
 
 		//ammo counter animation
 		float lastShotTime = player.getLastShotTime ();
@@ -93,10 +95,14 @@ public class Cursor : MonoBehaviour {
 		int start = Mathf.Min(player.getMagazineSize (), 2);
 		for (int i = 2; i > start; i--) {
 			midPointerReloads [i].SetActive (false);
+
+			bulletImages [i].enabled = false;
 		}
 		for (int i = start; i >= 0; i--) {
 			midPointerReloads [i].SetActive (true);
 			midPointerReloads [i].transform.localPosition = new Vector3 (midPointerReloads [i].transform.localPosition.x, -1.5f + 1.5f*(start-i), midPointerReloads [i].transform.localPosition.z);
+
+			bulletImages [i].enabled = true;
 		}
 
 		//hardware cursors for main cursor
