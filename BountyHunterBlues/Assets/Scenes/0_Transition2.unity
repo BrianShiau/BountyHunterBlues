@@ -1515,6 +1515,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 95000010032085470, guid: b6c9e9d01e18677419d9c7060978aa2f,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fc79f827069bf45d89108ac48b4b3e86, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -21371,6 +21376,7 @@ MonoBehaviour:
   pauseTime: 0
   forceInteraction: 0
   spotlightType: 0
+  leftImage: 0
 --- !u!61 &2095400825
 BoxCollider2D:
   m_ObjectHideFlags: 0

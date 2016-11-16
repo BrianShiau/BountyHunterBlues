@@ -3359,6 +3359,7 @@ MonoBehaviour:
   pauseTime: 0
   forceInteraction: 0
   spotlightType: 0
+  leftImage: 0
 --- !u!61 &307590066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5929,7 +5930,7 @@ Transform:
   - {fileID: 99982286}
   - {fileID: 1969754631}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
 --- !u!4 &775766707 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011496355410, guid: 6cbac129b3dc24626a16714da04d349f,
@@ -12475,6 +12476,7 @@ MonoBehaviour:
   pauseTime: 0
   forceInteraction: 0
   spotlightType: 0
+  leftImage: 0
 --- !u!212 &1510121911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17607,6 +17609,11 @@ Prefab:
       propertyPath: hasKnife
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95000010032085470, guid: b6c9e9d01e18677419d9c7060978aa2f,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fc79f827069bf45d89108ac48b4b3e86, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
