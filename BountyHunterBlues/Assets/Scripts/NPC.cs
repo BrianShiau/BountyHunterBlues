@@ -274,7 +274,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			"You’ve got me. Took you some time.",
 			"What are you going to do now? Nothing’s getting through this glass.",
 			"You'll have to take down the whole building.",
-			"I don’t blame you for being angry. But I really am trying to do good in the world. I\t wish...",
+			"I don’t blame you for being angry. But I really am trying to do good in the world. I wish...",
 			"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
 			};
 			break;
@@ -325,6 +325,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			}
 			player.SetDialogueMode(true);
 			player.DisableGunImage ();
+			player.DisableKnifeImage ();
 			if (pauseTime)
 				Time.timeScale = 0;
 		}
@@ -366,6 +367,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		spotlight.enabled = false;
 		player.SetDialogueMode(false);
 		player.EnableGunImage ();
+		player.EnableKnifeImage ();
 		if (pauseTime)
 			Time.timeScale = 1;
 		if (NPCNumber == 0) {

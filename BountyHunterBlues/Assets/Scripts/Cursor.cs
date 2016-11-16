@@ -13,8 +13,12 @@ public class Cursor : MonoBehaviour {
 	private GameObject[] midPointerReloads;
 	private Animator[] midPointerReloadAnims;
 	private GameObject directionPointer;
+
 	private Transform[] bulletTransforms;
+	private Quaternion[] bulletRotations;
 	private Image[] bulletImages;
+	private Vector3[] bulletPositions;
+	private Animator[] bulletAnimators;
 
 	private PlayerActor player;
 
@@ -36,12 +40,24 @@ public class Cursor : MonoBehaviour {
 		bulletImages = new Image[3];
 		bulletTransforms = new Transform[3];
 		Transform gunHudImage = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("GunHUDImage");
-		bulletImages[0] = gunHudImage.FindChild ("BulletImage").GetComponent<Image>();
-		bulletImages[1] = gunHudImage.FindChild ("BulletImage (1)").GetComponent<Image>();
-		bulletImages[2] = gunHudImage.FindChild ("BulletImage (2)").GetComponent<Image>();
 		bulletTransforms [0] = gunHudImage.FindChild ("BulletImage");
 		bulletTransforms [1] = gunHudImage.FindChild ("BulletImage (1)");
 		bulletTransforms [2] = gunHudImage.FindChild ("BulletImage (2)");
+		bulletImages[0] = bulletTransforms [0].GetComponent<Image>();
+		bulletImages[1] = bulletTransforms [1].GetComponent<Image>();
+		bulletImages[2] = bulletTransforms [2].GetComponent<Image>();
+
+		bulletPositions = new Vector3[3];
+		bulletPositions [0] = bulletTransforms [0].localPosition;
+		bulletPositions [1] = bulletTransforms [1].localPosition;
+		bulletPositions [2] = bulletTransforms [2].localPosition;
+		bulletRotations = new Quaternion[3];
+		bulletRotations [0] = bulletTransforms [0].localRotation;
+		bulletRotations [1] = bulletTransforms [1].localRotation;
+		bulletRotations [2] = bulletTransforms [2].localRotation;
+
+		bulletAnimators = new Animator[3];
+		bulletAnimators [0] = bulletTransforms [0].GetComponent<Animator> ();
 	}
 
 	// Update is called once per frame
@@ -54,49 +70,46 @@ public class Cursor : MonoBehaviour {
 		if (GetComponentInParent<PlayerActor> ().InTacticalMode()) {
 			UnityEngine.Cursor.visible = false;
 			midPointers.SetActive (false);
-			for (int i = 0; i < 3; i++) {
-				bulletImages [i].enabled = false;
-			}
 			return;
 		} else {
 			UnityEngine.Cursor.visible = true;
 			if (player.hasGun) {
 				if (!player.InDialogueMode ()) {
 					midPointers.SetActive (true);
-					for (int i = 0; i < 3; i++) {
-						bulletImages [i].enabled = true;
-					}
-
 				} else {
 					midPointers.SetActive (false);
-					for (int i = 0; i < 3; i++) {
-						bulletImages [i].enabled = false;
-					}
 				}
 			} else {
 				midPointers.SetActive (false);
-				for (int i = 0; i < 3; i++) {
-					bulletImages [i].enabled = false;
-				}
 			}
 		}
+		//disable old ammo for now
+		midPointers.SetActive (false);
 
 		//ammo counter animation
 		float lastShotTime = player.getLastShotTime ();
 		if (lastShotTime > player.reloadTime-.1) {
 			midPointerReloadAnims [0].SetFloat ("ReloadTime", 2.0f);
+			bulletAnimators [0].SetFloat ("ReloadTime", 2.0f);
 		}else if (lastShotTime < .1){
 			midPointerReloadAnims [0].SetFloat ("ReloadTime", 0.0f);
+			bulletAnimators [0].SetFloat ("ReloadTime", 0.0f);
 		}
 
 		//ammo counter count
 		int start = Mathf.Min(player.getMagazineSize (), 2);
 		for (int i = 2; i > start; i--) {
 			midPointerReloads [i].SetActive (false);
+
+			bulletImages [i].enabled = false;
 		}
 		for (int i = start; i >= 0; i--) {
 			midPointerReloads [i].SetActive (true);
 			midPointerReloads [i].transform.localPosition = new Vector3 (midPointerReloads [i].transform.localPosition.x, -1.5f + 1.5f*(start-i), midPointerReloads [i].transform.localPosition.z);
+
+			bulletImages [i].enabled = true;
+			bulletTransforms [i].localPosition = bulletPositions [start-i];
+			bulletTransforms [i].localRotation = bulletRotations [start-i];
 		}
 
 		//hardware cursors for main cursor

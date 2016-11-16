@@ -5929,7 +5929,7 @@ Transform:
   - {fileID: 99982286}
   - {fileID: 1969754631}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
 --- !u!4 &775766707 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011496355410, guid: 6cbac129b3dc24626a16714da04d349f,
@@ -6526,7 +6526,7 @@ Transform:
   - {fileID: 861371350}
   - {fileID: 845704108}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!4 &805774746 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011496355410, guid: 6cbac129b3dc24626a16714da04d349f,
@@ -17600,6 +17600,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010160602982, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
+        type: 2}
+      propertyPath: hasKnife
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
