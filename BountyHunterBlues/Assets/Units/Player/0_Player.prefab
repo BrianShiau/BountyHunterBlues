@@ -606,6 +606,7 @@ MonoBehaviour:
   NEW_GUN_MODE: 1
   aimTimeCap: 0.5
   hasGun: 0
+  hasKnife: 1
   reloadTime: 4
   cloakTime: 1
   currentLevel: 2

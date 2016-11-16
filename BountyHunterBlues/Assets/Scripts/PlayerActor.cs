@@ -18,6 +18,7 @@ public class PlayerActor : GameActor
     private PlayerLaser laser2;
 
     public bool hasGun;
+	public bool hasKnife;
 	public float reloadTime;
 	public float cloakTime;
 
@@ -103,10 +104,14 @@ public class PlayerActor : GameActor
 		origKnifeImagePosition = knifeImage.rectTransform.position;
 		if (hasGun) {
 			EnableGunImage ();
-		}
-		else {
+		} else {
 			DisableGunImage ();
 			//gunSliderObject.SetActive (false);
+		}
+		if (hasKnife) {
+			EnableKnifeImage ();
+		} else {
+			DisableKnifeImage ();
 		}
 
 		Text pressE = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("PressE").GetComponent<Text>();
@@ -648,7 +653,7 @@ public class PlayerActor : GameActor
 		knifeHUDImage.rectTransform.position = new Vector3(knifeHUDImage.rectTransform.position.x, knifeHUDImage.rectTransform.position.y - 50, knifeHUDImage.rectTransform.position.z);
 		knifeImage.color = new Color (knifeImage.color.r, knifeImage.color.g, knifeImage.color.b, 0f);
 		knifeHUDImage.color = new Color (knifeHUDImage.color.r, knifeHUDImage.color.g, knifeHUDImage.color.b, 0f);
-		while(gunHUDImage.color.a < .7f){
+		while(knifeHUDImage.color.a < .7f){
 			knifeImage.color = new Color (knifeImage.color.r, knifeImage.color.g, knifeImage.color.b, knifeImage.color.a + .1f);
 			knifeHUDImage.color = new Color (knifeHUDImage.color.r, knifeHUDImage.color.g, knifeHUDImage.color.b, knifeHUDImage.color.a + .07f);
 			knifeImage.rectTransform.position = new Vector3(knifeImage.rectTransform.position.x, knifeImage.rectTransform.position.y + 5, knifeImage.rectTransform.position.z);
@@ -663,13 +668,15 @@ public class PlayerActor : GameActor
 	}
 
 	public void EnableKnifeImage(){
-		knifeImage.enabled = true;
-		knifeHUDImage.enabled = true;
+		if (hasKnife) {
+			knifeImage.enabled = true;
+			knifeHUDImage.enabled = true;
 
-		knifeOffset = 0;
-		knifeImage.rectTransform.position = origKnifeImagePosition;
-		knifeHUDImage.rectTransform.position = new Vector3 (knifeHUDImage.rectTransform.position.x, 0, knifeHUDImage.rectTransform.position.z);
-		StartCoroutine (DisplayKnifeHUD());
+			knifeOffset = 0;
+			knifeImage.rectTransform.position = origKnifeImagePosition;
+			knifeHUDImage.rectTransform.position = new Vector3 (knifeHUDImage.rectTransform.position.x, 0, knifeHUDImage.rectTransform.position.z);
+			StartCoroutine (DisplayKnifeHUD ());
+		}
 	}
 
 	public void DisableKnifeImage(){
