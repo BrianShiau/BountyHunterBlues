@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010974294916}
   - 212: {fileID: 212000013473067528}
+  - 114: {fileID: 114000011994995192}
   m_Layer: 0
   m_Name: 0_0Dec_W1
   m_TagString: Untagged
@@ -40,6 +41,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000011994995192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012266095494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5f61bfd86b097468b53c7b5e56e63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTopOf: {fileID: 0}
 --- !u!212 &212000013473067528
 SpriteRenderer:
   m_ObjectHideFlags: 1

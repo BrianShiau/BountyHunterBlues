@@ -3,12 +3,15 @@ using System.Collections;
 
 public class StaticSprite : MonoBehaviour {
 
+    public SpriteRenderer onTopOf;
     private SpriteRenderer mySprite;
 
 	// Use this for initialization
 	void Start () {
-        mySprite = GetComponent<SpriteRenderer>();
-        mySprite.sortingOrder = Mathf.RoundToInt(transform.position.y * 2);
+        if (onTopOf != null)
+            GetComponent<SpriteRenderer>().sortingOrder = onTopOf.GetComponent<SpriteRenderer>().sortingOrder + 1;
+        else
+            GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(-1 * transform.position.y * 2);
 	}
 	
 	// Update is called once per frame
