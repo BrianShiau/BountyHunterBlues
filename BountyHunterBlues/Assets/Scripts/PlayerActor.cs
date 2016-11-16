@@ -51,6 +51,10 @@ public class PlayerActor : GameActor
 	private Image gunHUDImage;
 	private float ammoOffset;
 	private Vector3 origGunImagePosition;
+	private Image knifeImage;
+	private Image knifeHUDImage;
+	private Vector3 origKnifeImagePosition;
+	private float knifeOffset;
 
 	private Vector2 secondRayPosition;
 	private Vector2 thirdRayPosition;
@@ -90,10 +94,13 @@ public class PlayerActor : GameActor
 
 		gunImage = GameObject.FindGameObjectWithTag ("GunImage").GetComponent<Image>();
 		gunHUDImage = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild("GunHUDImage").GetComponent<Image>();
+		knifeImage = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild("KnifeImage").GetComponent<Image>();
+		knifeHUDImage = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild("KnifeHUDImage").GetComponent<Image>();
 		//gunSlider = GameObject.FindGameObjectWithTag ("GunSlider").GetComponent<Slider>();
 		//gunSliderFill = GameObject.FindGameObjectWithTag ("GunFill").GetComponent<Image>();
 		//gunSliderObject = gunSlider.gameObject;
 		origGunImagePosition = gunImage.rectTransform.position;
+		origKnifeImagePosition = knifeImage.rectTransform.position;
 		if (hasGun) {
 			EnableGunImage ();
 		}
@@ -633,11 +640,46 @@ public class PlayerActor : GameActor
 			ammoOffset += 5;
 			yield return new WaitForSeconds (0f + (.05f * gunImage.color.a));
 		}
+	}
 
+	IEnumerator DisplayKnifeHUD(){
+		knifeOffset = -50;
+		knifeImage.rectTransform.position = new Vector3(knifeImage.rectTransform.position.x, knifeImage.rectTransform.position.y - 50, knifeImage.rectTransform.position.z);
+		knifeHUDImage.rectTransform.position = new Vector3(knifeHUDImage.rectTransform.position.x, knifeHUDImage.rectTransform.position.y - 50, knifeHUDImage.rectTransform.position.z);
+		knifeImage.color = new Color (knifeImage.color.r, knifeImage.color.g, knifeImage.color.b, 0f);
+		knifeHUDImage.color = new Color (knifeHUDImage.color.r, knifeHUDImage.color.g, knifeHUDImage.color.b, 0f);
+		while(gunHUDImage.color.a < .7f){
+			knifeImage.color = new Color (knifeImage.color.r, knifeImage.color.g, knifeImage.color.b, knifeImage.color.a + .1f);
+			knifeHUDImage.color = new Color (knifeHUDImage.color.r, knifeHUDImage.color.g, knifeHUDImage.color.b, knifeHUDImage.color.a + .07f);
+			knifeImage.rectTransform.position = new Vector3(knifeImage.rectTransform.position.x, knifeImage.rectTransform.position.y + 5, knifeImage.rectTransform.position.z);
+			knifeHUDImage.rectTransform.position = new Vector3(knifeHUDImage.rectTransform.position.x, knifeHUDImage.rectTransform.position.y + 5, knifeHUDImage.rectTransform.position.z);
+			knifeOffset += 5;
+			yield return new WaitForSeconds (0f + (.05f * knifeImage.color.a));
+		}
 	}
 
 	public float AmmoOffset(){
 		return ammoOffset;
+	}
+
+	public void EnableKnifeImage(){
+		knifeImage.enabled = true;
+		knifeHUDImage.enabled = true;
+
+		knifeOffset = 0;
+		knifeImage.rectTransform.position = origKnifeImagePosition;
+		knifeHUDImage.rectTransform.position = new Vector3 (knifeHUDImage.rectTransform.position.x, 0, knifeHUDImage.rectTransform.position.z);
+		StartCoroutine (DisplayKnifeHUD());
+	}
+
+	public void DisableKnifeImage(){
+		knifeImage.enabled = false;
+		knifeHUDImage.enabled = false;
+
+		knifeOffset = 0;
+		knifeImage.rectTransform.position = origKnifeImagePosition;
+		knifeHUDImage.rectTransform.position = new Vector3 (knifeHUDImage.rectTransform.position.x, 0, knifeHUDImage.rectTransform.position.z);
+		StopCoroutine ("DisplayKnifeHUD");
 	}
 
     public override bool isVisible()

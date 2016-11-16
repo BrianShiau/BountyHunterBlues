@@ -325,6 +325,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			}
 			player.SetDialogueMode(true);
 			player.DisableGunImage ();
+			player.DisableKnifeImage ();
 			if (pauseTime)
 				Time.timeScale = 0;
 		}
@@ -366,6 +367,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
 		spotlight.enabled = false;
 		player.SetDialogueMode(false);
 		player.EnableGunImage ();
+		player.EnableKnifeImage ();
 		if (pauseTime)
 			Time.timeScale = 1;
 		if (NPCNumber == 0) {
