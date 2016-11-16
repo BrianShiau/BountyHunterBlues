@@ -40,6 +40,7 @@ public class MeleeEnemy : EnemyActor {
 	public GameObject MissileObject;
 	public float dash_speed;
     public Animator shield_animation;
+	private int shieldStack;
 
 	public override void Start(){
 		base.Start();
@@ -153,23 +154,33 @@ public class MeleeEnemy : EnemyActor {
 
     public override void takeDamage(int damage = 1){
         if((int)currDirection == 2 && get_player_actor().get_current_direction() == 0){
-            //shield_animation.SetBool("Hit", true);
+            shield_animation.SetBool("Hit", true);
+			Invoke ("resetShieldAnim", .01f);
+			shieldStack++;
             //blocksound here
         }
         else if((int)currDirection == 0 && get_player_actor().get_current_direction() == 2){
-            //shield_animation.SetBool("Hit", true);
+            shield_animation.SetBool("Hit", true);
+			Invoke ("resetShieldAnim", .01f);
+			shieldStack++;
             //blocksound here
         }
         else if((int)currDirection == 3 && get_player_actor().get_current_direction() == 1){
-            //shield_animation.SetBool("Hit", true);
+            shield_animation.SetBool("Hit", true);
+			Invoke ("resetShieldAnim", .01f);
+			shieldStack++;
             //blocksound here
         }
         else if((int)currDirection == 1 && get_player_actor().get_current_direction() == 3){
-            //shield_animation.SetBool("Hit", true);
+            shield_animation.SetBool("Hit", true);
+			Invoke ("resetShieldAnim", .01f);
+			shieldStack++;
             //blocksound here
         }
         else if(closestAttackable != null){
-            //shield_animation.SetBool("Hit", true);
+            shield_animation.SetBool("Hit", true);
+			Invoke ("resetShieldAnim", .01f);
+			shieldStack++;
             //blocksound here
         }
         else{
@@ -177,4 +188,10 @@ public class MeleeEnemy : EnemyActor {
         }
 
     }
+
+	private void resetShieldAnim(){
+		if (--shieldStack == 0) {
+			shield_animation.SetBool ("Hit", false);
+		}
+	}
 }

@@ -357,6 +357,7 @@ MonoBehaviour:
   spin_time_threshold: 3
   MissileObject: {fileID: 0, guid: 378ea2c3974fe944ead7f855541ddf95, type: 2}
   dash_speed: 0.5
+  shield_animation: {fileID: 0}
 --- !u!114 &114000011858639588
 MonoBehaviour:
   m_ObjectHideFlags: 1
