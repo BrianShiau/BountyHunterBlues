@@ -509,11 +509,6 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 773d2d58d6e5e24428fe79f13a846b65,
         type: 3}
-    - target: {fileID: 114000011932605408, guid: 1e000e91c311bda43b75c0efa5cbf69a,
-        type: 2}
-      propertyPath: leftImage
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e000e91c311bda43b75c0efa5cbf69a, type: 2}
   m_IsPrefabParent: 0
@@ -1520,11 +1515,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 95000010032085470, guid: b6c9e9d01e18677419d9c7060978aa2f,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: e9f31be1216aa1b428ebec0553a784ef, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -7536,7 +7526,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010794266282, guid: fadc3a98011304c039744d863bf1e28f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 16.764
+      value: 17.02
       objectReference: {fileID: 0}
     - target: {fileID: 4000010794266282, guid: fadc3a98011304c039744d863bf1e28f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9109,7 +9099,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013684197154, guid: 5ca4241e2cd574439b53181b0ce56294, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 16.683
+      value: 16.769
       objectReference: {fileID: 0}
     - target: {fileID: 4000013684197154, guid: 5ca4241e2cd574439b53181b0ce56294, type: 2}
       propertyPath: m_LocalPosition.z
@@ -11206,8 +11196,7 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14d59567bcb0949f3ba2b706d0c2dc7e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1075483544 stripped
@@ -11852,8 +11841,7 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: -0.1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14d59567bcb0949f3ba2b706d0c2dc7e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1155717356 stripped
@@ -13327,8 +13315,7 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: -0.1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14d59567bcb0949f3ba2b706d0c2dc7e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1268255506 stripped
@@ -15973,7 +15960,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010794266282, guid: 7bc224e01864f443ca0ba3bbadc124cb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 9.33
+      value: 9.02
       objectReference: {fileID: 0}
     - target: {fileID: 4000010794266282, guid: 7bc224e01864f443ca0ba3bbadc124cb, type: 2}
       propertyPath: m_LocalPosition.y
@@ -16003,8 +15990,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7bc224e01864f443ca0ba3bbadc124cb, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1567181289 stripped
@@ -21349,7 +21335,6 @@ GameObject:
   - 212: {fileID: 2095400826}
   - 61: {fileID: 2095400825}
   - 114: {fileID: 2095400824}
-  - 114: {fileID: 2095400828}
   m_Layer: 0
   m_Name: someones wallet
   m_TagString: Interactable
@@ -21386,7 +21371,6 @@ MonoBehaviour:
   pauseTime: 0
   forceInteraction: 0
   spotlightType: 0
-  leftImage: 0
 --- !u!61 &2095400825
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21447,18 +21431,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!114 &2095400828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2095400823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5f61bfd86b097468b53c7b5e56e63a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onTopOf: {fileID: 0}
 --- !u!1001 &2122726889
 Prefab:
   m_ObjectHideFlags: 0
