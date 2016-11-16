@@ -148,16 +148,16 @@ public class MeleeEnemy : EnemyActor {
 
     public override void takeDamage(int damage = 1){
         if((int)currDirection == 2 && get_player_actor().get_current_direction() == 0){
-            
+            //animation here
         }
         else if((int)currDirection == 0 && get_player_actor().get_current_direction() == 2){
-            
+            //animation here
         }
         else if((int)currDirection == 3 && get_player_actor().get_current_direction() == 1){
-            
+            //animation here
         }
         else if((int)currDirection == 1 && get_player_actor().get_current_direction() == 3){
-            
+            //animation here
         }
         else{
             base.takeDamage(damage);
