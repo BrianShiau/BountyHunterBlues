@@ -53,6 +53,8 @@ public class MeleeEnemy : EnemyActor {
 		if (health <= 0)
 			return;
 		
+        //Debug.Log("enemy: " + faceDir);
+        //Debug.Log(closestAttackable);
 		base.Update ();
 		is_confused();
 		_stateManager.update_state (is_attacking(), player_is_cloaked(), closestAttackable, sound_heard (), is_alert ());
@@ -157,6 +159,9 @@ public class MeleeEnemy : EnemyActor {
             //animation here
         }
         else if((int)currDirection == 1 && get_player_actor().get_current_direction() == 3){
+            //animation here
+        }
+        else if(closestAttackable != null){
             //animation here
         }
         else{
