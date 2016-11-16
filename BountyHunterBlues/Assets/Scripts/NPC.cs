@@ -184,11 +184,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
         case 34:
             //passed out guy
             strings = new string[] {
-                "It's John...",
-				"God, it's been so long...",
-				"I wish he was awake so I could...",
-				"I hope you and Mike get through this, John...",
-
+                "He's out cold.",
             };
             break;
         case 35:
