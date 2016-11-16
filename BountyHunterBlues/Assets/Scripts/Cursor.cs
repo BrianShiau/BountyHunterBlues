@@ -87,8 +87,10 @@ public class Cursor : MonoBehaviour {
 		float lastShotTime = player.getLastShotTime ();
 		if (lastShotTime > player.reloadTime-.1) {
 			midPointerReloadAnims [0].SetFloat ("ReloadTime", 2.0f);
+			GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("GunHUDImage").FindChild ("BulletImage").GetComponent<Animator>().SetFloat ("ReloadTime", 2.0f);
 		}else if (lastShotTime < .1){
 			midPointerReloadAnims [0].SetFloat ("ReloadTime", 0.0f);
+			GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("GunHUDImage").FindChild ("BulletImage").GetComponent<Animator>().SetFloat ("ReloadTime", 0.0f);
 		}
 
 		//ammo counter count
