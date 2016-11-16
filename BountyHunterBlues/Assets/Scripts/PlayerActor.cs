@@ -588,6 +588,7 @@ public class PlayerActor : GameActor
 
 	public override void OnTriggerEnter2D(Collider2D other)
 	{
+        /*
 		base.OnTriggerEnter2D(other);
 		SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
 		SpriteRenderer healthBarRenderer = transform.FindChild("health bar_0").GetComponent<SpriteRenderer>();
@@ -595,6 +596,7 @@ public class PlayerActor : GameActor
 
 		healthBarRenderer.sortingOrder = mySprite.sortingOrder - 1;
 		hitSmokeRenderer.sortingOrder = mySprite.sortingOrder + 1;
+        */
 	}
 
 	public void EnableGun(){
