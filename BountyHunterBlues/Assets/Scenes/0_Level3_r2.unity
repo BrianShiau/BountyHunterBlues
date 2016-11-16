@@ -7871,6 +7871,11 @@ Prefab:
       propertyPath: faceDir.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010893468112, guid: 17658205e75e81d4d92d33e676ea42f7,
+        type: 2}
+      propertyPath: faceDir.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17658205e75e81d4d92d33e676ea42f7, type: 2}
   m_IsPrefabParent: 0
@@ -19423,7 +19428,7 @@ Transform:
   - {fileID: 1267566860}
   - {fileID: 543563574}
   m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_RootOrder: 41
 --- !u!1001 &1238970014
 Prefab:
   m_ObjectHideFlags: 0
@@ -32811,7 +32816,7 @@ Transform:
   - {fileID: 1748078477}
   - {fileID: 1469450603}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1001 &2077207314
 Prefab:
   m_ObjectHideFlags: 0
