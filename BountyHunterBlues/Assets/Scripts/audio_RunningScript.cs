@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿/*
+using UnityEngine;
 using System.Collections;
 
 public class audio_RunningScript : MonoBehaviour {
@@ -48,7 +49,7 @@ public class audio_RunningScript : MonoBehaviour {
 				//movement = true;
 			//}
 			
-			*/
+
 			if (movement)
 			{
 				audio.clip = nextClip;
@@ -62,3 +63,4 @@ public class audio_RunningScript : MonoBehaviour {
 		}
 	}
 }
+*/
