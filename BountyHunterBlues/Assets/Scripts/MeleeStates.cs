@@ -217,7 +217,7 @@ public class AggresiveMelee: MeleeState {
 	public override void execute(){
 		shoot_timer += Time.deltaTime;
         if(shoot_timer > shoot_timer_threshold){
-        	//rangedAttack.execute(enemy);
+        	rangedAttack.execute(enemy);
         	if(!enemy.is_dashing() && !enemy.is_spinning()){
         		shoot_timer = 0;
         	}

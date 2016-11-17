@@ -2441,7 +2441,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 8c01851f273bb69499e63e2067f64b79, type: 2}
+      objectReference: {fileID: 9100000, guid: fc79f827069bf45d89108ac48b4b3e86, type: 2}
     - target: {fileID: 4000013978322868, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
       propertyPath: m_LocalScale.x
       value: 0.094873905
@@ -6927,6 +6927,7 @@ MonoBehaviour:
   pauseTime: 0
   forceInteraction: 0
   spotlightType: 0
+  leftImage: 0
 --- !u!61 &474774772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7059,7 +7060,7 @@ Transform:
   - {fileID: 283848370}
   - {fileID: 1591742873}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
 --- !u!1001 &491040773
 Prefab:
   m_ObjectHideFlags: 0
@@ -17411,7 +17412,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1001 &1173848604
 Prefab:
   m_ObjectHideFlags: 0
@@ -31225,7 +31226,7 @@ Transform:
   - {fileID: 570845104}
   - {fileID: 1848712219}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
 --- !u!1001 &2014063122
 Prefab:
   m_ObjectHideFlags: 0
