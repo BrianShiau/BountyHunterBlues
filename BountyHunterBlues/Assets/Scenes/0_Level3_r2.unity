@@ -2769,6 +2769,14 @@ Prefab:
       propertyPath: hasGun
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010480634366, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010160602982, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -32817,7 +32825,7 @@ Transform:
   - {fileID: 1748078477}
   - {fileID: 1469450603}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1001 &2077207314
 Prefab:
   m_ObjectHideFlags: 0
