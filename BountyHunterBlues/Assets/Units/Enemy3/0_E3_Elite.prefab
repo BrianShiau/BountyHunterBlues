@@ -355,7 +355,8 @@ MonoBehaviour:
   fence: {fileID: 0}
   fenceCollider: {fileID: 0}
   spin_time_threshold: 3
-  MissileObject: {fileID: 0, guid: 378ea2c3974fe944ead7f855541ddf95, type: 2}
+  MissileObject: {fileID: 1000014178562904, guid: dd9739c77423ccf4199098dbe23409b3,
+    type: 2}
   dash_speed: 0.5
   shield_animation: {fileID: 0}
 --- !u!114 &114000011858639588
