@@ -698,7 +698,7 @@ Transform:
   - {fileID: 1709402918}
   - {fileID: 1112838760}
   m_Father: {fileID: 0}
-  m_RootOrder: 44
+  m_RootOrder: 45
 --- !u!1001 &9649507
 Prefab:
   m_ObjectHideFlags: 0
@@ -3364,7 +3364,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1001 &82437666
 Prefab:
   m_ObjectHideFlags: 0
@@ -31232,7 +31232,7 @@ Transform:
   - {fileID: 2076196362}
   - {fileID: 722458170}
   m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_RootOrder: 42
 --- !u!1001 &791084592
 Prefab:
   m_ObjectHideFlags: 0
@@ -34775,6 +34775,14 @@ Prefab:
         type: 2}
       propertyPath: lerp_distance
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010480634366, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010160602982, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
@@ -65313,7 +65321,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
 --- !u!61 &1634430868
 BoxCollider2D:
   m_ObjectHideFlags: 0

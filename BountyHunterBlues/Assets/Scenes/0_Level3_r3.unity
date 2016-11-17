@@ -2460,6 +2460,14 @@ Prefab:
       propertyPath: lerp_distance
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010480634366, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010160602982, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c9e9d01e18677419d9c7060978aa2f, type: 2}
   m_IsPrefabParent: 0
@@ -17412,7 +17420,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1001 &1173848604
 Prefab:
   m_ObjectHideFlags: 0
@@ -31226,7 +31234,7 @@ Transform:
   - {fileID: 570845104}
   - {fileID: 1848712219}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
 --- !u!1001 &2014063122
 Prefab:
   m_ObjectHideFlags: 0
