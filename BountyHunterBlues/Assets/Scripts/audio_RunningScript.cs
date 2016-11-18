@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class audio_RunningScript : MonoBehaviour {
-
+    /*
 	public AudioClip[] audioSources = new AudioClip[5];
 	public AudioSource audio;
 	private float baseFootAudioVolume = 1.0f;
@@ -31,7 +31,7 @@ public class audio_RunningScript : MonoBehaviour {
 			{
 				movement = true;
 			}
-			/*
+			
 			if (Input.GetKey(KeyCode.A))
 			{
 				
@@ -48,7 +48,7 @@ public class audio_RunningScript : MonoBehaviour {
 				//movement = true;
 			//}
 			
-			*/
+			
 			if (movement)
 			{
 				audio.clip = nextClip;
@@ -61,4 +61,5 @@ public class audio_RunningScript : MonoBehaviour {
 				nextCommands.AddLast(stopMove);
 		}
 	}
+    */
 }
