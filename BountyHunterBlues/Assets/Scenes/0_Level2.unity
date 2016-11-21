@@ -8586,21 +8586,6 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 868907004}
-    - target: {fileID: 114000012478848196, guid: f6922b8db8ac6d04995dd361bea03565,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PauseFromMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012900824240, guid: f6922b8db8ac6d04995dd361bea03565,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 58.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012900824240, guid: f6922b8db8ac6d04995dd361bea03565,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6922b8db8ac6d04995dd361bea03565, type: 2}
   m_IsPrefabParent: 0
