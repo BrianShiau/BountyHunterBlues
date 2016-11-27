@@ -62,6 +62,7 @@ public class PlayerActor : GameActor
 	private Vector2 thirdRayPosition;
 
 	private Image hitFlash;
+	private Image deathFlash;
 	Animator hitSmokeAnim;
 
 	private GameObject mainBackground;
@@ -132,6 +133,7 @@ public class PlayerActor : GameActor
 			}
 		}
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
+		deathFlash = GameObject.FindGameObjectWithTag ("DeathFlash").GetComponent<Image> ();
 		mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
 		startingPosition = transform.position;
 		mGrid = GameObject.Find("GridOverlay").GetComponent<Grid>();
@@ -519,12 +521,32 @@ public class PlayerActor : GameActor
 
 	public override void die()
 	{
-		GameObject.FindGameObjectWithTag ("DeathFlash").GetComponent<Image>().enabled = true;
-		deaths++;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		Time.timeScale = .25f;
+		deathFlash.enabled = true;
+		inDialogueMode = true;
+		base.die();
+		gameActorAnimator.SetBool ("isDead", true);
+		transform.FindChild ("health bar_0").gameObject.SetActive(false);
+		transform.FindChild ("Feet Collider").gameObject.SetActive(false);
+		transform.FindChild ("DirectionPointer").gameObject.SetActive(false);
+		transform.FindChild ("Laser1").gameObject.SetActive(false);
+		transform.FindChild ("Laser2").gameObject.SetActive(false);
+		GetComponent<BoxCollider2D> ().enabled = false;
+		hitFlash.color = new Color (hitFlash.color.r, hitFlash.color.g, hitFlash.color.b, 1f);
+		StartCoroutine(DeathCleanUp());
 	}
 
+	private IEnumerator DeathCleanUp()
+	{
+		//audioManager.Play("Death");
+		yield return new WaitForSeconds(.01f);
+		deathFlash.color = new Color (deathFlash.color.r, deathFlash.color.g, deathFlash.color.b, 0f);
+		yield return new WaitForSeconds(1);
 
+		deaths++;
+		Time.timeScale = 1f;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
 
 	public override void runAnimation()
 	{
