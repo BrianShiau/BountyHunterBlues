@@ -65,6 +65,9 @@ public class PlayerActor : GameActor
 	private Image deathFlash;
 	Animator hitSmokeAnim;
 
+	private Vector3 origSpotlightPos;
+	private Image spotlight;
+
 	private GameObject mainBackground;
 	private Vector3 startingPosition;
 
@@ -135,6 +138,8 @@ public class PlayerActor : GameActor
 		hitFlash = GameObject.FindGameObjectWithTag ("HitFlash").GetComponent<Image>();
 		deathFlash = GameObject.FindGameObjectWithTag ("DeathFlash").GetComponent<Image> ();
 		mainBackground = GameObject.FindGameObjectWithTag ("MainBackground");
+		spotlight = GameObject.FindGameObjectWithTag ("HUD").transform.FindChild("Spotlight").GetComponent<Image>();
+		origSpotlightPos = spotlight.rectTransform.position;
 		startingPosition = transform.position;
 		mGrid = GameObject.Find("GridOverlay").GetComponent<Grid>();
 		setBulletStartPosition(new Vector2(transform.position.x, transform.position.y));
@@ -521,7 +526,7 @@ public class PlayerActor : GameActor
 
 	public override void die()
 	{
-		Time.timeScale = .25f;
+		Time.timeScale = .5f;
 		deathFlash.enabled = true;
 		inDialogueMode = true;
 		base.die();
@@ -541,10 +546,21 @@ public class PlayerActor : GameActor
 		//audioManager.Play("Death");
 		yield return new WaitForSeconds(.01f);
 		deathFlash.color = new Color (deathFlash.color.r, deathFlash.color.g, deathFlash.color.b, 0f);
-		yield return new WaitForSeconds(1);
+
+		yield return new WaitForSeconds(.1f);
+		for (int i = 1; i <= 20; i++) {
+			deathFlash.color = new Color (1f-.05f*i, deathFlash.color.g, deathFlash.color.b, .05f*i);
+			yield return new WaitForSeconds(.05f);
+		}
+
+		//spotlight.rectTransform.position = origSpotlightPos;
+		//spotlight.enabled = true;
+		//spotlight.color = new Color (1f, 0f, 0f, .5f);
+		//yield return new WaitForSeconds(1);
 
 		deaths++;
 		Time.timeScale = 1f;
+		//spotlight.enabled = false;
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
