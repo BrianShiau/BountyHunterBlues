@@ -149,7 +149,8 @@ public class MeleeEnemy : EnemyActor {
 
     public override void die(){
         base.die();
-        Destroy(gameObject);
+		transform.FindChild ("Laser").gameObject.SetActive(false);
+		StartCoroutine(DeathCleanUp());
     }
 
     public override void takeDamage(int damage = 1){
@@ -193,5 +194,14 @@ public class MeleeEnemy : EnemyActor {
 		if (--shieldStack == 0) {
 			shield_animation.SetBool ("Hit", false);
 		}
+	}
+
+	private IEnumerator DeathCleanUp()
+	{
+		//audioManager.Play("Death");
+		yield return new WaitForSeconds(.1f);
+		gameActorAnimator.SetBool ("isDead", true);
+		yield return new WaitForSeconds(1);
+		Destroy(gameObject);
 	}
 }
