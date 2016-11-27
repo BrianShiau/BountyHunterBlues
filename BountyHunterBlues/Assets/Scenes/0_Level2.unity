@@ -65351,7 +65351,7 @@ MonoBehaviour:
   NPCNumber: 40
   destroyAfterPlay: 0
   currentLine: 0
-  pauseTime: 0
+  pauseTime: 1
   forceInteraction: 0
   spotlightType: 0
   leftImage: 0
