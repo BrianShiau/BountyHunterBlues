@@ -27809,6 +27809,7 @@ MonoBehaviour:
   forceInteraction: 0
   spotlightType: 0
   leftImage: 1
+  loadNextLevel: 0
 --- !u!82 &955535530
 AudioSource:
   m_ObjectHideFlags: 0
