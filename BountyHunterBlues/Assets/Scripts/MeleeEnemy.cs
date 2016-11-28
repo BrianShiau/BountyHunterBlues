@@ -126,17 +126,27 @@ public class MeleeEnemy : EnemyActor {
         
         spin_time += Time.deltaTime;    
         while(spin_time < spin_time_threshold){
+            this.gameObject.transform.GetChild(6).gameObject.active = true;
             meleeAttack();
             yield return null;
         }
+        this.gameObject.transform.GetChild(6).gameObject.active = false;
         gameActorAnimator.SetBool("isAttack", false);
         set_attacking(false);
         spin_cr_running = false;
         spin_time = 0;
     }
 
+    void OnCollisionEnter2D(Collision2D collision){
+        if(spin_cr_running){
+            if(collision.gameObject.name == "0_Player"){
+                get_player_actor().takeDamage();
+            }
+        }
+    }
+
     public override void meleeAttack(){
-        SpinExplosion obj = SpinExplosion.Create(MissileObject, transform.position);
+        
     }
 
     public override void interact(){
