@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: dd52f0f352cba5c44bcc398849a2d8b7
-timeCreated: 1480219320
+timeCreated: 1480295174
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,6 +15,7 @@ TextureImporter:
     21300016: DeathAnimation_8
     21300018: DeathAnimation_7
     21300020: DeathAnimation_10
+    21300022: DeathAnimation_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -71,8 +72,8 @@ TextureImporter:
         y: 0
         width: 1261
         height: 1865
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -84,8 +85,8 @@ TextureImporter:
         y: 0
         width: 1095
         height: 1834
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -97,8 +98,8 @@ TextureImporter:
         y: 0
         width: 1222
         height: 1707
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -110,8 +111,8 @@ TextureImporter:
         y: 0
         width: 1118
         height: 1557
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -122,9 +123,9 @@ TextureImporter:
         x: 7120
         y: 4
         width: 1531
-        height: 1370
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 1369
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -136,8 +137,8 @@ TextureImporter:
         y: 0
         width: 1928
         height: 1176
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -149,8 +150,8 @@ TextureImporter:
         y: 0
         width: 2190
         height: 1097
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -158,12 +159,51 @@ TextureImporter:
       name: DeathAnimation_7
       rect:
         serializedVersion: 2
+        x: 14015
+        y: 821
+        width: 26
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DeathAnimation_8
+      rect:
+        serializedVersion: 2
+        x: 13611
+        y: 214
+        width: 20
+        height: 18
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DeathAnimation_9
+      rect:
+        serializedVersion: 2
         x: 13681
         y: 4
         width: 2395
         height: 578
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DeathAnimation_10
+      rect:
+        serializedVersion: 2
+        x: 13645
+        y: 164
+        width: 23
+        height: 17
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
