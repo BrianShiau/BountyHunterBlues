@@ -37,7 +37,7 @@ public class MeleeEnemy : EnemyActor {
 	private bool spin_cr_running;
 	private float spin_time;
 	public float spin_time_threshold; 
-	public GameObject MissileObject;
+	//public GameObject MissileObject;
 	public float dash_speed;
     public Animator shield_animation;
 	private int shieldStack;
