@@ -30,6 +30,8 @@ public class NPC : NPCActor, Interactable, Dialogue {
 	public int spotlightType;
 	public bool leftImage;
 
+	public bool loadNextLevel;
+
 	//have to call start twice for some reason. dont do it the second time.
 	private bool startedAlready = false;
 
@@ -273,17 +275,24 @@ public class NPC : NPCActor, Interactable, Dialogue {
 
         //Room 3
         case 80:
-		//CEO
-		strings = new string[] {
-            //neutral
-			"You’ve got me. Took you some time.",
-			"What are you going to do now? Nothing’s getting through this glass.",
-			"You'll have to take down the whole building.",
-			"I don’t blame you for being angry. But I really am trying to do good in the world. I wish...",
-			"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
+			//CEO
+			strings = new string[] {
+	            //neutral
+				"You’ve got me. Took you some time.",
+				"What are you going to do now? Nothing’s getting through this glass.",
+				"You'll have to take down the whole building.",
+				"I don’t blame you for being angry. But I really am trying to do good in the world. I wish...",
+				"I’m sorry, love. I really am. If I have to be taken out, there are worse ways to go, I suppose.",
+				};
+				break;
+
+		case 90:
+			//Reactor
+			strings = new string[] {
+				//smiling
+				"Boom Bitch.",
 			};
 			break;
-
 		//Levelless
 		/*case 22: 
 		//Hit Mecahinc
@@ -378,6 +387,9 @@ public class NPC : NPCActor, Interactable, Dialogue {
 			Time.timeScale = 1;
 		if (NPCNumber == 0) {
 			GameObject.FindGameObjectWithTag ("HUD").transform.FindChild ("PressE").GetComponent<Text>().enabled = false;
+		}
+		if (loadNextLevel) {
+			transform.FindChild ("EndTrigger").GetComponent<RestartGameTrigger>().LoadNextLevel();
 		}
 	}
 
