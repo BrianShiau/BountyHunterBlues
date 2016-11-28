@@ -23061,20 +23061,6 @@ Prefab:
       propertyPath: m_Name
       value: 0_E2_Missile (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
-        type: 2}
-      propertyPath: faceDir.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010307555738, guid: 9b21c2841e1c7264592a25775740333b,
-        type: 2}
-      propertyPath: faceDir.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010573854614, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
   m_IsPrefabParent: 0
@@ -50416,11 +50402,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000012983268330, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 20.19
+      value: 19.27
       objectReference: {fileID: 0}
     - target: {fileID: 4000012983268330, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.88
+      value: 6.8
       objectReference: {fileID: 0}
     - target: {fileID: 4000012983268330, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -50452,7 +50438,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010573854614, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b21c2841e1c7264592a25775740333b, type: 2}
