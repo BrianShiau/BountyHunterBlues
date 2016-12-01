@@ -182,7 +182,7 @@ public class NPC : NPCActor, Interactable, Dialogue {
             strings = new string[] {
 				"See that gentleman passed out in the corner over there? Hear he’s getting divorced.",
                 "Yeah, their two girls disappeared, just poof...poor things.",
-				"His partner’s not taking it well, and neither is he as you might be able to tell",
+				"His husband’s not taking it well, and neither is he as you might be able to tell",
                 "...",
                 "Hey, you wanna have a good time, you let me know, alright?",
 
