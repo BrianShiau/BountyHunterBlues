@@ -1524,7 +1524,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c02fc1a6ea69b4e389ca82d03ca9d1d5, type: 2}
+      objectReference: {fileID: 9100000, guid: 3df4d212335214086bab00408e1489c1, type: 2}
     - target: {fileID: 114000010113090074, guid: b6c9e9d01e18677419d9c7060978aa2f,
         type: 2}
       propertyPath: hasKnife
@@ -21387,6 +21387,7 @@ MonoBehaviour:
   forceInteraction: 0
   spotlightType: 0
   leftImage: 0
+  loadNextLevel: 0
 --- !u!61 &2095400825
 BoxCollider2D:
   m_ObjectHideFlags: 0

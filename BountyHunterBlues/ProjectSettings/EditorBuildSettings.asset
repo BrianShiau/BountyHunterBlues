@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/0_MainMenu.unity
   - enabled: 1
+    path: Assets/Scenes/Intro.unity
+  - enabled: 1
     path: Assets/Scenes/0_Level0.unity
   - enabled: 1
     path: Assets/Scenes/0_Transition1.unity
@@ -25,6 +27,8 @@ EditorBuildSettings:
     path: Assets/Scenes/0_Level3_r2.unity
   - enabled: 1
     path: Assets/Scenes/0_Level3_r3.unity
+  - enabled: 1
+    path: Assets/Scenes/Outro.unity
   - enabled: 1
     path: Assets/Scenes/0_Level3_r4.unity
   - enabled: 1
